@@ -16,5 +16,9 @@
   "dependencies": {
     "express": "^4.17.0",
     "path": "^0.12.7"
+  }, 
+  "engines": {
+    "node": ">=8.0.0",
+    "npm": ">=5.0.0" 
   }
 }
