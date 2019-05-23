@@ -1,0 +1,20 @@
+{
+  "name": "aipm-react-dashboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.ng.bluemix.net:aiPoweredManufacturing/aipm-react-dashboard.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.0",
+    "path": "^0.12.7"
+  }
+}
