@@ -11,7 +11,6 @@ npm install
 
 make changes
 
-npm build
+npm run build
 
 commit changes, push code
-
