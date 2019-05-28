@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/App.css';
+import './persona-time.css';
 
 const personatime = (props) => {
 

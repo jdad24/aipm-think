@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Header from '../../common-ui/persona-header';
-import PersonaTime from '../../common-ui/persona-time';
-import RobotList from '../../common-ui/robot-list';
+import Header from '../../common-ui/persona-header/persona-header';
+import PersonaTime from '../../common-ui/persona-time/persona-time';
+import RobotList from '../../common-ui/robot-list/robot-list';
 import './vi.css';
 
 class VisualInsights extends Component {

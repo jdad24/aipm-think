@@ -2,32 +2,8 @@
   text-align: center;
 }
 
-.Header{
-  display: flex;
-  justify-content: flex-start;  
-  grid-row-start: 1/-1;
-  border: 1px solid purple;
-  min-height: 50px;
-}
 
 
-.Persona-time{
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-  border: 1px solid green;
-  padding: 10px;
-  margin: 10px;
-}
 
-.Robot-list{
-  display: flex;
-  justify-content: flex-start;
-  border: 1px solid purple;
-}
 
-.Robot{
-  border: 1px solid green;
-  padding: 10px;
-  margin: 10px;
-}
+

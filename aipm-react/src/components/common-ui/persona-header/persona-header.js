@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/App.css';
+import './persona-header.css';
 
 const header = (props) => (
     <div className="Header">

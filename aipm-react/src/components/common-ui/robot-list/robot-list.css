@@ -1,0 +1,11 @@
+.Robot-list{
+    display: flex;
+    justify-content: flex-start;
+    border: 1px solid purple;
+  }
+  
+  .Robot{
+    border: 1px solid green;
+    padding: 10px;
+    margin: 10px;
+  }
