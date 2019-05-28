@@ -11,6 +11,11 @@ class Persona extends Component {
             <button>GO to PM</button>
           </Link>
         </li>
+        <li>
+          <Link to="/vi">
+            <button>GO to VI</button>
+          </Link>
+        </li>
       </div>
     );
   }
