@@ -1,9 +1,14 @@
 import React from 'react';
 import './persona-header.css';
+import { Link } from 'react-router-dom';
 
 const header = (props) => (
     <div className="Header">
-        <div>arrow</div>
+        <Link to="/">
+            <div>
+                <button>arrow</button>
+            </div>
+        </Link>
         <div>{props.role}</div>
     </div>
 );
