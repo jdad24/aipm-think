@@ -4,18 +4,18 @@ import { Link } from "react-router-dom";
 
 const robotList = (props) => {
     const robots = [
-        { name: "Yaskawa", overview: " Yaskawa Overview" },
-        { name: "Kuka", overview: " Kuka Overview" },
-        { name: "Replay", overview: " Replay Overview" }
+        { device: "Yaskawa001", overview: " Yaskawa Overview" },
+        { device: "Kuka-lbr", overview: " Kuka Overview" },
+        { device: "Replay", overview: " Replay Overview" }
     ]
 
     let robotList = robots.map(r => {
         return (
-            <div className="Robot" key={r.name}>
-                <div>{r.name}</div>
+            <div className="Robot" key={r.device}>
+                <div>{r.device}</div>
                 <div>{r.overview}</div>
                 {/* <Link to="/pm"> */}
-                    <button value={r.name} onClick={props.clickHandler}>Details</button>
+                    <button value={r.device} onClick={props.clickHandler}>Details</button>
                 {/* </Link> */}
                 {/* <button onClick={props.onclick}>Details</button> */}
             </div>
