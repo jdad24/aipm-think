@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 
 const robotList = (props) => {
     const robots = [
-        { device: "Yaskawa001", overview: " Yaskawa Overview" },
-        { device: "Kuka-lbr", overview: " Kuka Overview" },
-        { device: "Replay", overview: " Replay Overview" }
+        { device: "yaskawa001", overview: " Yaskawa Overview" },
+        { device: "kuka-lbr", overview: " Kuka Overview" },
+        { device: "replay", overview: " Replay Overview" }
     ]
 
     let robotList = robots.map(r => {
