@@ -66,25 +66,29 @@ class videtails extends Component {
         ws.onmessage = (event) => {
             // parse the incoming message as a JSON object
             let msg = JSON.parse(event.data);
-            let slot = msg.payload.slot;
+            if ((msg.msgType != "yaskawaTorqueTemp") && (msg.msgType != "yaskawaRobotHealth")) {
+                debugger;
+                let slot = msg.payload.slot;
 
-            //below line is required only if ws socket is the same        
-            if (this.props.robot === msg.payload.robotEnvironment) {
-                if (msg.payload.type === "image") {
-                    console.log("ws image msg.payload.robotEnvironment=" + msg.payload.robotEnvironment);
-                    let roboImg = msg.payload.image.toString();
-                    let imgdata = this.state.imgdata;
-                    imgdata[slot - 1].slot = slot;
-                    imgdata[slot - 1].img = roboImg;
-
-                    this.setState({
-                        imgdata: imgdata
-                    }, () => {
-                        console.log("viIMAGE - Parent");
-                        console.log(this.state);
-                    });
+                //below line is required only if ws socket is the same        
+                if (this.props.robot === msg.payload.robotEnvironment) {
+                    if (msg.payload.type === "image") {
+                        console.log("ws image msg.payload.robotEnvironment=" + msg.payload.robotEnvironment);
+                        let roboImg = msg.payload.image.toString();
+                        let imgdata = this.state.imgdata;
+                        imgdata[slot - 1].slot = slot;
+                        imgdata[slot - 1].img = roboImg;
+    
+                        this.setState({
+                            imgdata: imgdata
+                        }, () => {
+                            console.log("viIMAGE - Parent");
+                            console.log(this.state);
+                        });
+                    }
                 }
             }
+
         }
 
         ws.onopen = () => {
@@ -110,7 +114,7 @@ class videtails extends Component {
                 mqtt_broker = this.mqttCredentials[0].broker;
                 mqtt_username = this.mqttCredentials[0].username;
                 mqtt_password = this.mqttCredentials[0].password;
-                debugger;
+                // debugger;
                 break;
 
             case 'kuka001':
