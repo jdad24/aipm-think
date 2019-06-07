@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const robotList = (props) => {
     const robots = [
         { device: "yaskawa001", overview: " Yaskawa Overview" },
-        { device: "kuka-lbr", overview: " Kuka Overview" },
+        { device: "kuka001", overview: " Kuka Overview" },
         { device: "replay", overview: " Replay Overview" }
     ]
 
