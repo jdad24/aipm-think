@@ -1,0 +1,9 @@
+.dashboardContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.imgScoreContainer{
+    display: flex;
+    /* flex-direction: column; */
+}

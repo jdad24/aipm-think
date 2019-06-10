@@ -1,0 +1,18 @@
+.imgContainer{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid red; 
+    height: 300px;
+    width: 250px; 
+}
+
+.scoreContainer{
+    
+    display: flex;
+    flex-direction: column;
+    border: 1px solid green;
+    height: 250px;
+    width: 250px; 
+    justify-content: center;
+    align-items: center;    
+}

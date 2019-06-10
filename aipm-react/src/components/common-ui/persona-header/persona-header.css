@@ -1,0 +1,7 @@
+.Header{
+    display: flex;
+    justify-content: flex-start;  
+    grid-row-start: 1/-1;
+    border: 1px solid purple;
+    min-height: 50px;
+  }
