@@ -10,7 +10,6 @@ function App() {
   return (
     <div className="App">
       <AppRouter />
-      <img src="./assets/logo.svg" />
     </div>
   );
 }
