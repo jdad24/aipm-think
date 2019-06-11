@@ -24,43 +24,53 @@ class PMContainer extends PureComponent {
 
     render() {
 
-
+        // console.log("PMContainer", typeof(this.props.pmData));
         let pmData = <p>No Data </p>
-        if (this.state.pmData) {
+        if (this.props.pmData) {
+            // console.log(this.state.pmData);
             // console.log(this.state.pmData.bTemp);
             pmData =
                 <div>
                 <div className="pmContainer">
                 <div className="pmDetails">
-                <Gauge value={this.state.pmData.bTemp} width={300} height={200} color={"#959DFF"} label="Temperature" />
+                <Gauge value={this.props.pmData[this.props.pmData.length-1].bTorque} width={300} height={200} color={"#959DFF"} label="Torque" />
                 </div>
                 <div className="pmDetails">
-                <h1>{this.state.pmData.bTemp}</h1>
+                <h1>{this.props.pmData[this.props.pmData.length-1].bTorque}</h1>Units
                 </div>
                 <div className="pmDetails">
-                <GraphContainer/>
+                <GraphContainer type="bTemp" data={this.props.pmData} />
+                </div>
+                <div className="pmDetails">
+                <GraphContainer type="xPos" data={this.props.pmData}/>
                 </div>
                 </div>
                 <div className="pmContainer">
                 <div className="pmDetails">
-                <Gauge value={this.state.pmData.lTemp} width={300} height={200} color={"#959DFF"} label="Temperature" />
+                <Gauge value={this.props.pmData[this.props.pmData.length-1].lTorque} width={300} height={200} color={"#959DFF"} label="Torque" />
                 </div>
                 <div className="pmDetails">
-                <h1>{this.state.pmData.lTemp}</h1>
+                <h1>{this.props.pmData[this.props.pmData.length-1].lTorque}</h1>Units
                 </div>
                 <div className="pmDetails">
-                <GraphContainer/>
+                <GraphContainer type="lTemp" data={this.props.pmData}/>
+                </div>
+                <div className="pmDetails">
+                <GraphContainer type="yPos" data={this.props.pmData}/>
                 </div>
                 </div>
                 <div className="pmContainer">
                 <div className="pmDetails">
-                <Gauge value={this.state.pmData.rTemp} width={300} height={200} color={"#959DFF"} label="Temperature" />
+                <Gauge value={this.props.pmData[this.props.pmData.length-1].rTorque} width={300} height={200} color={"#959DFF"} label="Torque" />
                 </div>
                 <div className="pmDetails">
-                <h1>{this.state.pmData.rTemp}</h1>
+                <h1>{this.props.pmData[this.props.pmData.length-1].rTorque}</h1>Units
                 </div>
                 <div className="pmDetails">
-                <GraphContainer/>
+                <GraphContainer type="rTemp" data={this.props.pmData}/>
+                </div>
+                <div className="pmDetails">
+                <GraphContainer type="zPos" data={this.props.pmData}/>
                 </div>
                 </div>
                 {/* <div className="pmContainer">

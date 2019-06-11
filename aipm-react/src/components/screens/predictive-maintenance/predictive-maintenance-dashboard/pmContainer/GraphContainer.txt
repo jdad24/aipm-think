@@ -1,12 +1,51 @@
+//FILE FOR REFERENCE. DO NOT REMOVE THIS FILE. I WILL REMOVE THIS FILE MYSELF.
+//FILE FOR REFERENCE. DO NOT REMOVE THIS FILE. I WILL REMOVE THIS FILE MYSELF.
+//FILE FOR REFERENCE. DO NOT REMOVE THIS FILE. I WILL REMOVE THIS FILE MYSELF.
+//FILE FOR REFERENCE. DO NOT REMOVE THIS FILE. I WILL REMOVE THIS FILE MYSELF.
+//FILE FOR REFERENCE. DO NOT REMOVE THIS FILE. I WILL REMOVE THIS FILE MYSELF.
+
+
 import React, { PureComponent } from 'react';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
+import axios from 'axios';
+
+// const data = [
+//   {
+//     name: 'Page A', uv: 4000, pv: 2400, amt: 2400,
+//   },
+//   {
+//     name: 'Page B', uv: 3000, pv: 1398, amt: 2210,
+//   },
+//   {a
+//     name: 'Page C', uv: 2000, pv: 9800, amt: 2290,
+//   },
+//   {
+//     name: 'Page D', uv: 2780, pv: 3908, amt: 2000,
+//   },
+//   {
+//     name: 'Page E', uv: 1890, pv: 4800, amt: 2181,
+//   },
+//   {
+//     name: 'Page F', uv: 2390, pv: 3800, amt: 2500,
+//   },
+//   {
+//     name: 'Page G', uv: 3490, pv: 4300, amt: 2100,
+//   },
+// ];
 
 class GraphContainer extends PureComponent {
+
   state = {};
 
+  componentDidMount() {
+  }
+
   render() {
+
+    // console.log("data", this.props.data);
+    // console.log("GraphContainer Called", this.props.data);
 
     if (this.props.data === undefined)
       return <div></div>
@@ -15,11 +54,13 @@ class GraphContainer extends PureComponent {
     let xDataKey;
     let dataKey;
 
+    // this.props.data = JSON.parse(this.props.data);
     switch (this.props.type) {
       case "bTemp":
         xDataKey = "temp";
         dataKey = "Temperatue";
         data = this.props.data.map(element => {
+          // console.log(typeof(element));
           let temp = element;
           return ({ "temp": temp.bTemp, "Temperatue": Number(temp.bTemp) });
         });
