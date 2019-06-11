@@ -1,0 +1,9 @@
+.dashboardContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.pmDataContainer{
+    display: flex;
+    /* flex-direction: column; */
+}

@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
 import Aux from '../../../common-ui/Aux/Aux';
-import ImgContainer from './viContainer/imgContainer';
-import ScoreContainer from './viContainer/scoreContainer';
+// import GraphContainer from './pmContainer/GraphContainer';
+import PMContainer from './pmContainer/PMContainer';
 import { Client } from 'paho-mqtt';
-import './vidashboard.css';
+import './pmdashboard.css';
 
-class videtails extends Component {
+class pmdetails extends Component {
 
     state = {
         mqttClient: null,
-        imgdata: [
-            { slot: null, img: null },
-            { slot: null, img: null },
-            { slot: null, img: null },
-            { slot: null, img: null }
-        ],
-        scoredata: [
-            { slot: null, score: null },
-            { slot: null, score: null },
-            { slot: null, score: null },
-            { slot: null, score: null }
-        ]
+        // imgdata: [
+        //     { slot: null, img: null },
+        //     { slot: null, img: null },
+        //     { slot: null, img: null },
+        //     { slot: null, img: null }
+        // ],
+        // pmdata: [
+        //     { slot: null, score: null },
+        //     { slot: null, score: null },
+        //     { slot: null, score: null },
+        //     { slot: null, score: null }
+        // ]
     }
 
     mqttCredentials = [
@@ -78,11 +78,11 @@ class videtails extends Component {
                         let imgdata = this.state.imgdata;
                         imgdata[slot - 1].slot = slot;
                         imgdata[slot - 1].img = roboImg;
-    
+
                         this.setState({
                             imgdata: imgdata
                         }, () => {
-                            console.log("viIMAGE - Parent");
+                            console.log("pmIMAGE - Parent");
                             console.log(this.state);
                         });
                     }
@@ -205,16 +205,10 @@ class videtails extends Component {
 
         if (textJson === "json") {
             let iotPayload = JSON.parse(message.payloadString);
-            console.log("wholedata",valueCmdEvt,iotPayload);
 
-            if (valueCmdEvt === "score") {
-                let score = [deviceId, iotPayload.speakingClassification, iotPayload.confidence, iotPayload.slot];
-                let cur_scoredata = this.state.scoredata;
-                cur_scoredata[iotPayload.slot - 1].score = score;
-                cur_scoredata[iotPayload.slot - 1].slot = iotPayload.slot;
-
+            if (valueCmdEvt === "torque" || valueCmdEvt === "update") {
                 this.setState({
-                    scoredata: cur_scoredata
+                    pmData: iotPayload
                 });
 
             }
@@ -224,36 +218,42 @@ class videtails extends Component {
 
     render(props) {
 
-        let imgComponent = this.state.imgdata.map((s, i) => {
+        // let imgComponent = this.state.imgdata.map((s, i) => {
 
-            return (<ImgContainer
-                img={s.img}
-                slot={s.slot}
-                key={i} />);
-        });
+        //     return (<ImgContainer
+        //         img={s.img}
+        //         slot={s.slot}
+        //         key={i} />);
+        // });
 
-        let scoreComponent = this.state.scoredata.map((s, i) => {
+        // let pmComponent = this.state.pmData.map((s, i) => {
 
-            return (
-                <ScoreContainer
-                    slot={s.slot}
-                    score={s.score}
-                    key={i} />
-            );
-        });
+        //     return (
+        //         <PMContainer
+        //             slot={s.slot}
+        //             score={s.score}
+        //             key={i} />
+        //     );
+        // });
+
+        let pmComponent = <PMContainer pmData={this.state.pmData} />;
 
         return (
-            <div className="dashboardContainer">
-                <div>{this.props.robot}</div>
-                <div className="imgScoreContainer">
-                    {imgComponent}
-                </div>
-                <div className="imgScoreContainer">
-                    {scoreComponent}
+            <div className="container">
+                <div className="card">
+                    {/* <div className="dashboardContainer"> */}
+                        <div>{this.props.robot}</div>
+                        <div className="pmDataContainer">
+                            {/* {imgComponent} */}
+                        </div>
+                        <div className="pmDataContainer">
+                            {pmComponent}
+                        </div>
+                    {/* </div> */}
                 </div>
             </div>
         );
     }
 }
 
-export default videtails;
+export default pmdetails;
