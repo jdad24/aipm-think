@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import Aux from '../../../../common-ui/Aux/Aux';
+// import Aux from '../../../../common-ui/Aux/Aux';
 import './viContainer.css';
 
 class ScoreContainer extends PureComponent {
@@ -9,9 +9,9 @@ class ScoreContainer extends PureComponent {
         score: null
     }
 
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
     static getDerivedStateFromProps = (props, state) => {
 
@@ -22,8 +22,7 @@ class ScoreContainer extends PureComponent {
 
     }
 
-    render() {
-
+    renderScore = () => {
         let score = <p>No score </p>
         if (this.state.score) {
             score = <div>Score:
@@ -34,10 +33,13 @@ class ScoreContainer extends PureComponent {
                 <div>mySlot:  {this.state.score[3]}</div>
             </div>
         }
+        return score;
+    }
 
+    render() {
         return (
             <div className="scoreContainer" >
-                {score}
+                {this.renderScore()}
             </div>
         );
     }

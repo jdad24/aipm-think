@@ -4,7 +4,7 @@ import PersonaTime from '../../common-ui/persona-time/persona-time';
 import RobotList from '../../common-ui/robot-list/robot-list';
 import Aux from '../../common-ui/Aux/Aux';
 import VIdashboard from './visual-insights-dashboard/vidashboard';
-import { Client } from 'paho-mqtt';
+// import { Client } from 'paho-mqtt';
 import './vi.css';
 
 class VisualInsights extends Component {
@@ -21,6 +21,13 @@ class VisualInsights extends Component {
         });
         console.log(event.target.value);
     }
+
+    // backArrowHandler = () => {
+    //     this.setState({
+    //         viDashboard: false,
+    //         robotEnvironment: null
+    //     });
+    // }
 
     render() {
         const temp_style = {
