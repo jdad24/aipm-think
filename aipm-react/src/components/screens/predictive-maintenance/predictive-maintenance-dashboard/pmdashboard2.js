@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
 import Aux from '../../../common-ui/Aux/Aux';
-// import GraphContainer from './pmContainer/GraphContainer';
-import PMContainer from './pmContainer/PMContainer';
+import ImgContainer from './viContainer/imgContainer';
+import ScoreContainer from './viContainer/scoreContainer';
 import { Client } from 'paho-mqtt';
-import './pmdashboard.css';
+import './vidashboard.css';
 
-class pmdetails extends Component {
+class videtails extends Component {
 
     state = {
         mqttClient: null,
-        // imgdata: [
-        //     { slot: null, img: null },
-        //     { slot: null, img: null },
-        //     { slot: null, img: null },
-        //     { slot: null, img: null }
-        // ],
-        // pmdata: [
-        //     { slot: null, score: null },
-        //     { slot: null, score: null },
-        //     { slot: null, score: null },
-        //     { slot: null, score: null }
-        // ]
+        imgdata: [
+            { slot: null, img: null },
+            { slot: null, img: null },
+            { slot: null, img: null },
+            { slot: null, img: null }
+        ],
+        scoredata: [
+            { slot: null, score: null },
+            { slot: null, score: null },
+            { slot: null, score: null },
+            { slot: null, score: null }
+        ]
     }
 
     mqttCredentials = [
@@ -50,21 +50,22 @@ class pmdetails extends Component {
 
     ws = null;
 
-    constructor(props) {
-        super(props);
-    }
+
+    // constructor(props) {
+    //     super(props);
+    // }
 
     componentDidMount() {
         this.webSocketHandler();
-        this.mqttHandler(this.props.robot);
+        //this.mqttHandler(this.props.robot);
     };
 
     componentWillUnmount(){
-        // console.log("componentWillUnmount");
+        console.log("componentWillUnmount");
         if(this.ws){
-            this.ws.close();
-            // console.log("YES! - componentWillUnmount");
- 
+            this.ws.close(); 
+            console.log("YES! - componentWillUnmount");
+            
         }
     }
 
@@ -76,14 +77,22 @@ class pmdetails extends Component {
         ws.onmessage = (event) => {
             // parse the incoming message as a JSON object
             let msg = JSON.parse(event.data);
-            if ((msg.msgType != "yaskawaTorqueTemp") && (msg.msgType != "yaskawaRobotHealth")) {
-                debugger;
-                let slot = msg.payload.slot;
+            // if(msg.msgType === undefined){
+            //     msg = msg.payload;
+            // }
+            // else{
+            //     console.log("a = "+msg.msgType);
+            // }
 
-                //below line is required only if ws socket is the same        
-                if (this.props.robot === msg.payload.robotEnvironment) {
-                    if (msg.payload.type === "image") {
-                        console.log("ws image msg.payload.robotEnvironment=" + msg.payload.robotEnvironment);
+            console.log("MSG");
+            console.log(msg);
+             if ((msg.msgType !== "yaskawaTorqueTemp") && (msg.msgType !== "yaskawaRobotHealth")) {
+                //debugger;
+
+                if(msg.payload.msgType === "image" && msg.payload.robotSource === this.props.robot ){
+                    let slot = msg.payload.slot;
+
+                    console.log("ws image msg.payload.robotEnvironment=" + msg.payload.robotEnvironment);
                         let roboImg = msg.payload.image.toString();
                         let imgdata = this.state.imgdata;
                         imgdata[slot - 1].slot = slot;
@@ -92,21 +101,60 @@ class pmdetails extends Component {
                         this.setState({
                             imgdata: imgdata
                         }, () => {
-                            console.log("pmIMAGE - Parent");
+                            console.log("viIMAGE - Parent");
                             console.log(this.state);
                         });
+                }
+                
+
+                //below line is required only if ws socket is the same        
+                // if (this.props.robot === msg.payload.robotEnvironment) {
+                     else if (msg.payload.type === "scoring" && msg.payload.robotSource === this.props.robot) {
+                         console.log("Score MSG");
+                         console.log(msg);
+                         let score = [msg.payload.robotSource, msg.payload.speakingClassification, msg.payload.confidence, msg.payload.slot];
+                                let cur_scoredata = this.state.scoredata;
+                                cur_scoredata[msg.payload.slot - 1].score = score;
+                                cur_scoredata[msg.payload.slot - 1].slot = msg.payload.slot;
+
+                                this.setState({
+                                    scoredata: cur_scoredata
+                                });
+                         
+                        // // let myTopic = message.destinationName;
+                        // // let parsedTopic = myTopic.split("/");
+                        // let deviceId = parsedTopic[4];
+                        // let valueCmdEvt = parsedTopic[6];
+                        // let textJson = parsedTopic[8];
+
+                        // if (textJson === "json") {
+                        //     let iotPayload = JSON.parse(message.payloadString);
+
+                        //     if (valueCmdEvt === "score") {
+                        //         let score = [deviceId, iotPayload.speakingClassification, iotPayload.confidence, iotPayload.slot];
+                        //         let cur_scoredata = this.state.scoredata;
+                        //         cur_scoredata[iotPayload.slot - 1].score = score;
+                        //         cur_scoredata[iotPayload.slot - 1].slot = iotPayload.slot;
+
+                        //         this.setState({
+                        //             scoredata: cur_scoredata
+                        //         });
+
+                        //     }
+                        // }
+
                     }
                 }
-            }
+            // }
 
         }
 
         ws.onopen = () => {
             console.log("connected");
         }
-        ws.onclose = () => {
-            setTimeout(this.webSocketHandler, 3000);
-        }
+        // ws.onclose = () => {
+        //     setTimeout(this.webSocketHandler, 3000);
+        // }
     }
 
     mqttHandler = (device) => {
@@ -119,7 +167,7 @@ class pmdetails extends Component {
 
 
         switch (device) {
-            case 'yaskawa':
+            case 'yaskawa001':
                 mqtt_clientId = this.mqttCredentials[0].clientId;
                 mqtt_broker = this.mqttCredentials[0].broker;
                 mqtt_username = this.mqttCredentials[0].username;
@@ -127,12 +175,12 @@ class pmdetails extends Component {
                 // debugger;
                 break;
 
-            case 'kukas':
+            case 'kuka001':
                 mqtt_clientId = this.mqttCredentials[1].clientId;
                 mqtt_broker = this.mqttCredentials[1].broker;
                 mqtt_username = this.mqttCredentials[1].username;
                 mqtt_password = this.mqttCredentials[1].password;
-                console.log("switch - device -" + device);
+                // console.log("switch - device -" + device);
                 break;
 
             case 'replay':
@@ -140,8 +188,14 @@ class pmdetails extends Component {
                 mqtt_broker = this.mqttCredentials[0].broker;
                 mqtt_username = this.mqttCredentials[0].username;
                 mqtt_password = this.mqttCredentials[0].password;
-                console.log("switch - device -" + device);
+                // console.log("switch - device -" + device);
                 break;
+
+            // case 'default': 
+            // mqtt_clientId = this.mqttCredentials[0].clientId;
+            // mqtt_broker = this.mqttCredentials[0].broker;
+            // mqtt_username = this.mqttCredentials[0].username;
+            // mqtt_password = this.mqttCredentials[0].password;
 
         }
         // Create a client instance
@@ -180,12 +234,12 @@ class pmdetails extends Component {
         // Once a connection has been made, make a subscription and send a message.
         let subscribeString = null;
         switch (this.props.robot) {
-            case 'yaskawa':
+            case 'yaskawa001':
                 subscribeString = this.mqttCredentials[0].subscribe;
                 console.log("switch - subscribe -" + this.props.robot);
                 break;
 
-            case 'kuka':
+            case 'kuka001':
                 subscribeString = this.mqttCredentials[0].subscribe;
                 console.log("switch - subscribe -" + this.props.robot);
                 break;
@@ -215,10 +269,16 @@ class pmdetails extends Component {
 
         if (textJson === "json") {
             let iotPayload = JSON.parse(message.payloadString);
+            console.log("wholedata",valueCmdEvt,iotPayload);
 
-            if (valueCmdEvt === "torque" || valueCmdEvt === "update") {
+            if (valueCmdEvt === "score") {
+                let score = [deviceId, iotPayload.speakingClassification, iotPayload.confidence, iotPayload.slot];
+                let cur_scoredata = this.state.scoredata;
+                cur_scoredata[iotPayload.slot - 1].score = score;
+                cur_scoredata[iotPayload.slot - 1].slot = iotPayload.slot;
+
                 this.setState({
-                    pmData: iotPayload
+                    scoredata: cur_scoredata
                 });
 
             }
@@ -228,42 +288,36 @@ class pmdetails extends Component {
 
     render(props) {
 
-        // let imgComponent = this.state.imgdata.map((s, i) => {
+        let imgComponent = this.state.imgdata.map((s, i) => {
 
-        //     return (<ImgContainer
-        //         img={s.img}
-        //         slot={s.slot}
-        //         key={i} />);
-        // });
+            return (<ImgContainer
+                img={s.img}
+                slot={s.slot}
+                key={i} />);
+        });
 
-        // let pmComponent = this.state.pmData.map((s, i) => {
+        let scoreComponent = this.state.scoredata.map((s, i) => {
 
-        //     return (
-        //         <PMContainer
-        //             slot={s.slot}
-        //             score={s.score}
-        //             key={i} />
-        //     );
-        // });
-
-        let pmComponent = <PMContainer pmData={this.state.pmData} />;
+            return (
+                <ScoreContainer
+                    slot={s.slot}
+                    score={s.score}
+                    key={i} />
+            );
+        });
 
         return (
-            <div className="container">
-                <div className="card">
-                    {/* <div className="dashboardContainer"> */}
-                        <div>{this.props.robot}</div>
-                        <div className="pmDataContainer">
-                            {/* {imgComponent} */}
-                        </div>
-                        <div className="pmDataContainer">
-                            {pmComponent}
-                        </div>
-                    {/* </div> */}
+            <div className="dashboardContainer">
+                <div>{this.props.robot}</div>
+                <div className="imgScoreContainer">
+                    {imgComponent}
+                </div>
+                <div className="imgScoreContainer">
+                    {scoreComponent}
                 </div>
             </div>
         );
     }
 }
 
-export default pmdetails;
+export default videtails;

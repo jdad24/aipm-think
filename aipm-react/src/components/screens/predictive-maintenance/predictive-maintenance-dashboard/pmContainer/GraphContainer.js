@@ -61,7 +61,7 @@ class GraphContainer extends PureComponent {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="temp" />
+        <XAxis dataKey="name" />
         <YAxis />
         <Tooltip />
         <Legend />
