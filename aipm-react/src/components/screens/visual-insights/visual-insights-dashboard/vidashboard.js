@@ -43,60 +43,118 @@ class videtails extends Component {
     ]
     //required if web sockets are different for different devices
     wsCredentials = {
-        "yaskawa001": "wss://aipm-gsc-nodered.mybluemix.net/ws/aipm-gsc/yaskawa",
-        "kuka001": "wss://aipm-gsc-nodered.mybluemix.net/ws/aipm-gsc/kuka",
+        "yaskawa": "wss://aipm-gsc-nodered.mybluemix.net/ws/aipm-gsc/yaskawa",
+        "kuka": "wss://aipm-gsc-nodered.mybluemix.net/ws/aipm-gsc/kuka",
         "replay": "wss://aipm-gsc-nodered.mybluemix.net/ws/aipm-gsc"
     }
 
+    ws = null;
 
-    constructor(props) {
-        super(props);
-    }
+
+    // constructor(props) {
+    //     super(props);
+    // }
 
     componentDidMount() {
         this.webSocketHandler();
-        this.mqttHandler(this.props.robot);
+        //this.mqttHandler(this.props.robot);
     };
+
+    componentWillUnmount(){
+        console.log("componentWillUnmount");
+        if(this.ws){
+            this.ws.close(); 
+            console.log("YES! - componentWillUnmount");
+            
+        }
+    }
 
     webSocketHandler = () => {
         let ws;
         let wsUri = this.wsCredentials[this.props.robot];
         ws = new WebSocket(wsUri);
-
+        this.ws = ws;
         ws.onmessage = (event) => {
             // parse the incoming message as a JSON object
             let msg = JSON.parse(event.data);
-            if ((msg.msgType != "yaskawaTorqueTemp") && (msg.msgType != "yaskawaRobotHealth")) {
-                debugger;
-                let slot = msg.payload.slot;
+            // if(msg.msgType === undefined){
+            //     msg = msg.payload;
+            // }
+            // else{
+            //     console.log("a = "+msg.msgType);
+            // }
 
-                //below line is required only if ws socket is the same        
-                if (this.props.robot === msg.payload.robotEnvironment) {
-                    if (msg.payload.type === "image") {
-                        console.log("ws image msg.payload.robotEnvironment=" + msg.payload.robotEnvironment);
+            console.log("MSG");
+            console.log(msg);
+             if ((msg.msgType !== "yaskawaTorqueTemp") && (msg.msgType !== "yaskawaRobotHealth")) {
+                //debugger;
+
+                if(msg.payload.msgType === "image" && msg.payload.robotSource === this.props.robot ){
+                    let slot = msg.payload.slot;
+
+                    console.log("ws image msg.payload.robotEnvironment=" + msg.payload.robotEnvironment);
                         let roboImg = msg.payload.image.toString();
                         let imgdata = this.state.imgdata;
                         imgdata[slot - 1].slot = slot;
                         imgdata[slot - 1].img = roboImg;
-    
+
                         this.setState({
                             imgdata: imgdata
                         }, () => {
                             console.log("viIMAGE - Parent");
                             console.log(this.state);
                         });
+                }
+                
+
+                //below line is required only if ws socket is the same        
+                // if (this.props.robot === msg.payload.robotEnvironment) {
+                     else if (msg.payload.type === "scoring" && msg.payload.robotSource === this.props.robot) {
+                         console.log("Score MSG");
+                         console.log(msg);
+                         let score = [msg.payload.robotSource, msg.payload.speakingClassification, msg.payload.confidence, msg.payload.slot];
+                                let cur_scoredata = this.state.scoredata;
+                                cur_scoredata[msg.payload.slot - 1].score = score;
+                                cur_scoredata[msg.payload.slot - 1].slot = msg.payload.slot;
+
+                                this.setState({
+                                    scoredata: cur_scoredata
+                                });
+                         
+                        // // let myTopic = message.destinationName;
+                        // // let parsedTopic = myTopic.split("/");
+                        // let deviceId = parsedTopic[4];
+                        // let valueCmdEvt = parsedTopic[6];
+                        // let textJson = parsedTopic[8];
+
+                        // if (textJson === "json") {
+                        //     let iotPayload = JSON.parse(message.payloadString);
+
+                        //     if (valueCmdEvt === "score") {
+                        //         let score = [deviceId, iotPayload.speakingClassification, iotPayload.confidence, iotPayload.slot];
+                        //         let cur_scoredata = this.state.scoredata;
+                        //         cur_scoredata[iotPayload.slot - 1].score = score;
+                        //         cur_scoredata[iotPayload.slot - 1].slot = iotPayload.slot;
+
+                        //         this.setState({
+                        //             scoredata: cur_scoredata
+                        //         });
+
+                        //     }
+                        // }
+
                     }
                 }
-            }
+            // }
 
         }
 
         ws.onopen = () => {
             console.log("connected");
         }
-        ws.onclose = () => {
-            setTimeout(this.webSocketHandler, 3000);
-        }
+        // ws.onclose = () => {
+        //     setTimeout(this.webSocketHandler, 3000);
+        // }
     }
 
     mqttHandler = (device) => {
@@ -122,7 +180,7 @@ class videtails extends Component {
                 mqtt_broker = this.mqttCredentials[1].broker;
                 mqtt_username = this.mqttCredentials[1].username;
                 mqtt_password = this.mqttCredentials[1].password;
-                console.log("switch - device -" + device);
+                // console.log("switch - device -" + device);
                 break;
 
             case 'replay':
@@ -130,8 +188,14 @@ class videtails extends Component {
                 mqtt_broker = this.mqttCredentials[0].broker;
                 mqtt_username = this.mqttCredentials[0].username;
                 mqtt_password = this.mqttCredentials[0].password;
-                console.log("switch - device -" + device);
+                // console.log("switch - device -" + device);
                 break;
+
+            // case 'default': 
+            // mqtt_clientId = this.mqttCredentials[0].clientId;
+            // mqtt_broker = this.mqttCredentials[0].broker;
+            // mqtt_username = this.mqttCredentials[0].username;
+            // mqtt_password = this.mqttCredentials[0].password;
 
         }
         // Create a client instance

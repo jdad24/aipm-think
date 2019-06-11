@@ -1,0 +1,73 @@
+@font-face {
+  font-family: "IbmPlexLight";
+  src: url("../../../../assets/fonts/IBMPlexSans-Light.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "IbmPlexText";
+  src: url("../../../../assets/fonts/IBMPlexSans-Text.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  align-content: center;
+}
+.card {
+  flex: 0 0 300px;
+  margin: 30px;
+  margin-left: 0px;
+}
+
+.card img {
+  max-width: 100%;
+}
+.card .text {
+  height: 327px;
+  padding: 0 10px 10px;
+  text-align: center;
+  color: white;
+  background: #0062ff;
+  font-family: "IbmPlexLight";
+  font-size: 30px;
+}
+.card .frontText {
+  height: 50px;
+  padding: 0 20px 20px;
+  text-align: left;
+  color: #f4f7fb;
+  font-family: "IbmPlexLight";
+  background: #303135;
+  margin-bottom: 5px;
+  margin-top: -3px;
+  line-height: 1.6;
+}
+.frontTitle {
+  font-family: "IbmPlexText";
+}
+
+.card .frontText2 {
+  height: 50px;
+  padding: 0 20px 20px;
+  text-align: left;
+  color: #ccd5e0;
+  background: #0062ff;
+  margin-bottom: 4px;
+  margin-top: -5px;
+  line-height: 1.6;
+  font-family: "IbmPlexText";
+}
+.card > a {
+  color: white;
+  text-decoration: none;
+}
+
+span {
+  float: right;
+  font-size: 105%;
+}

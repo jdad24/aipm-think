@@ -1,11 +1,11 @@
 import React from 'react';
 import './robot-list.css';
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const robotList = (props) => {
     const robots = [
-        { device: "yaskawa001", overview: " Yaskawa Overview" },
-        { device: "kuka001", overview: " Kuka Overview" },
+        { device: "yaskawa", overview: " Yaskawa Overview" },
+        { device: "kuka", overview: " Kuka Overview" },
         { device: "replay", overview: " Replay Overview" }
     ]
 

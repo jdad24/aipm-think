@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import Aux from '../../../../common-ui/Aux/Aux';
+// import Aux from '../../../../common-ui/Aux/Aux';
 import './viContainer.css';
 
 class ImgContainer extends PureComponent {
@@ -10,9 +10,9 @@ class ImgContainer extends PureComponent {
 
     }
 
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
     static getDerivedStateFromProps = (props, state) => {
         return {
@@ -22,22 +22,32 @@ class ImgContainer extends PureComponent {
 
     }
 
-    render() {
+    renderImage = () => {
+        let viImg = <p>No image </p>
+        let imgs = null;
 
-        let viImg = "url(data:image/jpeg;base64," + this.state.img + ")";
-        let imgs = {
-            backgroundImage: viImg,
-            backgroundRepeat: "no-repeat",
-            width: "100%",
-            height: "100%",
-            backgroundSize: "contain",
-            backgroundPosition: "center"
+        if (this.state.img) {
+            let viImgStyle = "url(data:image/jpeg;base64," + this.state.img + ")";
+            imgs = {
+                backgroundImage: viImgStyle,
+                backgroundRepeat: "no-repeat",
+                width: "100%",
+                height: "100%",
+                backgroundSize: "contain",
+                backgroundPosition: "center"
+            }
+
+            viImg = <div style={imgs} >image: </div>
         }
 
+        return viImg;
+    }
+
+    render() {
 
         return (
             <div className="imgContainer" >
-                <div style={imgs} >image: </div>
+                {this.renderImage()}
             </div>
         );
     }
