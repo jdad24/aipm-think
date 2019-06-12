@@ -23,7 +23,7 @@ class PMTorqueTempContainer extends PureComponent {
 
     render() {
         return (
-            <div className="pmContainer">
+            <div className="pmContainerRight">
                 <div className="pmDetails">
                     <Gauge value={this.props.pmData[this.props.pmData.length - 1][this.props.torqueType]} width={300} height={200} color={"#959DFF"} label="Torque" />
                 </div>

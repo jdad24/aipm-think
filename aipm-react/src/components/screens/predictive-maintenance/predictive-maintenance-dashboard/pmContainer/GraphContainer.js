@@ -16,52 +16,46 @@ class GraphContainer extends PureComponent {
     let dataKey;
 
     switch (this.props.type) {
-      case "bTemp":
+      case "tempUpper":
         xDataKey = "temp";
         dataKey = "Temperatue";
         data = this.props.data.map(element => {
-          let temp = element;
-          return ({ "temp": temp.bTemp, "Temperatue": Number(temp.bTemp) });
+          return ({ "temp": element.tempUpper, "Temperatue": element.tempUpper });
         });
         break;
-      case "lTemp":
+      case "tempMiddle":
         xDataKey = "temp";
         dataKey = "Temperatue";
         data = this.props.data.map(element => {
-          let temp = element;
-          return ({ "temp": temp.lTemp, "Temperatue": Number(temp.lTemp) });
+          return ({ "temp": element.tempMiddle, "Temperatue": element.tempMiddle });
         });
         break;
-      case "rTemp":
+      case "tempLower":
         xDataKey = "temp";
         dataKey = "Temperatue";
         data = this.props.data.map(element => {
-          let temp = element;
-          return ({ "temp": temp.rTemp, "Temperatue": Number(temp.rTemp) });
+          return ({ "temp": element.tempLower, "Temperatue": element.tempLower });
         });
         break;
       case "xPos":
         xDataKey = "xPos";
         dataKey = "X-Position";
         data = this.props.data.map(element => {
-          let pos = element;
-          return ({ "xPos": pos.xPos, "X-Position": Number(pos.xPos) });
+          return ({ "xPos": element.posUpper, "X-Position": element.posUpper });
         });
         break;
       case "yPos":
         xDataKey = "yPos";
         dataKey = "Y-Position";
         data = this.props.data.map(element => {
-          let pos = element;
-          return ({ "yPos": pos.yPos, "Y-Position": Number(pos.yPos) });
+          return ({ "yPos": element.posMiddle, "Y-Position": element.posMiddle });
         });
         break;
       case "zPos":
         xDataKey = "zPos";
         dataKey = "Z-Position";
         data = this.props.data.map(element => {
-          let pos = element;
-          return ({ "zPos": pos.zPos, "Z-Position": Number(pos.xPos) });
+          return ({ "zPos": element.posLower, "Z-Position": element.posLower });
         });
         break;
     }

@@ -9,20 +9,45 @@
 .pmContainer {
     display: flex;
     flex-direction: row;
-    border-bottom: 1px solid #D7D7D7;
-    height: 35%;
+    /* border-bottom: 1px solid #D7D7D7; */
+    height: 95%;
     width: 95%;
-    margin: 10px;
+    margin: 0 auto;
+    padding: 10px;
     justify-content: center;
     align-items: center;
 }
+
+.pmContainerRight {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #D7D7D7;
+    height: 35%;
+    width: 95%;
+    margin: 0 auto;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.pmContainerLeft {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #D7D7D7;
+    height: 95%;
+    width: 50%;
+    /* margin: 0 auto; */
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+} */
 
 .pmDetails {
     display: flex;
     flex-direction: column;
     height: 30%;
     width: 90%;
-    margin: 10px;
+    margin: 30px;
+    
     justify-content: center;
     align-items: center;
 }

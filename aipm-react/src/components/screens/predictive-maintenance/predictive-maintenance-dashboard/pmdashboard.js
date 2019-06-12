@@ -34,6 +34,7 @@ class PMDashboard extends Component {
         case "yaskawa": 
             axios.get("http://aipm-gsc-nodered.mybluemix.net/yaskawaHistory").then((response) => {
                 let yaskawaHistory = response.data.yaskawaHistory.map((element) => {
+                    // console.log(JSON.parse(element));
                     return JSON.parse(element);
                 })
                 this.setState({ pmData: yaskawaHistory });
@@ -67,7 +68,7 @@ class PMDashboard extends Component {
         ws.onmessage = (event) => {
             let msg = JSON.parse(event.data);
 
-            switch(this.msg.msgType){
+            switch(msg.msgType){
 
             case "yaskawaTorqueTemp": 
             case "kukaTorqueTemp":
@@ -75,12 +76,12 @@ class PMDashboard extends Component {
                     pmData: [...this.state.pmData, msg]
                 });
             break;
-                case "yaskawaRobotHealth":
-                case "kukaRobotHealth": 
-                this.setState({
-                    pmHealthData: [...this.state.pmHealthData, msg]
-                });
-            break;
+            //     case "yaskawaRobotHealth":
+            //     case "kukaRobotHealth": 
+            //     this.setState({
+            //         pmHealthData: [...this.state.pmHealthData, msg]
+            //     });
+            // break;
 
             }
         }
@@ -100,15 +101,12 @@ class PMDashboard extends Component {
         return (
             <div className="container">
                 <div className="card">
-                    {/* <div className="dashboardContainer"> */}
-                    <div>{this.props.robot}</div>
+                    <div><h1>{this.props.robot}</h1></div>
                     <div className="pmDataContainer">
-                        {/* {imgComponent} */}
                     </div>
                     <div className="pmDataContainer">
                         {pmComponent}
                     </div>
-                    {/* </div> */}
                 </div>
             </div>
         );
