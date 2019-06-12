@@ -77,23 +77,23 @@ class videtails extends Component {
         ws.onmessage = (event) => {
             // parse the incoming message as a JSON object
             let msg = JSON.parse(event.data);
-            // if(msg.msgType === undefined){
-            //     msg = msg.payload;
-            // }
-            // else{
-            //     console.log("a = "+msg.msgType);
-            // }
+            if(msg.msgType === undefined){
+                msg = msg.payload;
+                console.log("msg.msgType undefined");
+            } else{
+                console.log("msg.msgType: "+msg.msgType);
+            }
 
-            console.log("MSG");
+            console.log("props: " + this.props.robot + " msg: ");
             console.log(msg);
              if ((msg.msgType !== "yaskawaTorqueTemp") && (msg.msgType !== "yaskawaRobotHealth")) {
                 //debugger;
 
-                if(msg.payload.msgType === "image" && msg.payload.robotSource === this.props.robot ){
-                    let slot = msg.payload.slot;
+                if(msg.msgType === "image" && msg.robotSource === this.props.robot ){
+                    let slot = msg.slot;
 
-                    console.log("ws image msg.payload.robotEnvironment=" + msg.payload.robotEnvironment);
-                        let roboImg = msg.payload.image.toString();
+                    console.log("ws image msg.payload.robotEnvironment=" + msg.robotSource);
+                        let roboImg = msg.image.toString();
                         let imgdata = this.state.imgdata;
                         imgdata[slot - 1].slot = slot;
                         imgdata[slot - 1].img = roboImg;
@@ -109,13 +109,13 @@ class videtails extends Component {
 
                 //below line is required only if ws socket is the same        
                 // if (this.props.robot === msg.payload.robotEnvironment) {
-                     else if (msg.payload.type === "scoring" && msg.payload.robotSource === this.props.robot) {
+                     else if (msg.type === "scoring" && msg.robotSource === this.props.robot) {
                          console.log("Score MSG");
                          console.log(msg);
-                         let score = [msg.payload.robotSource, msg.payload.speakingClassification, msg.payload.confidence, msg.payload.slot];
+                         let score = [msg.robotSource, msg.speakingClassification, msg.confidence, msg.slot];
                                 let cur_scoredata = this.state.scoredata;
-                                cur_scoredata[msg.payload.slot - 1].score = score;
-                                cur_scoredata[msg.payload.slot - 1].slot = msg.payload.slot;
+                                cur_scoredata[msg.slot - 1].score = score;
+                                cur_scoredata[msg.slot - 1].slot = msg.slot;
 
                                 this.setState({
                                     scoredata: cur_scoredata
