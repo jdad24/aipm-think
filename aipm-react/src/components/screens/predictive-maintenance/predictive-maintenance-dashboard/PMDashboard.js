@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PMContainer from './pmcontainer/PMContainer';
+import PMContainer from './pmContainer/PMContainer';
 import axios from 'axios';
 import './PMDashboard.css';
 
