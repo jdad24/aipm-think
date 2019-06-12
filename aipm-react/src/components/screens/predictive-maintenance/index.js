@@ -4,7 +4,7 @@ import PersonaTime from '../../common-ui/persona-time/persona-time';
 import RobotList from '../../common-ui/robot-list/robot-list';
 import Aux from '../../common-ui/Aux/Aux';
 import PMDashboard from './predictive-maintenance-dashboard/PMDashboard';
-import './pm.css';
+import './PM.css';
 
 class PredictiveMaintenance extends Component {
 

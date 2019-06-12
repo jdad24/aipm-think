@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import PMContainer from './pmContainer/PMContainer';
+import PMContainer from './pmcontainer/PMContainer';
 import axios from 'axios';
-import './pmdashboard.css';
+import './PMDashboard.css';
 
 class PMDashboard extends Component {
 
@@ -29,12 +29,28 @@ class PMDashboard extends Component {
 
     componentDidMount() {
         this.webSocketHandler();
-        axios.get("http://aipm-gsc-nodered.mybluemix.net/yaskawaHistory").then((response) => {
-            let yaskawaHistory = response.data.yaskawaHistory.map((element) => {
-                return JSON.parse(element);
-            })
-            this.setState({ yaskawaData: yaskawaHistory });
-        });
+        switch(this.props.robot){
+            
+        case "yaskawa": 
+            axios.get("http://aipm-gsc-nodered.mybluemix.net/yaskawaHistory").then((response) => {
+                let yaskawaHistory = response.data.yaskawaHistory.map((element) => {
+                    return JSON.parse(element);
+                })
+                this.setState({ pmData: yaskawaHistory });
+            });
+            break;
+        case "kuka":
+            axios.get("http://aipm-gsc-nodered.mybluemix.net/kukaHistory").then((response) => {
+                let kukaHistory = response.data.kukaHistory.map((element) => {
+                    return JSON.parse(element);
+                })
+                this.setState({ pmData: kukaHistory });
+            });
+            break;
+        case "replay":
+            //has to be completed
+            break;
+        }
     };
 
     componentWillUnmount() {
@@ -49,14 +65,22 @@ class PMDashboard extends Component {
         ws = new WebSocket(wsUri);
         this.ws = ws;
         ws.onmessage = (event) => {
-
             let msg = JSON.parse(event.data);
-            if (msg.msgType === "yaskawaTorqueTemp") {
 
+            switch(this.msg.msgType){
+
+            case "yaskawaTorqueTemp": 
+            case "kukaTorqueTemp":
                 this.setState({
                     pmData: [...this.state.pmData, msg]
                 });
-            } else if (msg.msgType = "yaskawaRobotHealth") {
+            break;
+                case "yaskawaRobotHealth":
+                case "kukaRobotHealth": 
+                this.setState({
+                    pmHealthData: [...this.state.pmHealthData, msg]
+                });
+            break;
 
             }
         }
