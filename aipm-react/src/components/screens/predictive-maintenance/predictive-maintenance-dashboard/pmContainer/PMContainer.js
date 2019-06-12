@@ -7,7 +7,8 @@ import PMTorqueTempContainer from './PMTorqueTempContainer';
 class PMContainer extends PureComponent {
 
     state = {
-        pmData: null
+        pmData: null,
+        pmHealthData:null
     }
 
     constructor(props) {
@@ -17,7 +18,8 @@ class PMContainer extends PureComponent {
     static getDerivedStateFromProps = (props, state) => {
 
         return {
-            pmData: props.pmData
+            pmData: props.pmData,
+            pmHealthData: props.pmHealthData
         }
 
     }
@@ -25,12 +27,14 @@ class PMContainer extends PureComponent {
     render() {
 
         let pmData = <p>No Data </p>
-        if (this.props.pmData) {
+        console.log(this.props);
+        if (this.props.pmData && this.props.pmHealthData) {
+            console.log(this.props.pmHealthData);
             pmData =
                 <div className="pmContainer">
                     <div className="pmContainerLeft">
                         <div className="pmContainerRight">
-                        <Gauge value={this.props.pmData[this.props.pmData.length - 1]["torqueUpper"]} width={300} height={200} color={"#959DFF"} label="Torque" />
+                        <Gauge value={Math.floor(this.props.pmHealthData[this.props.pmHealthData.length - 1]*100)} width={300} height={200} color={"#959DFF"} label="Health" />
                         </div>
                         <div className="pmContainerRight">Details</div>
                         <div className="pmContainerRight">Details</div>

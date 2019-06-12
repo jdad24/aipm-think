@@ -13,7 +13,9 @@ class PMDashboard extends Component {
     //5.) replayData :
     //6.) replayHealth :
 
-    state = {};
+    state = {
+        pmHealthData:[0]
+    };
 
     wsCredentials = {
         "yaskawa": "wss://aipm-gsc-nodered.mybluemix.net/ws/aipm-gsc/yaskawa",
@@ -76,12 +78,13 @@ class PMDashboard extends Component {
                     pmData: [...this.state.pmData, msg]
                 });
             break;
-            //     case "yaskawaRobotHealth":
-            //     case "kukaRobotHealth": 
-            //     this.setState({
-            //         pmHealthData: [...this.state.pmHealthData, msg]
-            //     });
-            // break;
+                case "yaskawaRobotHealth":
+                case "kukaRobotHealth": 
+                // console.log("10",msg.health.values[0][10]);
+                this.setState({
+                    pmHealthData: [...this.state.pmHealthData, msg.health.values[0][10]]
+                });
+            break;
 
             }
         }
@@ -96,7 +99,7 @@ class PMDashboard extends Component {
 
     render() {
 
-        let pmComponent = <PMContainer pmData={this.state.pmData} />;
+        let pmComponent = <PMContainer pmData={this.state.pmData} pmHealthData={this.state.pmHealthData} />;
 
         return (
             <div className="container">
