@@ -25,10 +25,10 @@ class PMTorqueTempContainer extends PureComponent {
         return (
             <div className="pmContainerRight">
                 <div className="pmDetails">
-                    <Gauge value={this.props.pmData[this.props.pmData.length - 1][this.props.torqueType]} width={300} height={200} color={"#959DFF"} label="Torque" />
+                    <Gauge value={Math.floor(this.props.pmData[this.props.pmData.length - 1][this.props.torqueType])} width={300} height={200} color={"#959DFF"} label="Torque" />
                 </div>
                 <div className="pmDetails">
-                    <h1>{this.props.pmData[this.props.pmData.length - 1][this.props.torqueType]}</h1>Units
+                    <h1>{Math.floor(this.props.pmData[this.props.pmData.length - 1][this.props.torqueType])}</h1>Units
                 </div>
                 <div className="pmDetails">
                     <GraphContainer type={this.props.tempType} data={this.props.pmData} />
