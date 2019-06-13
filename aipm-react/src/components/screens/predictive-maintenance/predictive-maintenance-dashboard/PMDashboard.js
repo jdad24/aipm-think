@@ -51,7 +51,12 @@ class PMDashboard extends Component {
             });
             break;
         case "replay":
-            //has to be completed
+            axios.get("http://aipm-gsc-nodered.mybluemix.net/replayHistory").then((response) => {
+                let replayHistory = response.data.replayHistory.map((element) => {
+                    return JSON.parse(element);
+                })
+                this.setState({ pmData: replayHistory });
+            });
             break;
         }
     };
@@ -69,22 +74,25 @@ class PMDashboard extends Component {
         this.ws = ws;
         ws.onmessage = (event) => {
             let msg = JSON.parse(event.data);
+            console.log(msg);
 
             switch(msg.msgType){
 
             case "yaskawaTorqueTemp": 
             case "kukaTorqueTemp":
+            case "kukaTorque":
                 this.setState({
                     pmData: [...this.state.pmData, msg]
                 });
             break;
-                case "yaskawaRobotHealth":
-                case "kukaRobotHealth": 
+            case "yaskawaRobotHealth":
+            case "kukaRobotHealth": 
                 // console.log("10",msg.health.values[0][10]);
                 this.setState({
                     pmHealthData: [...this.state.pmHealthData, msg.health.values[0][10]]
                 });
             break;
+            // case "repl"
 
             }
         }
