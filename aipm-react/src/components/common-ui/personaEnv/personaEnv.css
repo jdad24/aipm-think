@@ -1,0 +1,34 @@
+.personaEnv{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    /* flex-direction: column; */
+    /* border: 1px solid green; */
+    /* padding: 10px;
+    margin: 10px; */
+  }
+
+  .topBottom {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid green;
+    padding: 20px;
+    /* height: auto; */
+    /* min-height: 80px; */
+  }
+
+  .personaWeather {
+    display: flex;
+    /* min-height: 80px; */
+    /* flex-direction: row; */
+    justify-content: flex-start;
+    border: 1px solid green;
+    height: auto;
+    padding: 20px 20px 30px 20px;
+  }
+
+  .personaEnvDetails div, 
+  .topBottom div{
+    
+    /* width: 160px; */
+  }

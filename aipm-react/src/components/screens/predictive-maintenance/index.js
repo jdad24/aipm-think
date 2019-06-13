@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Header from '../../common-ui/persona-header/persona-header';
-import PersonaTime from '../../common-ui/persona-time/persona-time';
+//import Header from '../../common-ui/persona-header/persona-header';
+import PersonaEnv from '../../common-ui/personaEnv/personaEnv';
 import RobotList from '../../common-ui/robot-list/robot-list';
 import Aux from '../../common-ui/Aux/Aux';
 import PMDashboard from './predictive-maintenance-dashboard/PMDashboard';
@@ -23,7 +23,7 @@ class PredictiveMaintenance extends Component {
         });
     }
 
-    getContent = () => {
+    getMainContent = () => {
         const temp_style = {
             border: "1px solid green",
             padding: "10px",
@@ -36,13 +36,7 @@ class PredictiveMaintenance extends Component {
             pmContent = <PMDashboard robot={this.state.robotEnvironment}/>
         } else {
             pmContent =
-                <Aux>
-                    <div className="persona-section">
-                        <PersonaTime name="Carla" />
-                        <div style={temp_style}> Assigned to line 3 today</div>
-                    </div>
                     <RobotList clickHandler={this.robotClickHandler} />
-                </Aux>
         }
 
         let PredictiveMaintenance = (<div className="PredicitiveMaintenance" >
@@ -52,12 +46,27 @@ class PredictiveMaintenance extends Component {
          return PredictiveMaintenance;
     }
 
+    getPersonaEnv = () => {
+        let PersonaorPath = "";
+
+        if (this.state.pmDashboard) {
+            PersonaorPath = <div>Path</div>
+        } else {
+            PersonaorPath = <PersonaEnv name = "Mark"  />
+        }
+
+        return PersonaorPath;
+    }
+
     render() {
-        let PredictiveMaintenance = this.getContent();
+
+        let PredictiveMaintenance = this.getMainContent();
+        let PersonaEnv = this.getPersonaEnv();
         return (
 
             <Layout
                 role="Line Manager Dashboard"
+                screenTop = {PersonaEnv}
                 content={PredictiveMaintenance}
             />
 

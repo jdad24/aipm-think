@@ -1,9 +1,11 @@
 .layout{
     display: grid;
-    grid-template-rows: 48px auto 48px;
+    grid-template-rows: 48px 150px auto 48px;
     grid-template-columns: 48px auto 48px;
+    grid-column-gap: 31px;
     border: 1px solid red;
     min-height: 100vh;
+    background-color: #F3F3F3;
     /* grid-template-rows: 50px 90px 50px;
     grid-template-columns: 50px 90px 50px; */
 }
@@ -11,14 +13,19 @@
 .rightBar{
     grid-column-start: 3;
     grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 4;
     width:48px;
     border: 1px solid green;
+    background-color: #F3F3F3;
 }
 
 .footer{
-    grid-row-start: 3;
-    grid-row-end: 4;
+    grid-row-start: 4;
+    grid-row-end: 5;
     grid-column-start: 2;
     grid-column-end: 4;
-    border: 1px solid yellow;
+    border: 1px solid darkturquoise;
+    display: flex;
+    justify-content: flex-end;
 }

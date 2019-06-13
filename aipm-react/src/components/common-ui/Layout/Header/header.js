@@ -1,5 +1,5 @@
 import React from 'react';
-import './persona-header.css';
+import './header.css';
 import { Link } from 'react-router-dom';
 
 const header = (props) => (
