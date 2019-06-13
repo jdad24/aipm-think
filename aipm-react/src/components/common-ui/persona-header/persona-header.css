@@ -1,7 +1,22 @@
 .Header{
     display: flex;
     justify-content: flex-start;  
-    grid-row-start: 1/-1;
-    border: 1px solid purple;
-    min-height: 50px;
+    grid-row-start: 1;
+    grid-row-end:2;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    color: white;
+
+    /* border: 1px solid purple; */
+    height: 48px;
+    background-color: #181717;
+    /* font-family: "IbmPlexText"; */
+ 
   }
+
+  /* @font-face {
+    font-family: "IbmPlexLight";
+    src: url("../assets/fonts/IBMPlexSans-SemiBold.ttf");
+    font-weight: normal;
+    font-style: normal;
+  } */

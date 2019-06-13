@@ -17,8 +17,9 @@
   width: 100vw;
   height: 100vh;
   display: grid;
-  grid-template-rows: 3fr 4fr 3fr;
+  grid-template-rows: 3fr auto 3fr;
   grid-template-columns: 5vw 90vw 5vw;
+  overflow: scroll;
 }
 
 .P1 {

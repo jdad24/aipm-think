@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 // import Aux from '../../../../common-ui/Aux/Aux';
+import BasicCard from '../../../../common-ui/BasicCard/basicCard';
 import './viContainer.css';
 
 class ScoreContainer extends PureComponent {
@@ -38,9 +39,11 @@ class ScoreContainer extends PureComponent {
 
     render() {
         return (
+            <BasicCard>
             <div className="scoreContainer" >
                 {this.renderScore()}
             </div>
+            </BasicCard>
         );
     }
 }

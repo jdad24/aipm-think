@@ -4,6 +4,7 @@ import PersonaTime from '../../common-ui/persona-time/persona-time';
 import RobotList from '../../common-ui/robot-list/robot-list';
 import Aux from '../../common-ui/Aux/Aux';
 import VIdashboard from './visual-insights-dashboard/vidashboard';
+import Layout from '../../common-ui/Layout/layout';
 // import { Client } from 'paho-mqtt';
 import './vi.css';
 
@@ -29,7 +30,7 @@ class VisualInsights extends Component {
     //     });
     // }
 
-    render() {
+    getContent = () => {
         const temp_style = {
             border: "1px solid green",
             padding: "10px",
@@ -42,11 +43,7 @@ class VisualInsights extends Component {
             // console.log("inside IF");
             // console.log(this.state.imgMsg);
             viContent =
-                <VIdashboard
-                    robot={this.state.robotEnvironment}
-                    // imgMsg={this.state.imgMsg}
-                // scoreMsg = {this.state.scoreMsg} 
-                />
+                <VIdashboard robot={this.state.robotEnvironment} />
         } else {
             viContent =
                 <Aux>
@@ -58,17 +55,26 @@ class VisualInsights extends Component {
                 </Aux>
         }
 
+
+        let visualInsights = (<div className="VisualInsights" >
+                                    {viContent}
+                             </div>);
+
+        return visualInsights;
+    }
+
+    render() {
+
+        let visualInsights = this.getContent();
+
         return (
 
-            <div className="VisualInsights" >
-                <Header role="Line Manager Dashboard" />
-                {viContent}
-                {/* <div className="RobotList">
-                    <div>gm Carla</div>
-                    <div>QA</div>
-                </div> */}
-                {/* <RobotList onclick={this.loadVI}/> */}
-            </div>
+            <Layout
+                role="Line Manager Dashboard"
+                content={visualInsights}
+            />
+
+
 
         );
     }

@@ -109,7 +109,7 @@ class FlipCard extends Component {
                 <div
                   onClick={this.handleClick(j)}
                   key="back"
-                  className="mycard"
+                  // className="mycard"
                 >
                   <div className="text">{i.backside}</div>
                 </div>

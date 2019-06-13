@@ -1,5 +1,6 @@
 import React from 'react';
 import './robot-list.css';
+import BasicCard from '../BasicCard/basicCard';
 // import { Link } from "react-router-dom";
 
 const robotList = (props) => {
@@ -11,6 +12,7 @@ const robotList = (props) => {
 
     let robotList = robots.map(r => {
         return (
+            <BasicCard>
             <div className="Robot" key={r.device}>
                 <div>{r.device}</div>
                 <div>{r.overview}</div>
@@ -19,6 +21,7 @@ const robotList = (props) => {
                 {/* </Link> */}
                 {/* <button onClick={props.onclick}>Details</button> */}
             </div>
+            </BasicCard>
         );
     })
 

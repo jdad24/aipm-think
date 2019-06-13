@@ -19,7 +19,7 @@
   align-content: center;
 }
 .card {
-  flex: 0 0 300px;
+  flex: 0 0 270px;
   margin: 30px;
   margin-left: 0px;
 }
@@ -28,7 +28,7 @@
   max-width: 100%;
 }
 .card .text {
-  height: 327px;
+  height: 308px;
   padding: 0 10px 10px;
   text-align: center;
   color: white;

@@ -48,6 +48,7 @@ class videtails extends Component {
         "replay": "wss://aipm-gsc-nodered.mybluemix.net/ws/aipm-gsc"
     }
 
+
     ws = null;
 
 

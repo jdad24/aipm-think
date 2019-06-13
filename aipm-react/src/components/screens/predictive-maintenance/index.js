@@ -4,6 +4,7 @@ import PersonaTime from '../../common-ui/persona-time/persona-time';
 import RobotList from '../../common-ui/robot-list/robot-list';
 import Aux from '../../common-ui/Aux/Aux';
 import PMdashboard from './predictive-maintenance-dashboard/pmdashboard';
+import Layout from '../../common-ui/Layout/layout';
 // import { Client } from './node_modules/paho-mqtt';
 import './pm.css';
 
@@ -22,7 +23,7 @@ class PredictiveMaintenance extends Component {
         console.log(event.target.value);
     }
 
-    render() {
+    getContent = () => {
         const temp_style = {
             border: "1px solid green",
             padding: "10px",
@@ -51,17 +52,23 @@ class PredictiveMaintenance extends Component {
                 </Aux>
         }
 
+        let PredictiveMaintenance = (<div className="PredicitiveMaintenance" >
+                                    {pmContent}
+                             </div>);
+
+         return PredictiveMaintenance;
+    }
+
+    render() {
+        let PredictiveMaintenance = this.getContent();
         return (
 
-            <div className="PredicitiveMaintenance" >
-                <Header role="Line Manager Dashboard" />
-                {pmContent}
-                {/* <div className="RobotList">
-                    <div>gm Carla</div>
-                    <div>QA</div>
-                </div> */}
-                {/* <RobotList onclick={this.loadVI}/> */}
-            </div>
+            <Layout
+                role="Line Manager Dashboard"
+                content={PredictiveMaintenance}
+            />
+
+
 
         );
     }
