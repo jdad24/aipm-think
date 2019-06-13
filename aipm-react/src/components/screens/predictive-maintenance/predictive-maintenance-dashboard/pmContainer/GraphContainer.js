@@ -19,42 +19,42 @@ class GraphContainer extends PureComponent {
       case "tempUpper":
         xDataKey = "temp";
         dataKey = "Temperatue";
-        data = this.props.data.map(element => {
+        data = this.props.data.slice(0,10).map(element => {
           return ({ "temp": element.tempUpper, "Temperatue": element.tempUpper });
         });
         break;
       case "tempMiddle":
         xDataKey = "temp";
         dataKey = "Temperatue";
-        data = this.props.data.map(element => {
+        data = this.props.data.slice(0,10).map(element => {
           return ({ "temp": element.tempMiddle, "Temperatue": element.tempMiddle });
         });
         break;
       case "tempLower":
         xDataKey = "temp";
         dataKey = "Temperatue";
-        data = this.props.data.map(element => {
+        data = this.props.data.slice(0,10).map(element => {
           return ({ "temp": element.tempLower, "Temperatue": element.tempLower });
         });
         break;
       case "xPos":
         xDataKey = "xPos";
         dataKey = "X-Position";
-        data = this.props.data.map(element => {
+        data = this.props.data.slice(0,10).map(element => {
           return ({ "xPos": element.posUpper, "X-Position": element.posUpper });
         });
         break;
       case "yPos":
         xDataKey = "yPos";
         dataKey = "Y-Position";
-        data = this.props.data.map(element => {
+        data = this.props.data.slice(0,10).map(element => {
           return ({ "yPos": element.posMiddle, "Y-Position": element.posMiddle });
         });
         break;
       case "zPos":
         xDataKey = "zPos";
         dataKey = "Z-Position";
-        data = this.props.data.map(element => {
+        data = this.props.data.slice(0,10).map(element => {
           return ({ "zPos": element.posLower, "Z-Position": element.posLower });
         });
         break;
