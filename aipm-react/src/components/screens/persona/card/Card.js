@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import ReactCardFlip from "react-card-flip";
 import carla from "../../../../assets/carla.png"; // with import
 import mark from "../../../../assets/mark.png";
+import paul from "../../../../assets/Paul.png";
+import rhonda from "../../../../assets/Rhonda.png";
+import joe from "../../../../assets/Joe.png";
+import pene from "../../../../assets/pene.png";
 import "./card.css";
 import { Link } from "react-router-dom";
 
@@ -25,38 +29,38 @@ const data = [
     redirectText: "Run Demo"
   },
   {
-    title: "3",
-    backside: "Carla is Quality Assurance Inspector",
-    post: "Quality Assurance Inspector",
-    tool: "Visual Insights",
-    imgurl: carla,
+    title: "Paul",
+    backside: "Paul is Equipment Maintenance Assistant",
+    post: "Plant Manager",
+    tool: "Equipment Maintenance Advisor",
+    imgurl: paul,
     redirect: "/vi",
     redirectText: "Run Demo"
   },
   {
-    title: "4",
-    backside: "Carla is Quality Assurance Inspector",
-    post: "Quality Assurance Inspector",
-    tool: "Visual Insights",
-    imgurl: carla,
+    title: "Joe",
+    backside: "Joe is Plant Technician",
+    post: "Plant Technician",
+    tool: "Procurement Manager",
+    imgurl: joe,
     redirect: "/vi",
     redirectText: "Run Demo"
   },
   {
-    title: "5",
-    backside: "Carla is Quality Assurance Inspector",
-    post: "Quality Assurance Inspector",
-    tool: "Visual Insights",
-    imgurl: carla,
+    title: "Rhonda",
+    backside: "Rhonda is Operations Manager",
+    post: "Operations Manager",
+    tool: "Net App",
+    imgurl: rhonda,
     redirect: "/vi",
     redirectText: "Run Demo"
   },
   {
-    title: "6",
-    backside: "Carla is Quality Assurance Inspector",
-    post: "Quality Assurance Inspector",
-    tool: "Visual Insights",
-    imgurl: carla,
+    title: "Penelope",
+    backside: "Penelope is Procurement Manager",
+    post: "Procurement Manager",
+    tool: "SAP, Blockchain",
+    imgurl: pene,
     redirect: "/vi",
     redirectText: "Run Demo"
   }
