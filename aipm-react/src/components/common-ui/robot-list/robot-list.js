@@ -12,8 +12,8 @@ const robotList = (props) => {
 
     let robotList = robots.map(r => {
         return (
-            <BasicCard>
-            <div className="Robot" key={r.device}>
+            <BasicCard key={r.device}>
+            <div className="Robot">
                 <div>{r.device}</div>
                 <div>{r.overview}</div>
                 {/* <Link to="/pm"> */}

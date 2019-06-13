@@ -25,7 +25,7 @@ const data = [
     redirectText: "Run Demo"
   },
   {
-    title: "Carla",
+    title: "3",
     backside: "Carla is Quality Assurance Inspector",
     post: "Quality Assurance Inspector",
     tool: "Visual Insights",
@@ -34,7 +34,7 @@ const data = [
     redirectText: "Run Demo"
   },
   {
-    title: "Carla",
+    title: "4",
     backside: "Carla is Quality Assurance Inspector",
     post: "Quality Assurance Inspector",
     tool: "Visual Insights",
@@ -43,7 +43,7 @@ const data = [
     redirectText: "Run Demo"
   },
   {
-    title: "Carla",
+    title: "5",
     backside: "Carla is Quality Assurance Inspector",
     post: "Quality Assurance Inspector",
     tool: "Visual Insights",
@@ -52,7 +52,7 @@ const data = [
     redirectText: "Run Demo"
   },
   {
-    title: "Carla",
+    title: "6",
     backside: "Carla is Quality Assurance Inspector",
     post: "Quality Assurance Inspector",
     tool: "Visual Insights",
@@ -92,7 +92,7 @@ class FlipCard extends Component {
           console.log(j);
           let currentCard = `isFlipped${j}`;
           return (
-            <div className="card">
+            <div className="card" key={i.title}>
               <ReactCardFlip isFlipped={this.state[currentCard]}>
                 <div key="front" className="mycard">
                   <img src={i.imgurl} onClick={this.handleClick(j)} />

@@ -1,8 +1,16 @@
+//FILE FOR REFERENCE. DO NOT REMOVE THIS FILE. I WILL REMOVE THIS FILE MYSELF.
+//FILE FOR REFERENCE. DO NOT REMOVE THIS FILE. I WILL REMOVE THIS FILE MYSELF.
+//FILE FOR REFERENCE. DO NOT REMOVE THIS FILE. I WILL REMOVE THIS FILE MYSELF.
+//FILE FOR REFERENCE. DO NOT REMOVE THIS FILE. I WILL REMOVE THIS FILE MYSELF.
+//FILE FOR REFERENCE. DO NOT REMOVE THIS FILE. I WILL REMOVE THIS FILE MYSELF.
+
+
 import React, { Component } from 'react';
 import Aux from '../../../common-ui/Aux/Aux';
 // import GraphContainer from './pmContainer/GraphContainer';
 import PMContainer from './pmContainer/PMContainer';
 import { Client } from 'paho-mqtt';
+import axios from 'axios';
 import './pmdashboard.css';
 
 class pmdetails extends Component {
@@ -56,6 +64,12 @@ class pmdetails extends Component {
 
     componentDidMount() {
         this.webSocketHandler();
+        axios.get("http://aipm-gsc-nodered.mybluemix.net/yaskawaHistory").then((response) => {
+            let robotData = response.data.yaskawaHistory.map((element)=>{
+                return JSON.parse(element);
+            })
+            this.setState({ yaskawaData: robotData });
+        });
         // this.mqttHandler(this.props.robot);
     };
 
@@ -73,15 +87,20 @@ class pmdetails extends Component {
         let wsUri = this.wsCredentials[this.props.robot];
         ws = new WebSocket(wsUri);
         this.ws = ws;
+        console.log("pmData", this.state.pmData);
         ws.onmessage = (event) => {
             // parse the incoming message as a JSON object
+            console.log("eventcalled");
+            
             let msg = JSON.parse(event.data);
             if (msg.msgType === "yaskawaTorqueTemp"){
-                console.log("websocket", msg);
+                // console.log("websocket", msg);
 
                 this.setState({
-                    pmData: msg
+                    pmData: [...this.state.pmData, msg]
                 });
+
+                // console.log("pmData", this.state.pmData);
 
 
                 //below line is required only if ws socket is the same        
@@ -101,6 +120,8 @@ class pmdetails extends Component {
                 //         });
                 //     }
                 // }
+            }else if(msg.msgType= "yaskawaRobotHealth"){
+                
             }
 
         }

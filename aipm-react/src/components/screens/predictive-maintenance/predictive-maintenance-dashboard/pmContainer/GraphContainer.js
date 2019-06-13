@@ -2,54 +2,63 @@ import React, { PureComponent } from 'react';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
-import axios from 'axios';
-
-const data = [
-  {
-    name: 'Page A', uv: 4000, pv: 2400, amt: 2400,
-  },
-  {
-    name: 'Page B', uv: 3000, pv: 1398, amt: 2210,
-  },
-  {
-    name: 'Page C', uv: 2000, pv: 9800, amt: 2290,
-  },
-  {
-    name: 'Page D', uv: 2780, pv: 3908, amt: 2000,
-  },
-  {
-    name: 'Page E', uv: 1890, pv: 4800, amt: 2181,
-  },
-  {
-    name: 'Page F', uv: 2390, pv: 3800, amt: 2500,
-  },
-  {
-    name: 'Page G', uv: 3490, pv: 4300, amt: 2100,
-  },
-];
 
 class GraphContainer extends PureComponent {
-
   state = {};
-
-  componentDidMount(){
-    axios.get("http://aipm-gsc-nodered.mybluemix.net/yaskawaHistory").then((response) => { this.setState({robotData:response.data.yaskawaHistory});
-  }) 
-  }
 
   render() {
 
-    // console.log("data", this.state.robotData);
-
-    if(this.state.robotData === undefined)
+    if (this.props.data === undefined)
       return <div></div>
 
-    let data1 = this.state.robotData.map(element => {
-      let temp = JSON.parse(element);
-      return ({"temp": temp.bTemp, "tempValue": Number(temp.bTemp)});
-    });
+    let data;
+    let xDataKey;
+    let dataKey;
 
-    // console.log(data);
+    switch (this.props.type) {
+      case "tempUpper":
+        xDataKey = "temp";
+        dataKey = "Temperatue";
+        data = this.props.data.map(element => {
+          return ({ "temp": element.tempUpper, "Temperatue": element.tempUpper });
+        });
+        break;
+      case "tempMiddle":
+        xDataKey = "temp";
+        dataKey = "Temperatue";
+        data = this.props.data.map(element => {
+          return ({ "temp": element.tempMiddle, "Temperatue": element.tempMiddle });
+        });
+        break;
+      case "tempLower":
+        xDataKey = "temp";
+        dataKey = "Temperatue";
+        data = this.props.data.map(element => {
+          return ({ "temp": element.tempLower, "Temperatue": element.tempLower });
+        });
+        break;
+      case "xPos":
+        xDataKey = "xPos";
+        dataKey = "X-Position";
+        data = this.props.data.map(element => {
+          return ({ "xPos": element.posUpper, "X-Position": element.posUpper });
+        });
+        break;
+      case "yPos":
+        xDataKey = "yPos";
+        dataKey = "Y-Position";
+        data = this.props.data.map(element => {
+          return ({ "yPos": element.posMiddle, "Y-Position": element.posMiddle });
+        });
+        break;
+      case "zPos":
+        xDataKey = "zPos";
+        dataKey = "Z-Position";
+        data = this.props.data.map(element => {
+          return ({ "zPos": element.posLower, "Z-Position": element.posLower });
+        });
+        break;
+    }
 
     return (
       <LineChart
@@ -61,12 +70,11 @@ class GraphContainer extends PureComponent {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
+        <XAxis dataKey={xDataKey} />
         <YAxis />
         <Tooltip />
         <Legend />
-        <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-        {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
+        <Line type="monotone" dataKey={dataKey} stroke="#8884d8" activeDot={{ r: 8 }} />
       </LineChart>
     );
   }

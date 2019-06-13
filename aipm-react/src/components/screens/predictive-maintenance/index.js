@@ -3,10 +3,11 @@ import Header from '../../common-ui/persona-header/persona-header';
 import PersonaTime from '../../common-ui/persona-time/persona-time';
 import RobotList from '../../common-ui/robot-list/robot-list';
 import Aux from '../../common-ui/Aux/Aux';
-import PMdashboard from './predictive-maintenance-dashboard/pmdashboard';
+import PMDashboard from './predictive-maintenance-dashboard/PMDashboard';
 import Layout from '../../common-ui/Layout/layout';
 // import { Client } from './node_modules/paho-mqtt';
-import './pm.css';
+import './PM.css';
+
 
 class PredictiveMaintenance extends Component {
 
@@ -20,7 +21,6 @@ class PredictiveMaintenance extends Component {
             pmDashboard: true,
             robotEnvironment: event.target.value
         });
-        console.log(event.target.value);
     }
 
     getContent = () => {
@@ -33,14 +33,7 @@ class PredictiveMaintenance extends Component {
         let pmContent = "";
 
         if (this.state.pmDashboard) {
-            // console.log("inside IF");
-            // console.log(this.state.imgMsg);
-            pmContent =
-                <PMdashboard
-                    robot={this.state.robotEnvironment}
-                    // imgMsg={this.state.imgMsg}
-                // scoreMsg = {this.state.scoreMsg} 
-                />
+            pmContent = <PMDashboard robot={this.state.robotEnvironment}/>
         } else {
             pmContent =
                 <Aux>
@@ -67,8 +60,6 @@ class PredictiveMaintenance extends Component {
                 role="Line Manager Dashboard"
                 content={PredictiveMaintenance}
             />
-
-
 
         );
     }
