@@ -7,6 +7,10 @@
     
 }
 
+.line_contents{
+    min-height: 215px;
+    min-width: 237px;
+}
 .line_contents div {
     padding: 10px 20px 10px 20px;
     /* border: 1px solid blue; */
@@ -19,5 +23,10 @@
 }
 
 .myBasicCard{
-    margin: 25px;
+    margin: 13px 26px 13px 0px;
+}
+
+.spanStyle{
+    display: flex;
+    justify-content: space-around;
 }

@@ -6,7 +6,7 @@ import Aux from '../../common-ui/Aux/Aux';
 import VIdashboard from './visual-insights-dashboard/vidashboard';
 import Layout from '../../common-ui/Layout/layout';
 // import { Client } from 'paho-mqtt';
-// import './vi.css';
+import './vi.css';
 
 class VisualInsights extends Component {
 
@@ -70,7 +70,14 @@ class VisualInsights extends Component {
                 //         <PersonaTime name="Carla" />
                 //         <div style={temp_style}> Assigned to line 3 today</div>
                 //     </div>
+                <Aux>
+                    <div className = "tabs">
+                    <div className="cur_assignment">Current Assignments</div>
+                    <div className="past_assignment">Past Assignments</div>
+                    </div>
                     <LineList clickHandler={this.robotClickHandler} />
+                </Aux>
+                    
                 // </Aux>
         }
         

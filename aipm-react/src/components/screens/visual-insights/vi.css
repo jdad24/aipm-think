@@ -1,10 +1,10 @@
-.VisualInsights{
+/* .VisualInsights{
     display: grid;
     grid-template-rows: 1fr 5fr;
     grid-template-columns: 1fr;
     /* grid-row-gap: 15px; */
     /* color: red; */
-}
+/* }
 
 .persona-section{
     display: flex;
@@ -14,5 +14,18 @@
 .robot-list-section{
     display: flex;
     border: 1px solid purple;
+}  */
+
+.tabs{
+    display: flex;
 }
 
+.past_assignment{
+    padding: 10px 20px 10px 30px;
+}
+
+.cur_assignment{
+    /* text-decoration: underline solid #0061FF; */
+    border-bottom: 1px solid #0061FF;
+    padding: 10px 0px 10px 0px;
+}

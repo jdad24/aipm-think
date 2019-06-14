@@ -6,8 +6,8 @@ const lineList = (props) => {
     
     const assignments = [
         {line: 3, name: "kuka", imgSrc: "img", imgNum: 138},
-        {line: 3, name: "yaskawa", imgSrc: "img", imgNum: 76},
-        {line: 3, name: "replay", imgSrc: "img", imgNum: 1982}
+        {line: 7, name: "yaskawa", imgSrc: "img", imgNum: 76},
+        {line: 2, name: "replay", imgSrc: "img", imgNum: 1982}
     ];
 
     let line_list = assignments.map(a => {
@@ -18,7 +18,7 @@ const lineList = (props) => {
                 <div className="line">Line{" "+a.line}</div>
                 <div>{a.name}</div>
                 <div>{a.imgSrc}</div>
-                <div>
+                <div className="spanStyle">
                     <span>{a.imgNum+" "} Images</span>
                     <span>
                         <button value={a.name} onClick={props.clickHandler}>arrow</button>
