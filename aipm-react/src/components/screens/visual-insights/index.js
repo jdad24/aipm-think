@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 //import Header from '../../common-ui/persona-header/persona-header';
 import PersonaEnv from '../../common-ui/personaEnv/personaEnv';
-import RobotList from '../../common-ui/robot-list/robot-list';
+import LineList from './lineList/lineList';
 import Aux from '../../common-ui/Aux/Aux';
 import VIdashboard from './visual-insights-dashboard/vidashboard';
 import Layout from '../../common-ui/Layout/layout';
@@ -70,7 +70,7 @@ class VisualInsights extends Component {
                 //         <PersonaTime name="Carla" />
                 //         <div style={temp_style}> Assigned to line 3 today</div>
                 //     </div>
-                    <RobotList clickHandler={this.robotClickHandler} />
+                    <LineList clickHandler={this.robotClickHandler} />
                 // </Aux>
         }
         

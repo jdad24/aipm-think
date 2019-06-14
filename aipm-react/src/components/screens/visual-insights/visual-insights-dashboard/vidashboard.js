@@ -23,24 +23,24 @@ class videtails extends Component {
         ]
     }
 
-    mqttCredentials = [
-        {
-            clientId: 'a:qjue4x:' + Math.random().toString(16).substr(2, 8),
-            broker: "qjue4x.messaging.internetofthings.ibmcloud.com",
-            subscribe: "iot-2/type/+/id/+/evt/+/fmt/json",
-            username: "a-qjue4x-al7mm3hvo4",
-            password: "+4B0N)ZGk@BVH1BFy9"
+    // mqttCredentials = [
+    //     {
+    //         clientId: 'a:qjue4x:' + Math.random().toString(16).substr(2, 8),
+    //         broker: "qjue4x.messaging.internetofthings.ibmcloud.com",
+    //         subscribe: "iot-2/type/+/id/+/evt/+/fmt/json",
+    //         username: "a-qjue4x-al7mm3hvo4",
+    //         password: "+4B0N)ZGk@BVH1BFy9"
 
-        },
-        {
-            clientId: 'a:xbyrsp:' + Math.random().toString(16).substr(2, 8),
-            broker: "xbyrsp.messaging.internetofthings.ibmcloud.com",
-            subscribe: "iot-2/type/+/id/+/evt/+/fmt/json",
-            username: "a-xbyrsp-0rf3yixsqn",
-            password: "2I+?sdkfxml_OR8SMR"
+    //     },
+    //     {
+    //         clientId: 'a:xbyrsp:' + Math.random().toString(16).substr(2, 8),
+    //         broker: "xbyrsp.messaging.internetofthings.ibmcloud.com",
+    //         subscribe: "iot-2/type/+/id/+/evt/+/fmt/json",
+    //         username: "a-xbyrsp-0rf3yixsqn",
+    //         password: "2I+?sdkfxml_OR8SMR"
 
-        }
-    ]
+    //     }
+    // ]
     //required if web sockets are different for different devices
     wsCredentials = {
         "yaskawa": "wss://aipm-gsc-nodered.mybluemix.net/ws/aipm-gsc/yaskawa",
@@ -158,134 +158,134 @@ class videtails extends Component {
         // }
     }
 
-    mqttHandler = (device) => {
+    // mqttHandler = (device) => {
 
-        let mqtt_clientId = null;
-        let mqtt_broker = null;
-        let mqtt_username = null;
-        let mqtt_password = null;
+    //     let mqtt_clientId = null;
+    //     let mqtt_broker = null;
+    //     let mqtt_username = null;
+    //     let mqtt_password = null;
 
 
 
-        switch (device) {
-            case 'yaskawa001':
-                mqtt_clientId = this.mqttCredentials[0].clientId;
-                mqtt_broker = this.mqttCredentials[0].broker;
-                mqtt_username = this.mqttCredentials[0].username;
-                mqtt_password = this.mqttCredentials[0].password;
-                // debugger;
-                break;
+    //     switch (device) {
+    //         case 'yaskawa001':
+    //             mqtt_clientId = this.mqttCredentials[0].clientId;
+    //             mqtt_broker = this.mqttCredentials[0].broker;
+    //             mqtt_username = this.mqttCredentials[0].username;
+    //             mqtt_password = this.mqttCredentials[0].password;
+    //             // debugger;
+    //             break;
 
-            case 'kuka001':
-                mqtt_clientId = this.mqttCredentials[1].clientId;
-                mqtt_broker = this.mqttCredentials[1].broker;
-                mqtt_username = this.mqttCredentials[1].username;
-                mqtt_password = this.mqttCredentials[1].password;
-                // console.log("switch - device -" + device);
-                break;
+    //         case 'kuka001':
+    //             mqtt_clientId = this.mqttCredentials[1].clientId;
+    //             mqtt_broker = this.mqttCredentials[1].broker;
+    //             mqtt_username = this.mqttCredentials[1].username;
+    //             mqtt_password = this.mqttCredentials[1].password;
+    //             // console.log("switch - device -" + device);
+    //             break;
 
-            case 'replay':
-                mqtt_clientId = this.mqttCredentials[0].clientId;
-                mqtt_broker = this.mqttCredentials[0].broker;
-                mqtt_username = this.mqttCredentials[0].username;
-                mqtt_password = this.mqttCredentials[0].password;
-                // console.log("switch - device -" + device);
-                break;
+    //         case 'replay':
+    //             mqtt_clientId = this.mqttCredentials[0].clientId;
+    //             mqtt_broker = this.mqttCredentials[0].broker;
+    //             mqtt_username = this.mqttCredentials[0].username;
+    //             mqtt_password = this.mqttCredentials[0].password;
+    //             // console.log("switch - device -" + device);
+    //             break;
 
-            // case 'default': 
-            // mqtt_clientId = this.mqttCredentials[0].clientId;
-            // mqtt_broker = this.mqttCredentials[0].broker;
-            // mqtt_username = this.mqttCredentials[0].username;
-            // mqtt_password = this.mqttCredentials[0].password;
+    //         // case 'default': 
+    //         // mqtt_clientId = this.mqttCredentials[0].clientId;
+    //         // mqtt_broker = this.mqttCredentials[0].broker;
+    //         // mqtt_username = this.mqttCredentials[0].username;
+    //         // mqtt_password = this.mqttCredentials[0].password;
 
-        }
-        // Create a client instance
-        let mqtt_client = new Client(mqtt_broker, 1883, mqtt_clientId);
+    //     }
+    //     // Create a client instance
+    //     let mqtt_client = new Client(mqtt_broker, 1883, mqtt_clientId);
 
-        // set callback handlers
-        mqtt_client.onConnectionLost = this.onConnectionLost;
-        mqtt_client.onMessageArrived = this.onMessageArrived;
+    //     // set callback handlers
+    //     mqtt_client.onConnectionLost = this.onConnectionLost;
+    //     mqtt_client.onMessageArrived = this.onMessageArrived;
 
-        this.setState({
-            mqttClient: mqtt_client
-        }, () => {
-            this.state.mqttClient.connect({
-                onSuccess: this.onConnect,
-                onFailure: this.onFailure,
-                userName: mqtt_username,   // apikey
-                password: mqtt_password
-            })
-        })
+    //     this.setState({
+    //         mqttClient: mqtt_client
+    //     }, () => {
+    //         this.state.mqttClient.connect({
+    //             onSuccess: this.onConnect,
+    //             onFailure: this.onFailure,
+    //             userName: mqtt_username,   // apikey
+    //             password: mqtt_password
+    //         })
+    //     })
 
-    }
+    // }
 
-    // called when the client loses its connection
-    onConnectionLost = (responseObject) => {
-        if (responseObject.errorCode !== 0) {
-            console.log("onConnectionLost:" + responseObject.errorMessage);
-        }
-    }
+    // // called when the client loses its connection
+    // onConnectionLost = (responseObject) => {
+    //     if (responseObject.errorCode !== 0) {
+    //         console.log("onConnectionLost:" + responseObject.errorMessage);
+    //     }
+    // }
 
-    onMessageArrived = (message) => {
-        console.log("inside onMessage 2");
-        this.onMessageArrivedCommon(message);
-    }
+    // onMessageArrived = (message) => {
+    //     console.log("inside onMessage 2");
+    //     this.onMessageArrivedCommon(message);
+    // }
 
-    onConnect = (props) => {
-        // Once a connection has been made, make a subscription and send a message.
-        let subscribeString = null;
-        switch (this.props.robot) {
-            case 'yaskawa001':
-                subscribeString = this.mqttCredentials[0].subscribe;
-                console.log("switch - subscribe -" + this.props.robot);
-                break;
+    // onConnect = (props) => {
+    //     // Once a connection has been made, make a subscription and send a message.
+    //     let subscribeString = null;
+    //     switch (this.props.robot) {
+    //         case 'yaskawa001':
+    //             subscribeString = this.mqttCredentials[0].subscribe;
+    //             console.log("switch - subscribe -" + this.props.robot);
+    //             break;
 
-            case 'kuka001':
-                subscribeString = this.mqttCredentials[0].subscribe;
-                console.log("switch - subscribe -" + this.props.robot);
-                break;
+    //         case 'kuka001':
+    //             subscribeString = this.mqttCredentials[0].subscribe;
+    //             console.log("switch - subscribe -" + this.props.robot);
+    //             break;
 
-            case 'replay':
-                subscribeString = this.mqttCredentials[0].subscribe;
-                console.log("switch - subscribe -" + this.props.robot);
-                break;
-        }
-        console.log("onConnect");
-        this.state.mqttClient.subscribe(subscribeString);
-    }
+    //         case 'replay':
+    //             subscribeString = this.mqttCredentials[0].subscribe;
+    //             console.log("switch - subscribe -" + this.props.robot);
+    //             break;
+    //     }
+    //     console.log("onConnect");
+    //     this.state.mqttClient.subscribe(subscribeString);
+    // }
 
-    onFailure = (responseObject) => {
-        // Once a connection has been made, make a subscription and send a message.
-        console.log("onFailure" + JSON.stringify(responseObject));
-    }
+    // onFailure = (responseObject) => {
+    //     // Once a connection has been made, make a subscription and send a message.
+    //     console.log("onFailure" + JSON.stringify(responseObject));
+    // }
 
-    // called when a message arrives
-    onMessageArrivedCommon = (message) => {
+    // // called when a message arrives
+    // onMessageArrivedCommon = (message) => {
 
-        let myTopic = message.destinationName;
-        let parsedTopic = myTopic.split("/");
-        let deviceId = parsedTopic[4];
-        let valueCmdEvt = parsedTopic[6];
-        let textJson = parsedTopic[8];
+    //     let myTopic = message.destinationName;
+    //     let parsedTopic = myTopic.split("/");
+    //     let deviceId = parsedTopic[4];
+    //     let valueCmdEvt = parsedTopic[6];
+    //     let textJson = parsedTopic[8];
 
-        if (textJson === "json") {
-            let iotPayload = JSON.parse(message.payloadString);
-            console.log("wholedata",valueCmdEvt,iotPayload);
+    //     if (textJson === "json") {
+    //         let iotPayload = JSON.parse(message.payloadString);
+    //         console.log("wholedata",valueCmdEvt,iotPayload);
 
-            if (valueCmdEvt === "score") {
-                let score = [deviceId, iotPayload.speakingClassification, iotPayload.confidence, iotPayload.slot];
-                let cur_scoredata = this.state.scoredata;
-                cur_scoredata[iotPayload.slot - 1].score = score;
-                cur_scoredata[iotPayload.slot - 1].slot = iotPayload.slot;
+    //         if (valueCmdEvt === "score") {
+    //             let score = [deviceId, iotPayload.speakingClassification, iotPayload.confidence, iotPayload.slot];
+    //             let cur_scoredata = this.state.scoredata;
+    //             cur_scoredata[iotPayload.slot - 1].score = score;
+    //             cur_scoredata[iotPayload.slot - 1].slot = iotPayload.slot;
 
-                this.setState({
-                    scoredata: cur_scoredata
-                });
+    //             this.setState({
+    //                 scoredata: cur_scoredata
+    //             });
 
-            }
-        }
+    //         }
+    //     }
 
-    }
+    // }
 
     render(props) {
 

@@ -1,0 +1,23 @@
+.lineList{
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+    /* justify-content: space-around; */
+    width: auto;
+    
+}
+
+.line_contents div {
+    padding: 10px 20px 10px 20px;
+    /* border: 1px solid blue; */
+    display: flex;
+    justify-content: flex-start;
+}
+
+.line{
+    font-size: 46px;
+}
+
+.myBasicCard{
+    margin: 25px;
+}
