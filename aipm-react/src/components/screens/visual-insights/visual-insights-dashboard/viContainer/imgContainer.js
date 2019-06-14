@@ -34,11 +34,11 @@ class ImgContainer extends PureComponent {
                 backgroundRepeat: "no-repeat",
                 width: "100%",
                 height: "100%",
-                backgroundSize: "contain",
+                backgroundSize: "cover",
                 backgroundPosition: "center"
             }
 
-            viImg = <div style={imgs} >image: </div>
+            viImg = <div style={imgs} ></div>
         }
 
         return viImg;
@@ -47,8 +47,8 @@ class ImgContainer extends PureComponent {
     render() {
 
         return (
-            <BasicCard>
-            <div className="imgContainer" >
+            <BasicCard classname="img-BasicCard">
+            <div className="imgContainer background" >
                 {this.renderImage()}
             </div>
             </BasicCard>

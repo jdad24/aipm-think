@@ -309,7 +309,7 @@ class videtails extends Component {
 
         return (
             <div className="dashboardContainer">
-                <div>{this.props.robot}</div>
+                {/* <div>{this.props.robot}</div> */}
                 <div className="imgScoreContainer">
                     {imgComponent}
                 </div>

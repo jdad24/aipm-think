@@ -1,18 +1,42 @@
 .imgContainer{
     display: flex;
+
     flex-direction: column;
-    border: 1px solid red; 
-    height: 300px;
-    width: 250px; 
+    /* border: 1px solid red;  */
+    height: 210px;
+    width: 237px; 
+}
+
+.background{
+    background-color: #B9B9B9;
 }
 
 .scoreContainer{
     
     display: flex;
     flex-direction: column;
-    border: 1px solid green;
-    height: 250px;
-    width: 250px; 
-    justify-content: center;
-    align-items: center;    
+    /* border: 1px solid green; */
+    height: 210px;
+    width: 237px;
+    /* justify-content: center;
+    align-items: center;     */
+}
+
+.img-BasicCard{
+    margin: 13px 26px 0 0;
+}
+
+.score-BasicCard{
+    margin: 0 26px 13px 0;
+}
+
+.scoreContents{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 20px 0 0 20px;
+}
+
+.scoreContents div{
+    display: flex;
 }

@@ -93,7 +93,7 @@ class VisualInsights extends Component {
         let PersonaorPath = "";
 
         if (this.state.viDashboard) {
-            PersonaorPath = <div>Path</div>
+            PersonaorPath = <div>Dashboard > {this.state.robotEnvironment}</div>
         } else {
             PersonaorPath = <PersonaEnv name = "Carla"  />
         }

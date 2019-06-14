@@ -12,7 +12,7 @@ const lineList = (props) => {
 
     let line_list = assignments.map(a => {
         return(
-            <BasicCard classname="myBasicCard">
+            <BasicCard classname="lineList-BasicCard">
                 <div className="line_contents">
                 <div>Re-Inspection</div>
                 <div className="line">Line{" "+a.line}</div>

@@ -26,23 +26,24 @@ class ScoreContainer extends PureComponent {
     renderScore = () => {
         let score = <p>No score </p>
         if (this.state.score) {
-            score = <div>Score:
-            <div>iotTopic:  {this.state.score[0]}</div>
-                <div>robotEnvironment:  {this.state.score[0]}</div>
-                <div>mySpeakingClassification:  {this.state.score[1]}</div>
-                <div>myConfidence:  {this.state.score[2]}</div>
-                <div>mySlot:  {this.state.score[3]}</div>
-            </div>
+            score =
+                <div className="scoreContents">
+                    {/* <div>iotTopic:  {this.state.score[0]}</div> */}
+                    <div>Environment:  {this.state.score[0]}</div>
+                    <div>Classification:  {this.state.score[1]}</div>
+                    <div>Confidence:  {this.state.score[2]}</div>
+                    <div>Slot:  {this.state.score[3]}</div>
+                </div>
         }
         return score;
     }
 
     render() {
         return (
-            <BasicCard>
-            <div className="scoreContainer" >
-                {this.renderScore()}
-            </div>
+            <BasicCard classname="score-BasicCard">
+                <div className="scoreContainer" >
+                    {this.renderScore()}
+                </div>
             </BasicCard>
         );
     }

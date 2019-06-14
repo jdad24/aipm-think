@@ -50,7 +50,7 @@ class PredictiveMaintenance extends Component {
         let PersonaorPath = "";
 
         if (this.state.pmDashboard) {
-            PersonaorPath = <div>Path</div>
+            PersonaorPath = <div>Dashboard > {this.state.robotEnvironment}</div>
         } else {
             PersonaorPath = <PersonaEnv name = "Mark"  />
         }
