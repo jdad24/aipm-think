@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import ReactCardFlip from "react-card-flip";
 import carla from "../../../../assets/carla.png"; // with import
 import mark from "../../../../assets/mark.png";
-import paul from "../../../../assets/paul.png";
-import rhonda from "../../../../assets/rhonda.png";
-import joe from "../../../../assets/joe.png";
+import paul from "../../../../assets/Paul.png";
+import rhonda from "../../../../assets/Rhonda.png";
+import joe from "../../../../assets/Joe.png";
 import pene from "../../../../assets/pene.png";
 import "./card.css";
 import { Link } from "react-router-dom";
