@@ -65,7 +65,7 @@ class PredictiveMaintenance extends Component {
         return (
 
             <Layout
-                role="Line Manager Dashboard"
+                role="Manufacturing Line Manager"
                 screenTop = {PersonaEnv}
                 content={PredictiveMaintenance}
             />

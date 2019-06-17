@@ -1,6 +1,7 @@
 .lineList{
     display: flex;
     flex-wrap: wrap;
+    font-family: "IbmPlexLight";
     /* flex-direction: column; */
     /* justify-content: space-around; */
     width: auto;

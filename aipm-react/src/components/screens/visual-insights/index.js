@@ -109,7 +109,7 @@ class VisualInsights extends Component {
         return (
 
             <Layout
-                role="Quality Assurance Manager Dashboard"
+                role="Quality Assurance"
                 screenTop = {PersonaEnv}
                 content={visualInsights}
             />

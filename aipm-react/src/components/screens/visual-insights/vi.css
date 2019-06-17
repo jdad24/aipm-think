@@ -18,6 +18,7 @@
 
 .tabs{
     display: flex;
+    font-family: "IbmPlexText";
 }
 
 .past_assignment{

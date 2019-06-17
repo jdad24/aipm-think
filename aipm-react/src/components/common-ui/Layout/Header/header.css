@@ -6,12 +6,11 @@
     grid-column-start: 1;
     grid-column-end: 4;
     color: white;
-
     /* border: 1px solid purple; */
     height: 48px;
     background-color: #181717;
+    font-size: 16px;
     /* font-family: "IbmPlexText"; */
- 
   }
 
   /* @font-face {

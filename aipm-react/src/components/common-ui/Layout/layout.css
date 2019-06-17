@@ -3,11 +3,12 @@
     grid-template-rows: 48px 118px auto 48px;
     grid-template-columns: 48px auto 48px;
     grid-column-gap: 31px;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     min-height: 100vh;
     min-width: 100vw;
     background-color: #F3F3F3;
     overflow: scroll;
+    font-family: "IbmPlexSemiBold";
     /* grid-template-rows: 50px 90px 50px;
     grid-template-columns: 50px 90px 50px; */
 }
@@ -18,7 +19,7 @@
     grid-row-start: 2;
     grid-row-end: 4;
     width:48px;
-    border: 1px solid green;
+    /* border: 1px solid green; */
     background-color: #F3F3F3;
 }
 
@@ -27,7 +28,7 @@
     grid-row-end: 5;
     grid-column-start: 2;
     grid-column-end: 4;
-    border: 1px solid darkturquoise;
+    /* border: 1px solid darkturquoise; */
     display: flex;
     justify-content: flex-end;
 }

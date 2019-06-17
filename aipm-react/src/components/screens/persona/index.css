@@ -1,4 +1,6 @@
-@font-face {
+/* @import "../../../styles/fonts.css"; */
+
+/* @font-face {
   font-family: "IbmPlexLight";
   src: url("../../../assets/fonts/IBMPlexSans-Light.ttf");
   font-weight: normal;
@@ -10,7 +12,7 @@
   src: url("../../../assets/fonts/IBMPlexSans-Text.ttf");
   font-weight: normal;
   font-style: normal;
-}
+} */
 
 .parent {
   background: #08161c;

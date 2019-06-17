@@ -5,5 +5,7 @@
     grid-row-end: 3;
     grid-column-start: 2;
     grid-column-end: 3;
-    border: 1px solid darkorange;
+    font-family: "IbmPlexText";
+    font-size: 18px;
+    /* border: 1px solid darkorange; */
 }
