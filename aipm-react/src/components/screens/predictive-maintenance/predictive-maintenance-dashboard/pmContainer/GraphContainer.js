@@ -62,7 +62,7 @@ class GraphContainer extends PureComponent {
 
     return (
       <LineChart
-        width={300}
+        width={400}
         height={200}
         data={data}
         margin={{

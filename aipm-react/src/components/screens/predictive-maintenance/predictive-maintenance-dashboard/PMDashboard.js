@@ -113,14 +113,12 @@ class PMDashboard extends Component {
         let pmComponent = <PMContainer pmData={this.state.pmData} pmHealthData={this.state.pmHealthData} />;
 
         return (
-            <div className="container">
                 <BasicCard>
                     <div><h1>{this.props.robot}</h1></div>
                     <div className="pmDataContainer">
                         {pmComponent}
                     </div>
                 </BasicCard>
-            </div>
         );
     }
 }
