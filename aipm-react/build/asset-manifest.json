@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/static/css/main.16b63b87.chunk.css",
-    "main.js": "/static/js/main.0b0e6cbc.chunk.js",
-    "main.js.map": "/static/js/main.0b0e6cbc.chunk.js.map",
+    "main.js": "/static/js/main.36bf221b.chunk.js",
+    "main.js.map": "/static/js/main.36bf221b.chunk.js.map",
     "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
     "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
     "static/js/2.17cca65c.chunk.js": "/static/js/2.17cca65c.chunk.js",
     "static/js/2.17cca65c.chunk.js.map": "/static/js/2.17cca65c.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.b8050423c88148f0d458e2cafe250613.js": "/precache-manifest.b8050423c88148f0d458e2cafe250613.js",
+    "precache-manifest.8ed3d4110d6647b7f84fb589d708f2b6.js": "/precache-manifest.8ed3d4110d6647b7f84fb589d708f2b6.js",
     "service-worker.js": "/service-worker.js",
     "static/css/main.16b63b87.chunk.css.map": "/static/css/main.16b63b87.chunk.css.map",
     "static/media/index.css": "/static/media/IBMPlexSans-Text.46ff72d9.ttf",

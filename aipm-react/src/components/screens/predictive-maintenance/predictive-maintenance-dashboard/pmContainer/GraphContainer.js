@@ -41,21 +41,21 @@ class GraphContainer extends PureComponent {
         xDataKey = "xPos";
         dataKey = "X-Position";
         data = this.props.data.slice(0,10).map(element => {
-          return ({ "xPos": element.posUpper, "X-Position": element.posUpper });
+          return ({ "xPos": element.posUpper.toFixed(2), "X-Position": element.posUpper.toFixed(2) });
         });
         break;
       case "yPos":
         xDataKey = "yPos";
         dataKey = "Y-Position";
         data = this.props.data.slice(0,10).map(element => {
-          return ({ "yPos": element.posMiddle, "Y-Position": element.posMiddle });
+          return ({ "yPos": element.posMiddle.toFixed(2), "Y-Position": element.posMiddle.toFixed(2) });
         });
         break;
       case "zPos":
         xDataKey = "zPos";
         dataKey = "Z-Position";
         data = this.props.data.slice(0,10).map(element => {
-          return ({ "zPos": element.posLower, "Z-Position": element.posLower });
+          return ({ "zPos": element.posLower.toFixed(2), "Z-Position": element.posLower.toFixed(2) });
         });
         break;
     }
