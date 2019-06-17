@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PMContainer from './pmContainer/PMContainer';
+import BasicCard from '../../../common-ui/BasicCard/basicCard'
 import axios from 'axios';
 import './PMDashboard.css';
 
@@ -113,12 +114,12 @@ class PMDashboard extends Component {
 
         return (
             <div className="container">
-                <div className="card">
+                <BasicCard>
                     <div><h1>{this.props.robot}</h1></div>
                     <div className="pmDataContainer">
                         {pmComponent}
                     </div>
-                </div>
+                </BasicCard>
             </div>
         );
     }
