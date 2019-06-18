@@ -70,8 +70,8 @@ class GraphContainer extends PureComponent {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey={xDataKey} />
-        <YAxis />
+        {/* <XAxis/> */}
+        <YAxis dataKey={xDataKey} />
         <Tooltip />
         <Legend />
         <Line type="monotone" dataKey={dataKey} stroke="#8884d8" activeDot={{ r: 8 }} />
