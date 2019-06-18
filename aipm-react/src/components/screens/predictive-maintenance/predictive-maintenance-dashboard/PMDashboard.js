@@ -92,7 +92,7 @@ class PMDashboard extends Component {
             case "kukaRobotHealth": 
                 // console.log("10",msg.health.values[0][10]);
                 this.setState({
-                    pmHealthData: [...this.state.pmHealthData, msg.overallHealth=== undefined ? msg.health.values[0][10]: Math.floor(msg.overallHealth)/100 ]
+                    pmHealthData: [...this.state.pmHealthData, msg.overallHealth]
                 });
             break;
             // case "repl"
