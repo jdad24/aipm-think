@@ -6,7 +6,7 @@ import BasicCard from '../../../common-ui/BasicCard/basicCard';
 import { Client } from 'paho-mqtt';
 import './vidashboard.css';
 
-class videtails extends Component {
+class viDashboard extends Component {
 
     state = {
         mqttClient: null,
@@ -334,4 +334,4 @@ class videtails extends Component {
     }
 }
 
-export default videtails;
+export default viDashboard;

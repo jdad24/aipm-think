@@ -19,8 +19,8 @@ const lineList = (props) => {
                 <div>{a.name}</div>
                 <div>{a.imgSrc}</div>
                 <div className="spanStyle">
-                    <span>{a.imgNum+" "} Images</span>
-                    <span>
+                    <span className="spanWidth">{a.imgNum+" "} Images</span>
+                    <span className="spanWidth">
                         <button value={a.name} onClick={props.clickHandler}>arrow</button>
                     </span>
                 </div>
