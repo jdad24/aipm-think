@@ -92,7 +92,7 @@ class PMDashboard extends Component {
             case "kukaRobotHealth": 
                 // console.log("10",msg.health.values[0][10]);
                 this.setState({
-                    pmHealthData: [...this.state.pmHealthData, msg.overallHealth=== undefined ? msg.health.values[0][10]: Math.floor(msg.overallHealth)/100 ]
+                    pmHealthData: [...this.state.pmHealthData, msg.overallHealth]
                 });
             break;
             // case "repl"
@@ -113,14 +113,12 @@ class PMDashboard extends Component {
         let pmComponent = <PMContainer pmData={this.state.pmData} pmHealthData={this.state.pmHealthData} />;
 
         return (
-            <div className="container">
                 <BasicCard>
                     <div><h1>{this.props.robot}</h1></div>
                     <div className="pmDataContainer">
                         {pmComponent}
                     </div>
                 </BasicCard>
-            </div>
         );
     }
 }
