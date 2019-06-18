@@ -9,21 +9,24 @@ import r3 from "../../../assets/r3.png";
 const robotList = props => {
   const robots = [
     {
-      device: "Yaskawa",
+      device: "yaskawa",
+      headerText: "Yaskawa",
       overview: "Health Score",
       score: "94.5%",
       status: "Online",
       imgUrl: r1
     },
     {
-      device: "Kuka",
+      device: "kuka",
+      headerText: "Kuka",
       overview: "Health Score",
       score: "93.7%",
       status: "Online",
       imgUrl: r2
     },
     {
-      device: "Replay",
+      device: "replay",
+      headerText: "Replay",
       overview: "Health Score",
       score: "88.4%",
       status: "Online",
@@ -35,7 +38,7 @@ const robotList = props => {
     return (
       <BasicCard classname="robot-list-basicCard" key={r.device}>
         <div className="Robot">
-          <div className="titleDiv">{r.device}</div>
+          <div className="titleDiv">{r.headerText}</div>
           <div className="circular--landscape">
             <img src={r.imgUrl} />
           </div>
