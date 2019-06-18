@@ -1,35 +1,67 @@
-import React from 'react';
-import './robot-list.css';
-import BasicCard from '../BasicCard/basicCard';
+import React from "react";
+import "./robot-list.css";
+import BasicCard from "../BasicCard/basicCard";
+import r1 from "../../../assets/r1.png";
+import r2 from "../../../assets/r2.png";
+import r3 from "../../../assets/r3.png";
 // import { Link } from "react-router-dom";
 
-const robotList = (props) => {
-    const robots = [
-        { device: "yaskawa", overview: " Yaskawa Overview" },
-        { device: "kuka", overview: " Kuka Overview" },
-        { device: "replay", overview: " Replay Overview" }
-    ]
+const robotList = props => {
+  const robots = [
+    {
+      device: "Yaskawa",
+      overview: "Health Score",
+      score: "94.5%",
+      status: "Online",
+      imgUrl: r1
+    },
+    {
+      device: "Kuka",
+      overview: "Health Score",
+      score: "93.7%",
+      status: "Online",
+      imgUrl: r2
+    },
+    {
+      device: "Replay",
+      overview: "Health Score",
+      score: "88.4%",
+      status: "Online",
+      imgUrl: r3
+    }
+  ];
 
-    let robotList = robots.map(r => {
-        return (
-            <BasicCard key={r.device}>
-            <div className="Robot">
-                <div>{r.device}</div>
-                <div>{r.overview}</div>
-                {/* <Link to="/pm"> */}
-                    <button value={r.device} onClick={props.clickHandler}>Details</button>
-                {/* </Link> */}
-                {/* <button onClick={props.onclick}>Details</button> */}
-            </div>
-            </BasicCard>
-        );
-    })
-
+  let robotList = robots.map(r => {
     return (
-        <div className="Robot-list">
-            {robotList}
+      <BasicCard classname="robot-list-basicCard" key={r.device}>
+        <div className="Robot">
+          <div className="titleDiv">{r.device}</div>
+          <div className="circular--landscape">
+            <img src={r.imgUrl} />
+          </div>
+          <div className="Text">{r.overview}</div>
+          <div className="healthScore">{r.score}</div>
+          <div className="textdetails">
+            <div className="Text textWidth">
+              <div className="dotStatus">
+                <div className="dot" />
+                <div>{r.status}</div>
+              </div>
+            </div>
+            <div className="textWidth">
+              <button value={r.device} onClick={props.clickHandler}>
+                Details
+              </button>
+            </div>
+          </div>
+          {/* </Link> */}
+          {/* <button onClick={props.onclick}>Details</button> */}
         </div>
+      </BasicCard>
     );
-}
+  });
+
+  return <div className="Robot-list">{robotList}</div>;
+};
 
 export default robotList;

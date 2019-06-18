@@ -1,11 +1,88 @@
-.Robot-list{
-    display: flex;
-    justify-content: flex-start;
-    border: 1px solid purple;
-  }
-  
-  .Robot{
-    border: 1px solid green;
-    padding: 10px;
-    margin: 10px;
-  }
+@font-face {
+  font-family: "IbmPlexLight";
+  src: url("../../../assets/fonts/IBMPlexSans-Light.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "IbmPlexText";
+  src: url("../../../assets/fonts/IBMPlexSans-Text.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.Robot-list {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.Robot {
+  border: 1px solid white;
+  padding: 10px;
+  margin: 10px;
+  height: 270px;
+  width: 220px;
+}
+
+.textdetails {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dotStatus {
+  display: flex;
+  align-items: center;
+}
+.circular--landscape {
+  display: inline-block;
+  position: relative;
+  width: auto;
+  height: 70px;
+  overflow: hidden;
+  border-radius: 100%;
+  margin-bottom: 30px;
+  float: left;
+  margin-right: 200px;
+}
+
+.circular--landscape img {
+  width: auto;
+  height: 100%;
+}
+
+.titleDiv {
+  margin-bottom: 30px;
+  font-family: "IbmPlexText";
+  text-align: left;
+}
+.healthScore {
+  font-family: "IbmPlexLight";
+  font-size: 275%;
+  text-align: left;
+  margin-bottom: 25px;
+}
+
+.Text {
+  font-family: "IbmPlexLight";
+  font-size: 90%;
+  text-align: left;
+}
+
+.textWidth {
+  width: 50%;
+}
+.dot {
+  height: 10px;
+  width: 10px;
+  background-color: #6bc764;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: left;
+  margin-right: 10px;
+}
+
+.robot-list-basicCard {
+  margin-right: 5px;
+}
