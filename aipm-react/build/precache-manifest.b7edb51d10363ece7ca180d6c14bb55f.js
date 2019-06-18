@@ -1,31 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "93ede7d4027b83c351a824443ba68c5b",
+    "revision": "5e89d4aaf308ba3850d1a72e9f69c92d",
     "url": "/index.html"
   },
   {
-    "revision": "08c211abf552016517e0",
-    "url": "/static/css/main.67f1b569.chunk.css"
+    "revision": "c879d08506e5d5373f61",
+    "url": "/static/css/main.6fca1fcd.chunk.css"
   },
   {
     "revision": "8e1a074bacbd3c7e85db",
     "url": "/static/js/2.f8dcd89e.chunk.js"
   },
   {
-    "revision": "08c211abf552016517e0",
-    "url": "/static/js/main.c34719b3.chunk.js"
+    "revision": "c879d08506e5d5373f61",
+    "url": "/static/js/main.2cd8c6fa.chunk.js"
   },
   {
     "revision": "42ac5946195a7306e2a5",
     "url": "/static/js/runtime~main.a8a9905a.js"
-  },
-  {
-    "revision": "0603daa4c17da794edc3ce1250500dba",
-    "url": "/static/media/IBMPlexSans-Light.0603daa4.ttf"
-  },
-  {
-    "revision": "46ff72d9f0f9ec89904fcf3d51a97528",
-    "url": "/static/media/IBMPlexSans-Text.46ff72d9.ttf"
   },
   {
     "revision": "ef8adf14ae722b0bd427bf072ce81763",
