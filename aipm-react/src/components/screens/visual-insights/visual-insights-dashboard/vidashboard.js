@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Aux from '../../../common-ui/Aux/Aux';
 import ImgContainer from './viContainer/imgContainer';
 import ScoreContainer from './viContainer/scoreContainer';
+import BasicCard from '../../../common-ui/BasicCard/basicCard';
 import { Client } from 'paho-mqtt';
 import './vidashboard.css';
 
@@ -61,12 +62,12 @@ class videtails extends Component {
         //this.mqttHandler(this.props.robot);
     };
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         console.log("componentWillUnmount");
-        if(this.ws){
-            this.ws.close(); 
+        if (this.ws) {
+            this.ws.close();
             console.log("YES! - componentWillUnmount");
-            
+
         }
     }
 
@@ -78,74 +79,74 @@ class videtails extends Component {
         ws.onmessage = (event) => {
             // parse the incoming message as a JSON object
             let msg = JSON.parse(event.data);
-            if(msg.msgType === undefined){
-                msg = msg.payload;
-                console.log("msg.msgType undefined");
-            } else{
-                console.log("msg.msgType: "+msg.msgType);
-            }
+            // if (msg.msgType === undefined) {
+            //     msg = msg.payload;
+            //     console.log("msg.msgType undefined");
+            // } else {
+            //     console.log("msg.msgType: " + msg.msgType);
+            // }
 
             console.log("props: " + this.props.robot + " msg: ");
             console.log(msg);
-             if ((msg.msgType !== "yaskawaTorqueTemp") && (msg.msgType !== "yaskawaRobotHealth")) {
+           // if ((msg.msgType !== "yaskawaTorqueTemp") && (msg.msgType !== "yaskawaRobotHealth")) {
                 //debugger;
 
-                if(msg.msgType === "image" && msg.robotSource === this.props.robot ){
+                if (msg.msgType === "image" && msg.robotSource === this.props.robot) {
                     let slot = msg.slot;
 
                     console.log("ws image msg.payload.robotEnvironment=" + msg.robotSource);
-                        let roboImg = msg.image.toString();
-                        let imgdata = this.state.imgdata;
-                        imgdata[slot - 1].slot = slot;
-                        imgdata[slot - 1].img = roboImg;
+                    let roboImg = msg.image.toString();
+                    let imgdata = this.state.imgdata;
+                    imgdata[slot - 1].slot = slot;
+                    imgdata[slot - 1].img = roboImg;
 
-                        this.setState({
-                            imgdata: imgdata
-                        }, () => {
-                            console.log("viIMAGE - Parent");
-                            console.log(this.state);
-                        });
+                    this.setState({
+                        imgdata: imgdata
+                    }, () => {
+                        console.log("viIMAGE - Parent");
+                        console.log(this.state);
+                    });
                 }
-                
+
 
                 //below line is required only if ws socket is the same        
                 // if (this.props.robot === msg.payload.robotEnvironment) {
-                     else if (msg.type === "scoring" && msg.robotSource === this.props.robot) {
-                         console.log("Score MSG");
-                         console.log(msg);
-                         let score = [msg.robotSource, msg.speakingClassification, msg.confidence, msg.slot];
-                                let cur_scoredata = this.state.scoredata;
-                                cur_scoredata[msg.slot - 1].score = score;
-                                cur_scoredata[msg.slot - 1].slot = msg.slot;
+                else if (msg.type === "scoring" && msg.robotSource === this.props.robot) {
+                    console.log("Score MSG");
+                    console.log(msg);
+                    let score = [msg.robotSource, msg.speakingClassification, msg.confidence, msg.slot];
+                    let cur_scoredata = this.state.scoredata;
+                    cur_scoredata[msg.slot - 1].score = score;
+                    cur_scoredata[msg.slot - 1].slot = msg.slot;
 
-                                this.setState({
-                                    scoredata: cur_scoredata
-                                });
-                         
-                        // // let myTopic = message.destinationName;
-                        // // let parsedTopic = myTopic.split("/");
-                        // let deviceId = parsedTopic[4];
-                        // let valueCmdEvt = parsedTopic[6];
-                        // let textJson = parsedTopic[8];
+                    this.setState({
+                        scoredata: cur_scoredata
+                    });
 
-                        // if (textJson === "json") {
-                        //     let iotPayload = JSON.parse(message.payloadString);
+                    // // let myTopic = message.destinationName;
+                    // // let parsedTopic = myTopic.split("/");
+                    // let deviceId = parsedTopic[4];
+                    // let valueCmdEvt = parsedTopic[6];
+                    // let textJson = parsedTopic[8];
 
-                        //     if (valueCmdEvt === "score") {
-                        //         let score = [deviceId, iotPayload.speakingClassification, iotPayload.confidence, iotPayload.slot];
-                        //         let cur_scoredata = this.state.scoredata;
-                        //         cur_scoredata[iotPayload.slot - 1].score = score;
-                        //         cur_scoredata[iotPayload.slot - 1].slot = iotPayload.slot;
+                    // if (textJson === "json") {
+                    //     let iotPayload = JSON.parse(message.payloadString);
 
-                        //         this.setState({
-                        //             scoredata: cur_scoredata
-                        //         });
+                    //     if (valueCmdEvt === "score") {
+                    //         let score = [deviceId, iotPayload.speakingClassification, iotPayload.confidence, iotPayload.slot];
+                    //         let cur_scoredata = this.state.scoredata;
+                    //         cur_scoredata[iotPayload.slot - 1].score = score;
+                    //         cur_scoredata[iotPayload.slot - 1].slot = iotPayload.slot;
 
-                        //     }
-                        // }
+                    //         this.setState({
+                    //             scoredata: cur_scoredata
+                    //         });
 
-                    }
+                    //     }
+                    // }
+
                 }
+            // }
             // }
 
         }
@@ -287,8 +288,7 @@ class videtails extends Component {
 
     // }
 
-    render(props) {
-
+    getImgComponent = () => {
         let imgComponent = this.state.imgdata.map((s, i) => {
 
             return (<ImgContainer
@@ -297,6 +297,10 @@ class videtails extends Component {
                 key={i} />);
         });
 
+        return imgComponent;
+    }
+
+    getScoreComponent = () => {
         let scoreComponent = this.state.scoredata.map((s, i) => {
 
             return (
@@ -306,6 +310,15 @@ class videtails extends Component {
                     key={i} />
             );
         });
+
+        return scoreComponent;
+    }
+
+    render(props) {
+
+        let imgComponent = this.getImgComponent();
+
+        let scoreComponent = this.getScoreComponent();
 
         return (
             <div className="dashboardContainer">

@@ -8,7 +8,7 @@ class Persona extends Component {
     return (
       <div className="parent">
         <div className="P1">
-          <h1>AI Powered Manufacturing with Watson IoT</h1>
+          <div>AI Powered Manufacturing with Watson IoT</div>
         </div>
 
         <div className="P2">

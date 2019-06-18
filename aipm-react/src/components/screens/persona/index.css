@@ -31,8 +31,10 @@
   color: #ccd5e0;
   grid-row-start: 1;
   grid-row-end: 2;
-  font-family: "IbmPlexLight";
-
+  /* font-family: "IbmPlexLight"; */
+  /* font-weight: 300; */
+  font-size: 34px;
+  padding: 30px 0 25px 0;
   grid-column-start: 2;
   grid-column-end: 3;
   display: flex;
@@ -60,5 +62,6 @@
   color: #ccd5e0;
   display: flex;
   justify-content: flex-end;
-  font-family: "IbmPlexText";
+  /* font-family: "IbmPlexText"; */
+  /* font-weight: 300; */
 }

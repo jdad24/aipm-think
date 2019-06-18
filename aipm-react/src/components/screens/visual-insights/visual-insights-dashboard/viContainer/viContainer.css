@@ -27,7 +27,7 @@
 }
 
 .score-BasicCard{
-    margin: 0 26px 13px 0;
+    margin-right: 26px;
 }
 
 .scoreContents{
@@ -39,4 +39,47 @@
 
 .scoreContents div{
     display: flex;
+    padding-bottom: 5px;
+}
+
+.confidenceContainer{
+   display: flex;
+
+}
+
+.confidenceBar{
+    background-color: #B9B9B9;
+    height: 0;
+    width: 45%;
+    margin: 8px;
+}
+
+
+.scoreValidateContainer{
+    display: flex;
+    flex-direction: column;
+}
+.validateContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid green; */
+    margin-right: 26px;
+}
+
+.validateContainer div{
+    height: 34px;
+    /* border: 1px solid purple; */
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.noButton{
+    background-color: black;
+    color: white;
+}
+.yesButton{
+    background-color:#00FF93;
+    color: black; 
 }

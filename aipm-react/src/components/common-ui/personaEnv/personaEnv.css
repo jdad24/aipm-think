@@ -2,7 +2,6 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    font-family: "IbmPlexText";
     /* flex-direction: column; */
     /* border: 1px solid green; */
     /* padding: 10px;
@@ -26,7 +25,7 @@
     /* border: 1px solid green; */
     height: auto;
     padding: 20px 20px 30px 20px;
-    font-family: "IbmPlexLight";
+    font-weight: 300;
   }
   /* .svg{
     width: 40px;
