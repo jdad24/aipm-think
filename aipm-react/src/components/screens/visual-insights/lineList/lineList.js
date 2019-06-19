@@ -1,5 +1,6 @@
 import React from 'react';
 import BasicCard from '../../../common-ui/BasicCard/basicCard';
+import nextButton from '../../../../assets/nextButton.png';
 import './lineList.css';
 
 const lineList = (props) => {
@@ -20,8 +21,13 @@ const lineList = (props) => {
                 <div>{a.imgSrc}</div>
                 <div className="spanStyle">
                     <span className="spanWidth">{a.imgNum+" "} Images</span>
-                    <span className="spanWidth">
-                        <button value={a.name} onClick={props.clickHandler}>arrow</button>
+                    <span className="spanWidth spanRight">
+                        <div  onClick={(e)=> props.clickHandler(e, a.name)}>
+                        <img src={nextButton} />
+                        </div>
+                        {/* <button value={a.name} onClick={props.clickHandler}> */}
+                        {/* <img value={a.name} onClick={props.clickHandler} src={nextButton} /> */}
+                        {/* </button> */}
                     </span>
                 </div>
                 </div>

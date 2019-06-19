@@ -17,7 +17,7 @@
     padding: 10px 20px 10px 20px;
     /* border: 1px solid blue; */
     display: flex;
-    justify-content: flex-start;
+    /* justify-content: flex-start; */
 }
 
 .line{
@@ -33,6 +33,18 @@
     justify-content: space-between;
 }
 
-/* .spanWidth{
+.spanWidth{
     width: 50%;
+    display: flex;
+}
+
+/* .spanLeft{
+    justify-content: flex-start;
 } */
+
+.spanRight,
+.spanRight div{
+    justify-content: flex-end;
+    padding: 0;
+}
+

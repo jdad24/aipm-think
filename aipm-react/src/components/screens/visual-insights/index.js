@@ -15,12 +15,12 @@ class VisualInsights extends Component {
         robotEnvironment: null,
     }
 
-    robotClickHandler = (event) => {
+    robotClickHandler = (event, value) => {
         this.setState({
             viDashboard: true,
-            robotEnvironment: event.target.value
+            robotEnvironment: value
         });
-        console.log(event.target.value);
+        console.log(value);
     }
 
     // backArrowHandler = () => {

@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.3fd94f20.chunk.css",
-    "main.js": "/static/js/main.095e7093.chunk.js",
-    "main.js.map": "/static/js/main.095e7093.chunk.js.map",
+    "main.css": "/static/css/main.9c51c1a5.chunk.css",
+    "main.js": "/static/js/main.13524d23.chunk.js",
+    "main.js.map": "/static/js/main.13524d23.chunk.js.map",
     "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
     "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
-    "static/js/2.7cbd4ba6.chunk.js": "/static/js/2.7cbd4ba6.chunk.js",
-    "static/js/2.7cbd4ba6.chunk.js.map": "/static/js/2.7cbd4ba6.chunk.js.map",
+    "static/js/2.726f81ff.chunk.js": "/static/js/2.726f81ff.chunk.js",
+    "static/js/2.726f81ff.chunk.js.map": "/static/js/2.726f81ff.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.f816e724cd09fdbf2c0da371da838e14.js": "/precache-manifest.f816e724cd09fdbf2c0da371da838e14.js",
+    "precache-manifest.59e92fd6ddf5a1e41b4eeb84c2dd7788.js": "/precache-manifest.59e92fd6ddf5a1e41b4eeb84c2dd7788.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.3fd94f20.chunk.css.map": "/static/css/main.3fd94f20.chunk.css.map",
+    "static/css/main.9c51c1a5.chunk.css.map": "/static/css/main.9c51c1a5.chunk.css.map",
     "static/media/robot-list.css": "/static/media/IBMPlexSans-Text.46ff72d9.ttf",
     "static/media/Joe.png": "/static/media/Joe.ef8adf14.png",
     "static/media/Paul.png": "/static/media/Paul.fe133dcc.png",
@@ -21,6 +21,7 @@
     "static/media/carla.png": "/static/media/carla.122e76ac.png",
     "static/media/chat.svg": "/static/media/chat.d4e5fc43.svg",
     "static/media/help.svg": "/static/media/help.ed55dd04.svg",
+    "static/media/humidity.svg": "/static/media/humidity.f300091c.svg",
     "static/media/mark.png": "/static/media/mark.d73d5003.png",
     "static/media/menu.svg": "/static/media/menu.3b5fdff7.svg",
     "static/media/notifications.svg": "/static/media/notifications.d8621c30.svg",
@@ -28,6 +29,8 @@
     "static/media/pene.png": "/static/media/pene.6e31cf52.png",
     "static/media/r2.png": "/static/media/r2.fd112320.png",
     "static/media/r3.png": "/static/media/r3.4f5331ce.png",
+    "static/media/temperature.svg": "/static/media/temperature.069043fc.svg",
+    "static/media/thunder.svg": "/static/media/thunder.337e35cd.svg",
     "static/media/upload.svg": "/static/media/upload.80a8ee95.svg"
   }
 }
