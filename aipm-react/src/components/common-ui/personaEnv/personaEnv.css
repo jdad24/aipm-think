@@ -12,7 +12,7 @@
     display: flex;
     flex-direction: column;
     /* border: 1px solid green; */
-    padding: 20px;
+    padding: 20px 20px 20px 0;
     /* height: auto; */
     /* min-height: 80px; */
   }
