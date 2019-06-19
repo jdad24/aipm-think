@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 const data = [
   {
     title: "Mark",
-    backside: "Mark is Manufacturing Line Manager ",
+    backside: "Mark needs to know how well his line is working, if there are issues predicted for the line, and if the end product is within specifications.",
     post: "Manufacturing Line Manager",
     tool: "Predictive Maintanance",
     imgurl: mark,
@@ -21,7 +21,7 @@ const data = [
   },
   {
     title: "Carla",
-    backside: "Carla is Quality Assurance Inspector",
+    backside: "Carla needs to know how well the Visual Inspection is working (historically and real time) and that the quality of the products are within specification.",
     post: "Quality Assurance Inspector",
     tool: "Visual Insights",
     imgurl: carla,
@@ -30,7 +30,7 @@ const data = [
   },
   {
     title: "Paul",
-    backside: "Paul is Equipment Maintenance Assistant",
+    backside: "Paul needs to know how the plant is operating, if there are any issues with any of the lines, has to be able to ask natural language questions about production, and compare lines and plants.",
     post: "Plant Manager",
     tool: "Production Optimization",
     imgurl: paul,
@@ -39,7 +39,7 @@ const data = [
   },
   {
     title: "Joe",
-    backside: "Joe is Plant Technician",
+    backside: "Joe needs to see all of his assigned service requests and needs tools to help him determine the best fix for reported issues.",
     post: "Plant Technician",
     tool: "Equipment Maintenance Advisor",
     imgurl: joe,
@@ -48,7 +48,7 @@ const data = [
   },
   {
     title: "Rhonda",
-    backside: "Rhonda is Operations Manager",
+    backside: "Rhonda needs to know disaster recovery is achievable, manage the cloud services and the independent containers, and be able to manage services on multiple clouds.",
     post: "Operations Manager",
     tool: "Net App",
     imgurl: rhonda,
@@ -57,7 +57,7 @@ const data = [
   },
   {
     title: "Penelope",
-    backside: "Penelope is Procurement Manager",
+    backside: "Penelope needs to see the entire procurement process, and determine quickly and with pinpoint accuracy where components came from and are deployed",
     post: "Procurement Manager",
     tool: "SAP, Blockchain",
     imgurl: pene,
