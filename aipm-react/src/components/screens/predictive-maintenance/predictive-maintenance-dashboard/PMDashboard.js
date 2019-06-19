@@ -114,7 +114,6 @@ class PMDashboard extends Component {
 
         return (
                 <BasicCard>
-                    <div><h1>{this.props.robot}</h1></div>
                     <div className="pmDataContainer">
                         {pmComponent}
                     </div>

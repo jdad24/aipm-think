@@ -34,7 +34,7 @@ class PMContainer extends PureComponent {
                 <div className="pmContainer">
                     <div className="pmContainerLeft">
                         <div className="pmContainerRight">
-                        <Gauge value={this.props.pmHealthData[this.props.pmHealthData.length - 1].toFixed(2)} width={300} height={200} color={"#959DFF"} label="Health" />
+                        <Gauge value={Math.round(this.props.pmHealthData[this.props.pmHealthData.length - 1])} width={300} height={200} color={"#959DFF"} label="Health" />
                         </div>
                         <div className="pmContainerRight">Details</div>
                         <div className="pmContainerRight">Details</div>
