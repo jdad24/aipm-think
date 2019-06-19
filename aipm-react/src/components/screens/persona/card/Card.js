@@ -32,7 +32,7 @@ const data = [
     title: "Paul",
     backside: "Paul is Equipment Maintenance Assistant",
     post: "Plant Manager",
-    tool: "Equipment Maintenance Advisor",
+    tool: "Production Optimization",
     imgurl: paul,
     redirect: "/vi",
     redirectText: "Run Demo"
@@ -41,7 +41,7 @@ const data = [
     title: "Joe",
     backside: "Joe is Plant Technician",
     post: "Plant Technician",
-    tool: "Procurement Manager",
+    tool: "Equipment Maintenance Advisor",
     imgurl: joe,
     redirect: "/vi",
     redirectText: "Run Demo"
