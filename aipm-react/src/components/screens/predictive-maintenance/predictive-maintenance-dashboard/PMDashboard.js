@@ -32,6 +32,7 @@ class PMDashboard extends Component {
 
     componentDidMount() {
         this.webSocketHandler();
+
         switch(this.props.robot){
             
         case "yaskawa": 
@@ -42,6 +43,11 @@ class PMDashboard extends Component {
                 })
                 this.setState({ pmData: yaskawaHistory });
             });
+
+            axios.get("http://aipm-gsc-nodered.mybluemix.net/displayRanges").then((response) => {
+                this.setState({ ranges: response.data[0] });
+            });
+
             break;
         case "kuka":
             axios.get("http://aipm-gsc-nodered.mybluemix.net/kukaHistory").then((response) => {
@@ -50,6 +56,10 @@ class PMDashboard extends Component {
                 })
                 this.setState({ pmData: kukaHistory });
             });
+
+            axios.get("http://aipm-gsc-nodered.mybluemix.net/displayRanges").then((response) => {
+                this.setState({ ranges: response.data[2] });
+            });
             break;
         case "replay":
             axios.get("http://aipm-gsc-nodered.mybluemix.net/replayHistory").then((response) => {
@@ -57,6 +67,10 @@ class PMDashboard extends Component {
                     return JSON.parse(element);
                 })
                 this.setState({ pmData: replayHistory });
+            });
+
+            axios.get("http://aipm-gsc-nodered.mybluemix.net/displayRanges").then((response) => {
+                this.setState({ ranges: response.data[1] });
             });
             break;
         }
@@ -76,14 +90,14 @@ class PMDashboard extends Component {
         ws.onmessage = (event) => {
             let msg = JSON.parse(event.data);
             msg = msg.payload === undefined ? msg : msg.payload;
-            console.log(msg);
+            // console.log(msg);
 
             switch(msg.msgType){
 
             case "yaskawaTorqueTemp": 
             case "kukaTorqueTemp":
             case "kukaTorque":   
-                console.log(msg);
+                // console.log(msg);
                 this.setState({
                     pmData: [...this.state.pmData, msg]
                 });
@@ -110,7 +124,7 @@ class PMDashboard extends Component {
 
     render() {
 
-        let pmComponent = <PMContainer pmData={this.state.pmData} pmHealthData={this.state.pmHealthData} />;
+        let pmComponent = <PMContainer ranges={this.state.ranges} pmData={this.state.pmData} pmHealthData={this.state.pmHealthData} />;
 
         return (
                 <BasicCard>

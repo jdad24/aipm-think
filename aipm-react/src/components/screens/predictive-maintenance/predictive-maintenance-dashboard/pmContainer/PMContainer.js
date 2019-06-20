@@ -25,11 +25,9 @@ class PMContainer extends PureComponent {
     }
 
     render() {
-
+        
         let pmData = <p>No Data </p>
-        console.log(this.props);
         if (this.props.pmData && this.props.pmHealthData) {
-            console.log(this.props.pmHealthData);
             pmData =
                 <div className="pmContainer">
                     <div className="pmContainerLeft">
@@ -40,9 +38,9 @@ class PMContainer extends PureComponent {
                         <div className="pmContainerRight">Details</div>
                     </div>
                     <div>
-                        <PMTorqueTempContainer pmData={this.props.pmData} torqueType="torqueUpper" tempType="tempUpper" posDirection="xPos" />
-                        <PMTorqueTempContainer pmData={this.props.pmData} torqueType="torqueMiddle" tempType="tempMiddle" posDirection="yPos" />
-                        <PMTorqueTempContainer pmData={this.props.pmData} torqueType="torqueLower" tempType="tempLower" posDirection="zPos" />
+                        <PMTorqueTempContainer ranges = {this.props.ranges} pmData={this.props.pmData} torqueType="torqueUpper" tempType="tempUpper" posDirection="xPos" />
+                        <PMTorqueTempContainer ranges = {this.props.ranges} pmData={this.props.pmData} torqueType="torqueMiddle" tempType="tempMiddle" posDirection="yPos" />
+                        <PMTorqueTempContainer ranges = {this.props.ranges} pmData={this.props.pmData} torqueType="torqueLower" tempType="tempLower" posDirection="zPos" />
                     </div>
                 </div>
 
