@@ -25,6 +25,15 @@ class PMContainer extends PureComponent {
     }
 
     render() {
+
+        console.log(this.props.ranges, this.props.pmData);
+
+        if (!this.props.ranges || !this.props.pmData || this.props.ranges.length === 0 || this.props.pmData.length === 0)
+            return (
+                <div className="pmContainerRight">
+                    <div>NO DATA</div>
+                </div>
+            );
         
         let pmData = <p>No Data </p>
         if (this.props.pmData && this.props.pmHealthData) {
