@@ -11,13 +11,6 @@
     font-weight: normal;
     font-style: normal;
   }
-  
-  @font-face {
-    font-family: "IbmPlexText";
-    src: url("../../../../../assets/fonts/IBMPlexSans-Text.ttf");
-    font-weight: normal;
-    font-style: normal;
-  }
 
 .pmContainer {
     display: flex;
