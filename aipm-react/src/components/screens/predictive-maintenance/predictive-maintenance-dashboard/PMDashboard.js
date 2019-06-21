@@ -117,9 +117,9 @@ class PMDashboard extends Component {
         ws.onopen = () => {
             console.log("connected");
         }
-        ws.onclose = () => {
-            setTimeout(this.webSocketHandler, 3000);
-        }
+        // ws.onclose = () => {
+        //     setTimeout(this.webSocketHandler, 3000);
+        // }
     }
 
     render() {
