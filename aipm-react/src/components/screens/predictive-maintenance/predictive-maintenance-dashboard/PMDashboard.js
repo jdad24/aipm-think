@@ -90,36 +90,28 @@ class PMDashboard extends Component {
         ws.onmessage = (event) => {
             let msg = JSON.parse(event.data);
             msg = msg.payload === undefined ? msg : msg.payload;
-            // console.log(msg);
 
             switch(msg.msgType){
 
             case "yaskawaTorqueTemp": 
             case "kukaTorqueTemp":
             case "kukaTorque":   
-                // console.log(msg);
                 this.setState({
                     pmData: [...this.state.pmData, msg]
                 });
             break;
             case "yaskawaRobotHealth":
             case "kukaRobotHealth": 
-                // console.log("10",msg.health.values[0][10]);
                 this.setState({
                     pmHealthData: [...this.state.pmHealthData, msg.overallHealth]
                 });
             break;
-            // case "repl"
-
             }
         }
-
+        
         ws.onopen = () => {
             console.log("connected");
         }
-        // ws.onclose = () => {
-        //     setTimeout(this.webSocketHandler, 3000);
-        // }
     }
 
     render() {

@@ -8,7 +8,7 @@ class PMContainer extends PureComponent {
 
     state = {
         pmData: null,
-        pmHealthData:null
+        pmHealthData: null
     }
 
     constructor(props) {
@@ -34,22 +34,27 @@ class PMContainer extends PureComponent {
                     <div>NO DATA</div>
                 </div>
             );
-        
+
         let pmData = <p>No Data </p>
         if (this.props.pmData && this.props.pmHealthData) {
             pmData =
                 <div className="pmContainer">
                     <div className="pmContainerLeft">
                         <div className="pmContainerRight">
-                        <Gauge value={Math.round(this.props.pmHealthData[this.props.pmHealthData.length - 1])} width={300} height={200} color={"#959DFF"} label="Health" />
+                            <Gauge value={Math.round(this.props.pmHealthData[this.props.pmHealthData.length - 1])} width={300} height={200} color={"#959DFF"} label="Health" />
                         </div>
                         <div className="pmContainerRight">Details</div>
                         <div className="pmContainerRight">Details</div>
                     </div>
                     <div>
-                        <PMTorqueTempContainer ranges = {this.props.ranges} pmData={this.props.pmData} torqueType="torqueUpper" tempType="tempUpper" posDirection="xPos" />
-                        <PMTorqueTempContainer ranges = {this.props.ranges} pmData={this.props.pmData} torqueType="torqueMiddle" tempType="tempMiddle" posDirection="yPos" />
-                        <PMTorqueTempContainer ranges = {this.props.ranges} pmData={this.props.pmData} torqueType="torqueLower" tempType="tempLower" posDirection="zPos" />
+                        <div className="headers">
+                        <div>Torque</div>
+                        <div>Postion</div>
+                        <div>Temperature</div>
+                        </div>
+                        <PMTorqueTempContainer ranges={this.props.ranges} pmData={this.props.pmData} torqueType="torqueUpper" tempType="tempUpper" posDirection="xPos" />
+                        <PMTorqueTempContainer ranges={this.props.ranges} pmData={this.props.pmData} torqueType="torqueMiddle" tempType="tempMiddle" posDirection="yPos" />
+                        <PMTorqueTempContainer ranges={this.props.ranges} pmData={this.props.pmData} torqueType="torqueLower" tempType="tempLower" posDirection="zPos" />
                     </div>
                 </div>
 
