@@ -20,29 +20,29 @@ class GraphContainer extends PureComponent {
     switch (this.props.type) {
       case "tempUpper":
         xDataKey = "temp";
-        dataKey = "Temperatue";
+        dataKey = "Upper Temperature";
         minRange = this.props.ranges.tempUpper[0];
         maxRange = this.props.ranges.tempUpper[1];
         data = this.props.data.slice(0,10).map(element => {
-          return ({ "temp": element.tempUpper, "Temperatue": element.tempUpper });
+          return ({ "temp": element.tempUpper, "Upper Temperature": element.tempUpper });
         });
         break;
       case "tempMiddle":
         xDataKey = "temp";
-        dataKey = "Temperatue";
+        dataKey = "Middle Temperature";
         minRange = this.props.ranges.tempMiddle[0];
         maxRange = this.props.ranges.tempMiddle[1];
         data = this.props.data.slice(0,10).map(element => {
-          return ({ "temp": element.tempMiddle, "Temperatue": element.tempMiddle });
+          return ({ "temp": element.tempMiddle, "Middle Temperature": element.tempMiddle });
         });
         break;
       case "tempLower":
         xDataKey = "temp";
-        dataKey = "Temperatue";
+        dataKey = "Lower Temperature";
         minRange = this.props.ranges.tempLower[0];
         maxRange = this.props.ranges.tempLower[1];
         data = this.props.data.slice(0,10).map(element => {
-          return ({ "temp": element.tempLower, "Temperatue": element.tempLower });
+          return ({ "temp": element.tempLower, "Lower Temperature": element.tempLower });
         });
         break;
       case "xPos":
