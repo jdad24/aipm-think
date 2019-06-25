@@ -96,8 +96,10 @@ class PMDashboard extends Component {
             case "yaskawaTorqueTemp": 
             case "kukaTorqueTemp":
             case "kukaTorque":   
+            let newPmData = [...this.state.pmData, msg];
+            newPmData = newPmData.slice(newPmData.length - 10, newPmData.length);
                 this.setState({
-                    pmData: [...this.state.pmData, msg]
+                    pmData: newPmData // [...newPmData , msg] // [...this.state.pmData, msg]
                 });
             break;
             case "yaskawaRobotHealth":
