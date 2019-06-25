@@ -27,12 +27,24 @@ class PMTorqueTempContainer extends PureComponent {
 
     render() {
    //     debugger;
+
+   let myColor = "green"; // green
+   let myTorque = this.props.pmData[this.props.pmData.length - 1][this.props.torqueType];
+   // console.log("myTorque: " + myTorque);
+   if (myTorque < (.8*(this.props.ranges[this.props.torqueType][1]))) {
+        myColor = "green";
+   } else if (myTorque < (.9*(this.props.ranges[this.props.torqueType][1]))) {
+       myColor = "yellow";
+   } else {
+       myColor = "red";
+   }
+
         
         return (
             <div className="pmContainerRight">
                 <div className="pmDetails">
                     <Gauge value={Math.round(this.props.pmData[this.props.pmData.length - 1][this.props.torqueType])} width={300} height={200}
-                        min={this.props.ranges[this.props.torqueType][0]} max={this.props.ranges[this.props.torqueType][1]} color={"#959DFF"} label="" 
+                        min={this.props.ranges[this.props.torqueType][0]} max={this.props.ranges[this.props.torqueType][1]} color={myColor} label="" 
                         valueFormatter={value => `${''}`}/>
                 </div>
                 <div className="pmDetails">
