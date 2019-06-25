@@ -14,11 +14,15 @@ class GraphContainer extends PureComponent {
     let data;
     let xDataKey;
     let dataKey;
+    let minRange = 0;
+    let maxRange = 100;
 
     switch (this.props.type) {
       case "tempUpper":
         xDataKey = "temp";
         dataKey = "Temperatue";
+        minRange = this.props.ranges.tempUpper[0];
+        maxRange = this.props.ranges.tempUpper[1];
         data = this.props.data.slice(0,10).map(element => {
           return ({ "temp": element.tempUpper, "Temperatue": element.tempUpper });
         });
@@ -26,6 +30,8 @@ class GraphContainer extends PureComponent {
       case "tempMiddle":
         xDataKey = "temp";
         dataKey = "Temperatue";
+        minRange = this.props.ranges.tempMiddle[0];
+        maxRange = this.props.ranges.tempMiddle[1];
         data = this.props.data.slice(0,10).map(element => {
           return ({ "temp": element.tempMiddle, "Temperatue": element.tempMiddle });
         });
@@ -33,6 +39,8 @@ class GraphContainer extends PureComponent {
       case "tempLower":
         xDataKey = "temp";
         dataKey = "Temperatue";
+        minRange = this.props.ranges.tempLower[0];
+        maxRange = this.props.ranges.tempLower[1];
         data = this.props.data.slice(0,10).map(element => {
           return ({ "temp": element.tempLower, "Temperatue": element.tempLower });
         });
@@ -40,6 +48,8 @@ class GraphContainer extends PureComponent {
       case "xPos":
         xDataKey = "xPos";
         dataKey = "X-Position";
+        minRange = this.props.ranges.posUpper[0];
+        maxRange = this.props.ranges.posUpper[1];
         data = this.props.data.slice(0,10).map(element => {
           return ({ "xPos": element.posUpper.toFixed(2), "X-Position": element.posUpper.toFixed(2) });
         });
@@ -47,6 +57,8 @@ class GraphContainer extends PureComponent {
       case "yPos":
         xDataKey = "yPos";
         dataKey = "Y-Position";
+        minRange = this.props.ranges.posMiddle[0];
+        maxRange = this.props.ranges.posMiddle[1];
         data = this.props.data.slice(0,10).map(element => {
           return ({ "yPos": element.posMiddle.toFixed(2), "Y-Position": element.posMiddle.toFixed(2) });
         });
@@ -54,6 +66,8 @@ class GraphContainer extends PureComponent {
       case "zPos":
         xDataKey = "zPos";
         dataKey = "Z-Position";
+        minRange = this.props.ranges.posLower[0];
+        maxRange = this.props.ranges.posLower[1];
         data = this.props.data.slice(0,10).map(element => {
           return ({ "zPos": element.posLower.toFixed(2), "Z-Position": element.posLower.toFixed(2) });
         });
@@ -71,7 +85,7 @@ class GraphContainer extends PureComponent {
       >
         <CartesianGrid strokeDasharray="3 3" />
         {/* <XAxis/> */}
-        <YAxis dataKey={xDataKey} />
+        <YAxis dataKey={xDataKey} domain={[minRange, maxRange]}/>
         <Tooltip />
         <Legend />
         <Line type="monotone" dataKey={dataKey} stroke="#8884d8" activeDot={{ r: 8 }} />

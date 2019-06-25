@@ -26,6 +26,7 @@ class PMTorqueTempContainer extends PureComponent {
     }
 
     render() {
+   //     debugger;
         
         return (
             <div className="pmContainerRight">
@@ -38,10 +39,10 @@ class PMTorqueTempContainer extends PureComponent {
                     <h1>{Math.floor(this.props.pmData[this.props.pmData.length - 1][this.props.torqueType])}</h1>Units
                 </div>
                 <div className="pmDetails">
-                    <GraphContainer type={this.props.posDirection} data={this.props.pmData} />
+                    <GraphContainer type={this.props.posDirection} data={this.props.pmData} ranges={this.props.ranges} />
                 </div>
                 <div className="pmDetails">
-                    <GraphContainer type={this.props.tempType} data={this.props.pmData} />
+                    <GraphContainer type={this.props.tempType} data={this.props.pmData} ranges={this.props.ranges} />
                 </div>
             </div>
 
