@@ -49,7 +49,7 @@ class PMContainer extends PureComponent {
                     <div>
                         <div className="headers">
                         <div>Torque</div>
-                        <div>Postion</div>
+                        <div>Position</div>
                         <div>Temperature</div>
                         </div>
                         <PMTorqueTempContainer ranges={this.props.ranges} pmData={this.props.pmData} torqueType="torqueUpper" tempType="tempUpper" posDirection="xPos" />
