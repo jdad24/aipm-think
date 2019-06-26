@@ -25,6 +25,7 @@ class PMDashboard extends Component {
     }
 
     ws = null;
+    isClosing = false;
 
     constructor(props) {
         super(props);
@@ -77,11 +78,13 @@ class PMDashboard extends Component {
     };
 
     componentWillUnmount() {
+        console.log("attempt to close");
+        this.isClosing = true;
         if (this.ws) {
             this.ws.close();
         }
     }
-
+    myCount = 0;
     webSocketHandler = () => {
         let ws;
         let wsUri = this.wsCredentials[this.props.robot];
@@ -90,6 +93,8 @@ class PMDashboard extends Component {
         ws.onmessage = (event) => {
             let msg = JSON.parse(event.data);
             msg = msg.payload === undefined ? msg : msg.payload;
+            this.myCount++;
+            // console.log("inside onmessage: " + msg.msgType + " " + this.myCount);
 
             switch(msg.msgType){
 
@@ -113,6 +118,18 @@ class PMDashboard extends Component {
         
         ws.onopen = () => {
             console.log("connected");
+        }
+
+        ws.onclose = () => {
+            console.log("------------->inside onclose");
+            if (this.isClosing != true) {
+                this.webSocketHandler();
+            }
+        }
+
+        ws.onerror = () => {
+            console.log("on error");
+            
         }
     }
 

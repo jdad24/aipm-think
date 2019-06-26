@@ -26,7 +26,7 @@ class PMContainer extends PureComponent {
 
     render() {
 
-        console.log(this.props.ranges, this.props.pmData);
+        // console.log(this.props.ranges, this.props.pmData);
 
         if (!this.props.ranges || !this.props.pmData || this.props.ranges.length === 0 || this.props.pmData.length === 0)
             return (
