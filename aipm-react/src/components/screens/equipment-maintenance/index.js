@@ -1,32 +1,40 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import axios from 'axios';
+import axios from "axios";
+import BasicCard from "../../common-ui/BasicCard/basicCard";
+import PersonaEnv from "../../common-ui/personaEnv/personaEnv";
+import Layout from "../../common-ui/Layout/layout";
 
-import './em.css';
+import "./em.css";
 
-import EmaWorkOrderList from './EmaWorkOrderList';
-import { notEqual } from 'assert';
-
+import EmaWorkOrderList from "./EmaWorkOrderList";
+import { notEqual } from "assert";
 
 class EquipmentMaintenance extends Component {
+  state = {
+    workOrders: null
+  };
 
-    state = {
-        workOrders: null
-    }
+  getPersonaEnv = () => {
+    let PersonaorPath = "";
 
-    render() {
+    PersonaorPath = <PersonaEnv name="Joe" />;
 
-        let emaComponent = <EmaWorkOrderList />;
+    return PersonaorPath;
+  };
 
-        return (
+  render() {
+    let emaComponent = <EmaWorkOrderList />;
+    let PersonaEnv = this.getPersonaEnv();
 
-            <div>
-                    <p>some text here</p>
-                    <div>{emaComponent}</div>
-            </div>
-
-        );
-    }
+    return (
+      <Layout
+        role="Plant Technician"
+        // screenTop={PersonaEnv}
+        content={emaComponent}
+      />
+    );
+  }
 }
 
 export default EquipmentMaintenance;
