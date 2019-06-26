@@ -28,16 +28,14 @@ class PMTorqueTempContainer extends PureComponent {
     render() {
    //     debugger;
 
-   let myColor = "green"; // green
+   let myColor = "rgb(0,183,0)"; // green
    let myTorque = this.props.pmData[this.props.pmData.length - 1][this.props.torqueType];
    // console.log("myTorque: " + myTorque);
-   if (myTorque < (.8*(this.props.ranges[this.props.torqueType][1]))) {
-        myColor = "rgb(0,183,0)";
-   } else if (myTorque < (.9*(this.props.ranges[this.props.torqueType][1]))) {
+   if (myTorque > (.9*(this.props.ranges[this.props.torqueType][1]))) {
+        myColor = "red";
+   } else if (myTorque > (.8*(this.props.ranges[this.props.torqueType][1]))) {
        myColor = "yellow";
-   } else {
-       myColor = "red";
-   }
+   } 
 
         
         return (
