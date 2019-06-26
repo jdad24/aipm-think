@@ -43,7 +43,7 @@ const data = [
     post: "Plant Technician",
     tool: "Equipment Maintenance Advisor",
     imgurl: joe,
-    redirect: "/vi",
+    redirect: "/em",
     redirectText: "Run Demo"
   },
   {
@@ -86,7 +86,7 @@ class FlipCard extends Component {
   handleClick = id => () => {
     const cardId = `isFlipped${id}`;
     this.setState({ [cardId]: !this.state[cardId] });
-    // console.log(cardId);
+    console.log("id:" + id  + " " + cardId);
   };
 
   render() {
