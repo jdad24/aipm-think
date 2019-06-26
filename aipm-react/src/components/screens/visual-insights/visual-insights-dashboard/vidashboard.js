@@ -51,7 +51,7 @@ class viDashboard extends Component {
 
 
     ws = null;
-
+    isClosing = false;
 
     // constructor(props) {
     //     super(props);
@@ -64,6 +64,8 @@ class viDashboard extends Component {
 
     componentWillUnmount() {
         console.log("componentWillUnmount");
+        this.isClosing = true;
+
         if (this.ws) {
             this.ws.close();
             console.log("YES! - componentWillUnmount");
@@ -86,15 +88,15 @@ class viDashboard extends Component {
             //     console.log("msg.msgType: " + msg.msgType);
             // }
 
-            console.log("props: " + this.props.robot + " msg: ");
-            console.log(msg);
+            // console.log("props: " + this.props.robot + " msg: ");
+            // console.log(msg);
            // if ((msg.msgType !== "yaskawaTorqueTemp") && (msg.msgType !== "yaskawaRobotHealth")) {
                 //debugger;
 
                 if (msg.msgType === "image" && msg.robotSource === this.props.robot) {
                     let slot = msg.slot;
 
-                    console.log("ws image msg.payload.robotEnvironment=" + msg.robotSource);
+                    // console.log("ws image msg.payload.robotEnvironment=" + msg.robotSource);
                     let roboImg = msg.image.toString();
                     let imgdata = this.state.imgdata;
                     imgdata[slot - 1].slot = slot;
@@ -103,7 +105,7 @@ class viDashboard extends Component {
                     this.setState({
                         imgdata: imgdata
                     }, () => {
-                        console.log("viIMAGE - Parent");
+                        console.log("viIMAGE - Parent - " + slot);
                         console.log(this.state);
                     });
                 }
@@ -112,8 +114,8 @@ class viDashboard extends Component {
                 //below line is required only if ws socket is the same        
                 // if (this.props.robot === msg.payload.robotEnvironment) {
                 else if (msg.type === "scoring" && msg.robotSource === this.props.robot) {
-                    console.log("Score MSG");
-                    console.log(msg);
+                    // console.log("Score MSG");
+                    // console.log(msg);
                     let score = [msg.robotSource, msg.speakingClassification, msg.confidence, msg.slot];
                     let cur_scoredata = this.state.scoredata;
                     cur_scoredata[msg.slot - 1].score = score;
@@ -153,6 +155,13 @@ class viDashboard extends Component {
 
         ws.onopen = () => {
             console.log("connected");
+        }
+
+        ws.onclose = () => {
+            console.log("------------>inside onclose");
+            if (this.isClosing != true) {
+                this.webSocketHandler();
+            }
         }
         // ws.onclose = () => {
         //     setTimeout(this.webSocketHandler, 3000);
