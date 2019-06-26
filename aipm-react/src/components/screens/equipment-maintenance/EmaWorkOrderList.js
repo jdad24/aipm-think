@@ -24,14 +24,22 @@ class EmaWorkOrderList extends Component {
     axios
       .get("http://aipm-gsc-nodered.mybluemix.net/getWorkOrdersMaximo")
       .then(response => {
-        // console.log("response:" + JSON.stringify(response));
-        // console.log(response.data['rdfs:member'].length);
-        // var objStatus = response.data['rdfs:member'][0]['spi:status'];
-        // console.log(objStatus);
 
         let workOrders = response.data["rdfs:member"].map(element => {
-          // console.log(element['spi:workorderid']);
-          return element["spi:workorderid"] + ", ";
+          // {
+          //   spi:reportdate: "2019-06-24T14:11:34-04:00",
+          //   spi:location: "GSC",
+          //   spi:assetnum: "ROBOT003",   ROBOT002=kuka, ROBOT003=yaskawa
+          //   _rowstamp: "63998529",
+          //   spi:description: "Yaskawa Robot High Torque: torqueLower = 14700",
+          //   spi:workorderid: 174308,
+          //   spi:status_description: "Waiting on Approval",
+          //   spi:wonum: "18524",
+          //   rdf:about: "http://mx7vm/maxrest/oslc/os/mxwo/_QkVERk9SRC8xODUyNA--",
+          //   spi:status: "WAPPR"  // also APPR, CLOSE
+          //   },
+          let workOrder = "[---" + element["spi:reportdate"] + " " + element["spi:workorderid"] + "---]";
+          return workOrder;
         });
         // debugger;
         this.setState({ workOrders: workOrders });
@@ -49,7 +57,7 @@ class EmaWorkOrderList extends Component {
   render() {
     return (
       <div>
-          {this.state.workOrders}
+          <ul>{this.state.workOrders}</ul>
       </div>
     );
   }
