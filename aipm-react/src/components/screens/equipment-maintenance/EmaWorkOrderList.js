@@ -24,7 +24,6 @@ class EmaWorkOrderList extends Component {
     axios
       .get("http://aipm-gsc-nodered.mybluemix.net/getWorkOrdersMaximo")
       .then(response => {
-
         let workOrders = response.data["rdfs:member"].map(element => {
           // {
           //   spi:reportdate: "2019-06-24T14:11:34-04:00",
@@ -38,7 +37,15 @@ class EmaWorkOrderList extends Component {
           //   rdf:about: "http://mx7vm/maxrest/oslc/os/mxwo/_QkVERk9SRC8xODUyNA--",
           //   spi:status: "WAPPR"  // also APPR, CLOSE
           //   },
-          let workOrder = "[---" + element["spi:reportdate"] + " " + element["spi:workorderid"] + "---]";
+          let workOrder = (
+            <tr key={element["_rowstamp"]}>
+              <td>{element["spi:workorderid"]}</td>{" "}
+              <td>{element["spi:reportdate"]}</td>{" "}
+              <td>{element["spi:description"]}</td>
+              <td>{element["spi:status"]}</td>{" "}
+              <td>{element["spi:location"]}</td>{" "}
+            </tr>
+          );
           return workOrder;
         });
         // debugger;
@@ -57,7 +64,16 @@ class EmaWorkOrderList extends Component {
   render() {
     return (
       <div>
-          <ul>{this.state.workOrders}</ul>
+        <table border="1px solid black">
+          <tr>
+            <th>ID</th>
+            <th>Time</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Location</th>
+          </tr>
+          {this.state.workOrders}
+        </table>
       </div>
     );
   }
