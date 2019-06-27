@@ -39,11 +39,11 @@ class EmaWorkOrderList extends Component {
           //   },
           let workOrder = (
             <tr key={element["_rowstamp"]}>
-              <td>{element["spi:workorderid"]}</td>{" "}
-              <td>{element["spi:reportdate"]}</td>{" "}
+              <td>{element["spi:workorderid"]}</td>
+              <td>{element["spi:reportdate"]}</td>
               <td>{element["spi:description"]}</td>
-              <td>{element["spi:status"]}</td>{" "}
-              <td>{element["spi:location"]}</td>{" "}
+              <td>{element["spi:status"]}</td>
+              <td>{element["spi:location"]}</td>
             </tr>
           );
           return workOrder;
@@ -65,14 +65,16 @@ class EmaWorkOrderList extends Component {
     return (
       <div>
         <table border="1px solid black">
-          <tr>
-            <th>ID</th>
-            <th>Time</th>
-            <th>Description</th>
-            <th>Status</th>
-            <th>Location</th>
-          </tr>
-          {this.state.workOrders}
+          <tbody>
+            <tr>
+              <th>ID</th>
+              <th>Time</th>
+              <th>Description</th>
+              <th>Status</th>
+              <th>Location</th>
+            </tr>
+            {this.state.workOrders}
+          </tbody>
         </table>
       </div>
     );
