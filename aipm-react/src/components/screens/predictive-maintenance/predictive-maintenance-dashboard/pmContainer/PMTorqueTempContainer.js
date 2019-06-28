@@ -37,21 +37,20 @@ class PMTorqueTempContainer extends PureComponent {
        myColor = "yellow";
    } 
 
+   let myClassName = this.props.containerName + " pmContainerGridRowRight"
+
         
         return (
-            <div className="pmContainerRight">
-                <div className="pmDetails">
+            <div className={myClassName}>
+                <div className="pmContainerCard pmContainerTorque">
                     <Gauge value={Math.round(this.props.pmData[this.props.pmData.length - 1][this.props.torqueType])} width={300} height={200}
-                        min={this.props.ranges[this.props.torqueType][0]} max={this.props.ranges[this.props.torqueType][1]} color={myColor} label="" 
+                        min={this.props.ranges[this.props.torqueType][0]} max={this.props.ranges[this.props.torqueType][1]} color={myColor} label={this.props.label} 
                         valueFormatter={value => `${''}`}/>
                 </div>
-                <div className="pmDetails">
-                    <h1>{Math.floor(this.props.pmData[this.props.pmData.length - 1][this.props.torqueType])}</h1>Units
-                </div>
-                <div className="pmDetails">
+                <div className="pmContainerCard pmContainerPosition">
                     <GraphContainer type={this.props.posDirection} data={this.props.pmData} ranges={this.props.ranges} />
                 </div>
-                <div className="pmDetails">
+                <div className="pmContainerCard pmContainerTemperature">
                     <GraphContainer type={this.props.tempType} data={this.props.pmData} ranges={this.props.ranges} />
                 </div>
             </div>

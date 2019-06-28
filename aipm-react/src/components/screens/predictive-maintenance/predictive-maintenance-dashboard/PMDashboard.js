@@ -139,9 +139,6 @@ class PMDashboard extends Component {
 
         return (
                 <BasicCard>
-                    <div className="tab">
-                        <div className="tabData">Robot Health Information and Data</div>
-                    </div>
                     <div className="pmDataContainer">
                         {pmComponent}
                     </div>
