@@ -48,3 +48,9 @@
     padding: 0;
 }
 
+.lineListImg{
+    height: 60px;
+    width: 70px;
+    /* border-radius: 100%;
+    border: 1px solid black; */
+}

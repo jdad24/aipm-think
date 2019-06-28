@@ -28,18 +28,22 @@
   max-width: 100%;
 }
 .card .text {
-  height: 308px;
+  height: 304px;
   padding: 0 10px 10px;
-  text-align: center;
   color: white;
   background: #0062ff;
   /* font-family: "IbmPlexLight"; */
+}
+
+.flippedTextContent{
   font-weight: 300;
-  font-size: 25px;
+  font-size: 21px;
+  text-align: left;
+  padding: 13px;
 }
 .card .frontText {
-  height: 50px;
-  padding: 0 20px 20px;
+  /* height: 50px; */
+  padding: 15px 20px 15px 20px;
   text-align: left;
   color: #f4f7fb;
   /* font-family: "IbmPlexLight"; */

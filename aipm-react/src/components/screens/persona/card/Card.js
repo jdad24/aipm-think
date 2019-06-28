@@ -105,7 +105,7 @@ class FlipCard extends Component {
                     {i.post}
                   </div>
                   <div className="frontText">
-                    <br />
+                    {/* <br /> */}
                     {i.tool}
                   </div>
                 </div>
@@ -115,7 +115,11 @@ class FlipCard extends Component {
                   key="back"
                   // className="mycard"
                 >
-                  <div className="text">{i.backside}</div>
+                  <div className="text">
+                  <div className="flippedTextContent">
+                  {i.backside}
+                  </div>
+                  </div>
                 </div>
               </ReactCardFlip>
               <Link to={i.redirect}>
