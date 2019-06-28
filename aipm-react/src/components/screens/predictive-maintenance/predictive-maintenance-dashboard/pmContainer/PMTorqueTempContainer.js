@@ -37,7 +37,7 @@ class PMTorqueTempContainer extends PureComponent {
        myColor = "yellow";
    } 
 
-   let myClassName = this.props.containerName + " pmContainerGridRowRight"
+   let myClassName = this.props.containerName + " pmContainerGridRightRow"
 
         
         return (
