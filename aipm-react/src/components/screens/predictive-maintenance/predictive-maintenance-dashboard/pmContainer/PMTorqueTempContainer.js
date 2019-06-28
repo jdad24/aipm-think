@@ -28,13 +28,13 @@ class PMTorqueTempContainer extends PureComponent {
     render() {
    //     debugger;
 
-   let myColor = "rgb(0,183,0)"; // green
+   let myColor = "#6BC764"; // green
    let myTorque = this.props.pmData[this.props.pmData.length - 1][this.props.torqueType];
    // console.log("myTorque: " + myTorque);
    if (myTorque > (.9*(this.props.ranges[this.props.torqueType][1]))) {
-        myColor = "red";
+        myColor = "#FF2C2C";
    } else if (myTorque > (.8*(this.props.ranges[this.props.torqueType][1]))) {
-       myColor = "yellow";
+       myColor = "#F7C700";
    } 
 
    let myClassName = this.props.containerName + " pmContainerGridRightRow"

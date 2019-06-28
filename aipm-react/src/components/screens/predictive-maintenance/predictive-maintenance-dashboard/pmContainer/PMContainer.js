@@ -61,7 +61,7 @@ class PMContainer extends PureComponent {
                 )}
                 width={300}
                 height={200}
-                color={"rgb(0,183,0)"}
+                color={"#6BC764"}
                 label=""
               />
             </div>
