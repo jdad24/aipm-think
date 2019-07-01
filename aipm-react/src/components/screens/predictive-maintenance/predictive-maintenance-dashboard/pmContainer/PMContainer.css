@@ -129,6 +129,7 @@
 
 .pmContainerHeaderTitle {
     font-weight: bold;
+    width: 400px;
 }
 
 .pmContainer {

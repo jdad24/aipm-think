@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.a3afc5c5.chunk.css",
+    "main.css": "/static/css/main.3726ec10.chunk.css",
     "main.js": "/static/js/main.84b4dcf7.chunk.js",
     "main.js.map": "/static/js/main.84b4dcf7.chunk.js.map",
     "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
@@ -8,9 +8,9 @@
     "static/js/2.bea8dc7d.chunk.js": "/static/js/2.bea8dc7d.chunk.js",
     "static/js/2.bea8dc7d.chunk.js.map": "/static/js/2.bea8dc7d.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.32dee10017d905849f75da1ec2280792.js": "/precache-manifest.32dee10017d905849f75da1ec2280792.js",
+    "precache-manifest.4ac08b88090e943de68e7a30487854b0.js": "/precache-manifest.4ac08b88090e943de68e7a30487854b0.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.a3afc5c5.chunk.css.map": "/static/css/main.a3afc5c5.chunk.css.map",
+    "static/css/main.3726ec10.chunk.css.map": "/static/css/main.3726ec10.chunk.css.map",
     "static/media/robot-list.css": "/static/media/IBMPlexSans-Text.46ff72d9.ttf",
     "static/media/Joe.png": "/static/media/Joe.ef8adf14.png",
     "static/media/Paul.png": "/static/media/Paul.fe133dcc.png",
