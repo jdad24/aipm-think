@@ -45,7 +45,8 @@ class PMTorqueTempContainer extends PureComponent {
                 <div className="pmContainerCard pmContainerTorque">
                     <Gauge value={Math.round(this.props.pmData[this.props.pmData.length - 1][this.props.torqueType])} width={300} height={200}
                         min={this.props.ranges[this.props.torqueType][0]} max={this.props.ranges[this.props.torqueType][1]} color={myColor} label={this.props.label} 
-                        valueFormatter={value => `${''}`}/>
+                        valueLabelStyle={{fontSize:30}}
+                        valueFormatter={value => `${Math.round(this.props.pmData[this.props.pmData.length - 1][this.props.torqueType])}`}/>
                 </div>
                 <div className="pmContainerCard pmContainerPosition">
                     <GraphContainer type={this.props.posDirection} data={this.props.pmData} ranges={this.props.ranges} />
