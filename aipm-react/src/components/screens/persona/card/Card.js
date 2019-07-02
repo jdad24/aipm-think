@@ -12,7 +12,8 @@ import { Link } from "react-router-dom";
 const data = [
   {
     title: "Mark",
-    backside: "Mark needs to know how well his line is working, if there are issues predicted for the line, and if the end product is within specifications.",
+    backside:
+      "Mark needs to know how well his line is working, if there are issues predicted for the line, and if the end product is within specifications.",
     post: "Manufacturing Line Manager",
     tool: "Predictive Maintanance",
     imgurl: mark,
@@ -21,7 +22,8 @@ const data = [
   },
   {
     title: "Carla",
-    backside: "Carla needs to know how well the Visual Inspection is working (historically and real time) and that the quality of the products are within specification.",
+    backside:
+      "Carla needs to know how well the Visual Inspection is working (historically and real time) and that the quality of the products are within specification.",
     post: "Quality Assurance Inspector",
     tool: "Visual Insights",
     imgurl: carla,
@@ -30,7 +32,8 @@ const data = [
   },
   {
     title: "Paul",
-    backside: "Paul needs to know how the plant is operating, if there are any issues with any of the lines, has to be able to ask natural language questions about production, and compare lines and plants.",
+    backside:
+      "Paul needs to know how the plant is operating, if there are any issues with any of the lines, has to be able to ask natural language questions about production, and compare lines and plants.",
     post: "Plant Manager",
     tool: "Production Optimization",
     imgurl: paul,
@@ -39,7 +42,8 @@ const data = [
   },
   {
     title: "Joe",
-    backside: "Joe needs to see all of his assigned service requests and needs tools to help him determine the best fix for reported issues.",
+    backside:
+      "Joe needs to see all of his assigned service requests and needs tools to help him determine the best fix for reported issues.",
     post: "Plant Technician",
     tool: "Equipment Maintenance Advisor",
     imgurl: joe,
@@ -48,7 +52,8 @@ const data = [
   },
   {
     title: "Rhonda",
-    backside: "Rhonda needs to know disaster recovery is achievable, manage the cloud services and the independent containers, and be able to manage services on multiple clouds.",
+    backside:
+      "Rhonda needs to know disaster recovery is achievable, manage the cloud services and the independent containers, and be able to manage services on multiple clouds.",
     post: "Operations Manager",
     tool: "Net App",
     imgurl: rhonda,
@@ -57,7 +62,8 @@ const data = [
   },
   {
     title: "Penelope",
-    backside: "Penelope needs to see the entire procurement process, and determine quickly and with pinpoint accuracy where components came from and are deployed",
+    backside:
+      "Penelope needs to see the entire procurement process, and determine quickly and with pinpoint accuracy where components came from and are deployed",
     post: "Procurement Manager",
     tool: "SAP, Blockchain",
     imgurl: pene,
@@ -70,9 +76,13 @@ class FlipCard extends Component {
   constructor() {
     super();
     this.state = {
-      isFlipped0: false,
-      isFlipped1: false,
-      isFlipped2: false,
+      //isFlipped0: false,
+      // isFlipped1: false,
+      // isFlipped2: false,
+      // isFlipped3: false,
+      // isFlipped4: false,
+      // isFlipped5: false,
+
       personas: data
     };
     this.handleClick = this.handleClick.bind(this);
@@ -86,7 +96,7 @@ class FlipCard extends Component {
   handleClick = id => () => {
     const cardId = `isFlipped${id}`;
     this.setState({ [cardId]: !this.state[cardId] });
-    console.log("id:" + id  + " " + cardId);
+    console.log("id:" + id + " " + cardId);
   };
 
   render() {
@@ -116,9 +126,7 @@ class FlipCard extends Component {
                   // className="mycard"
                 >
                   <div className="text">
-                  <div className="flippedTextContent">
-                  {i.backside}
-                  </div>
+                    <div className="flippedTextContent">{i.backside}</div>
                   </div>
                 </div>
               </ReactCardFlip>
