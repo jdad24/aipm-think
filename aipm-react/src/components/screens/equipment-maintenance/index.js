@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import axios from "axios";
 import BasicCard from "../../common-ui/BasicCard/basicCard";
 import PersonaEnv from "../../common-ui/personaEnv/personaEnv";
@@ -24,11 +23,17 @@ class EquipmentMaintenance extends Component {
   render() {
     let emaComponent = <EmaWorkOrderList />;
     let PersonaEnv = this.getPersonaEnv();
+    let screenStyle = {
+      fontWeight: "300",
+      marginTop: "30px",
+      fontSize: "30px"
+    };
+    let screenTop = <div style={screenStyle}>Maximo Workorders</div>;
 
     return (
       <Layout
         role="Plant Technician"
-        // screenTop={PersonaEnv}
+        screenTop={screenTop}
         content={emaComponent}
       />
     );

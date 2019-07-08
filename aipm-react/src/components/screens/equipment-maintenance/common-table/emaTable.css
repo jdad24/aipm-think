@@ -1,3 +1,18 @@
-td {
-  background-color: bisque;
+.Ematable {
+  width: 100%;
+}
+
+.EmaTh {
+  background-color: #0062ff;
+  color: white;
+  font-family: "IbmPlexLight";
+  border: none;
+  padding: 10px;
+}
+
+.EmaTd {
+  border: none;
+  background-color: #e4e4e4;
+  font-family: "IbmPlexLight";
+  padding: 10px;
 }

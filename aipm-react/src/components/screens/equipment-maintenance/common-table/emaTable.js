@@ -3,13 +3,13 @@ import "./emaTable.css";
 
 const emaTable = props => {
   let th = props.header.map(element => {
-    return <th>{element}</th>;
+    return <th className="EmaTh">{element}</th>;
   });
   let headertr = <tr>{th}</tr>;
 
   let WorkOrderstr = props.workOrders.map(element => {
     let wOtd = element.map(e => {
-      return <td>{e}</td>;
+      return <td className="EmaTd">{e}</td>;
     });
     return <tr>{wOtd}</tr>;
   });
@@ -24,7 +24,7 @@ const emaTable = props => {
 
   let tableHeader = (
     <div>
-      <table border="1px solid black">
+      <table className="Ematable">
         <tbody>
           {headertr}
           {WorkOrderstr}
