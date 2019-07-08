@@ -92,6 +92,9 @@ class EmaWorkOrderList extends Component {
     }else if(this.state.emaResults==true && this.state.workOrderList == false ){
       console.log("ema results");
       render_elm = <p>ema results</p>
+    }else{
+      render_elm = <EmaTable getEMAresults={(e) => this.getEMAresults(e)} header={this.state.header} workOrders={this.state.workOrders} />
+
     }
     return render_elm;
   }
