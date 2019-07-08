@@ -13,11 +13,25 @@ class EmaWorkOrderList extends Component {
 
   state = {
     workOrders: [],
-    header: ["ID", "Time", "Description", "Status", "Location", "Action"]
+    header: ["ID", "Time", "Description", "Status", "Location", "Action"],
+    emaResults: false,
+    workOrderList: false
   };
 
   constructor(props) {
     super(props);
+  }
+
+  getEMAresults = () => {
+    axios.get("http://aipm-gsc-nodered.mybluemix.net/queryEMA?searchString=yaskawa%20robot%20high%20torque").then(
+      response => {
+        console.log("got EMA results");
+        this.setState({
+          emaResults: true,
+          workOrderList: false
+        });
+      }
+    );
   }
 
   getWorkOrders() {
@@ -54,7 +68,11 @@ class EmaWorkOrderList extends Component {
           return workOrder;
         });
         // debugger;
-        this.setState({ workOrders: workOrders });
+        this.setState({
+          workOrders: workOrders,
+          workOrderList: true,
+          emaResults: false
+        });
       });
   }
 
@@ -66,9 +84,23 @@ class EmaWorkOrderList extends Component {
     console.log("attempt to close");
   }
 
+  verifyScreen = () => {
+    let render_elm;
+    if(this.state.emaResults==false && this.state.workOrderList == true ){
+      console.log("work results");
+      render_elm = <EmaTable getEMAresults={(e) => this.getEMAresults(e)} header={this.state.header} workOrders={this.state.workOrders} />
+    }else if(this.state.emaResults==true && this.state.workOrderList == false ){
+      console.log("ema results");
+      render_elm = <p>ema results</p>
+    }
+    return render_elm;
+  }
+
   render() {
+    let emaElement = this.verifyScreen();
     return (
-      <EmaTable header={this.state.header} workOrders={this.state.workOrders} />
+      //<EmaTable getEMAresults={(e) => this.getEMAresults(e)} header={this.state.header} workOrders={this.state.workOrders} />
+      <div>{emaElement}</div>
     );
   }
 }

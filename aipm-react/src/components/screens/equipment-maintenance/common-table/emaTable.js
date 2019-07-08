@@ -9,7 +9,7 @@ const emaTable = props => {
 
   let WorkOrderstr = props.workOrders.map(element => {
     let wOtd = element.map(e => {
-      return <td className="EmaTd">{e}</td>;
+      return <td onClick={props.getEMAresults} className="EmaTd">{e}</td>;
     });
     return <tr>{wOtd}</tr>;
   });
