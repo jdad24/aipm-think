@@ -5,8 +5,6 @@ import BasicCard from "../../common-ui/BasicCard/basicCard";
 import PersonaEnv from "../../common-ui/personaEnv/personaEnv";
 import Layout from "../../common-ui/Layout/layout";
 
-import "./em.css";
-
 import EmaWorkOrderList from "./EmaWorkOrderList";
 import { notEqual } from "assert";
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
+import EmaTable from "./common-table/emaTable";
 import axios from "axios";
-// import './PMDashboard.css';
 
 class EmaWorkOrderList extends Component {
   //state is having properties:
@@ -12,7 +12,8 @@ class EmaWorkOrderList extends Component {
   //6.) replayHealth :
 
   state = {
-    workOrders: []
+    workOrders: [],
+    header: ["ID", "Time", "Description", "Status", "Location", "Action"]
   };
 
   constructor(props) {
@@ -21,6 +22,7 @@ class EmaWorkOrderList extends Component {
 
   getWorkOrders() {
     // debugger;
+    //let header = ["ID","Time", "Description", "Status", "Location", "Action"];
     axios
       .get("http://aipm-gsc-nodered.mybluemix.net/getWorkOrdersMaximo")
       .then(response => {
@@ -37,15 +39,18 @@ class EmaWorkOrderList extends Component {
           //   rdf:about: "http://mx7vm/maxrest/oslc/os/mxwo/_QkVERk9SRC8xODUyNA--",
           //   spi:status: "WAPPR"  // also APPR, CLOSE
           //   },
-          let workOrder = (
-            <tr key={element["_rowstamp"]}>
-              <td>{element["spi:workorderid"]}</td>
-              <td>{element["spi:reportdate"]}</td>
-              <td>{element["spi:description"]}</td>
-              <td>{element["spi:status"]}</td>
-              <td>{element["spi:location"]}</td>
-            </tr>
-          );
+
+          //commented now
+          let workOrder = [
+            // element["_rowstamp"],
+            element["spi:workorderid"],
+            element["spi:reportdate"],
+            element["spi:description"],
+            element["spi:status"],
+            element["spi:location"],
+            "button"
+          ];
+
           return workOrder;
         });
         // debugger;
@@ -63,20 +68,7 @@ class EmaWorkOrderList extends Component {
 
   render() {
     return (
-      <div>
-        <table border="1px solid black">
-          <tbody>
-            <tr>
-              <th>ID</th>
-              <th>Time</th>
-              <th>Description</th>
-              <th>Status</th>
-              <th>Location</th>
-            </tr>
-            {this.state.workOrders}
-          </tbody>
-        </table>
-      </div>
+      <EmaTable header={this.state.header} workOrders={this.state.workOrders} />
     );
   }
 }

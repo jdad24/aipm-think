@@ -31,6 +31,14 @@ const robotList = props => {
       score: "88.4%",
       status: "Online",
       imgUrl: r3
+    },
+    {
+      device: "conveyor",
+      headerText: "Conveyor Belt",
+      overview: "Health Score",
+      score: "91.2%",
+      status: "Online",
+      imgUrl: r3
     }
   ];
 
