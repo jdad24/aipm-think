@@ -16,3 +16,7 @@
   font-family: "IbmPlexLight";
   padding: 10px;
 }
+
+tr:hover td {
+  background-color: #b3b1b1;
+}
