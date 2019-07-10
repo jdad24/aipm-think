@@ -17,8 +17,13 @@ const emaTable = props => {
     case "workOrders":
       WorkOrderstr = props.workOrders.map(element => {
         let wOtd = element.map(x => {
-          return <td onClick={(e) => props.getEMAresults(e, element[2])} className="EmaTd">{x}</td>;
-        });
+          if(x==="Approve"){
+           let appr = <div className="ApproveButton" onClick={(e)=>props.setWorkOrderStatus(e,element[3], element[0])}><button>{x}</button></div>
+           return <td className="EmaTd">{appr}</td>;
+          }else{
+            return <td onClick={(e) => props.getEMAresults(e, element[2])} className="EmaTd">{x}</td>;
+          }
+          });
         return <tr>{wOtd}</tr>;
       });
       break;
@@ -63,7 +68,7 @@ const emaTable = props => {
 
   let tableHeader = (
     <div>
-      <table className="Ematable">
+      <table id="emaTableid" className="Ematable">
         <tbody>
           {headertr}
           {WorkOrderstr}

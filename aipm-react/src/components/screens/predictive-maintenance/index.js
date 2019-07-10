@@ -72,6 +72,7 @@ class PredictiveMaintenance extends Component {
                 role="Manufacturing Line Manager"
                 screenTop = {PersonaEnv}
                 content={PredictiveMaintenance}
+                path = "/"
             />
 
         );

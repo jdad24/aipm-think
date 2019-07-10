@@ -35,6 +35,7 @@ class EquipmentMaintenance extends Component {
         role="Plant Technician"
         screenTop={screenTop}
         content={emaComponent}
+        path = "/"
       />
     );
   }

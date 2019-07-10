@@ -13,12 +13,14 @@ class VisualInsights extends Component {
     state = {
         viDashboard: false,
         robotEnvironment: null,
+        linkPath:"/"
     }
 
     robotClickHandler = (event, value) => {
         this.setState({
             viDashboard: true,
-            robotEnvironment: value
+            robotEnvironment: value,
+            linkPath:"/pm"
         });
         console.log(value);
     }
@@ -101,21 +103,30 @@ class VisualInsights extends Component {
         return PersonaorPath;
     }
 
+    // getPath = () => {
+    //     let linkPath = "/";
+
+    //     if (this.state.viDashboard) {
+    //         linkPath = "/vi"
+    //     }
+    //     console.log(linkPath);
+    //     return linkPath;
+    // }
+
     render() {
 
         let visualInsights = this.getMainContent();
         let PersonaEnv = this.getPersonaEnv();
-
+        let linkPath = this.state.linkPath;
+        console.log(linkPath);
+        // let linkPath = this.getPath();
         return (
-
             <Layout
                 role="Quality Assurance"
                 screenTop = {PersonaEnv}
                 content={visualInsights}
+                path = {linkPath}
             />
-
-
-
         );
     }
 }

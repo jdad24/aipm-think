@@ -12,7 +12,7 @@ import arrowIcon from '../../../../assets/arrow.svg';
 const header = (props) => (
     <div className="Header">
         <div className="headerContents headerContentsLeft">
-            <Link to="/">
+            <Link to={props.path}>
                 <div className="backIcon">
                     {/* <button> */}
                         <img src={arrowIcon} />

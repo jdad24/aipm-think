@@ -8,7 +8,7 @@ import Aux from '../Aux/Aux';
 
 const layout = (props) => (
     <div className='layout'>
-        <Header role={props.role} />
+        <Header path={props.path} role={props.role} />
         <SideBar />
         <ScreenTop>
             {props.screenTop}

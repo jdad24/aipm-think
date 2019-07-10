@@ -23,23 +23,23 @@ class EmaWorkOrderList extends Component {
   //   super(props);
   // }
 
-  repeatStringNumTimes = (str, num) =>{
+  repeatStringNumTimes = (str, num) => {
     return str.repeat(num);
-}
+  }
 
   getEMAresults = (event, desc) => {
-    axios.get("https://aipm-gsc-nodered.mybluemix.net/queryEMA?searchString="+desc)
-    .then(response => {
+    axios.get("https://aipm-gsc-nodered.mybluemix.net/queryEMA?searchString=" + desc)
+      .then(response => {
         console.log(desc);
         console.log(response);
         const baseDiscoveryScore = 90;
         //response.data.results.length
-        let emaResponse=[]; 
+        let emaResponse = [];
 
         for (let k = 0; k < response.data.results.length; k++) {
           // var htmlContent = myresponse.results[k].html;
           // var stars = "";
-          
+
           let resscore = baseDiscoveryScore + response.data.results[k]["result_metadata"]["score"];
           resscore = resscore.toFixed(2);
           let restitle = response.data.results[k]["extracted_metadata"]["title"];
@@ -47,16 +47,16 @@ class EmaWorkOrderList extends Component {
           let stars = 5;
 
           if (k < 2) {
-              // console.log("k5 " + k);
-              stars = this.repeatStringNumTimes("★", 5);
+            // console.log("k5 " + k);
+            stars = this.repeatStringNumTimes("★", 5);
           } else if (k >= 2 && k < 5) {
-              // console.log("k4 " + k);
-              stars = this.repeatStringNumTimes("★", 4);
+            // console.log("k4 " + k);
+            stars = this.repeatStringNumTimes("★", 4);
           } else {
-              // console.log("k3 " + k);
-              stars = this.repeatStringNumTimes("★", 3);;
+            // console.log("k3 " + k);
+            stars = this.repeatStringNumTimes("★", 3);;
           }
-         // let viewDoc = <a href = "html/ema/" + response.data.results[k].extracted_metadata.filename + target="_blank">View Doc</a>
+          // let viewDoc = <a href = "html/ema/" + response.data.results[k].extracted_metadata.filename + target="_blank">View Doc</a>
 
           let ema_res = [restitle, resscore, "url", stars, response.data.results[k].highlight.text];
           //let ema_desc = [response.data.results[k].highlight.text];
@@ -70,7 +70,7 @@ class EmaWorkOrderList extends Component {
           //     + '<tr id="toggler' + k + '" class="hidden">'
           //     + '<td colspan="4" class = "tabledesc"><p><b>Description : </b>' + myresponse.results[k].highlight.text + '</p></td>'
           //     + '</tr>';
-      }
+        }
         this.setState({
           emaResults: true,
           workOrderList: false,
@@ -80,7 +80,7 @@ class EmaWorkOrderList extends Component {
       });
   }
 
-  getWorkOrders() {
+  getWorkOrders=()=> {
     // debugger;
     //let header = ["ID","Time", "Description", "Status", "Location", "Action"];
     axios
@@ -101,6 +101,7 @@ class EmaWorkOrderList extends Component {
           //   },
 
           //commented now
+          //let appr_button = <button className="appr_button">Approve</button>;
           let workOrder = [
             // element["_rowstamp"],
             element["spi:workorderid"],
@@ -108,7 +109,7 @@ class EmaWorkOrderList extends Component {
             element["spi:description"],
             element["spi:status"],
             element["spi:location"],
-            "button"
+            "Approve"
           ];
 
           return workOrder;
@@ -131,16 +132,43 @@ class EmaWorkOrderList extends Component {
     console.log("attempt to close");
   }
 
+  setWorkOrderStatus = (event,woStatus,wid) => {
+    let newstatus;
+    if (woStatus === "WAPPR") {
+        newstatus = "APPR";
+    } else {
+        newstatus = "CLOSE"
+    }
+    axios.get("http://aipm-gsc-nodered.mybluemix.net/setStatusWorkOrder?wid="+wid+"&newstatus="+newstatus)
+    .then(this.getWorkOrders());
+
+  }
+
   verifyScreen = () => {
     let render_elm;
-    if(this.state.emaResults===false && this.state.workOrderList === true ){
+    if (this.state.emaResults === false && this.state.workOrderList === true) {
       console.log("work results");
-      render_elm = <EmaTable tableType ="workOrders" getEMAresults={this.getEMAresults} header={this.state.header} workOrders={this.state.workOrders} />
-    }else if(this.state.emaResults===true && this.state.workOrderList === false ){
+      render_elm = <EmaTable
+        tableType="workOrders"
+        getEMAresults={this.getEMAresults}
+        header={this.state.header}
+        workOrders={this.state.workOrders}
+        setWorkOrderStatus={this.setWorkOrderStatus}
+      />
+    } else if (this.state.emaResults === true && this.state.workOrderList === false) {
       console.log("ema results");
-      render_elm = <EmaTable tableType ="emaResults" header={this.state.header} workOrders={this.state.emaResponse} />
-    }else{
-      render_elm = <EmaTable tableType ="workOrders" getEMAresults={this.getEMAresults} header={this.state.header} workOrders={this.state.workOrders} />
+      render_elm = <EmaTable
+        tableType="emaResults"
+        header={this.state.header}
+        workOrders={this.state.emaResponse}
+      />
+    } else {
+      render_elm = <EmaTable
+        tableType="workOrders"
+        getEMAresults={this.getEMAresults}
+        header={this.state.header}
+        workOrders={this.state.workOrders}
+      />
 
     }
     return render_elm;

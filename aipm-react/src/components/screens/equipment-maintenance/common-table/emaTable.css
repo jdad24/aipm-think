@@ -1,5 +1,6 @@
 .Ematable {
   width: 100%;
+  
 }
 
 .EmaTh {
@@ -20,3 +21,23 @@
 tr:hover td {
   background-color: #b3b1b1;
 }
+
+.ApproveButton,
+.ApproveButton button{
+  background-color: #0062ff;
+  width: 85%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  font-size: 14px;
+  padding: 5px 2px 5px 0;
+  color: white;
+
+  /* border: 1px solid black; */
+}
+
+/* table#emaTableid,
+table#emaTableid tr{
+  border:none !important;
+} */
