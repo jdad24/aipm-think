@@ -4,6 +4,7 @@ import BasicCard from "../BasicCard/basicCard";
 import r1 from "../../../assets/r1.png";
 import r2 from "../../../assets/r2.png";
 import r3 from "../../../assets/r3.png";
+import nextButton from '../../../assets/nextButton.png';
 // import { Link } from "react-router-dom";
 
 const robotList = props => {
@@ -53,16 +54,16 @@ const robotList = props => {
           <div className="Text">{r.overview}</div>
           <div className="healthScore">{r.score}</div>
           <div className="textdetails">
-            <div className="Text textWidth">
+            <div className="Text textWidth onlinePosition">
               <div className="dotStatus">
                 <div className="dot" />
                 <div>{r.status}</div>
               </div>
             </div>
-            <div className="textWidth">
-              <button value={r.device} onClick={props.clickHandler}>
-                Details
-              </button>
+            <div className="textWidth nextPosition" onClick={(e)=> props.clickHandler(e, r.device)}>
+              {/* <button value={r.device} onClick={props.clickHandler}> */}
+              <img src={nextButton} />
+              {/* </button> */}
             </div>
           </div>
           {/* </Link> */}

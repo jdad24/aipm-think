@@ -37,7 +37,7 @@ class PMDashboard extends Component {
         switch(this.props.robot){
             
         case "yaskawa": 
-            axios.get("http://aipm-gsc-nodered.mybluemix.net/yaskawaHistory").then((response) => {
+            axios.get("https://aipm-gsc-nodered.mybluemix.net/yaskawaHistory").then((response) => {
                 let yaskawaHistory = response.data.yaskawaHistory.map((element) => {
                     // console.log(JSON.parse(element));
                     return JSON.parse(element);
@@ -45,32 +45,32 @@ class PMDashboard extends Component {
                 this.setState({ pmData: yaskawaHistory });
             });
 
-            axios.get("http://aipm-gsc-nodered.mybluemix.net/displayRanges").then((response) => {
+            axios.get("https://aipm-gsc-nodered.mybluemix.net/displayRanges").then((response) => {
                 this.setState({ ranges: response.data[0] });
             });
 
             break;
         case "kuka":
-            axios.get("http://aipm-gsc-nodered.mybluemix.net/kukaHistory").then((response) => {
+            axios.get("https://aipm-gsc-nodered.mybluemix.net/kukaHistory").then((response) => {
                 let kukaHistory = response.data.kukaHistory.map((element) => {
                     return JSON.parse(element);
                 })
                 this.setState({ pmData: kukaHistory });
             });
 
-            axios.get("http://aipm-gsc-nodered.mybluemix.net/displayRanges").then((response) => {
+            axios.get("https://aipm-gsc-nodered.mybluemix.net/displayRanges").then((response) => {
                 this.setState({ ranges: response.data[2] });
             });
             break;
         case "replay":
-            axios.get("http://aipm-gsc-nodered.mybluemix.net/replayHistory").then((response) => {
+            axios.get("https://aipm-gsc-nodered.mybluemix.net/replayHistory").then((response) => {
                 let replayHistory = response.data.replayHistory.map((element) => {
                     return JSON.parse(element);
                 })
                 this.setState({ pmData: replayHistory });
             });
 
-            axios.get("http://aipm-gsc-nodered.mybluemix.net/displayRanges").then((response) => {
+            axios.get("https://aipm-gsc-nodered.mybluemix.net/displayRanges").then((response) => {
                 this.setState({ ranges: response.data[1] });
             });
             break;

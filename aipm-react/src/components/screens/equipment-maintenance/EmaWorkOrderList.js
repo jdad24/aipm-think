@@ -28,7 +28,7 @@ class EmaWorkOrderList extends Component {
 }
 
   getEMAresults = (event, desc) => {
-    axios.get("http://aipm-gsc-nodered.mybluemix.net/queryEMA?searchString="+desc)
+    axios.get("https://aipm-gsc-nodered.mybluemix.net/queryEMA?searchString="+desc)
     .then(response => {
         console.log(desc);
         console.log(response);
@@ -84,7 +84,7 @@ class EmaWorkOrderList extends Component {
     // debugger;
     //let header = ["ID","Time", "Description", "Status", "Location", "Action"];
     axios
-      .get("http://aipm-gsc-nodered.mybluemix.net/getWorkOrdersMaximo")
+      .get("https://aipm-gsc-nodered.mybluemix.net/getWorkOrdersMaximo")
       .then(response => {
         let workOrders = response.data["rdfs:member"].map(element => {
           // {

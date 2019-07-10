@@ -28,7 +28,7 @@
 .textdetails {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 .dotStatus {
@@ -72,6 +72,14 @@
 
 .textWidth {
   width: 50%;
+  display: flex;
+}
+.onlinePosition{
+  justify-content: flex-start;
+}
+
+.nextPosition{
+  justify-content: flex-end;
 }
 .dot {
   height: 10px;

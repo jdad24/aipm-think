@@ -16,10 +16,10 @@ class PredictiveMaintenance extends Component {
         robotEnvironment: null,
     }
 
-    robotClickHandler = (event) => {
+    robotClickHandler = (event, value) => {
         this.setState({
             pmDashboard: true,
-            robotEnvironment: event.target.value
+            robotEnvironment: value
         });
     }
 
