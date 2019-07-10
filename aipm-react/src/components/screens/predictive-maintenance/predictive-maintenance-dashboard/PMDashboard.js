@@ -27,9 +27,9 @@ class PMDashboard extends Component {
     ws = null;
     isClosing = false;
 
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
     componentDidMount() {
         this.webSocketHandler();
@@ -122,7 +122,7 @@ class PMDashboard extends Component {
 
         ws.onclose = () => {
             console.log("------------->inside onclose");
-            if (this.isClosing != true) {
+            if (this.isClosing !== true) {
                 this.webSocketHandler();
             }
         }

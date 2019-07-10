@@ -31,11 +31,11 @@ class VisualInsights extends Component {
     // }
 
     getMainContent = () => {
-        const temp_style = {
-            border: "1px solid green",
-            padding: "10px",
-            margin: "10px"
-        }
+        // const temp_style = {
+        //     border: "1px solid green",
+        //     padding: "10px",
+        //     margin: "10px"
+        // }
 
         let viContent = "";
         let PersonaorPath = "";

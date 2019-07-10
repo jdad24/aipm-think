@@ -10,9 +10,9 @@ class PMContainer extends PureComponent {
     pmHealthData: null
   };
 
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   static getDerivedStateFromProps = (props, state) => {
     return {

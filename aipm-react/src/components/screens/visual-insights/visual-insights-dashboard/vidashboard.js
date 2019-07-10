@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Aux from '../../../common-ui/Aux/Aux';
+// import Aux from '../../../common-ui/Aux/Aux';
 import ImgContainer from './viContainer/imgContainer';
 import ScoreContainer from './viContainer/scoreContainer';
-import BasicCard from '../../../common-ui/BasicCard/basicCard';
-import { Client } from 'paho-mqtt';
+// import BasicCard from '../../../common-ui/BasicCard/basicCard';
+// import { Client } from 'paho-mqtt';
 import './vidashboard.css';
 
 class viDashboard extends Component {
@@ -159,7 +159,7 @@ class viDashboard extends Component {
 
         ws.onclose = () => {
             console.log("------------>inside onclose");
-            if (this.isClosing != true) {
+            if (this.isClosing !== true) {
                 this.webSocketHandler();
             }
         }

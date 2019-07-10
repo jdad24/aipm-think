@@ -119,7 +119,6 @@ class FlipCard extends Component {
                     {i.tool}
                   </div>
                 </div>
-
                 <div
                   onClick={this.handleClick(j)}
                   key="back"
