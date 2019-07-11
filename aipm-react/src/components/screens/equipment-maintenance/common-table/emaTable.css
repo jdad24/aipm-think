@@ -16,10 +16,19 @@
   background-color: #e4e4e4;
   font-family: "IbmPlexLight";
   padding: 10px;
+  /* cursor: pointer; */
+}
+
+.EmaResultTd {
+  border: none;
+  background-color: #b3b1b1;
+  font-weight: 600;
+  padding: 10px;
 }
 
 tr:hover td {
   background-color: #b3b1b1;
+  /* cursor: wait; */
 }
 
 .ApproveButton,

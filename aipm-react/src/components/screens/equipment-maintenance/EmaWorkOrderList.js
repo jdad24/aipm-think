@@ -16,7 +16,8 @@ class EmaWorkOrderList extends Component {
     header: ["ID", "Time", "Description", "Status", "Location", "Action"],
     emaResults: false,
     workOrderList: false,
-    emaResponse: []
+    emaResponse: [],
+    style: {cursor: "default"}
   };
 
   // constructor(props) {
@@ -28,11 +29,15 @@ class EmaWorkOrderList extends Component {
   }
 
   getEMAresults = (event, desc) => {
+    this.setState({
+      style: {cursor: "wait"}
+    });
     axios.get("https://aipm-gsc-nodered.mybluemix.net/queryEMA?searchString=" + desc)
       .then(response => {
         console.log(desc);
         console.log(response);
         const baseDiscoveryScore = 90;
+
         //response.data.results.length
         let emaResponse = [];
 
@@ -75,7 +80,8 @@ class EmaWorkOrderList extends Component {
           emaResults: true,
           workOrderList: false,
           emaResponse: emaResponse,
-          header: ["Title", "Score", "URL", "Rating"]
+          header: ["Title", "Score", "URL", "Rating"],
+          style: {cursor: "default"}
         });
       });
   }
@@ -83,6 +89,9 @@ class EmaWorkOrderList extends Component {
   getWorkOrders=()=> {
     // debugger;
     //let header = ["ID","Time", "Description", "Status", "Location", "Action"];
+    this.setState({
+      style: {cursor: "default"}
+    });
     axios
       .get("https://aipm-gsc-nodered.mybluemix.net/getWorkOrdersMaximo")
       .then(response => {
@@ -158,6 +167,7 @@ class EmaWorkOrderList extends Component {
         header={this.state.header}
         workOrders={this.state.workOrders}
         setWorkOrderStatus={this.setWorkOrderStatus}
+        cursor = {this.state.style}
       />
     } else if (this.state.emaResults === true && this.state.workOrderList === false) {
       console.log("ema results");
@@ -165,6 +175,7 @@ class EmaWorkOrderList extends Component {
         tableType="emaResults"
         header={this.state.header}
         workOrders={this.state.emaResponse}
+        cursor = {this.state.style}
       />
     } else {
       render_elm = <EmaTable
@@ -172,6 +183,7 @@ class EmaWorkOrderList extends Component {
         getEMAresults={this.getEMAresults}
         header={this.state.header}
         workOrders={this.state.workOrders}
+        cursor = {this.state.style}
       />
 
     }

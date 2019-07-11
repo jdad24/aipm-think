@@ -2,6 +2,10 @@ import React from "react";
 import "./emaTable.css";
 import Aux from '../../../common-ui/Aux/Aux';
 
+const createMarkup = (e) => {
+  return {__html: e};
+}
+
 const emaTable = props => {
   let th = props.header.map(element => {
     return <th className="EmaTh">{element}</th>;
@@ -47,14 +51,16 @@ const emaTable = props => {
           if(i===4){
             return null;
           } else {
-            return <td className="EmaTd">{e}</td>
+            return <td className="EmaResultTd">{e}</td>
           }
                 
         });
 
         wOtd_desc = element.map((e,i) => {
+          
           if(i===4){
-            return <tr><td colSpan="4" className="EmaTd"><p>Description: {e}</p></td></tr>
+            // let parsedHtml = createMarkup(e);
+            return <tr><td colSpan="4" className="EmaTd"><p dangerouslySetInnerHTML={createMarkup(e)} /></td></tr>
           }   
   });
 
@@ -86,7 +92,7 @@ const emaTable = props => {
     </div>
   );
 
-  return <div>{tableHeader}</div>;
+  return <div style={props.cursor}>{tableHeader}</div>;
 };
 
 export default emaTable;
