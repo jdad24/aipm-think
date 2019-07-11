@@ -20,7 +20,7 @@ class VisualInsights extends Component {
         this.setState({
             viDashboard: true,
             robotEnvironment: value,
-            linkPath:"/pm"
+            linkPath:"/vi"
         });
         console.log(value);
     }

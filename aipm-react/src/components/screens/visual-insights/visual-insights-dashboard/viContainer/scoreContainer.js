@@ -37,9 +37,9 @@ class ScoreContainer extends PureComponent {
                     {/* <div>iotTopic:  {this.state.score[0]}</div> */}
                     {/* <div>Environment:  {this.state.score[0]}</div> */}
                     <div>Item:  {this.state.score[0]}</div>
-                    <div>Batch:  {this.state.score[0]}</div>
-                    <div>Date:  {this.state.score[0]}</div>
-                    <div>Time:  {this.state.score[0]}</div>
+                    <div>Batch:  {this.state.score[4]}</div>
+                    <div>Date:  {this.state.score[5]}</div>
+                    <div>Time:  {this.state.score[6]}</div>
                     <div>Classification {" "+this.state.score[1]}</div>
                     <div className="confidenceContainer">
                         <div>
