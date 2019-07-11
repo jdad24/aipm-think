@@ -109,7 +109,7 @@ class EmaWorkOrderList extends Component {
             element["spi:description"],
             element["spi:status"],
             element["spi:location"],
-            "Approve"
+            "button"
           ];
 
           return workOrder;
@@ -140,7 +140,11 @@ class EmaWorkOrderList extends Component {
         newstatus = "CLOSE"
     }
     axios.get("http://aipm-gsc-nodered.mybluemix.net/setStatusWorkOrder?wid="+wid+"&newstatus="+newstatus)
-    .then(this.getWorkOrders());
+    .then( response=> {
+      console.log("calling getWorkOrders");
+      this.getWorkOrders();
+    }
+    );
 
   }
 

@@ -24,7 +24,7 @@ tr:hover td {
 
 .ApproveButton,
 .ApproveButton button{
-  background-color: #0062ff;
+  background-color: #707070;
   width: 85%;
   display: flex;
   align-items: center;
@@ -35,6 +35,13 @@ tr:hover td {
   color: white;
 
   /* border: 1px solid black; */
+}
+
+.closed{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:#808080;
 }
 
 /* table#emaTableid,

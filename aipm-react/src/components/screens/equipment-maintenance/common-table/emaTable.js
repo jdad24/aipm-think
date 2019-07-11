@@ -17,8 +17,17 @@ const emaTable = props => {
     case "workOrders":
       WorkOrderstr = props.workOrders.map(element => {
         let wOtd = element.map(x => {
-          if(x==="Approve"){
-           let appr = <div className="ApproveButton" onClick={(e)=>props.setWorkOrderStatus(e,element[3], element[0])}><button>{x}</button></div>
+          if(x==="button"){
+            let appr;
+           
+            if(element[3]==="CLOSE"){
+              appr = <div className="closed">Closed</div>
+            }else if(element[3]==="APPR"){
+              appr = <div className="ApproveButton" onClick={(e)=>props.setWorkOrderStatus(e,element[3], element[0])}><button>Close</button></div>
+            }else if(element[3]==="WAPPR"){
+              appr = <div className="ApproveButton" onClick={(e)=>props.setWorkOrderStatus(e,element[3], element[0])}><button>Approve</button></div>
+            }
+
            return <td className="EmaTd">{appr}</td>;
           }else{
             return <td onClick={(e) => props.getEMAresults(e, element[2])} className="EmaTd">{x}</td>;
