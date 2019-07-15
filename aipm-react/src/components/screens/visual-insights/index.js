@@ -13,16 +13,25 @@ class VisualInsights extends Component {
     state = {
         viDashboard: false,
         robotEnvironment: null,
-        linkPath:"/"
+        // linkPath:"/"
     }
 
     robotClickHandler = (event, value) => {
         this.setState({
             viDashboard: true,
             robotEnvironment: value,
-            linkPath:"/vi"
+            // linkPath:"/vi"
         });
         console.log(value);
+    }
+
+    backClickHandler = () => {
+        this.setState({
+            viDashboard: false,
+            robotEnvironment: null,
+            // linkPath:"/vi"
+        });
+        console.log("backClickHandler");
     }
 
     // backArrowHandler = () => {
@@ -92,15 +101,23 @@ class VisualInsights extends Component {
     }
 
     getPersonaEnv = () => {
-        let PersonaorPath = "";
+        let headerInfo = {
+            PersonaorPath: null,
+            nav: null,
+            backClickHandler: null
+        };
+        // let PersonaorPath = "";
+        // let nav;
 
         if (this.state.viDashboard) {
-            PersonaorPath = <div>Dashboard > {this.state.robotEnvironment}</div>
+            headerInfo.PersonaorPath = <div>Dashboard > {this.state.robotEnvironment}</div>
+            headerInfo.backClickHandler = this.backClickHandler;
         } else {
-            PersonaorPath = <PersonaEnv name = "Carla"  />
+            headerInfo.PersonaorPath = <PersonaEnv name = "Carla"  />
+            headerInfo.nav = "/";
         }
 
-        return PersonaorPath;
+        return headerInfo;
     }
 
     // getPath = () => {
@@ -117,15 +134,16 @@ class VisualInsights extends Component {
 
         let visualInsights = this.getMainContent();
         let PersonaEnv = this.getPersonaEnv();
-        let linkPath = this.state.linkPath;
-        console.log(linkPath);
+       // let linkPath = this.state.linkPath;
+       // console.log(linkPath);
         // let linkPath = this.getPath();
         return (
             <Layout
                 role="Quality Assurance"
-                screenTop = {PersonaEnv}
+                screenTop = {PersonaEnv.PersonaorPath}
                 content={visualInsights}
-                path = {linkPath}
+                backClickHandler = {PersonaEnv.backClickHandler}
+                path = {PersonaEnv.nav}
             />
         );
     }

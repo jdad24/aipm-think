@@ -23,6 +23,15 @@ class PredictiveMaintenance extends Component {
         });
     }
 
+    backClickHandler = () => {
+        this.setState({
+            pmDashboard: false,
+            robotEnvironment: null,
+            // linkPath:"/vi"
+        });
+        console.log("backClickHandler");
+    }
+
     getMainContent = () => {
         const temp_style = {
             border: "1px solid green",
@@ -47,19 +56,27 @@ class PredictiveMaintenance extends Component {
     }
 
     getPersonaEnv = () => {
-        let PersonaorPath = "";
+        // let PersonaorPath = "";
+        let headerInfo = {
+            PersonaorPath: null,
+            nav: null,
+            backClickHandler: null
+        };
 
         if (this.state.pmDashboard) {
-            PersonaorPath = <div style={{textAlign:"left"}}>
+            headerInfo.PersonaorPath = <div style={{textAlign:"left"}}>
                             <p>Dashboard > {this.state.robotEnvironment}</p>
                             <h1>Robot Analytics and Data</h1>
                             </div>
+
+            headerInfo.backClickHandler = this.backClickHandler;
                             
         } else {
-            PersonaorPath = <PersonaEnv name = "Mark"  />
+            headerInfo.PersonaorPath = <PersonaEnv name = "Mark"  />
+            headerInfo.nav = "/";
         }
 
-        return PersonaorPath;
+        return headerInfo;
     }
 
     render() {
@@ -70,9 +87,10 @@ class PredictiveMaintenance extends Component {
 
             <Layout
                 role="Manufacturing Line Manager"
-                screenTop = {PersonaEnv}
+                screenTop = {PersonaEnv.PersonaorPath}
                 content={PredictiveMaintenance}
-                path = "/"
+                backClickHandler = {PersonaEnv.backClickHandler}
+                path = {PersonaEnv.nav}
             />
 
         );

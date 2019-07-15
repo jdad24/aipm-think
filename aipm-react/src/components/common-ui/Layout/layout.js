@@ -8,7 +8,7 @@ import Aux from '../Aux/Aux';
 
 const layout = (props) => (
     <div className='layout'>
-        <Header path={props.path} role={props.role} />
+        <Header path={props.path} role={props.role} backClickHandler={props.backClickHandler}/>
         <SideBar />
         <ScreenTop>
             {props.screenTop}
