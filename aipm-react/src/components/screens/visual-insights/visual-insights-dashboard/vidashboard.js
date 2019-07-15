@@ -46,7 +46,8 @@ class viDashboard extends Component {
     wsCredentials = {
         "yaskawa": "wss://aipm-gsc-nodered.mybluemix.net/ws/aipm-gsc/yaskawa",
         "kuka": "wss://aipm-gsc-nodered.mybluemix.net/ws/aipm-gsc/kuka",
-        "replay": "wss://aipm-gsc-nodered.mybluemix.net/ws/aipm-gsc"
+        "replay": "wss://aipm-gsc-nodered.mybluemix.net/ws/aipm-gsc",
+        "raisinReplay": "wss://aipm-gsc-nodered.mybluemix.net/ws/aipm-gsc/raisinReplay"
     }
 
 
