@@ -36,6 +36,21 @@
     flex-direction: column;
     padding: 20px 0 0 20px;
     height:auto;
+    font-size: 14px;
+}
+
+.scoreItems{
+    display: flex;
+    flex-direction: column;
+    /* border-bottom: 1px solid #B9B9B9; */
+}
+
+.classification{
+    font-size: 16px;
+}
+
+.classification div{
+    color: #0062FF;
 }
 
 .scoreContents div{
