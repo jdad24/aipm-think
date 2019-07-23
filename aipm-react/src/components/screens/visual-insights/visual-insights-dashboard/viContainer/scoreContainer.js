@@ -36,11 +36,12 @@ class ScoreContainer extends PureComponent {
                 <div className="scoreContents">
                     {/* <div>iotTopic:  {this.state.score[0]}</div> */}
                     {/* <div>Environment:  {this.state.score[0]}</div> */}
-                    <div>Item:  {this.state.score[0]}</div>
-                    <div>Batch:  {this.state.score[4]}</div>
-                    <div>Date:  {this.state.score[5]}</div>
-                    <div>Time:  {this.state.score[6]}</div>
-                    <div>Classification {" "+this.state.score[1]}</div>
+                    <div className="scoreItems">
+                    <div>Item:  {" "+this.state.score[0]}</div>
+                    <div>Batch:  {" "+this.state.score[4]}</div>
+                    <div>Date:  {" "+this.state.score[5]}</div>
+                    <div>Time:  {" "+this.state.score[6]}</div>
+                    </div>
                     <div className="confidenceContainer">
                         <div>
                             Confidence:{this.state.score[2]}
@@ -52,6 +53,7 @@ class ScoreContainer extends PureComponent {
                         {/* </div> */}
                     </div>
                     {/* <div>Slot:  {this.state.score[3]}</div> */}
+                    <div className="classification">Classification  <div>{this.state.score[1]}</div></div>
                     <div>Is this correct?</div>
                 </div>
         }

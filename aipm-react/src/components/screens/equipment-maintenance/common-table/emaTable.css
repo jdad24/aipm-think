@@ -13,7 +13,7 @@
 
 .EmaTd {
   border: none;
-  background-color: #e4e4e4;
+  background-color: white;
   font-family: "IbmPlexLight";
   padding: 10px;
   /* cursor: pointer; */
@@ -21,19 +21,20 @@
 
 .EmaResultTd {
   border: none;
-  background-color: #b3b1b1;
+  background-color: white;
   font-weight: 600;
   padding: 10px;
 }
 
 tr:hover td {
-  background-color: #b3b1b1;
+  background-color: #707070;
+  color: white;
   /* cursor: wait; */
 }
 
 .ApproveButton,
 .ApproveButton button{
-  background-color: #707070;
+  background-color: inherit;
   width: 85%;
   display: flex;
   align-items: center;
@@ -44,6 +45,14 @@ tr:hover td {
   color: white;
 
   /* border: 1px solid black; */
+}
+
+.Abutton{
+  background-color: #6BC764; 
+}
+
+.Cbutton{
+  background-color: #5CA7FF;
 }
 
 .closed{

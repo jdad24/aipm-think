@@ -27,9 +27,9 @@ const emaTable = props => {
             if(element[3]==="CLOSE"){
               appr = <div className="closed">Closed</div>
             }else if(element[3]==="APPR"){
-              appr = <div className="ApproveButton" onClick={(e)=>props.setWorkOrderStatus(e,element[3], element[0])}><button>Close</button></div>
+              appr = <div className="ApproveButton Cbutton" onClick={(e)=>props.setWorkOrderStatus(e,element[3], element[0])}><button>Close</button></div>
             }else if(element[3]==="WAPPR"){
-              appr = <div className="ApproveButton" onClick={(e)=>props.setWorkOrderStatus(e,element[3], element[0])}><button>Approve</button></div>
+              appr = <div className="ApproveButton Abutton" onClick={(e)=>props.setWorkOrderStatus(e,element[3], element[0])}><button>Approve</button></div>
             }
 
            return <td className="EmaTd">{appr}</td>;
