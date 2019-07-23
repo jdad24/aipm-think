@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.9ea94d1f.chunk.css",
-    "main.js": "/static/js/main.fe13e19a.chunk.js",
-    "main.js.map": "/static/js/main.fe13e19a.chunk.js.map",
+    "main.css": "/static/css/main.cbc95105.chunk.css",
+    "main.js": "/static/js/main.3ae5d09a.chunk.js",
+    "main.js.map": "/static/js/main.3ae5d09a.chunk.js.map",
     "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
     "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
-    "static/js/2.2364d920.chunk.js": "/static/js/2.2364d920.chunk.js",
-    "static/js/2.2364d920.chunk.js.map": "/static/js/2.2364d920.chunk.js.map",
+    "static/js/2.67991c8e.chunk.js": "/static/js/2.67991c8e.chunk.js",
+    "static/js/2.67991c8e.chunk.js.map": "/static/js/2.67991c8e.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.2b62a384a09f4c843d5e9874ff390734.js": "/precache-manifest.2b62a384a09f4c843d5e9874ff390734.js",
+    "precache-manifest.b1ee061bce09ef4d0f79692936df4cf5.js": "/precache-manifest.b1ee061bce09ef4d0f79692936df4cf5.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.9ea94d1f.chunk.css.map": "/static/css/main.9ea94d1f.chunk.css.map",
+    "static/css/main.cbc95105.chunk.css.map": "/static/css/main.cbc95105.chunk.css.map",
     "static/media/robot-list.css": "/static/media/IBMPlexSans-Text.46ff72d9.ttf",
     "static/media/Joe.png": "/static/media/Joe.ef8adf14.png",
     "static/media/Paul.png": "/static/media/Paul.fe133dcc.png",
@@ -22,6 +22,7 @@
     "static/media/chat.svg": "/static/media/chat.d4e5fc43.svg",
     "static/media/help.svg": "/static/media/help.ed55dd04.svg",
     "static/media/humidity.svg": "/static/media/humidity.f300091c.svg",
+    "static/media/kuka.png": "/static/media/kuka.6e003fef.png",
     "static/media/mark.png": "/static/media/mark.d73d5003.png",
     "static/media/menu.svg": "/static/media/menu.3b5fdff7.svg",
     "static/media/notifications.svg": "/static/media/notifications.d8621c30.svg",
@@ -31,6 +32,7 @@
     "static/media/r3.png": "/static/media/r3.4f5331ce.png",
     "static/media/temperature.svg": "/static/media/temperature.069043fc.svg",
     "static/media/thunder.svg": "/static/media/thunder.337e35cd.svg",
-    "static/media/upload.svg": "/static/media/upload.80a8ee95.svg"
+    "static/media/upload.svg": "/static/media/upload.80a8ee95.svg",
+    "static/media/yaskawa.png": "/static/media/yaskawa.79bf3ba8.png"
   }
 }

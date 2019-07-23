@@ -3,6 +3,8 @@ import "./PMContainer.css";
 import Gauge from "react-svg-gauge";
 import GraphContainer from "./GraphContainer";
 import PMTorqueTempContainer from "./PMTorqueTempContainer";
+import kuka from "../../../../../assets/kuka.png";
+import yaskawa from "../../../../../assets/yaskawa.png";
 
 class PMContainer extends PureComponent {
   state = {
@@ -23,7 +25,12 @@ class PMContainer extends PureComponent {
 
   render() {
     // console.log(this.props.ranges, this.props.pmData);
-
+    let imgSrc;
+    if(this.props.robot === "yaskawa"||this.props.robot === "replay"){
+      imgSrc = yaskawa;
+    }else{
+      imgSrc = kuka;
+    }
     if (
       !this.props.ranges ||
       !this.props.pmData ||
@@ -66,7 +73,8 @@ class PMContainer extends PureComponent {
               />
             </div>
 
-            <div className="pmContainerGridLeftMiddle">details middle</div>
+            <div className="pmContainerGridLeftMiddle">
+            <img src={imgSrc}></img></div>
             <div className="pmContainerGridLeftLower">details lower</div>
           </div>
             <div className="pmContainerGridRight">

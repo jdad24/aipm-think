@@ -135,7 +135,7 @@ class PMDashboard extends Component {
 
     render() {
 
-        let pmComponent = <PMContainer ranges={this.state.ranges} pmData={this.state.pmData} pmHealthData={this.state.pmHealthData} />;
+        let pmComponent = <PMContainer robot={this.props.robot} ranges={this.state.ranges} pmData={this.state.pmData} pmHealthData={this.state.pmHealthData} />;
 
         return (
                 <BasicCard>
