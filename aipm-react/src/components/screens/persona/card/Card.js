@@ -55,7 +55,7 @@ const data = [
     backside:
       "Rhonda needs to know disaster recovery is achievable, manage the cloud services and the independent containers, and be able to manage services on multiple clouds.",
     post: "Operations Manager",
-    tool: "Net App",
+    tool: "IT Operations",
     imgurl: rhonda,
     redirect: "/vi",
     redirectText: "Run Demo"
