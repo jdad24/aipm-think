@@ -5,6 +5,8 @@ import GraphContainer from "./GraphContainer";
 import PMTorqueTempContainer from "./PMTorqueTempContainer";
 import kuka from "../../../../../assets/kuka.png";
 import yaskawa from "../../../../../assets/yaskawa.png";
+import kukaMap from "../../../../../assets/kukaMap.png";
+import yaskawaMap from "../../../../../assets/yaskawaMap.png";
 
 class PMContainer extends PureComponent {
   state = {
@@ -26,10 +28,13 @@ class PMContainer extends PureComponent {
   render() {
     // console.log(this.props.ranges, this.props.pmData);
     let imgSrc;
+    let mapSrc;
     if(this.props.robot === "yaskawa"||this.props.robot === "replay"){
       imgSrc = yaskawa;
+      mapSrc = yaskawaMap;
     }else{
       imgSrc = kuka;
+      mapSrc = kukaMap;
     }
     if (
       !this.props.ranges ||
@@ -74,8 +79,11 @@ class PMContainer extends PureComponent {
             </div>
 
             <div className="pmContainerGridLeftMiddle">
-            <img src={imgSrc}></img></div>
-            <div className="pmContainerGridLeftLower">details lower</div>
+            <img src={imgSrc}></img>
+            </div>
+            <div className="pmContainerGridLeftLower">
+              <img src={mapSrc}></img>
+              </div>
           </div>
             <div className="pmContainerGridRight">
               <PMTorqueTempContainer
