@@ -37,7 +37,7 @@ const data = [
     post: "Plant Manager",
     tool: "Production Optimization",
     imgurl: paul,
-    redirect: "/vi",
+    redirect: "/po",
     redirectText: "Run Demo"
   },
   {

@@ -21,7 +21,9 @@ class PMDashboard extends Component {
     wsCredentials = {
         "yaskawa": "wss://aipm-gsc-nodered.mybluemix.net/ws/aipm-gsc/yaskawa",
         "kuka": "wss://aipm-gsc-nodered.mybluemix.net/ws/aipm-gsc/kuka",
-        "replay": "wss://aipm-gsc-nodered.mybluemix.net/ws/aipm-gsc"
+        "replay": "wss://aipm-gsc-nodered.mybluemix.net/ws/aipm-gsc",
+        "conveyor": "wss://aipm-gsc-nodered.mybluemix.net/ws/aipm-gsc"
+
     }
 
     ws = null;
@@ -62,8 +64,9 @@ class PMDashboard extends Component {
                 this.setState({ ranges: response.data[2] });
             });
             break;
-        case "replay":
-            axios.get("https://aipm-gsc-nodered.mybluemix.net/replayHistory").then((response) => {
+            case "replay":
+            case "conveyor":
+                axios.get("https://aipm-gsc-nodered.mybluemix.net/replayHistory").then((response) => {
                 let replayHistory = response.data.replayHistory.map((element) => {
                     return JSON.parse(element);
                 })
