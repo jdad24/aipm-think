@@ -30,12 +30,10 @@ class PMAcousticInsightsContainer extends PureComponent {
     return (
       <div className="pmContainerGridLeftMiddle2">
         <div className="pmAcousticInsightsTitle">Acoustic Insights</div>
-         <br />
-        {myState}
-        <br />
-        {myCategory}
-        <br />
-        {myConfidence}
+        <br></br>
+        <div className="pmAcousticInsightsText">{myState}</div>
+        <div className="pmAcousticInsightsText">{myCategory}</div>
+        <div className="pmAcousticInsightsText">{myConfidence}</div>
       </div>
     );
   }

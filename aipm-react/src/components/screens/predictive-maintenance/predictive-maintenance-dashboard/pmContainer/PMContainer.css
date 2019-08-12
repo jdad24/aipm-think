@@ -168,6 +168,11 @@
 
 .pmAcousticInsightsTitle {
     font-weight: bold;
+    padding-left: 10px;
+}
+
+.pmAcousticInsightsText {
+    padding-left: 10px;
 }
 
 .pmContainer {
