@@ -15,9 +15,9 @@ class PMDashboard extends Component {
 
   state = {
     pmHealthData: [0],
-    aiState: "normal",
-    aiCategory: "pentap",
-    aiConfidence: ".99"
+    aiState: "unavailable",
+    aiCategory: "unavailable",
+    aiConfidence: "unavailable"
   };
 
   wsCredentials = {

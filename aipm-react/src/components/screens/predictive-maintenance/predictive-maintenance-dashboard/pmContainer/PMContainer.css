@@ -166,6 +166,10 @@
     width: 400px;
 }
 
+.pmAcousticInsightsTitle {
+    font-weight: bold;
+}
+
 .pmContainer {
     display: flex;
     flex-direction: row;
