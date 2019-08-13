@@ -5,6 +5,7 @@ import PredictiveMaintenance from "../components/screens/predictive-maintenance"
 import VisualInsights from "../components/screens/visual-insights";
 import EquipmentMaintenance from "../components/screens/equipment-maintenance";
 import ProductionOptimization from "../components/screens/production-optimization";
+import IToperations from "../components/screens/it-operations";
 
 class AppRouter extends Component {
   render() {
@@ -16,6 +17,7 @@ class AppRouter extends Component {
           <Route path="/vi" component={VisualInsights} />
           <Route path="/em" component={EquipmentMaintenance} />
           <Route path="/po" component={ProductionOptimization} />
+          <Route path="/it" component={IToperations} />
           {/* <Route path="/contact" component={Contact} />
           <Route component={Notfound} /> */}
         </Switch>

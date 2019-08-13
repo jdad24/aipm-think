@@ -57,7 +57,7 @@ const data = [
     post: "Operations Manager",
     tool: "IT Operations",
     imgurl: rhonda,
-    redirect: "/vi",
+    redirect: "/it",
     redirectText: "Run Demo"
   },
   {

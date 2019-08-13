@@ -1,0 +1,39 @@
+.itCard{
+    display: flex;
+    width: auto;
+    height: 300px;
+    width: 300px;
+    margin: 5px;
+    /* margin-right: 26px; */
+}
+
+.sysStatusContainer{
+    display: flex;
+    /* border: 2px solid purple; */
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.titleStatusContainer{
+    display: flex;
+    border: 1px solid green;
+    height: 55px;
+    align-items: center;
+}
+
+.title{
+    display: flex;
+    width: 50%;
+    /* align-items: flex-start; */
+}
+
+.status{
+    display: flex;
+    width: 50%;
+    /* align-items: flex-end; */
+}
+
+.activitiesContainer{
+    display: flex;
+}

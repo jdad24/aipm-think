@@ -12,6 +12,6 @@ function App() {
       <AppRouter />
     </div>
   );
-}
+} 
 
 export default App;
