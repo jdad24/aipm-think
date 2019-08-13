@@ -67,7 +67,7 @@ const data = [
     post: "Procurement Manager",
     tool: "SAP, Blockchain",
     imgurl: pene,
-    redirect: "/vi",
+    redirect: "/pm2",
     redirectText: "Run Demo"
   }
 ];
