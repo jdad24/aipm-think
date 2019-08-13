@@ -25,7 +25,15 @@ class PMAcousticInsightsContainer extends PureComponent {
   render() {
     var myState = "State: " + this.state.aiState;
     var myCategory = "Category: " + this.state.aiCategory;
-    var myConfidence = "Confidence: " + this.state.aiConfidence;
+    var myConfidence = "Confidence: ";
+    if (this.state.aiConfidence === "unavailable") {
+        myConfidence = myConfidence + "unavailable";
+    } else {
+        var numberConfidence = parseFloat(this.state.aiConfidence);
+        numberConfidence = numberConfidence * 100;
+        myConfidence = "Confidence: " + numberConfidence.toFixed(2);
+    }
+    
 
     return (
       <div className="pmContainerGridLeftMiddle2">
