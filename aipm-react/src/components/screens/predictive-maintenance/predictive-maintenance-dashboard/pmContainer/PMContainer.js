@@ -3,6 +3,7 @@ import "./PMContainer.css";
 import Gauge from "react-svg-gauge";
 import GraphContainer from "./GraphContainer";
 import PMTorqueTempContainer from "./PMTorqueTempContainer";
+import PMAcousticInsightsContainer from "./PMAcousticInsightsContainer";
 import kuka from "../../../../../assets/kuka.png";
 import yaskawa from "../../../../../assets/yaskawa.png";
 import kukaMap from "../../../../../assets/kukaMap.png";
@@ -11,7 +12,10 @@ import yaskawaMap from "../../../../../assets/yaskawaMap.png";
 class PMContainer extends PureComponent {
   state = {
     pmData: null,
-    pmHealthData: null
+    pmHealthData: null,
+    aiState: null,
+    aiCategory: null,
+    aiConfidence: null
   };
 
   // constructor(props) {
@@ -21,7 +25,10 @@ class PMContainer extends PureComponent {
   static getDerivedStateFromProps = (props, state) => {
     return {
       pmData: props.pmData,
-      pmHealthData: props.pmHealthData
+      pmHealthData: props.pmHealthData,
+      aiState: props.aiState,
+      aiCategory: props.aiCategory,
+      aiConfidence: props.aiConfidence
     };
   };
 
@@ -50,6 +57,7 @@ class PMContainer extends PureComponent {
 
     let pmData = <p>No Data </p>;
     if (this.props.pmData && this.props.pmHealthData) {
+      // console.log("pmcontainer.js render called: " + this.state.aiConfidence);
       pmData = (
           <div className="pmContainerGrid">
           <div className="pmContainerGridHeader1 pmContainerHeaderTitle">
@@ -79,8 +87,13 @@ class PMContainer extends PureComponent {
             </div>
 
             <div className="pmContainerGridLeftMiddle">
-            <img src={imgSrc}></img>
+                  <PMAcousticInsightsContainer
+                    aiState={this.state.aiState}
+                    aiCategory={this.state.aiCategory}
+                    aiConfidence={this.state.aiConfidence}
+                  />            
             </div>
+
             <div className="pmContainerGridLeftLower">
               <img src={mapSrc}></img>
               </div>
