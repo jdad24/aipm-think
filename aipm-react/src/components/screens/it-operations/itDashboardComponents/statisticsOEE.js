@@ -1,24 +1,23 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import axios from 'axios';
 import BasicCard from '../../../common-ui/BasicCard/basicCard';
 import Aux from '../../../common-ui/Aux/Aux';
+import {
+    LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+  } from 'recharts';
 import './itDasboardComponents.css';
 
-class StatisticsOEE extends Component {
+class StatisticsOEE extends PureComponent {
 
-    // state = {
-    //     sysStatus: null,
-    //     activities: []
-    // }
+    state = {
+        oee: [15,12,17,15,20]
+    }
 
-    componentDidMount() {
-        // axios.get('https://aipm-gsc-nodered.mybluemix.net/getSysStatus').then(response => {
-        //     console.log(response);
-        //     this.setState({
-        //         sysStatus: response.data.status,
-        //         activities: response.data.activities
-        //     });
-        // });
+    static getDerivedStateFromProps = (props, state) => {
+        return {
+            oee: props.oee
+        }
+
     }
 
     getMainContent = () => {
@@ -28,6 +27,9 @@ class StatisticsOEE extends Component {
         // });
 
         // let activities = <div>{this.state.activities[1]}</div>;
+        let data = this.state.oee.slice(0,6).map(element => {
+            return ({ "yPos": element, "Y-Position": element });
+          });
 
         let content =
             (<div className="sysStatusContainer">
@@ -35,7 +37,23 @@ class StatisticsOEE extends Component {
                     <div className="title">Statistics OEE</div>
                     <div className="status">last 6 hours</div>
                 </div>
-                <div>GRAPH</div>
+                <div>
+                    <LineChart
+                        width={300}
+                        height={200}
+                        data={data}
+                        margin={{
+                            top: 5, right: 30, left: 20, bottom: 5,
+                        }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        {/* <XAxis/> */}
+                        <YAxis dataKey="OEE" domain={[5, 25]} />
+                        <Tooltip />
+                        <Legend />
+                        <Line type="monotone" dataKey="OEE" stroke="#8884d8" activeDot={{ r: 8 }} />
+                    </LineChart>
+                </div>
             </div>);
         return content;
     }
@@ -44,7 +62,7 @@ class StatisticsOEE extends Component {
         let content = this.getMainContent();
 
         return (
-            <BasicCard classname = "itCard">
+            <BasicCard classname="itCard">
                 {content}
             </BasicCard>
         );

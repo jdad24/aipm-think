@@ -1,4 +1,4 @@
-import React, {Component } from 'react';
+import React, { Component } from 'react';
 import Layout from '../../common-ui/Layout/layout';
 import PersonaEnv from '../../common-ui/personaEnv/personaEnv';
 import SystemStatus from './itDashboardComponents/systemStatus';
@@ -8,11 +8,84 @@ import ProdRate from './itDashboardComponents/productionRate';
 import SnappMirror from './itDashboardComponents/snappMirror';
 import ActivityLog from './itDashboardComponents/activityLog';
 import Rollback from './itDashboardComponents/rollback';
-
+import Modal from '../../common-ui/Modal/modal';
+import RollbackPopup from './itDashboardComponents/rollbackPopup';
 import axios from 'axios';
 import https from 'https';
 import './itOperations.css';
 class itOperations extends Component {
+
+    state = {
+        initiateRollback: false,
+        ito_data: null
+    }
+
+    initiateRollbackHandler = () => {
+        console.log("rollback");
+        this.setState({
+            initiateRollback: true
+        });
+    }
+
+    cancelRollbackHandler = () => {
+        console.log("rollback cancel");
+        this.setState({
+            initiateRollback: false
+        });
+    }
+
+    componentDidMount() {
+        axios.get('https://aipm-gsc-nodered.mybluemix.net/netappDataFlow').then(response => {
+            console.log(response);
+        });
+        this.webSocketHandler();
+    }
+
+
+    wsCredentials = {
+        "netapp": "wss://aipm-gsc-nodered.mybluemix.net/ws/aipm-gsc-netApp"
+    }
+
+    ws = null;
+    isClosing = false;
+
+    componentWillUnmount() {
+        console.log("componentWillUnmount");
+        this.isClosing = true;
+
+        if (this.ws) {
+            this.ws.close();
+            console.log("YES! - componentWillUnmount");
+
+        }
+    }
+
+    webSocketHandler = () => {
+        let ws;
+        let wsUri = this.wsCredentials.netapp;
+        ws = new WebSocket(wsUri);
+        this.ws = ws;
+        ws.onmessage = (event) => {
+            // parse the incoming message as a JSON object
+            let msg = JSON.parse(event.data);
+            console.log("Websocket msg");
+            console.log(msg);
+            this.setState({
+                ito_data: msg
+            });
+        }
+
+        ws.onopen = () => {
+            console.log("connected");
+        }
+
+        ws.onclose = () => {
+            console.log("------------>inside onclose");
+            if (this.isClosing !== true) {
+                this.webSocketHandler();
+            }
+        }
+    }
 
     getPersonaEnv = () => {
         let headerInfo = {
@@ -26,41 +99,30 @@ class itOperations extends Component {
     }
 
     getMainContent = () => {
+        let itoperations = <p>No data</p>
 
-        let itoContent = "";
+        if(this.state.ito_data){
+            console.log(this.state.ito_data.sysStatus);
+            itoperations = (
+                <div className="itOperationsContainer">
+                    <Modal
+                        show={this.state.initiateRollback}
+                        modalClosed={this.cancelRollbackHandler}>
+                        <RollbackPopup />
+                    </Modal>
+                    <SystemStatus sysStatus={this.state.ito_data.sysStatus} sysState={this.state.ito_data.sysState}/>
+                    <StatisticsOEE oee={this.state.ito_data.oee}/>
+                    <PlantHealth_ITO sysStatus={this.state.ito_data.sysStatus} plantHealth={this.state.ito_data.plantHealth}/>
+                    <ProdRate prodRate={this.state.ito_data.prodRate}/>
+                    <SnappMirror />
+                    <ActivityLog activityLog={this.state.ito_data.activityLog}/>
+                    <Rollback initrollback={this.initiateRollbackHandler} />
+                </div>
+    
+            );
+        } 
 
-        // axios.get('https://52.116.20.100/api/storage/volumes').then(response => {
-        //     console.log(response);
-        // });
-        // const agent = new https.Agent({  
-        //     rejectUnauthorized: false
-        //   });
-
-        // axios({
-        //     url: 'https://52.116.20.100/api/storage/volumes',
-        //     method: 'get',
-        //     httpsAgent: agent,
-        //     headers: {
-        //         "Authorization": "Basic YWRtaW46TmV0QHBwMTIzIQ=="
-        //     }
-        // }).then();
-
-       // itoContent = (<p>IT Operations Content</p>);
-
-        let itoperations = (
-            <div className="itOperationsContainer">
-                <SystemStatus />
-                <StatisticsOEE />
-                <PlantHealth_ITO />
-                <ProdRate />
-                <SnappMirror />
-                <ActivityLog />
-                <Rollback />
-            </div>
-        
-        );
-
-         return itoperations;
+        return itoperations;
     }
 
 

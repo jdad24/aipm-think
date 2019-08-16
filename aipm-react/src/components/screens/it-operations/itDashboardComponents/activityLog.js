@@ -1,30 +1,26 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import axios from 'axios';
 import BasicCard from '../../../common-ui/BasicCard/basicCard';
 import Aux from '../../../common-ui/Aux/Aux';
 import './itDasboardComponents.css';
 
-class ActivityLog extends Component {
+class ActivityLog extends PureComponent {
 
     state = {
-        sysStatus: null,
-        activities: []
+        activityLog: null
     }
 
-    componentDidMount() {
-        axios.get('https://aipm-gsc-nodered.mybluemix.net/getSysStatus').then(response => {
-            console.log(response);
-            this.setState({
-                sysStatus: response.data.status,
-                activities: response.data.activities
-            });
-        });
+    static getDerivedStateFromProps = (props, state) => {
+        return {
+            activityLog: props.activityLog
+        }
+
     }
 
     getMainContent = () => {
-        console.log(this.state.sysStatus);
-        let activities = this.state.activities.map(activity => {
-            return <div>{activity}</div>
+        //console.log(this.state.sysStatus);
+        let activities = this.state.activityLog.map(activity => {
+            return <div key={activity} >{activity}</div>
         });
 
         // let activities = <div>{this.state.activities[1]}</div>;
@@ -33,7 +29,6 @@ class ActivityLog extends Component {
             (<div className="sysStatusContainer">
                 <div className="titleStatusContainer">
                     <div className="title">Activity Log</div>
-                    <div className="status">{this.state.sysStatus}</div>
                 </div>
                 <div>{activities}</div>
             </div>);

@@ -1,24 +1,26 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import axios from 'axios';
 import BasicCard from '../../../common-ui/BasicCard/basicCard';
 import Aux from '../../../common-ui/Aux/Aux';
+import Gauge from "react-svg-gauge";
+// import {
+//     LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+//   } from 'recharts';
 import './itDasboardComponents.css';
 
-class PlantHealth_ITO extends Component {
+class PlantHealth_ITO extends PureComponent {
 
-    // state = {
-    //     sysStatus: null,
-    //     activities: []
-    // }
+    state = {
+        pmHealthData: null,
+        sysStatus: null
+    }
 
-    componentDidMount() {
-        // axios.get('https://aipm-gsc-nodered.mybluemix.net/getSysStatus').then(response => {
-        //     console.log(response);
-        //     this.setState({
-        //         sysStatus: response.data.status,
-        //         activities: response.data.activities
-        //     });
-        // });
+    static getDerivedStateFromProps = (props, state) => {
+        return {
+            pmHealthData: props.plantHealth,
+            sysStatus: props.sysStatus
+        }
+
     }
 
     getMainContent = () => {
@@ -28,14 +30,30 @@ class PlantHealth_ITO extends Component {
         // });
 
         // let activities = <div>{this.state.activities[1]}</div>;
+        let color = '#E0AD4E';
+
+        if(this.state.sysStatus){
+            color = '#4EE091';
+        }
 
         let content =
             (<div className="sysStatusContainer">
                 <div className="titleStatusContainer">
                     <div className="title">Plant Health</div>
                     {/* <div className="status">last 6 hours</div> */}
+                    
                 </div>
-                <div>GRAPH</div>
+                <div className="rb_gaugeContainer">
+                <Gauge
+                value={Math.round(this.state.pmHealthData)}
+                width={250}
+                height={200}
+                color={color}
+                label=""
+                min={0} 
+                max={100}
+              />
+                </div>
             </div>);
         return content;
     }

@@ -1,31 +1,41 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import axios from 'axios';
 import BasicCard from '../../../common-ui/BasicCard/basicCard';
 import Aux from '../../../common-ui/Aux/Aux';
 import './itDasboardComponents.css';
 
-class SystemStatus extends Component {
+class SystemStatus extends PureComponent {
 
     state = {
         sysStatus: null,
         activities: []
     }
 
-    componentDidMount() {
-        axios.get('https://aipm-gsc-nodered.mybluemix.net/getSysStatus').then(response => {
-            console.log(response);
-            this.setState({
-                sysStatus: response.data.status,
-                activities: response.data.activities
-            });
-        });
+    // componentDidMount() {
+    //     this.setState({
+    //                 sysStatus: this.props.sys,
+    //                 activities: this.props.sysState
+    //             });
+    // }
+
+    static getDerivedStateFromProps = (props, state) => {
+        return {
+            sysStatus: props.sysStatus,
+            activities: props.sysState
+        }
+
     }
 
     getMainContent = () => {
         console.log(this.state.sysStatus);
         let activities = this.state.activities.map(activity => {
-            return <div>{activity}</div>
+            return <div key={activity}>{activity}</div>
         });
+
+        let rgdot = "reddot";
+        if(this.state.sysStatus){
+            rgdot = "dot";
+        }
 
         // let activities = <div>{this.state.activities[1]}</div>;
 
@@ -33,7 +43,11 @@ class SystemStatus extends Component {
             (<div className="sysStatusContainer">
                 <div className="titleStatusContainer">
                     <div className="title">System Status:</div>
-                    <div className="status">{this.state.sysStatus}</div>
+                    <div className="dotStatus">
+                        <div className={rgdot} />
+                        <div className="status">Online</div>
+                    </div>
+
                 </div>
                 <div>{activities}</div>
             </div>);
@@ -44,7 +58,7 @@ class SystemStatus extends Component {
         let content = this.getMainContent();
 
         return (
-            <BasicCard classname = "itCard">
+            <BasicCard classname="itCard">
                 {content}
             </BasicCard>
         );

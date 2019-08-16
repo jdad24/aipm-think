@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import axios from 'axios';
 import BasicCard from '../../../common-ui/BasicCard/basicCard';
 import Aux from '../../../common-ui/Aux/Aux';
 import './itDasboardComponents.css';
 
-class RollBack extends Component {
+class RollBack extends PureComponent {
 
     // state = {
     //     sysStatus: null,
@@ -36,6 +36,7 @@ class RollBack extends Component {
                     {/* <div className="status">last 6 hours</div> */}
                 </div>
                 <div>Last Rollback M/D/Y CT NN:NN</div>
+                <div><button onClick={this.props.initrollback}>initiate rollback</button></div>
             </div>);
         return content;
     }

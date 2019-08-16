@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import axios from 'axios';
 import BasicCard from '../../../common-ui/BasicCard/basicCard';
 import Aux from '../../../common-ui/Aux/Aux';
 import './itDasboardComponents.css';
 
-class ProdRate extends Component {
+class ProdRate extends PureComponent {
 
-    // state = {
-    //     sysStatus: null,
-    //     activities: []
-    // }
+    state = {
+        prodRate: null
+    }
 
     componentDidMount() {
         // axios.get('https://aipm-gsc-nodered.mybluemix.net/getSysStatus').then(response => {
@@ -19,6 +18,13 @@ class ProdRate extends Component {
         //         activities: response.data.activities
         //     });
         // });
+    }
+
+    static getDerivedStateFromProps = (props, state) => {
+        return {
+            prodRate: props.prodRate
+        }
+
     }
 
     getMainContent = () => {
@@ -35,7 +41,7 @@ class ProdRate extends Component {
                     <div className="title">Plant Health</div>
                     <div className="status">last 6 hours</div>
                 </div> */}
-                <div>134/min</div>
+                <div>{this.state.prodRate}/min</div>
             </div>);
         return content;
     }
