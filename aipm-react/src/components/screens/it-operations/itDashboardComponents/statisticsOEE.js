@@ -37,7 +37,7 @@ class StatisticsOEE extends PureComponent {
                     <div className="title">Statistics OEE</div>
                     <div className="status">last 6 hours</div>
                 </div>
-                <div>
+                <div className="ito_card_graph">
                     <LineChart
                         width={300}
                         height={200}

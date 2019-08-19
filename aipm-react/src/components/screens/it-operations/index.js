@@ -10,6 +10,7 @@ import ActivityLog from './itDashboardComponents/activityLog';
 import Rollback from './itDashboardComponents/rollback';
 import Modal from '../../common-ui/Modal/modal';
 import RollbackPopup from './itDashboardComponents/rollbackPopup';
+import Alerts from './itDashboardComponents/alerts';
 import axios from 'axios';
 import https from 'https';
 import './itOperations.css';
@@ -117,6 +118,7 @@ class itOperations extends Component {
                     <SnappMirror />
                     <ActivityLog activityLog={this.state.ito_data.activityLog}/>
                     <Rollback initrollback={this.initiateRollbackHandler} />
+                    <Alerts />
                 </div>
     
             );
@@ -129,6 +131,10 @@ class itOperations extends Component {
     render() {
         let itoperations = this.getMainContent();
         let PersonaEnv = this.getPersonaEnv();
+        let warn;
+        if(this.state.ito_data){
+            warn = this.state.ito_data.sysStatus;
+        }
         return (
             <Layout
                 role="Operations Manager"
@@ -136,6 +142,7 @@ class itOperations extends Component {
                 content={itoperations}
                 //backClickHandler = {PersonaEnv.backClickHandler}
                 path={PersonaEnv.nav}
+                warn={warn}
             />
         );
     }
