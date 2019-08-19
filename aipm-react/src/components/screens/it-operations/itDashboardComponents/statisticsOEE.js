@@ -27,8 +27,8 @@ class StatisticsOEE extends PureComponent {
         // });
 
         // let activities = <div>{this.state.activities[1]}</div>;
-        let data = this.state.oee.slice(0,6).map(element => {
-            return ({ "yPos": element, "Y-Position": element });
+        let data = this.state.oee.slice(0,5).map(element => {
+            return ({ "OEE": element});
           });
 
         let content =
@@ -48,7 +48,7 @@ class StatisticsOEE extends PureComponent {
                     >
                         <CartesianGrid strokeDasharray="3 3" />
                         {/* <XAxis/> */}
-                        <YAxis dataKey="OEE" domain={[5, 25]} />
+                        <YAxis dataKey="OEE" domain={[0,100]} />
                         <Tooltip />
                         <Legend />
                         <Line type="monotone" dataKey="OEE" stroke="#8884d8" activeDot={{ r: 8 }} />
