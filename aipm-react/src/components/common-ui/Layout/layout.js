@@ -11,7 +11,7 @@ const layout = (props) => {
     let warnText;
     if(props.warn==false){
         warnbar = warnbar+" redwarnbar";
-        warnText = "Warning"
+        warnText = "System critical Error Code:67282701 --- Configuration file not responding --- Check configuration -files in DA Level 1 Critical error.";
     }
     return(
         <div className='layout'>

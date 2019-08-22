@@ -41,7 +41,7 @@ class ProdRate extends PureComponent {
                     <div className="title">Plant Health</div>
                     <div className="status">last 6 hours</div>
                 </div> */}
-                <div className="prodRate">{this.state.prodRate}/min</div>
+                <div className="prodRate">{this.state.prodRate+" "}units/min</div>
             </div>);
         return content;
     }
