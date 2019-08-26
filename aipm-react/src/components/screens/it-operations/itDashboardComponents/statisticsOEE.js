@@ -48,7 +48,7 @@ class StatisticsOEE extends PureComponent {
                     >
                         <CartesianGrid strokeDasharray="3 3" />
                         {/* <XAxis/> */}
-                        <YAxis dataKey="OEE" domain={[0,100]} />
+                        <YAxis dataKey="OEE" domain={[0,25]} />
                         <Tooltip />
                         <Legend />
                         <Line type="monotone" dataKey="OEE" stroke="#8884d8" activeDot={{ r: 8 }} />

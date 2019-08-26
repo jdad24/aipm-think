@@ -32,10 +32,11 @@ class SnappMirror extends PureComponent {
         let content =
             (<div className="sysStatusContainer">
                 <div className="titleStatusContainer">
-                    <div className="title">Snapp Mirror</div>
+                    <div className="title">Data Replication</div>
                     {/* <div className="status">last 6 hours</div> */}
                 </div>
-                <div>Snapp Mirror definition</div>
+                <div>Manage and monitor data replication between multiple sites</div>
+                <div onClick={this.props.snapMirrorHandler}><button>arrow</button></div>
             </div>);
         return content;
     }
