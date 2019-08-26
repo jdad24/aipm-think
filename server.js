@@ -45,7 +45,7 @@ if (isLocal) {
 
 app.use(democenterLoader({
   cookie_name: "democentercooki",
-  solution_id: "a6088dd3bb94f98a8e9889c234538c3a",
+  solution_id: "e5803ebe0f03c2358dfb1ec339557fd7",
   demo_center_url: "https://gsc-demo-center-industrial.mybluemix.net",
   demo_center_key: ["-----BEGIN PUBLIC KEY-----",
   "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvSlK/neR5warY97xxWfQ",
