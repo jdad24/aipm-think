@@ -1,6 +1,8 @@
 const express = require("express");
 const basicAuth = require('express-basic-auth');
 const path = require("path");
+const democenterLoader = require("./democenter-loader");
+
 const app = express();
 const cfEnv = require("cfenv");
 
@@ -40,6 +42,21 @@ if (isLocal) {
     }));
   } 
 }
+
+app.use(democenterLoader({
+  cookie_name: "democentercooki",
+  solution_id: "a6088dd3bb94f98a8e9889c234538c3a",
+  demo_center_url: "https://gsc-demo-center-industrial.mybluemix.net",
+  demo_center_key: ["-----BEGIN PUBLIC KEY-----",
+  "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvSlK/neR5warY97xxWfQ",
+  "jo6PDI1OYD6UCBReHR2ZZ2iRcqAcYzlEkjxaehlxnXXlOXUV60x0JA4b1q0Nb4QX",
+  "2Rh2Yq6Hhd81p4GtM39M+5HevNg525kztallCY9rIOSGPc1QX1oDlN4jHXEw1DDB",
+  "JEtFPi86AZb1/mHtH+SFr14s+o3z4fmGDRc1d4KO2ATW/hfLwaVGso82qlwa3ZRP",
+  "Y33Nmt6KJlNAmBu1Lo/bDCPM6TKI2tHp+F5f8OA750ffklB+2nqDW2XZDOsQA+WS",
+  "xd9oLQuytoz5EpxHvroyY2X9Y9AE9OKSujBPp2POsUZYx5ujsQ+a3HPGdO3du+Sc",
+  "jQIDAQAB",
+  "-----END PUBLIC KEY-----"].join("\n")
+}));
 
 // app.use(express.static(path.join(__dirname, "build")));
 // serve the react app files
