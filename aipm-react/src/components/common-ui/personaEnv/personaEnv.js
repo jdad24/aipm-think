@@ -32,9 +32,14 @@ const personaEnv = (props) => {
             </div>
         </Aux>);
     }
+    let redbar="topbar";
 
+    if(props.topbar){
+        redbar = props.topbar;
+    }
     return (
         <div className="personaEnv">
+            {/* <div className="topbar">red bar</div> */}
             <div className="topBottom">
                 <div>Good-morning {props.name}</div>
                 <div>{cur_date}</div>

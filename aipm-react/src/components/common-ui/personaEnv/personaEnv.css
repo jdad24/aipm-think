@@ -3,16 +3,22 @@
     justify-content: flex-start;
     align-items: center;
     /* flex-direction: column; */
+    /* flex-direction: column; */
     /* border: 1px solid green; */
     /* padding: 10px;
     margin: 10px; */
   }
 
+  /* .topbar{
+    width: 100%;
+    border: 1px solid black;
+  } */
+
   .topBottom {
     display: flex;
     flex-direction: column;
     /* border: 1px solid green; */
-    padding: 20px 20px 20px 0;
+    padding: 5px 20px 20px 0;
     /* height: auto; */
     /* min-height: 80px; */
   }
@@ -24,7 +30,7 @@
     justify-content: flex-start;
     /* border: 1px solid green; */
     height: auto;
-    padding: 20px 20px 30px 20px;
+    padding: 5px 20px 30px 20px;
     font-weight: 300;
   }
   /* .svg{

@@ -43,11 +43,11 @@ class PlantHealth_ITO extends PureComponent {
                     {/* <div className="status">last 6 hours</div> */}
                     
                 </div>
-                <div className="rb_gaugeContainer">
+                <div className="ito_card_graph">
                 <Gauge
                 value={Math.round(this.state.pmHealthData)}
-                width={250}
-                height={200}
+                width={300}
+                height={180}
                 color={color}
                 label=""
                 min={0} 

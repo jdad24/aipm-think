@@ -19,9 +19,20 @@ class ActivityLog extends PureComponent {
 
     getMainContent = () => {
         //console.log(this.state.sysStatus);
+
+        let index = 0;
+        let ito_list_style = "ito_list ito_list_border";
         let activities = this.state.activityLog.map(activity => {
-            return <div key={activity} >{activity}</div>
+            if(index == this.state.activityLog.length -1){
+                ito_list_style = "ito_list";
+            }
+            index++;
+            return <div className={ito_list_style} key={activity}>{activity}</div>
         });
+
+        // let activities = this.state.activityLog.map(activity => {
+        //     return <div className="ito_list" key={activity} >{activity}</div>
+        // });
 
         // let activities = <div>{this.state.activities[1]}</div>;
 

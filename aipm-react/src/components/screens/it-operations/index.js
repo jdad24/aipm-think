@@ -10,34 +10,39 @@ import ActivityLog from './itDashboardComponents/activityLog';
 import Rollback from './itDashboardComponents/rollback';
 import Modal from '../../common-ui/Modal/modal';
 import RollbackPopup from './itDashboardComponents/rollbackPopup';
+import Alerts from './itDashboardComponents/alerts';
 import axios from 'axios';
 import https from 'https';
 import './itOperations.css';
 class itOperations extends Component {
 
     state = {
-        initiateRollback: false,
+        initiateRollback_dashboard: false,
         ito_data: null
     }
 
-    initiateRollbackHandler = () => {
+    initiateRollback_dashboardHandler = () => {
         console.log("rollback");
         this.setState({
-            initiateRollback: true
+            initiateRollback_dashboard: true
         });
     }
 
     cancelRollbackHandler = () => {
         console.log("rollback cancel");
         this.setState({
-            initiateRollback: false
+            initiateRollback_dashboard: false
+        });
+    }
+
+    goodDataHandler = () => {
+        axios.get('https://aipm-gsc-nodered.mybluemix.net/netappDataFlow').then(response => {
+            console.log(response);
         });
     }
 
     componentDidMount() {
-        axios.get('https://aipm-gsc-nodered.mybluemix.net/netappDataFlow').then(response => {
-            console.log(response);
-        });
+        this.goodDataHandler();
         this.webSocketHandler();
     }
 
@@ -101,26 +106,34 @@ class itOperations extends Component {
     getMainContent = () => {
         let itoperations = <p>No data</p>
 
-        if(this.state.ito_data){
+        if (this.state.ito_data) {
             console.log(this.state.ito_data.sysStatus);
             itoperations = (
                 <div className="itOperationsContainer">
                     <Modal
-                        show={this.state.initiateRollback}
+                        show={this.state.initiateRollback_dashboard}
                         modalClosed={this.cancelRollbackHandler}>
-                        <RollbackPopup />
+                        <RollbackPopup
+                            initrollback={this.initiateRollback_dashboardHandler}
+                            cancelRollback={this.cancelRollbackHandler}
+                            goodData = {this.goodDataHandler}
+                        />
                     </Modal>
-                    <SystemStatus sysStatus={this.state.ito_data.sysStatus} sysState={this.state.ito_data.sysState}/>
-                    <StatisticsOEE oee={this.state.ito_data.oee}/>
-                    <PlantHealth_ITO sysStatus={this.state.ito_data.sysStatus} plantHealth={this.state.ito_data.plantHealth}/>
-                    <ProdRate prodRate={this.state.ito_data.prodRate}/>
+                    <SystemStatus sysStatus={this.state.ito_data.sysStatus} sysState={this.state.ito_data.sysState} />
+                    <StatisticsOEE oee={this.state.ito_data.oee} />
+                    <PlantHealth_ITO sysStatus={this.state.ito_data.sysStatus} plantHealth={this.state.ito_data.plantHealth} />
+                    <ProdRate prodRate={this.state.ito_data.prodRate} />
                     <SnappMirror />
-                    <ActivityLog activityLog={this.state.ito_data.activityLog}/>
-                    <Rollback initrollback={this.initiateRollbackHandler} />
+                    <ActivityLog activityLog={this.state.ito_data.activityLog} />
+                    <Rollback
+                        initrollback={this.initiateRollback_dashboardHandler}
+                    //cancelRollback={this.cancelRollbackHandler}
+                    />
+                    <Alerts />
                 </div>
-    
+
             );
-        } 
+        }
 
         return itoperations;
     }
@@ -129,6 +142,10 @@ class itOperations extends Component {
     render() {
         let itoperations = this.getMainContent();
         let PersonaEnv = this.getPersonaEnv();
+        let warn;
+        if (this.state.ito_data) {
+            warn = this.state.ito_data.sysStatus;
+        }
         return (
             <Layout
                 role="Operations Manager"
@@ -136,6 +153,7 @@ class itOperations extends Component {
                 content={itoperations}
                 //backClickHandler = {PersonaEnv.backClickHandler}
                 path={PersonaEnv.nav}
+                warn={warn}
             />
         );
     }
