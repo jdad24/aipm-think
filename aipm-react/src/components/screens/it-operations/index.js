@@ -11,6 +11,7 @@ import Rollback from './itDashboardComponents/rollback';
 import Modal from '../../common-ui/Modal/modal';
 import RollbackPopup from './itDashboardComponents/rollbackPopup';
 import Alerts from './itDashboardComponents/alerts';
+import SnapmirrorDashboard from './itDashboardComponents/SnapMirror Dashboard/snapMirrorDashboard';
 import axios from 'axios';
 import https from 'https';
 import './itOperations.css';
@@ -18,7 +19,8 @@ class itOperations extends Component {
 
     state = {
         initiateRollback_dashboard: false,
-        ito_data: null
+        ito_data: null,
+        snapMirror: false
     }
 
     initiateRollback_dashboardHandler = () => {
@@ -35,6 +37,12 @@ class itOperations extends Component {
         });
     }
 
+    snapMirrorHandler = () => {
+        this.setState({
+            snapMirror: true
+        });
+    }
+
     goodDataHandler = () => {
         axios.get('https://aipm-gsc-nodered.mybluemix.net/netappDataFlow').then(response => {
             console.log(response);
@@ -44,6 +52,14 @@ class itOperations extends Component {
     componentDidMount() {
         this.goodDataHandler();
         this.webSocketHandler();
+    }
+
+    backClickHandler = () => {
+        this.setState({
+            snapMirror: false
+            // linkPath:"/vi"
+        });
+        console.log("backClickHandler");
     }
 
 
@@ -98,42 +114,55 @@ class itOperations extends Component {
             nav: null
         };
 
-        headerInfo.PersonaorPath = <PersonaEnv name="Rhonda" />;
-        headerInfo.nav = "/";
+        if (this.state.snapMirror) {
+            headerInfo.PersonaorPath = (<div>
+                <div>Replication Status: Active</div>
+                <div>Replication Schedule: every 5 minutes</div>
+            </div>);
+            headerInfo.backClickHandler = this.backClickHandler;
+        }else{
+            headerInfo.PersonaorPath = <PersonaEnv name="Rhonda" />;
+            headerInfo.nav = "/";
+        }
+        
         return headerInfo;
     }
 
     getMainContent = () => {
         let itoperations = <p>No data</p>
 
-        if (this.state.ito_data) {
-            console.log(this.state.ito_data.sysStatus);
-            itoperations = (
-                <div className="itOperationsContainer">
-                    <Modal
-                        show={this.state.initiateRollback_dashboard}
-                        modalClosed={this.cancelRollbackHandler}>
-                        <RollbackPopup
+        if (this.state.snapMirror) {
+            itoperations = <SnapmirrorDashboard />
+        } else if (this.state.ito_data) {
+                console.log(this.state.ito_data.sysStatus);
+                itoperations = (
+                    <div className="itOperationsContainer">
+                        <Modal
+                            show={this.state.initiateRollback_dashboard}
+                            modalClosed={this.cancelRollbackHandler}>
+                            <RollbackPopup
+                                initrollback={this.initiateRollback_dashboardHandler}
+                                cancelRollback={this.cancelRollbackHandler}
+                                goodData={this.goodDataHandler}
+                            />
+                        </Modal>
+                        <SystemStatus sysStatus={this.state.ito_data.sysStatus} sysState={this.state.ito_data.sysState} />
+                        <StatisticsOEE oee={this.state.ito_data.oee} />
+                        <PlantHealth_ITO sysStatus={this.state.ito_data.sysStatus} plantHealth={this.state.ito_data.plantHealth} />
+                        <ProdRate prodRate={this.state.ito_data.prodRate} />
+                        <SnappMirror snapMirrorHandler={this.snapMirrorHandler} />
+                        <ActivityLog activityLog={this.state.ito_data.activityLog} />
+                        <Rollback
                             initrollback={this.initiateRollback_dashboardHandler}
-                            cancelRollback={this.cancelRollbackHandler}
-                            goodData = {this.goodDataHandler}
+                        //cancelRollback={this.cancelRollbackHandler}
                         />
-                    </Modal>
-                    <SystemStatus sysStatus={this.state.ito_data.sysStatus} sysState={this.state.ito_data.sysState} />
-                    <StatisticsOEE oee={this.state.ito_data.oee} />
-                    <PlantHealth_ITO sysStatus={this.state.ito_data.sysStatus} plantHealth={this.state.ito_data.plantHealth} />
-                    <ProdRate prodRate={this.state.ito_data.prodRate} />
-                    <SnappMirror />
-                    <ActivityLog activityLog={this.state.ito_data.activityLog} />
-                    <Rollback
-                        initrollback={this.initiateRollback_dashboardHandler}
-                    //cancelRollback={this.cancelRollbackHandler}
-                    />
-                    <Alerts />
-                </div>
+                        <Alerts />
+                    </div>
 
-            );
-        }
+                );
+            }
+
+
 
         return itoperations;
     }
@@ -151,7 +180,7 @@ class itOperations extends Component {
                 role="Operations Manager"
                 screenTop={PersonaEnv.PersonaorPath}
                 content={itoperations}
-                //backClickHandler = {PersonaEnv.backClickHandler}
+                backClickHandler = {PersonaEnv.backClickHandler}
                 path={PersonaEnv.nav}
                 warn={warn}
             />

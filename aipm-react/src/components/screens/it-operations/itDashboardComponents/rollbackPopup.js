@@ -84,7 +84,7 @@ class RollbackPopup extends Component {
         let popup_content;
         let popup_buttons;
         if (this.state.initiate_rollback_popup) {
-            popup_content = <p>confirm rollback</p>
+            popup_content = <p>Are you sure you want to roll back?</p>
             popup_buttons = (
                 <div className="rollback_popup_init">
                     <div onClick={this.confirmRollbackHandler} >Yes</div>
@@ -114,7 +114,22 @@ class RollbackPopup extends Component {
             let month = "Month";
             let day = "Day";
             let year = "Year";
-            let value = "value"
+            let value = "time";
+
+            if(this.state.chosenSnapshot){
+                let name = this.state.chosenSnapshot;
+                let split_name = name.split(/[-./_/]+/);
+                month= split_name[2];
+                day = split_name[3];
+                year = split_name[1];
+                value= split_name[4];
+                // month = split_name[1];
+                // let day_arr = split_name[2].split("_");
+                // day = day_arr[0];
+
+                // year = 
+
+            }
 
             popup_content = (<Aux>
                 <div className='select_line_container'>
@@ -140,7 +155,7 @@ class RollbackPopup extends Component {
                         </div>
                         <div className="target_date">
                             <div>Target Time</div>
-                            <div className="target_textbox"></div>
+                            <div className="target_textbox">{value}</div>
 
                         </div>
                     </div>
