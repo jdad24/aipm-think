@@ -1,8 +1,8 @@
 .itCard{
     display: flex;
     width: auto;
-    height: 305px;
-    width: 305px;
+    height: 310px;
+    width: 320px;
     margin: 5px;
     /* margin-right: 26px; */
 }
@@ -41,7 +41,8 @@
     font-weight: 600;
     /* height: 60px; */
     align-items: center;
-    padding-left: 20px;
+    padding: 0 20px;
+    justify-content: space-between;
 }
 
 .title{
@@ -60,8 +61,8 @@
 .select_line_container{
     display: flex;
     padding:10px;
-    border-top: 1px solid #C1C1C1;
-    border-bottom: 1px solid #C1C1C1;
+    /* border-top: 1px solid #C1C1C1;
+    border-bottom: 1px solid #C1C1C1; */
     background-color: #E5E5E5;
     align-items: center;
 }
@@ -111,8 +112,10 @@
 
 .ito_list{
     /* border-bottom: 1px solid #C1C1C1; */
-    margin: 15px;
-    padding: 5px 20px 20px 20px;
+    /* margin: 15px;
+    padding: 5px 20px 20px 20px; */
+    margin: 12px 20px;
+    padding: 5px 0 20px 0px;
 }
 
 .ito_list_border{
@@ -129,8 +132,9 @@
 .prodRate{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     font-size: 46px;
+    padding-left: 20px;
 }
 
 .rollback_modal{
@@ -154,7 +158,7 @@
 .snapshot{
     width: 200px;
     display: flex;
-    padding: 15px 10px 5px 10px;
+    padding: 20px 10px 5px 10px;
     border-bottom: 1px solid #E5E5E5;
 }
 
@@ -168,6 +172,9 @@
     background-color: white;
     margin: 5px;
     color: black;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
 }
 
 .target_month_day{
@@ -180,6 +187,7 @@
 
 .rollback_title{
     padding: 20px;
+    border-bottom: 1px solid #C1C1C1;
 }
 
 .rollback_popup_init{
@@ -187,8 +195,70 @@
     display: flex;
     align-items:center;
     justify-content: space-between; 
+    /* width: 100%; */
+    
+}
+
+.rollback_popup_init_popup{
+    height: 60px;
     background-color: #0062FF;
     color: white;
+    /* padding: 0 25px; */
+}
+
+.rollback_button_container{
+    padding: 0 25px; 
+}
+
+.oeeDropdown{
+    border: 1px solid #D7DAE2;
+    width: 130px;
+    height: 32px;
+    /* box-shadow: 0px 2px 3px #000000; */
+    border-radius: 4px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    font-size: 14px;
+}
+
+.prodRateContainer{
+    /* align-items: center; */
+    justify-content: center;
+    /* padding: 20px; */
+}
+
+.smdefinition{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    /* align-items: stretch;  */
+}
+
+.drarrow{
+    display: flex;
+    /* align-items: flex-end; */
+    justify-content: flex-end;
     width: 100%;
-    height: 60px;
+}
+
+.confirm_popup{
+    padding: 20px;
+    min-height: 200px;
+    width: 300px;
+}
+
+.confirm_popup_button{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.confirm_popup_button-black{
+    background-color: black;
+}
+
+.confirm_popup_button-blue{
+    background-color: #0062FF;
 }

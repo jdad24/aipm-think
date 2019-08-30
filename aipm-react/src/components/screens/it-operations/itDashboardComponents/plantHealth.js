@@ -31,9 +31,15 @@ class PlantHealth_ITO extends PureComponent {
 
         // let activities = <div>{this.state.activities[1]}</div>;
         let color = '#E0AD4E';
+        let labelColor = '#E0AD4E';
 
         if(this.state.sysStatus){
             color = '#4EE091';
+            labelColor= '#61C101';
+        }
+
+        let valueLabelStyle = {
+            fill: labelColor
         }
 
         let content =
@@ -50,6 +56,7 @@ class PlantHealth_ITO extends PureComponent {
                 height={180}
                 color={color}
                 label=""
+               valueLabelStyle= {valueLabelStyle}
                 min={0} 
                 max={100}
               />

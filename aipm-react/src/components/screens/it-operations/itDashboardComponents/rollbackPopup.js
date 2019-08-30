@@ -4,6 +4,7 @@ import Aux from '../../../common-ui/Aux/Aux';
 import Textbox from '../../../common-ui/Textbox/textbox';
 import './itDasboardComponents.css';
 import Axios from 'axios';
+import { thisTypeAnnotation } from '@babel/types';
 
 class RollbackPopup extends Component {
 
@@ -49,23 +50,39 @@ class RollbackPopup extends Component {
     }
 
     rollbackHandler = () => {
-        console.log("rollback initiated");
+        if(this.state.chosenLine&& this.state.chosenSnapshot){
+            console.log("rollback initiated");
         this.setState({
             initiate_rollback_popup: true
         });
+        }else{
+            alert("Please choose the line and snapshot to initiate rollback");
+        }
+        
     }
 
-    confirmRollbackHandler=() => {
-        //axios post call
-        Axios.get('https://aipm-gsc-nodered.mybluemix.net/restoreSnapshot?volume_name='+this.state.chosenLine+'&snapshot_restore_name='+this.state.chosenSnapshot).then(response => {
+    confirmRollbackHandler = () => {
+
+        // if(!(this.state.chosenLine&& this.state.chosenSnapshot)){
+        //     alert("Please choose line and snapshot");
+        // }else{
+            //axios post call
+        Axios.get('https://aipm-gsc-nodered.mybluemix.net/restoreSnapshot?volume_name=' + this.state.chosenLine + '&snapshot_restore_name=' + this.state.chosenSnapshot).then(response => {
             console.log(response);
             this.props.goodData();
         });
+
+        Axios.get('https://aipm-gsc-nodered.mybluemix.net/updateRollbackTime?snapshot_restore_name=' + this.state.chosenSnapshot).then(response => {
+            console.log(response);
+            this.props.goodData();
+        });
+
+        // }
         this.cancelRollbackHandler();
         this.props.cancelRollback();
     }
 
-    cancelRollbackHandler =() => {
+    cancelRollbackHandler = () => {
         this.setState({
             initiate_rollback_popup: false,
             snapshot_names: [],
@@ -76,6 +93,18 @@ class RollbackPopup extends Component {
         this.props.cancelRollback();
     }
 
+    splitChosenSnapshot = (csnapshot) => {
+        // let csnapshot;
+        let name = this.state.chosenSnapshot;
+        let split_name = name.split(/[-./_/]+/);
+        csnapshot.month = split_name[2];
+        csnapshot.day = split_name[3];
+        csnapshot.year = split_name[1];
+        csnapshot.value = split_name[4];
+        csnapshot.time = csnapshot.value[0] + csnapshot.value[1]+":"+csnapshot.value[2] + csnapshot.value[3]
+        return csnapshot;
+    }
+
     getMainContent = () => {
         // if(this.state.line_names.length>0){
 
@@ -84,11 +113,21 @@ class RollbackPopup extends Component {
         let popup_content;
         let popup_buttons;
         if (this.state.initiate_rollback_popup) {
-            popup_content = <p>Are you sure you want to roll back?</p>
+            let csnapshot={
+                month : "Month",
+                day : "Day",
+                year : "Year",
+                value : "Time",
+                time : "Time"
+            };
+
+            csnapshot = this.splitChosenSnapshot(csnapshot);
+
+            popup_content = <div className="confirm_popup"><p>Are you sure you want to roll back to {csnapshot.month+"/"+csnapshot.day+"/"+csnapshot.year+" "+csnapshot.time}?</p></div>
             popup_buttons = (
-                <div className="rollback_popup_init">
-                    <div onClick={this.confirmRollbackHandler} >Yes</div>
-                    <div onClick={this.cancelRollbackHandler}>No</div>
+                <div className="rollback_popup_init rollback_popup_init_popup">
+                    <div className="confirm_popup_button confirm_popup_button-blue" onClick={this.confirmRollbackHandler} >Yes</div>
+                    <div className="confirm_popup_button confirm_popup_button-black" onClick={this.cancelRollbackHandler}>No</div>
                 </div>
             );
         } else {
@@ -102,32 +141,32 @@ class RollbackPopup extends Component {
                     </div>
                 );
             });
-    
-            let snapshots = <p>choose Line for snapshots</p>;
-    
+
+            let snapshots = <p>choose line for snapshots</p>;
+
             if (this.state.snapshot_names.length > 0) {
                 snapshots = this.state.snapshot_names.map(s => {
                     return <div onClick={(e) => this.choosenSnapshotHandler(e, s)} key={s} className="snapshot">{s}</div>;
                 });
             }
-    
-            let month = "Month";
-            let day = "Day";
-            let year = "Year";
-            let value = "time";
 
-            if(this.state.chosenSnapshot){
-                let name = this.state.chosenSnapshot;
-                let split_name = name.split(/[-./_/]+/);
-                month= split_name[2];
-                day = split_name[3];
-                year = split_name[1];
-                value= split_name[4];
-                // month = split_name[1];
-                // let day_arr = split_name[2].split("_");
-                // day = day_arr[0];
+            let csnapshot={
+                month : "Month",
+                day : "Day",
+                year : "Year",
+                value : "Time",
+                time : "Time"
+            };
 
-                // year = 
+            if (this.state.chosenSnapshot) {
+                csnapshot = this.splitChosenSnapshot(csnapshot);
+                // let name = this.state.chosenSnapshot;
+                // let split_name = name.split(/[-./_/]+/);
+                // month = split_name[2];
+                // day = split_name[3];
+                // year = split_name[1];
+                // value = split_name[4];
+                // time = <div className="target_textbox">{value[0] + value[1]}:{value[2] + value[3]}</div>
 
             }
 
@@ -145,17 +184,17 @@ class RollbackPopup extends Component {
                         <div className="target_date">
                             <div>Target Date</div>
                             <div className="target_month_day">
-                                <div className="target_textbox">{month}</div>
-                                <div className="target_textbox">{day}</div>
+                                <div className="target_textbox">{csnapshot.month}</div>
+                                <div className="target_textbox">{csnapshot.day}</div>
 
                             </div>
 
-                            <div className="target_textbox">{year}</div>
+                            <div className="target_textbox">{csnapshot.year}</div>
 
                         </div>
                         <div className="target_date">
                             <div>Target Time</div>
-                            <div className="target_textbox">{value}</div>
+                            <div className="target_textbox">{csnapshot.time}</div>
 
                         </div>
                     </div>
@@ -167,8 +206,8 @@ class RollbackPopup extends Component {
                 </div>
             </Aux>);
 
-            popup_buttons=(
-                <div className="rollback_popup_init" onClick={this.rollbackHandler}>
+            popup_buttons = (
+                <div className="rollback_popup_init rollback_popup_init_popup rollback_button_container" onClick={this.rollbackHandler}>
                     <div>Initiate Rollback</div>
                     <div>arrow</div>
                 </div>

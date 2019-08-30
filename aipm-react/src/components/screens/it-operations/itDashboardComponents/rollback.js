@@ -6,37 +6,44 @@ import './itDasboardComponents.css';
 
 class RollBack extends PureComponent {
 
-    // state = {
-    //     sysStatus: null,
-    //     activities: []
+    state = {
+        lastRollback: []
+    }
+
+    // componentDidMount() {
+    //     this.setState({
+    //         lastRollback: this.props.lastRollback
+    //     });
     // }
 
-    componentDidMount() {
-        // axios.get('https://aipm-gsc-nodered.mybluemix.net/getSysStatus').then(response => {
-        //     console.log(response);
-        //     this.setState({
-        //         sysStatus: response.data.status,
-        //         activities: response.data.activities
-        //     });
-        // });
+    static getDerivedStateFromProps = (props, state) => {
+        return{
+            lastRollback: props.lastRollback
+        }
     }
 
     getMainContent = () => {
-        // console.log(this.state.sysStatus);
-        // let activities = this.state.activities.map(activity => {
-        //     return <div>{activity}</div>
-        // });
-
-        // let activities = <div>{this.state.activities[1]}</div>;
-
+        console.log("lastrollback" + this.state.lastRollback);
+        let lastrb = null;
+        if(this.state.lastRollback){
+            lastrb = this.state.lastRollback[0]+"/"+this.state.lastRollback[1]+"/"+this.state.lastRollback[2]+" "+ this.state.lastRollback[4];
+        }
         let content =
             (<div className="sysStatusContainer">
                 <div className="titleStatusContainer">
                     <div className="title">Rollback</div>
                     {/* <div className="status">last 6 hours</div> */}
                 </div>
-                <div>Last Rollback M/D/Y CT NN:NN</div>
-                <div><button onClick={this.props.initrollback}>initiate rollback</button></div>
+                <div className="smdefinition">
+                    <div>Last Rollback {" "+lastrb}</div>
+                    {/* <div>Last Rollback {this.state.lastRollback}</div> */}
+                    <div  className="rollback_popup_init" onClick={this.props.initrollback}>
+                    <div>Initiate rollback</div>
+                    <div>arrow</div>
+                    </div>
+                    
+                </div>
+                
             </div>);
         return content;
     }
@@ -45,7 +52,7 @@ class RollBack extends PureComponent {
         let content = this.getMainContent();
 
         return (
-            <BasicCard classname = "itCard">
+            <BasicCard classname="itCard">
                 {content}
             </BasicCard>
         );

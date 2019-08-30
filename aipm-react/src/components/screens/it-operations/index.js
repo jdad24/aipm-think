@@ -115,9 +115,15 @@ class itOperations extends Component {
         };
 
         if (this.state.snapMirror) {
-            headerInfo.PersonaorPath = (<div>
-                <div>Replication Status: Active</div>
-                <div>Replication Schedule: every 5 minutes</div>
+            headerInfo.PersonaorPath = (
+            <div className="repStatus">
+                <div>
+                <div className="dot" />
+              </div>
+              <div>
+                <div className="repStatus_text">Replication Status:{" "}Active</div>
+                <div className="repStatus_text">Replication Schedule: {" "}<b>every 5 minutes</b></div>
+                </div>
             </div>);
             headerInfo.backClickHandler = this.backClickHandler;
         }else{
@@ -134,7 +140,7 @@ class itOperations extends Component {
         if (this.state.snapMirror) {
             itoperations = <SnapmirrorDashboard />
         } else if (this.state.ito_data) {
-                console.log(this.state.ito_data.sysStatus);
+                //console.log(this.state.ito_data);
                 itoperations = (
                     <div className="itOperationsContainer">
                         <Modal
@@ -150,10 +156,14 @@ class itOperations extends Component {
                         <StatisticsOEE oee={this.state.ito_data.oee} />
                         <PlantHealth_ITO sysStatus={this.state.ito_data.sysStatus} plantHealth={this.state.ito_data.plantHealth} />
                         <ProdRate prodRate={this.state.ito_data.prodRate} />
-                        <SnappMirror snapMirrorHandler={this.snapMirrorHandler} />
+                        <SnappMirror 
+                        snapMirrorHandler={this.snapMirrorHandler} 
+                        snappMirror={this.state.ito_data.snappMirror}
+                        />
                         <ActivityLog activityLog={this.state.ito_data.activityLog} />
                         <Rollback
                             initrollback={this.initiateRollback_dashboardHandler}
+                            lastRollback={this.state.ito_data.rollback}
                         //cancelRollback={this.cancelRollbackHandler}
                         />
                         <Alerts />

@@ -34,14 +34,17 @@ class ProdRate extends PureComponent {
         // });
 
         // let activities = <div>{this.state.activities[1]}</div>;
-
+        let style={
+            paddingLeft: "20px"
+        }
         let content =
-            (<div className="sysStatusContainer">
+            (<div className="sysStatusContainer prodRateContainer">
                 {/* <div className="titleStatusContainer">
                     <div className="title">Plant Health</div>
                     <div className="status">last 6 hours</div>
                 </div> */}
                 <div className="prodRate">{this.state.prodRate+" "}units/min</div>
+                <div style={style}>Number Produced</div>
             </div>);
         return content;
     }
