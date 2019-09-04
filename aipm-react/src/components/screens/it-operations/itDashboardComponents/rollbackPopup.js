@@ -5,6 +5,7 @@ import Textbox from '../../../common-ui/Textbox/textbox';
 import './itDasboardComponents.css';
 import Axios from 'axios';
 import { thisTypeAnnotation } from '@babel/types';
+import arrow_white from '../../../../assets/arrow_right_white.svg';
 
 class RollbackPopup extends Component {
 
@@ -209,7 +210,7 @@ class RollbackPopup extends Component {
             popup_buttons = (
                 <div className="rollback_popup_init rollback_popup_init_popup rollback_button_container" onClick={this.rollbackHandler}>
                     <div>Initiate Rollback</div>
-                    <div>arrow</div>
+                    <div><img src={arrow_white}/></div>
                 </div>
             );
 

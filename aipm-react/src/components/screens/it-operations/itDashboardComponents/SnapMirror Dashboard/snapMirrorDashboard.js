@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './snapMirrorDashboard.css';
 import Aux from '../../../../common-ui/Aux/Aux';
+import arrow_right_white from '../../../../../assets/arrow_right_white.svg';
+import arrow_left_white from '../../../../../assets/arrow_left_white.svg';
 
 
 class snapmirrorDashboard extends Component {
@@ -29,14 +31,18 @@ class snapmirrorDashboard extends Component {
         }
         let rep_buttons = (
             <Aux>
-                <div className={right} onClick={this.replicationDirection}>arrow</div>
-                <div className={left} onClick={this.replicationDirection}>arrow</div>
+                <div className={right} onClick={this.replicationDirection}>
+                    <img src={arrow_right_white} />
+                </div>
+                <div className={left} onClick={this.replicationDirection}>
+                    <img src={arrow_left_white} />
+                </div>
             </Aux>
         );
         return (
             <Aux>
                 <div className="smlistContainer smlistContainer-grid1">
-                    <div className="smfile smfile-grey">DA1</div>
+                    <div className="smfile smfile-grey">Factory 1</div>
                     {this.configFlieList}
                 </div>
                 <div className="smlistContainer-grid2">
@@ -46,7 +52,7 @@ class snapmirrorDashboard extends Component {
                     {/* </div> */}
                 </div>
                 <div className="smlistContainer smlistContainer-grid3">
-                    <div className="smfile smfile-grey">DA2</div>
+                    <div className="smfile smfile-grey">Factory 2</div>
                     {this.configFlieList}
                 </div>
             </Aux>

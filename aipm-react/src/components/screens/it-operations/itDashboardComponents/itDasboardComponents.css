@@ -262,3 +262,7 @@
 .confirm_popup_button-blue{
     background-color: #0062FF;
 }
+
+.rollback_popup_init_dash{
+    padding: 20px;
+}

@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import axios from 'axios';
 import BasicCard from '../../../common-ui/BasicCard/basicCard';
 import Aux from '../../../common-ui/Aux/Aux';
+import arrow_right_white from '../../../../assets/arrow_right_white.svg';
 import './itDasboardComponents.css';
 
 class RollBack extends PureComponent {
@@ -17,7 +18,7 @@ class RollBack extends PureComponent {
     // }
 
     static getDerivedStateFromProps = (props, state) => {
-        return{
+        return {
             lastRollback: props.lastRollback
         }
     }
@@ -25,8 +26,8 @@ class RollBack extends PureComponent {
     getMainContent = () => {
         console.log("lastrollback" + this.state.lastRollback);
         let lastrb = null;
-        if(this.state.lastRollback){
-            lastrb = this.state.lastRollback[0]+"/"+this.state.lastRollback[1]+"/"+this.state.lastRollback[2]+" "+ this.state.lastRollback[4];
+        if (this.state.lastRollback) {
+            lastrb = this.state.lastRollback[0] + "/" + this.state.lastRollback[1] + "/" + this.state.lastRollback[2] + " " + this.state.lastRollback[4];
         }
         let content =
             (<div className="sysStatusContainer">
@@ -35,15 +36,13 @@ class RollBack extends PureComponent {
                     {/* <div className="status">last 6 hours</div> */}
                 </div>
                 <div className="smdefinition">
-                    <div>Last Rollback {" "+lastrb}</div>
+                    <div>Last Rollback {" " + lastrb}</div>
                     {/* <div>Last Rollback {this.state.lastRollback}</div> */}
-                    <div  className="rollback_popup_init" onClick={this.props.initrollback}>
-                    <div>Initiate rollback</div>
-                    <div>arrow</div>
-                    </div>
-                    
                 </div>
-                
+                <div className="rollback_popup_init rollback_popup_init_popup rollback_popup_init_dash" onClick={this.props.initrollback}>
+                    <div>Initiate rollback</div>
+                    <div><img src={arrow_right_white} /></div>
+                </div>
             </div>);
         return content;
     }

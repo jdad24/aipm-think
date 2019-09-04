@@ -3,6 +3,8 @@ import axios from 'axios';
 import BasicCard from '../../../common-ui/BasicCard/basicCard';
 import Aux from '../../../common-ui/Aux/Aux';
 import './itDasboardComponents.css';
+import white_arrow from '../../../../assets/arrow_right_white.svg';
+import arrow_right_black from '../../../../assets/arrow_right_black.svg';
 
 class SnappMirror extends PureComponent {
 
@@ -37,7 +39,7 @@ class SnappMirror extends PureComponent {
                 </div>
                 <div className="smdefinition">
                     <div>{this.props.snappMirror}</div>
-                    <div className="drarrow" onClick={this.props.snapMirrorHandler}>arrow</div>
+                    <div className="drarrow" onClick={this.props.snapMirrorHandler}><img src={arrow_right_black} /></div>
                 </div>
             </div>);
         return content;
