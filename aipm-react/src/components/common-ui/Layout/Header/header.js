@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Component} from 'react';
 import './header.css';
 import { Link } from 'react-router-dom';
 import chatIcon from '../../../../assets/chat.svg';
@@ -9,53 +9,52 @@ import helpIcon from '../../../../assets/help.svg';
 import arrowIcon from '../../../../assets/arrow.svg';
 
 
-const header = (props) => {
-    let backButton;
-    if (props.path) {
-        backButton =
-            <Link to={props.path}>
-                <div className="backIcon" >
-                    <img src={arrowIcon} />
-                </div>
-            </Link>
+class Header extends Component{
 
-    } else {
-        backButton =
-        <div onClick={props.backClickHandler}>
-            <div className="backIcon" >
-                <img src={arrowIcon} />
-            </div>
-        </div>
-    }
-
-    return (
-        <div className="Header">
-            <div className="headerContents headerContentsLeft">
-                {/* <div onClick={props.backClickHandler}> */}
-                    {/* <Link to={props.path}> */}
-                    {/* <Link to="/">
+    getHeader = () => {
+        let backButton;
+        if (this.props.path) {
+            backButton =
+                <Link to={this.props.path}>
                     <div className="backIcon" >
                         <img src={arrowIcon} />
                     </div>
-                    </Link> */}
-                {/* </div> */}
-                {backButton}
-                <div>{props.role}</div>
-            </div>
-            <div className="headerContents headerContentsRight">
-                <div className="chatIcon">
-                    <img src={chatIcon} />
-                    {/* <img src={onlineIcon} /> */}
-                    <span></span>
+                </Link>
+    
+        } else {
+            backButton =
+            <div onClick={this.props.backClickHandler}>
+                <div className="backIcon" >
+                    <img src={arrowIcon} />
                 </div>
-                <div><img src={notificationIcon} /></div>
-                <div><img src={accountIcon} /></div>
-                <div><img src={helpIcon} /></div>
             </div>
-        </div>
-    );
+        }
+    
+        return backButton;
+    
+    }
 
+    render(){
+        let backButton = this.getHeader();
+        return (
+            <div className="Header">
+                <div className="headerContents headerContentsLeft">
+                    {backButton}
+                    <div>{this.props.role}</div>
+                </div>
+                <div className="headerContents headerContentsRight">
+                    <div className="chatIcon" onClick={this.props.chatHandler}>
+                        <img src={chatIcon} />
+                        <span></span>
+                    </div>
+                    <div><img src={notificationIcon} /></div>
+                    <div><img src={accountIcon} /></div>
+                    <div><img src={helpIcon} /></div>
+                </div>
+            </div>
+        );
+    }
 }
 
-export default header;
+export default Header;
 
