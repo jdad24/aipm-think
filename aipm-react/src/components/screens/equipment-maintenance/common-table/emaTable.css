@@ -18,6 +18,10 @@
   padding: 10px;
   /* cursor: pointer; */
 }
+.emaTableContainer{
+  height: 70vh;
+  overflow: scroll;
+}
 
 .EmaResultTd {
   border: none;
