@@ -4,13 +4,13 @@ import BasicCard from '../../../common-ui/BasicCard/basicCard';
 import Aux from '../../../common-ui/Aux/Aux';
 import {
     LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
-  } from 'recharts';
+} from 'recharts';
 import './itDasboardComponents.css';
 
 class StatisticsOEE extends PureComponent {
 
     state = {
-        oee: [15,12,17,15,20]
+        oee: [15, 12, 17, 15, 20]
     }
 
     static getDerivedStateFromProps = (props, state) => {
@@ -27,19 +27,25 @@ class StatisticsOEE extends PureComponent {
         // });
 
         // let activities = <div>{this.state.activities[1]}</div>;
-        let data = this.state.oee.slice(0,5).map(element => {
-            return ({ "OEE": element});
-          });
+        let data = this.state.oee.slice(0, 5).map(element => {
+            return ({ "OEE": element });
+        });
 
         let content =
             (<div className="sysStatusContainer">
                 <div className="titleStatusContainer">
                     <div className="title">Statistics OEE</div>
-                    <div className="status">last 6 hours</div>
+                    <div className="status">
+                        <select className="oeeDropdown">
+                            <option value="6hours">Last 6 hours</option>
+                            <option value="volvo">Last 10 hours</option>
+                            <option value="saab">Last 12 hours</option>
+                        </select>
+                    </div>
                 </div>
                 <div className="ito_card_graph">
                     <LineChart
-                        width={300}
+                        width={350}
                         height={200}
                         data={data}
                         margin={{
@@ -48,7 +54,7 @@ class StatisticsOEE extends PureComponent {
                     >
                         <CartesianGrid strokeDasharray="3 3" />
                         {/* <XAxis/> */}
-                        <YAxis dataKey="OEE" domain={[0,25]} />
+                        <YAxis dataKey="OEE" domain={[0, 25]} />
                         <Tooltip />
                         <Legend />
                         <Line type="monotone" dataKey="OEE" stroke="#8884d8" activeDot={{ r: 8 }} />

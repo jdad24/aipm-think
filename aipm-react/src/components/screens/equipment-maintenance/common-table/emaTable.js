@@ -82,7 +82,7 @@ const emaTable = props => {
   //   });
 
   let tableHeader = (
-    <div>
+    <div className="emaTableContainer">
       <table id="emaTableid" className="Ematable">
         <tbody>
           {headertr}
