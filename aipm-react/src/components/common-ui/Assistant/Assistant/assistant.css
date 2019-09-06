@@ -13,7 +13,7 @@
     transition: all 0.5s ease-out;
     display: grid;
     grid-template-columns: 48px auto;
-    grid-template-rows: 10% 80% 10%;
+    grid-template-rows: 10% 77% 13%;
     /* grid-template-columns: 48px auto;
     grid-template-rows: 75px 1fr 48px; */
     /* border: 1px solid white; */
@@ -25,6 +25,9 @@
     grid-row-end: 4;
     grid-column-start: 1;
     grid-column-end: 2;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
     /* border: 1px solid white; */
     background-color: #171717;
 }
@@ -48,6 +51,29 @@
     grid-row-start: 3;
     grid-column: 2;
     background-color: #3D3D3D;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
     /* color: #F3F3F3; */
     /* border: 1px solid white; */
+}
+
+.AssistantBottom_input{
+    background-color: #3D3D3D;
+    height: 30px;
+    color: #F3F3F3;
+    font-size: 16px;
+    display: flex;
+    /* justify-content: flex-start;
+    align-items: flex-start; */
+    border: none;
+    width: 90%;
+    /* height: 90%; */
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
 }

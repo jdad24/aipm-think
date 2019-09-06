@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18.125" height="17.497" viewBox="0 0 18.125 17.497">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="18.125" height="17.497" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <path id="Path_64" data-name="Path 64" d="M19.375-12.244l-.881-.881L16.25-10.881l-2.244-2.244-.881.881L15.369-10,13.125-7.756l.881.881L16.25-9.119l2.244,2.244.881-.881L17.131-10l2.244-2.244ZM11.25-1.25a.625.625,0,0,1-.444-.187L6.044-6.25H1.875a.625.625,0,0,1-.625-.625v-6.25a.625.625,0,0,1,.625-.625H6.044l4.762-4.812a.625.625,0,0,1,.681-.138.625.625,0,0,1,.388.576v16.25A.625.625,0,0,1,11.25-1.25ZM2.5-7.5H6.3a.625.625,0,0,1,.444.188l3.881,3.919V-16.606L6.744-12.687A.625.625,0,0,1,6.3-12.5H2.5Z" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-3">
+      <path id="Path_63" data-name="Path 63" d="M0,0H21V-20H0Z" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-4">
+      <rect id="Rectangle_18" data-name="Rectangle 18" width="44" height="44" transform="translate(-4 -24)" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-5">
+      <path id="Path_59" data-name="Path 59" d="M1-1H20V-19H1Z" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-6">
+      <path id="Path_62" data-name="Path 62" d="M0-20H40V20H0Z" fill="none" clip-rule="evenodd"/>
+    </clipPath>
+  </defs>
+  <g id="Component_19_2" data-name="Component 19 – 2" clip-path="url(#clip-path)">
+    <g id="Group_62" data-name="Group 62" transform="translate(-1.25 18.747)" clip-path="url(#clip-path-2)">
+      <g id="Group_61" data-name="Group 61" clip-path="url(#clip-path-3)">
+        <g id="Group_60" data-name="Group 60" clip-path="url(#clip-path-4)">
+          <g id="Group_57" data-name="Group 57" clip-path="url(#clip-path-5)">
+            <path id="Path_58" data-name="Path 58" d="M-3.75-23.747H24.375V3.75H-3.75Z"/>
+          </g>
+          <g id="Group_59" data-name="Group 59" clip-path="url(#clip-path-6)">
+            <g id="Group_58" data-name="Group 58" clip-path="url(#clip-path-5)">
+              <path id="Path_60" data-name="Path 60" d="M-5-25H45V25H-5Z" fill="#bdbebd"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
