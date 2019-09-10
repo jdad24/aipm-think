@@ -8,7 +8,7 @@ const createMarkup = (e) => {
 
 const emaTable = props => {
   let th = props.header.map(element => {
-    return <th className="EmaTh">{element}</th>;
+    return <th key={element} className="EmaTh">{element}</th>;
   });
   let headertr = <tr>{th}</tr>;
 

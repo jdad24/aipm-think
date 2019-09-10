@@ -5,6 +5,7 @@ import RobotList from '../../common-ui/robot-list/robot-list';
 import Aux from '../../common-ui/Aux/Aux';
 import PMDashboard from './predictive-maintenance-dashboard/PMDashboard';
 import Layout from '../../common-ui/Layout/layout';
+import axios from 'axios';
 // import { Client } from './node_modules/paho-mqtt';
 import './PM.css';
 
@@ -14,6 +15,17 @@ class PredictiveMaintenance extends Component {
     state = {
         pmDashboard: false,
         robotEnvironment: null,
+        title: "predictiveMaintenance",
+        sampleQ: [] 
+    }
+
+    componentDidMount = () => {
+        axios.get('https://aipm-gsc-nodered.mybluemix.net/sampleQuestions?persona='+this.state.title).then(response => {
+            console.log(response);
+            this.setState({
+                sampleQ: response.data
+            });
+        });
     }
 
     robotClickHandler = (event, value) => {
@@ -91,6 +103,7 @@ class PredictiveMaintenance extends Component {
                 content={PredictiveMaintenance}
                 backClickHandler = {PersonaEnv.backClickHandler}
                 path = {PersonaEnv.nav}
+                sampleQ = {this.state.sampleQ}
             />
 
         );

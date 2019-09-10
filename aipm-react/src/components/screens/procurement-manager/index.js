@@ -4,8 +4,15 @@ import PersonaEnv from "../../common-ui/personaEnv/personaEnv";
 import Layout from "../../common-ui/Layout/layout";
 import './index.css';
 import procMgrScreenShot from "../../../assets/procurementManager.png";
+import axios from 'axios';
 
 class ProductionOptimization extends Component {
+
+  state = {
+    title: "procurementManager",
+    sampleQ: []
+  }
+  
   backClickHandler = () => {
     this.setState({
       viDashboard: false,
@@ -15,6 +22,15 @@ class ProductionOptimization extends Component {
     console.log("backClickHandler");
   };
 
+  componentDidMount = () => {
+    axios.get('https://aipm-gsc-nodered.mybluemix.net/sampleQuestions?persona=' + this.state.title).then(response => {
+      console.log(response);
+      this.setState({
+        sampleQ: response.data
+      });
+    });
+  }
+
   getPersonaEnv = () => {
     let headerInfo = {
       PersonaorPath: null,
@@ -22,18 +38,18 @@ class ProductionOptimization extends Component {
       backClickHandler: null
     };
 
-      headerInfo.PersonaorPath = <PersonaEnv name="Penelope" />;
-      headerInfo.nav = "/";
+    headerInfo.PersonaorPath = <PersonaEnv name="Penelope" />;
+    headerInfo.nav = "/";
 
 
     return headerInfo;
   };
 
   getProcMgrContent = () => {
-        let myContent = 
-        <a href="https://gscvidashboard.mybluemix.net"  target="_blank"><img src={procMgrScreenShot} className="procMgrContainerImg"></img></a>
-        return myContent
-    
+    let myContent =
+      <a href="https://gscvidashboard.mybluemix.net" target="_blank"><img src={procMgrScreenShot} className="procMgrContainerImg"></img></a>
+    return myContent
+
   }
 
   render() {
@@ -47,6 +63,7 @@ class ProductionOptimization extends Component {
         content={poContent}
         backClickHandler={PersonaEnv.backClickHandler}
         path={PersonaEnv.nav}
+        sampleQ={this.state.sampleQ}
       />
     );
   }

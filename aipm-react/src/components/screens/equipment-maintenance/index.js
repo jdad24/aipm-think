@@ -19,7 +19,9 @@ class EquipmentMaintenance extends Component {
     emaResults: false,
     workOrderList: false,
     emaResponse: [],
-    style: {cursor: "default"}
+    style: {cursor: "default"},
+    sampleQ: [],
+    title: "technician"
   };
 
   // constructor(props) {
@@ -142,6 +144,12 @@ class EquipmentMaintenance extends Component {
 
   componentDidMount() {
     this.getWorkOrders();
+    axios.get('https://aipm-gsc-nodered.mybluemix.net/sampleQuestions?persona='+this.state.title).then(response => {
+            console.log(response);
+            this.setState({
+                sampleQ: response.data
+            });
+        });
   }
 
   componentWillUnmount() {
@@ -238,6 +246,7 @@ class EquipmentMaintenance extends Component {
                 content={emaElement}
                 backClickHandler = {PersonaEnv.backClickHandler}
                 path = {PersonaEnv.nav}
+                sampleQ = {this.state.sampleQ}
             />
 
         );

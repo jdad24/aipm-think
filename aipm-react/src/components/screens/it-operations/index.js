@@ -20,7 +20,9 @@ class itOperations extends Component {
     state = {
         initiateRollback_dashboard: false,
         ito_data: null,
-        snapMirror: false
+        snapMirror: false,
+        title: "visualInsights",
+        sampleQ: [] 
     }
 
     initiateRollback_dashboardHandler = () => {
@@ -52,6 +54,12 @@ class itOperations extends Component {
     componentDidMount() {
         this.goodDataHandler();
         this.webSocketHandler();
+        axios.get('https://aipm-gsc-nodered.mybluemix.net/sampleQuestions?persona='+this.state.title).then(response => {
+            console.log(response);
+            this.setState({
+                sampleQ: response.data
+            });
+        });
     }
 
     backClickHandler = () => {
@@ -193,6 +201,7 @@ class itOperations extends Component {
                 backClickHandler = {PersonaEnv.backClickHandler}
                 path={PersonaEnv.nav}
                 warn={warn}
+                sampleQ = {this.state.sampleQ}
             />
         );
     }

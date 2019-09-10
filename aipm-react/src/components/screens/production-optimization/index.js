@@ -4,8 +4,15 @@ import PersonaEnv from "../../common-ui/personaEnv/personaEnv";
 import Layout from "../../common-ui/Layout/layout";
 import './index.css';
 import poScreenShot from "../../../assets/productionOptimization.png";
+import axios from 'axios';
 
 class ProductionOptimization extends Component {
+
+  state = {
+    title: "procurementManager",
+    sampleQ: []
+  }
+
   backClickHandler = () => {
     this.setState({
       viDashboard: false,
@@ -14,6 +21,17 @@ class ProductionOptimization extends Component {
     });
     console.log("backClickHandler");
   };
+
+
+  componentDidMount = () => {
+    axios.get('https://aipm-gsc-nodered.mybluemix.net/sampleQuestions?persona='+this.state.title).then(response => {
+        console.log(response);
+        this.setState({
+            sampleQ: response.data
+        });
+    });
+}
+
 
   getPersonaEnv = () => {
     let headerInfo = {
@@ -47,6 +65,7 @@ class ProductionOptimization extends Component {
         content={poContent}
         backClickHandler={PersonaEnv.backClickHandler}
         path={PersonaEnv.nav}
+        sampleQ = {this.state.sampleQ}
       />
     );
   }

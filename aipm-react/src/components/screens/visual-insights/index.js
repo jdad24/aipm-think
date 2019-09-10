@@ -7,14 +7,27 @@ import VIdashboard from './visual-insights-dashboard/vidashboard';
 import Layout from '../../common-ui/Layout/layout';
 // import { Client } from 'paho-mqtt';
 import './vi.css';
+import axios from 'axios';
 
 class VisualInsights extends Component {
 
     state = {
         viDashboard: false,
         robotEnvironment: null,
+        title: "visualInsights",
+        sampleQ: [] 
         // linkPath:"/"
     }
+
+    componentDidMount = () => {
+        axios.get('https://aipm-gsc-nodered.mybluemix.net/sampleQuestions?persona='+this.state.title).then(response => {
+            console.log(response);
+            this.setState({
+                sampleQ: response.data
+            });
+        });
+    }
+
 
     robotClickHandler = (event, value) => {
         this.setState({
@@ -144,6 +157,7 @@ class VisualInsights extends Component {
                 content={visualInsights}
                 backClickHandler = {PersonaEnv.backClickHandler}
                 path = {PersonaEnv.nav}
+                sampleQ = {this.state.sampleQ}
             />
         );
     }

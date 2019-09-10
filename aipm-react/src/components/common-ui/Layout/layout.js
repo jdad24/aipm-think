@@ -40,7 +40,7 @@ class Layout extends Component {
         return (
             <div className='layout'>
                 <Header chatHandler={this.chatClickHandler} path={this.props.path} role={this.props.role} backClickHandler={this.props.backClickHandler} />
-                <Assistant show={this.state.showAssistant}/>
+                <Assistant show={this.state.showAssistant} sampleQ={this.props.sampleQ}/>
                 <SideBar />
                 <div className={w.warnbar}>{w.warnText}</div>
                 <ScreenTop>
