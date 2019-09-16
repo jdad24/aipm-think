@@ -10,7 +10,6 @@ import WatsonDialog from './Watson/watson';
 import UserDialog from './User/user';
 import Aux from '../../../common-ui/Aux/Aux';
 import UpArrow from "../../../../assets/UpArrow.svg"
-import { animateScroll } from "react-scroll";
 
 import './assistant.css';
 
@@ -111,6 +110,8 @@ class Assistant extends Component {
 
     getQuestions = () => {
         let sampleQs = "Loading sample questions.."
+        var count = 0
+
         if (this.state.sampleQ) {
             sampleQs = this.state.sampleQ.map(s => {
                 return <div onClick={(e) => this.getSampleQText(e, s)} className="question" key={s}>{s}</div>
@@ -127,13 +128,19 @@ class Assistant extends Component {
         let index = 0;
         let dialog = this.state.dialog.map(d => {
             let search;
+
+            var count = -2 //Counter to handle URL link. Link code runs every 3 times in map function
             if (Array.isArray(d.watsonDialog)) {
 
-                search = d.watsonDialog.map(searchResults => {
+                search = d.watsonDialog.map((searchResults, i) => {
                     console.log(searchResults);
+                    count++
                     return (
                         <WatsonDialog>
-                            <p dangerouslySetInnerHTML={this.createMarkup(searchResults)} />
+                            {/* {count%3==0 ? <a href={'../../../../pdfDiscovery/' + searchResults} target="_blank"><p dangerouslySetInnerHTML={this.createMarkup(searchResults)} /> </a>
+                            : <p dangerouslySetInnerHTML={this.createMarkup(searchResults)} />}  */}
+                             {count%3==0 ? <a href={'pdfDiscovery/' + searchResults} target="_blank"><p dangerouslySetInnerHTML={this.createMarkup(searchResults)} /> </a>
+                            : <p dangerouslySetInnerHTML={this.createMarkup(searchResults)} />}
                             {/* <p>{searchResults}</p> */}
                         </WatsonDialog>
                     );
