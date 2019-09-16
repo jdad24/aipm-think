@@ -9,7 +9,7 @@ import axios from 'axios';
 class ProductionOptimization extends Component {
 
   state = {
-    title: "procurementManager",
+    title: "plantManager",
     sampleQ: []
   }
 

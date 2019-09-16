@@ -43,6 +43,7 @@
     grid-row-end: 3;
     grid-row-start: 2;
     grid-column: 2;
+    overflow: scroll;
     /* border: 1px solid white; */
 }
 
@@ -72,8 +73,46 @@
 }
 
 input:focus,
+div:focus,
 select:focus,
 textarea:focus,
 button:focus {
     outline: none;
+}
+
+.question{
+    border: 1px solid #0062FF; 
+    padding: 15px;
+    border-radius: 15px;
+    margin: 15px;
+}
+
+.dialog{
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+}
+
+.userDialog{
+    align-items:flex-end;   
+}
+
+.watsonDialog{
+    align-items:flex-start;
+}
+
+.watson{
+    border-left: 5px solid #BB8EFF;
+    padding-left: 5px;
+}
+
+.user{
+    border-right: 5px solid #BB8EFF;
+    /* border-spacing: 5px; */
+    padding-right: 5px;
+}
+
+.watsonChildren{
+    display: flex;
+    flex-direction: column;
 }
