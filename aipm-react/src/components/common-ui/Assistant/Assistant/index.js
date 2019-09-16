@@ -9,16 +9,31 @@ import watson from '../../../../assets/watson.svg';
 import WatsonDialog from './Watson/watson';
 import UserDialog from './User/user';
 import Aux from '../../../common-ui/Aux/Aux';
+import UpArrow from "../../../../assets/UpArrow.svg"
+import { animateScroll } from "react-scroll";
 
 import './assistant.css';
 
 class Assistant extends Component {
+    constructor(props) {
+        super(props)
+
+        this.ref = React.createRef()
+    }
 
     state = {
         sampleQ: [],
         chosenSampleQ: "",
         dialog: []
     }
+
+    componentDidUpdate() {
+        this.scrollToBottom()
+    }
+
+    scrollToBottom = () => {
+        this.ref.current.scrollTop = this.ref.current.scrollHeight;
+    };
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.sampleQ != this.state.sampleQ) {
@@ -52,9 +67,9 @@ class Assistant extends Component {
                         } else {
                             cur_dialog_fragment = {
                                 userDialog: this.state.chosenSampleQ,
-                                watsonDialog: [response.data.output.generic[0].header, 
-                                response.data.output.generic[0].results[0].url,response.data.output.generic[0].results[0].title, response.data.output.generic[0].results[0].highlight.text[0], 
-                                response.data.output.generic[0].results[1].url,response.data.output.generic[0].results[1].title, response.data.output.generic[0].results[1].highlight.text[0], 
+                                watsonDialog: [response.data.output.generic[0].header,
+                                response.data.output.generic[0].results[0].url, response.data.output.generic[0].results[0].title, response.data.output.generic[0].results[0].highlight.text[0],
+                                response.data.output.generic[0].results[1].url, response.data.output.generic[0].results[1].title, response.data.output.generic[0].results[1].highlight.text[0],
                                 response.data.output.generic[0].results[2].url, response.data.output.generic[0].results[2].title, response.data.output.generic[0].results[2].highlight.text[0]]
                             }//title, url, text
                         }
@@ -105,8 +120,8 @@ class Assistant extends Component {
     }
 
     createMarkup = (e) => {
-        return {__html: e};
-      }
+        return { __html: e };
+    }
 
     getDialog = () => {
         let index = 0;
@@ -127,10 +142,10 @@ class Assistant extends Component {
                 console.log(search);
             } else {
                 search = (
-                <WatsonDialog>
-                    <p>{d.watsonDialog}</p>
-                    {/* {sampleQs} */}
-                </WatsonDialog>
+                    <WatsonDialog>
+                        <p>{d.watsonDialog}</p>
+                        {/* {sampleQs} */}
+                    </WatsonDialog>
                 );
                 //console.log(search);
             }
@@ -141,8 +156,8 @@ class Assistant extends Component {
                         <p>{d.userDialog}</p>
                     </UserDialog>
                     {/* <WatsonDialog> */}
-                        {search}
-                        {/* {sampleQs} */}
+                    {search}
+                    {/* {sampleQs} */}
                     {/* </WatsonDialog> */}
                 </Aux>
             );
@@ -179,14 +194,14 @@ class Assistant extends Component {
                     <div><img src={settingsGrey} /></div>
                 </div>
                 <div className="AssistantTop">Watson Manager Assistant</div>
-                <div className="AssistantMid">
+                <div className="AssistantMid" ref={this.ref}>
                     {firstDialog}
                     {dialog}
                 </div>
                 <div className="AssistantBottom">
                     <input onChange={(e) => this.getSampleQText(e)} placeholder="Type something.." className="AssistantBottom_input" type="input" value={this.state.chosenSampleQ} />
                     {/* <div onChange={(e) => this.getAssistanceResponse(e)} className="AssistantBottom_input" contentEditable="true" type="input">{this.state.chosenSampleQ}</div> */}
-                    <div onClick={(e) => this.getAssistanceResponse(e)}><img src={microPhoneIcon} /></div>
+                    <div onClick={(e) => { this.getAssistanceResponse(e) }} style={{ textAlign: "right" }} ><img style={{ marginLeft: "325px" }} src={UpArrow} width="50%" height="50%" /></div>
                 </div>
             </div>
         );
