@@ -10,7 +10,6 @@ import WatsonDialog from './Watson/watson';
 import UserDialog from './User/user';
 import Aux from '../../../common-ui/Aux/Aux';
 import UpArrow from "../../../../assets/UpArrow.svg"
-import { animateScroll } from "react-scroll";
 
 import './assistant.css';
 
