@@ -44,13 +44,21 @@ class Assistant extends Component {
                             watsonDialog: response.data.output.generic[0].text
                         }
                     } else if (response.data.output.generic[0].header) {
-                        cur_dialog_fragment = {
-                            userDialog: this.state.chosenSampleQ,
-                            watsonDialog: [response.data.output.generic[0].header, 
-                            response.data.output.generic[0].results[0].url,response.data.output.generic[0].results[0].title, response.data.output.generic[0].results[0].highlight.text[0], 
-                            response.data.output.generic[0].results[1].url,response.data.output.generic[0].results[1].title, response.data.output.generic[0].results[1].highlight.text[0], 
-                            response.data.output.generic[0].results[2].url, response.data.output.generic[0].results[2].title, response.data.output.generic[0].results[2].highlight.text[0]]
-                        }//title, url, text
+                        if (response.data.output.generic[0].results.length == 0) {
+                            cur_dialog_fragment = {
+                                userDialog: this.state.chosenSampleQ,
+                                watsonDialog: [response.data.output.generic[0].header]
+                            }
+                        } else {
+                            cur_dialog_fragment = {
+                                userDialog: this.state.chosenSampleQ,
+                                watsonDialog: [response.data.output.generic[0].header, 
+                                response.data.output.generic[0].results[0].url,response.data.output.generic[0].results[0].title, response.data.output.generic[0].results[0].highlight.text[0], 
+                                response.data.output.generic[0].results[1].url,response.data.output.generic[0].results[1].title, response.data.output.generic[0].results[1].highlight.text[0], 
+                                response.data.output.generic[0].results[2].url, response.data.output.generic[0].results[2].title, response.data.output.generic[0].results[2].highlight.text[0]]
+                            }//title, url, text
+                        }
+
                     }
                     cur_dialog.push(cur_dialog_fragment);
                     console.log("cur_dialog");
