@@ -46,7 +46,6 @@
     /* overflow: scroll; */
     overflow-y: scroll;
     /* border: 1px solid white; */
-    scrollbar-color: black;
 }
 
 .AssistantBottom{
@@ -81,6 +80,8 @@ textarea:focus,
 button:focus {
     outline: none;
 }
+
+a { color: inherit} 
 
 .question{
     border: 1px solid #0062FF; 
@@ -117,4 +118,12 @@ button:focus {
 .watsonChildren{
     display: flex;
     flex-direction: column;
+}
+
+.urlColor a{
+    color: #0062ff;
+}
+
+.upArrow{
+    font-size: 16px;
 }

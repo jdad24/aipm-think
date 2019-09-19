@@ -9,7 +9,8 @@ import watson from '../../../../assets/watson.svg';
 import WatsonDialog from './Watson/watson';
 import UserDialog from './User/user';
 import Aux from '../../../common-ui/Aux/Aux';
-import UpArrow from "../../../../assets/UpArrow.svg"
+import UpArrow from "../../../../assets/UpArrow.svg";
+import './assistant.css';
 
 import './assistant.css';
 
@@ -71,15 +72,15 @@ class Assistant extends Component {
                                 watsonDialog: [response.data.output.generic[0].header,
                                 // response.data.output.generic[0].results[0].url, 
 
-                                "<a href='pdfDiscovery/" + response.data.output.generic[0].results[0].url + "' target=\"_blank\">" +response.data.output.generic[0].results[0].url + "</a>",
+                                "<p className='urlColor'><a href='pdfDiscovery/" + response.data.output.generic[0].results[0].url + "' target='_blank'>" +response.data.output.generic[0].results[0].url + "</a></p>",
                                 
                                 response.data.output.generic[0].results[0].highlight.text[0],
 
-                                "<a href='pdfDiscovery/" + response.data.output.generic[0].results[1].url + "' target=\"_blank\">" +response.data.output.generic[0].results[1].url + "</a>",
+                                "<p className='urlColor'><a href='pdfDiscovery/" + response.data.output.generic[0].results[1].url + "' target='_blank'>" +response.data.output.generic[0].results[1].url + "</a></p>",
                                 
                                 response.data.output.generic[0].results[1].highlight.text[0],
 
-                                "<a href='pdfDiscovery/" + response.data.output.generic[0].results[2].url + "' target=\"_blank\">" +response.data.output.generic[0].results[2].url + "</a>",
+                                "<p className='urlColor'><a href='pdfDiscovery/" + response.data.output.generic[0].results[2].url + "' target='_blank'>" +response.data.output.generic[0].results[2].url + "</a></p>",
                                 
                                 response.data.output.generic[0].results[2].highlight.text[0]]
                             }//title, url, text
@@ -221,7 +222,7 @@ class Assistant extends Component {
                 <div className="AssistantBottom">
                     <input onChange={(e) => this.getSampleQText(e)} placeholder="Type something.." className="AssistantBottom_input" type="input" value={this.state.chosenSampleQ} />
                     {/* <div onChange={(e) => this.getAssistanceResponse(e)} className="AssistantBottom_input" contentEditable="true" type="input">{this.state.chosenSampleQ}</div> */}
-                    <div onClick={(e) => this.getAssistanceResponse(e)}><img src={UpArrow} /></div>
+                    <div onClick={(e) => this.getAssistanceResponse(e)}><p className="upArrow">&#x2191;</p></div>
                     {/* // <div onClick={(e) => { this.getAssistanceResponse(e) }} style={{ textAlign: "right" }} ><img style={{ marginLeft: "325px" }} src={UpArrow} width="50%" height="50%" /></div> */}
                 </div>
             </div>
