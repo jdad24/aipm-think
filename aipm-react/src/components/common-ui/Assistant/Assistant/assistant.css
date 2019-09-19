@@ -43,8 +43,10 @@
     grid-row-end: 3;
     grid-row-start: 2;
     grid-column: 2;
-    overflow: scroll;
+    /* overflow: scroll; */
+    overflow-y: scroll;
     /* border: 1px solid white; */
+    scrollbar-color: black;
 }
 
 .AssistantBottom{
