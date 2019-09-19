@@ -18,7 +18,7 @@ const data = [
     tool: "Predictive Maintanance",
     imgurl: mark,
     redirect: "/pm",
-    redirectText: "Run Demo"
+    redirectText: "Open Dashboard"
   },
   {
     title: "Carla",
@@ -28,7 +28,7 @@ const data = [
     tool: "Visual Insights",
     imgurl: carla,
     redirect: "/vi",
-    redirectText: "Run Demo"
+    redirectText: "Inspect Parts"
   },
   {
     title: "Paul",
@@ -38,7 +38,7 @@ const data = [
     tool: "Production Optimization",
     imgurl: paul,
     redirect: "/po",
-    redirectText: "Run Demo"
+    redirectText: "Manage Plant"
   },
   {
     title: "Joe",
@@ -48,7 +48,7 @@ const data = [
     tool: "Equipment Maintenance Advisor",
     imgurl: joe,
     redirect: "/em",
-    redirectText: "Run Demo"
+    redirectText: "View Work Orders"
   },
   {
     title: "Rhonda",
@@ -58,7 +58,7 @@ const data = [
     tool: "IT Operations",
     imgurl: rhonda,
     redirect: "/it",
-    redirectText: "Run Demo"
+    redirectText: "Open Dashboard"
   },
   {
     title: "Penelope",
@@ -68,7 +68,7 @@ const data = [
     tool: "SAP, Blockchain",
     imgurl: pene,
     redirect: "/pm2",
-    redirectText: "Run Demo"
+    redirectText: "View Supply Chain"
   }
 ];
 
