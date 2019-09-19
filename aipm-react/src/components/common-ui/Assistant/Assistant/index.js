@@ -64,13 +64,27 @@ class Assistant extends Component {
                                 watsonDialog: [response.data.output.generic[0].header]
                             }
                         } else {
+                            var myString = "<a href={\"pdfDiscovery/" + response.data.output.generic[0].results[0].url + "}\" target=\"_blank\">" +
+                            response.data.output.generic[0].results[0].url + "</a>";
                             cur_dialog_fragment = {
                                 userDialog: this.state.chosenSampleQ,
                                 watsonDialog: [response.data.output.generic[0].header,
-                                response.data.output.generic[0].results[0].url, response.data.output.generic[0].results[0].title, response.data.output.generic[0].results[0].highlight.text[0],
-                                response.data.output.generic[0].results[1].url, response.data.output.generic[0].results[1].title, response.data.output.generic[0].results[1].highlight.text[0],
-                                response.data.output.generic[0].results[2].url, response.data.output.generic[0].results[2].title, response.data.output.generic[0].results[2].highlight.text[0]]
+                                // response.data.output.generic[0].results[0].url, 
+
+                                "<a href='pdfDiscovery/" + response.data.output.generic[0].results[0].url + "' target=\"_blank\">" +response.data.output.generic[0].results[0].url + "</a>",
+                                
+                                response.data.output.generic[0].results[0].highlight.text[0],
+
+                                "<a href='pdfDiscovery/" + response.data.output.generic[0].results[1].url + "' target=\"_blank\">" +response.data.output.generic[0].results[1].url + "</a>",
+                                
+                                response.data.output.generic[0].results[1].highlight.text[0],
+
+                                "<a href='pdfDiscovery/" + response.data.output.generic[0].results[2].url + "' target=\"_blank\">" +response.data.output.generic[0].results[2].url + "</a>",
+                                
+                                response.data.output.generic[0].results[2].highlight.text[0]]
                             }//title, url, text
+
+                            // <a href={'pdfDiscovery/' + searchResults} target="_blank"><p dangerouslySetInnerHTML={this.createMarkup(searchResults)} 
                         }
 
                     }
@@ -139,9 +153,8 @@ class Assistant extends Component {
                         <WatsonDialog>
                             {/* {count%3==0 ? <a href={'../../../../pdfDiscovery/' + searchResults} target="_blank"><p dangerouslySetInnerHTML={this.createMarkup(searchResults)} /> </a>
                             : <p dangerouslySetInnerHTML={this.createMarkup(searchResults)} />}  */}
-                             {count%3==0 ? <a href={'pdfDiscovery/' + searchResults} target="_blank"><p dangerouslySetInnerHTML={this.createMarkup(searchResults)} /> </a>
-                            : <p dangerouslySetInnerHTML={this.createMarkup(searchResults)} />}
-                            {/* <p>{searchResults}</p> */}
+                             <p dangerouslySetInnerHTML={this.createMarkup(searchResults)} />
+                            {/* {<p>{searchResults}</p>} */}
                         </WatsonDialog>
                     );
                 });
@@ -208,7 +221,8 @@ class Assistant extends Component {
                 <div className="AssistantBottom">
                     <input onChange={(e) => this.getSampleQText(e)} placeholder="Type something.." className="AssistantBottom_input" type="input" value={this.state.chosenSampleQ} />
                     {/* <div onChange={(e) => this.getAssistanceResponse(e)} className="AssistantBottom_input" contentEditable="true" type="input">{this.state.chosenSampleQ}</div> */}
-                    <div onClick={(e) => { this.getAssistanceResponse(e) }} style={{ textAlign: "right" }} ><img style={{ marginLeft: "325px" }} src={UpArrow} width="50%" height="50%" /></div>
+                    <div onClick={(e) => this.getAssistanceResponse(e)}><img src={UpArrow} /></div>
+                    {/* // <div onClick={(e) => { this.getAssistanceResponse(e) }} style={{ textAlign: "right" }} ><img style={{ marginLeft: "325px" }} src={UpArrow} width="50%" height="50%" /></div> */}
                 </div>
             </div>
         );
