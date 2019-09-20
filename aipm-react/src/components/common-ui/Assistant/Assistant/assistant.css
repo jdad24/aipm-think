@@ -85,14 +85,14 @@ a { color: inherit}
 
 .question{
     border: 1px solid #0062FF; 
-    padding: 15px;
-    border-radius: 15px;
-    margin: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px;
 }
 
 .dialog{
     display: flex;
-    padding: 20px;
+    padding: 5px;
     flex-direction: column;
 }
 
