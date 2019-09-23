@@ -48,6 +48,17 @@
     /* border: 1px solid white; */
 }
 
+.AssistantMid::-webkit-scrollbar
+{
+   /* width: 40px; */
+   background-color: rgba(255, 0, 255, .7);
+}
+.AssistantMid::-webkit-scrollbar-thumb {
+   border-radius: 4px;
+   background-color: rgba(0,0,0,.5);
+   -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
 .AssistantBottom{
     grid-row-end: 4;
     grid-row-start: 3;
