@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import microPhoneIcon from '../../../../assets/microphone.svg';
 import settingsGrey from '../../../../assets/settings_grey.svg';
 import lightningBolt from '../../../../assets/lightningBolt.svg';
-import bulb from '../../../../assets/bulb.svg';
+import bulb from '../../../../assets/idea.svg';
 import note from '../../../../assets/note.svg';
 import axios from 'axios';
 import watson from '../../../../assets/watson.svg';
 import WatsonDialog from './Watson/watson';
 import UserDialog from './User/user';
 import Aux from '../../../common-ui/Aux/Aux';
+import mute from '../../../../assets/mute.svg';
+import expand from '../../../../assets/expand.svg';
 import UpArrow from "../../../../assets/UpArrow.svg";
 import './assistant.css';
 
@@ -66,22 +68,22 @@ class Assistant extends Component {
                             }
                         } else {
                             var myString = "<a href={\"pdfDiscovery/" + response.data.output.generic[0].results[0].url + "}\" target=\"_blank\">" +
-                            response.data.output.generic[0].results[0].url + "</a>";
+                                response.data.output.generic[0].results[0].url + "</a>";
                             cur_dialog_fragment = {
                                 userDialog: this.state.chosenSampleQ,
                                 watsonDialog: [response.data.output.generic[0].header,
                                 // response.data.output.generic[0].results[0].url, 
 
-                                "<p className='urlColor'><a href='pdfDiscovery/" + response.data.output.generic[0].results[0].url + "' target='_blank'>" +response.data.output.generic[0].results[0].url + "</a></p>",
-                                
+                                "<p className='urlColor'><a href='pdfDiscovery/" + response.data.output.generic[0].results[0].url + "' target='_blank'>" + response.data.output.generic[0].results[0].url + "</a></p>",
+
                                 response.data.output.generic[0].results[0].highlight.text[0],
 
-                                "<p className='urlColor'><a href='pdfDiscovery/" + response.data.output.generic[0].results[1].url + "' target='_blank'>" +response.data.output.generic[0].results[1].url + "</a></p>",
-                                
+                                "<p className='urlColor'><a href='pdfDiscovery/" + response.data.output.generic[0].results[1].url + "' target='_blank'>" + response.data.output.generic[0].results[1].url + "</a></p>",
+
                                 response.data.output.generic[0].results[1].highlight.text[0],
 
-                                "<p className='urlColor'><a href='pdfDiscovery/" + response.data.output.generic[0].results[2].url + "' target='_blank'>" +response.data.output.generic[0].results[2].url + "</a></p>",
-                                
+                                "<p className='urlColor'><a href='pdfDiscovery/" + response.data.output.generic[0].results[2].url + "' target='_blank'>" + response.data.output.generic[0].results[2].url + "</a></p>",
+
                                 response.data.output.generic[0].results[2].highlight.text[0]]
                             }//title, url, text
 
@@ -154,7 +156,7 @@ class Assistant extends Component {
                         <WatsonDialog>
                             {/* {count%3==0 ? <a href={'../../../../pdfDiscovery/' + searchResults} target="_blank"><p dangerouslySetInnerHTML={this.createMarkup(searchResults)} /> </a>
                             : <p dangerouslySetInnerHTML={this.createMarkup(searchResults)} />}  */}
-                             <p dangerouslySetInnerHTML={this.createMarkup(searchResults)} />
+                            <p dangerouslySetInnerHTML={this.createMarkup(searchResults)} />
                             {/* {<p>{searchResults}</p>} */}
                         </WatsonDialog>
                     );
@@ -191,7 +193,7 @@ class Assistant extends Component {
         let sampleQs = this.getQuestions();
         let firstDialog =
             (<WatsonDialog>
-                <p>Hello, how may I help you?</p>
+                <p>Hello, how may I help you? Click on one of the sample questions below to start!</p>
                 {sampleQs}
             </WatsonDialog>);
         return firstDialog;
@@ -206,15 +208,26 @@ class Assistant extends Component {
                 className="assistantContainer"
                 style={{ opacity: this.props.show ? '1' : '0' }}>
                 <div className="assistantSidebar">
-                    {/* <div><img src={watson} /></div> */}
-                    <div><img src={note} /></div>
-                    <div><img src={note} /></div>
-                    <div><img src={note} /></div>
-                    {/* <div><img src={bulb} /></div> */}
-                    <div><img src={lightningBolt} /></div>
-                    <div><img src={settingsGrey} /></div>
+                    <div className="assistantIconContainer"><img src={watson} /></div>
+                    {/* <div><img src={note} /></div> */}
+                    <div className="assistantIconContainer"><img src={note} /></div>
+                    {/* <div><img src={note} /></div> */}
+                    <div className="assistantIconContainer"><img src={bulb} /></div>
+                    <div className="assistantIconContainer"><img src={lightningBolt} /></div>
+                    <div className="assistantIconContainer"><img src={settingsGrey} /></div>
                 </div>
-                <div className="AssistantTop">Watson Manager Assistant</div>
+                <div className="AssistantTop">
+                    <div>
+                        <div>Watson Manager</div>
+                        <div>Assistant</div>
+                    </div>
+                    <div className="assistantHeaderIcons">
+                        <div><img src={mute} /></div>
+                        <div><img src={expand} /></div>
+                    </div>
+
+
+                </div>
                 <div className="AssistantMid" ref={this.ref}>
                     {firstDialog}
                     {dialog}

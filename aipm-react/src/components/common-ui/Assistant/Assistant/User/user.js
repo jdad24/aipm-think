@@ -5,7 +5,7 @@ const userDialog = (props) => {
     return(
         <div className="dialog userDialog">
             <div className="user">{props.name}</div>
-            <div>{props.children}</div>
+            <div className="watsonChildren" >{props.children}</div>
         </div>
     );
 }
