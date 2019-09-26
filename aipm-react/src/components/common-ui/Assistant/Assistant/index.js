@@ -11,7 +11,7 @@ import UserDialog from './User/user';
 import Aux from '../../../common-ui/Aux/Aux';
 import mute from '../../../../assets/mute.svg';
 import expand from '../../../../assets/expand.svg';
-import UpArrow from "../../../../assets/UpArrow.svg";
+import UpArrow from "../../../../assets/up-arrow.svg";
 import './assistant.css';
 
 import './assistant.css';
@@ -102,6 +102,8 @@ class Assistant extends Component {
             //debugger;
         }
 
+       // this.clearText();
+
     }
 
     getSampleQText = (event, text) => {
@@ -166,7 +168,8 @@ class Assistant extends Component {
             } else {
                 search = (
                     <WatsonDialog>
-                        <p>{d.watsonDialog}</p>
+                        {/* <p>{d.watsonDialog}</p> */}
+                        <div>{d.watsonDialog}</div>
                         {/* {sampleQs} */}
                     </WatsonDialog>
                 );
@@ -176,7 +179,8 @@ class Assistant extends Component {
                 <Aux key={index++}>
                     <UserDialog
                         name="User">
-                        <p>{d.userDialog}</p>
+                        {/* <p>{d.userDialog}</p> */}
+                        <div>{d.userDialog}</div>
                     </UserDialog>
                     {/* <WatsonDialog> */}
                     {search}
@@ -185,7 +189,7 @@ class Assistant extends Component {
                 </Aux>
             );
         });
-
+        //this.clearText();
         return dialog;
     }
 
@@ -199,9 +203,16 @@ class Assistant extends Component {
         return firstDialog;
     }
 
+    clearText = () => {
+        this.setState({
+            chosenSampleQ : ""
+        });
+    }
+
     render() {
         let firstDialog = this.getFirstDialog();
         let dialog = this.getDialog();
+        //this.clearText();
 
         return (
             <div
@@ -214,7 +225,7 @@ class Assistant extends Component {
                     {/* <div><img src={note} /></div> */}
                     <div className="assistantIconContainer"><img src={bulb} /></div>
                     <div className="assistantIconContainer"><img src={lightningBolt} /></div>
-                    <div className="assistantIconContainer"><img src={settingsGrey} /></div>
+                    <div className="assistantIconContainer" onClick={this.clearText}><img src={settingsGrey} /></div>
                 </div>
                 <div className="AssistantTop">
                     <div>
@@ -235,7 +246,8 @@ class Assistant extends Component {
                 <div className="AssistantBottom">
                     <input onChange={(e) => this.getSampleQText(e)} placeholder="Type something.." className="AssistantBottom_input" type="input" value={this.state.chosenSampleQ} />
                     {/* <div onChange={(e) => this.getAssistanceResponse(e)} className="AssistantBottom_input" contentEditable="true" type="input">{this.state.chosenSampleQ}</div> */}
-                    <div onClick={(e) => this.getAssistanceResponse(e)}><p className="upArrow">&#x2191;</p></div>
+                    {/* <div onClick={(e) => this.getAssistanceResponse(e)}><p className="upArrow">&#x2191;</p></div> */}
+                    <div onClick={(e) => this.getAssistanceResponse(e)}><img src={UpArrow}/></div>
                     {/* // <div onClick={(e) => { this.getAssistanceResponse(e) }} style={{ textAlign: "right" }} ><img style={{ marginLeft: "325px" }} src={UpArrow} width="50%" height="50%" /></div> */}
                 </div>
             </div>
