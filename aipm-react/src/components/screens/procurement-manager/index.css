@@ -4,3 +4,57 @@
     width: 100%;
     height:100%;
 }
+
+.procurementContainer{
+    display: grid;
+    grid-template-rows: 1fr 5fr;
+    grid-template-columns: 1fr 1fr;
+}
+
+.workflowContainer{
+    display: flex;
+    /* grid-row-start: 0;
+    grid-row-end: 1;
+    grid-column-start: 0;
+    grid-column-end: 2; */
+    justify-content: center;
+    align-items: center; 
+    grid-row: 1;
+    grid-column: 1/-1;
+    border: 5px solid green;
+    /* height: 100px; */
+}
+
+.circleLineText{
+    display: flex;
+
+}
+
+.circleLine{
+    display: flex;
+    align-items: center;
+
+}
+
+.workflow{
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    /* flex-direction: column; */
+}
+
+.documentContextContainer{
+    display: flex;
+    grid-row: 2;
+    grid-column: 1;
+    border: 1px solid black; 
+    /* height: 100px; */
+}
+
+.blockchainListenerContainer{
+    display: flex;
+    grid-row: 2;
+    grid-column: 2;
+    border: 3px solid purple;
+    /* height: 100px; */
+}

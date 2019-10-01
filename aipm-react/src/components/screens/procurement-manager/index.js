@@ -1,8 +1,11 @@
 import React, { Component } from "react";
+import Aux from '../../common-ui/Aux/Aux';
 //import Header from '../../common-ui/persona-header/persona-header';
 import PersonaEnv from "../../common-ui/personaEnv/personaEnv";
 import Layout from "../../common-ui/Layout/layout";
 import './index.css';
+import BlueCircle from '../../common-ui/BlueCircle/circle';
+import BlueLine from '../../common-ui/BlueLine/line';
 import procMgrScreenShot from "../../../assets/procurementManager.png";
 import axios from 'axios';
 
@@ -46,8 +49,39 @@ class ProductionOptimization extends Component {
   };
 
   getProcMgrContent = () => {
-    let myContent =
-      <a href="https://gscvidashboard.mybluemix.net" target="_blank"><img src={procMgrScreenShot} className="procMgrContainerImg"></img></a>
+    let steps = ["Order", "Confirm", "Source", "Assemble", "Inspect", "Ship", "Grade", "Accept", "Deliver"];
+
+    let circleLine = (
+      <div className="circleLine">
+        <BlueCircle/>
+        <BlueLine />
+      </div>
+    );
+
+    let workflow = steps.map(s => {
+      return(
+        <div className="cirlceLineText">
+          {circleLine}
+        <div>{s}</div>
+        </div>
+        
+      );
+    });
+
+    let myContent = (
+      <div className="procurementContainer">
+        <div className="workflowContainer">
+          <div className="workflow">
+            {workflow}
+          {/* <Circle/>
+          <Line /> */}
+          </div>
+        </div>
+        <div className="documentContextContainer">documentContextContainer</div>
+        <div className="blockchainListenerContainer">blockchainListenerContainer</div>
+      </div>
+    );
+      // <a href="https://gscvidashboard.mybluemix.net" target="_blank"><img src={procMgrScreenShot} className="procMgrContainerImg"></img></a>
     return myContent
 
   }
