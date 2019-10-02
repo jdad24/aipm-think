@@ -6,17 +6,22 @@ import Layout from "../../common-ui/Layout/layout";
 import './index.css';
 import BlueCircle from '../../common-ui/BlueCircle/circle';
 import BlueLine from '../../common-ui/BlueLine/line';
+import CircleCheck from "../../common-ui/CircleCheck/circleCheck"
 import GreyCircle from '../../common-ui/GreyCircle/circle';
 import GreyLine from '../../common-ui/GreyLine/line';
-import Checkmark from "../../common-ui/Checkmark/checkmark"
 import procMgrScreenShot from "../../../assets/procurementManager.png";
 import axios from 'axios';
 
 class ProductionOptimization extends Component {
+  // constructor(props) {
+  //   super(props)
+  //   this.nextHandler = this.nextHandler.bind(this)
+  // }
 
   state = {
     title: "procurementManager",
-    sampleQ: []
+    sampleQ: [],
+    steps: []
   }
   
   backClickHandler = () => {
@@ -35,6 +40,16 @@ class ProductionOptimization extends Component {
         sampleQ: response.data
       });
     });
+
+    this.getInitialWorkflowState();
+  }
+
+  getInitialWorkflowState = () => {
+    axios.get('https://aipm-gsc-nodered.mybluemix.net/initialWorkflowState').then(response => {
+      this.setState({
+        steps: response.data
+      });
+    });
   }
 
   getPersonaEnv = () => {
@@ -51,42 +66,99 @@ class ProductionOptimization extends Component {
     return headerInfo;
   };
 
+  nextHandler = () => {
+    //alert("in next handler");
+    let s = this.state.steps;
+    let updateFlag = false;
+
+    if(s[s.length-1].state=== "2"){
+      this.getInitialWorkflowState();
+    }else{
+      for(let i=0; i<s.length; i++){
+        if(s[i].state === "2" && !updateFlag){
+          s[i].state = "1";
+          s[i+1].state="2";
+          updateFlag = true;
+          // break;
+        }
+      }
+      this.setState({
+        steps : s
+      });
+  
+      console.log(s);
+    }
+  }
+
   getProcMgrContent = () => {
-    let steps = ["Order", "Confirm", "Source", "Assemble", "Inspect", "Ship", "Grade", "Accept", "Deliver"];
+    let myContent = "no data";
+    let complete = <CircleCheck />;
+    let current = <BlueCircle />;
+    let incomplete = <GreyCircle />;
+    let stepState={
+      "0" : incomplete,
+      "1" : complete,
+      "2" : current
+    }
+    let greyLine = <GreyLine />;
+    let blueLine = <BlueLine />;
 
-    let circleLine = (
-      <div className="circleLine">
-        <BlueCircle/>
-        <BlueLine />
-        <GreyCircle/>
-        <GreyLine/>
-        {/* <Checkmark/> */}
-      </div>
-    );
+    let lineColor = {
+      "0" : greyLine,
+      "1" : blueLine,
+      "2" : greyLine
+    }
 
-    let workflow = steps.map(s => {
-      return(
-        <div className="cirlceLineText">
-          {circleLine}
-        <div>{s}</div>
-        </div>
-        
-      );
-    });
+    // let localState = this.state.stepState;
+    // let localLineColor = this.state.lineColor;
+    if(this.state.steps.length){
 
-    let myContent = (
-      <div className="procurementContainer">
-        <div className="workflowContainer">
-          <div className="workflow">
-            {workflow}
-          {/* <Circle/>
-          <Line /> */}
+      let stepsLen = this.state.steps.length;
+
+      let workflow = this.state.steps.map((s, i) => {
+        let circleLine = (
+          <Aux>
+            {stepState[s.state]}
+            {lineColor[s.state]}
+          </Aux>
+        );
+
+        if(stepsLen == (i+1) ){
+          circleLine = (
+            <Aux>
+              {stepState[s.state]}
+            </Aux>
+          );
+        }
+        return (
+          <div key={s.name} className="step" >
+            <div className="circleLine">
+              {circleLine}
+            {/* <BlueLine /> */}
+            </div>
+            <div className="stepName">{s.name}</div>
+          </div>
+        );
+      });
+  
+      myContent = (
+        <div className="procurementContainer">
+          <div className="workflowContainer">
+            <div className="workflow">
+              {workflow}
+            {/* <Circle/>
+            <Line /> */}
+            </div>
+          </div>
+          <div className="documentContextContainer">documentContextContainer</div>
+          <div className="blockchainListenerContainer">blockchainListenerContainer</div>
+          <div className="nextButtonContainer">
+            <button onClick={this.nextHandler}>Next</button>
           </div>
         </div>
-        <div className="documentContextContainer">documentContextContainer</div>
-        <div className="blockchainListenerContainer">blockchainListenerContainer</div>
-      </div>
-    );
+      );
+    }
+    
       // <a href="https://gscvidashboard.mybluemix.net" target="_blank"><img src={procMgrScreenShot} className="procMgrContainerImg"></img></a>
     return myContent
 

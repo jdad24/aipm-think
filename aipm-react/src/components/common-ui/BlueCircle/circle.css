@@ -1,8 +1,27 @@
 .circle{
-    border:3px solid  #0061FF;
-    border-radius: 50%;
+    border-radius: 100%;
+    margin: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* display: inline-block; */
+}
+
+.blueCircle{
+    border:2px solid  #0061FF;
+}
+
+.circleDimension{
     height: 42px;
     width: 42px;
-    margin: 3px;
-    /* display: inline-block; */
+}
+
+.currentCircle{
+    /* border-radius: 100%;
+    border: 1px solid #0061FF; */
+    height: 21px;
+    width: 21px;
+    background-color: #0061FF;
+    /* position: relative; */
+    /* margin: 3px; */
 }
