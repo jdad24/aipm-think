@@ -1,0 +1,10 @@
+.currentCircle{
+    border-radius: 50%;
+    border: 1px solid #0061FF;
+    height: 25px;
+    width: 25px;
+    background-color: #0061FF;
+    position: relative;
+    margin: 7.5px
+
+}

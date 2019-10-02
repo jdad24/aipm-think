@@ -6,6 +6,9 @@ import Layout from "../../common-ui/Layout/layout";
 import './index.css';
 import BlueCircle from '../../common-ui/BlueCircle/circle';
 import BlueLine from '../../common-ui/BlueLine/line';
+import GreyCircle from '../../common-ui/GreyCircle/circle';
+import GreyLine from '../../common-ui/GreyLine/line';
+import Checkmark from "../../common-ui/Checkmark/checkmark"
 import procMgrScreenShot from "../../../assets/procurementManager.png";
 import axios from 'axios';
 
@@ -55,6 +58,9 @@ class ProductionOptimization extends Component {
       <div className="circleLine">
         <BlueCircle/>
         <BlueLine />
+        <GreyCircle/>
+        <GreyLine/>
+        {/* <Checkmark/> */}
       </div>
     );
 
