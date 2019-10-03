@@ -217,7 +217,7 @@ class Assistant extends Component {
         return (
             <div
                 className="assistantContainer"
-                style={{ opacity: this.props.show ? '1' : '0' }}>
+                style={{ opacity: this.props.show ? '1' : '0', zIndex: this.props.show ? '500' : '-500' }}>
                 <div className="assistantSidebar">
                     <div className="assistantIconContainer"><img src={watson} /></div>
                     {/* <div><img src={note} /></div> */}

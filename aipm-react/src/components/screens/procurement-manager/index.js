@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Aux from '../../common-ui/Aux/Aux';
-//import Header from '../../common-ui/persona-header/persona-header';
 import PersonaEnv from "../../common-ui/personaEnv/personaEnv";
 import Layout from "../../common-ui/Layout/layout";
 import './index.css';
@@ -13,10 +12,6 @@ import procMgrScreenShot from "../../../assets/procurementManager.png";
 import axios from 'axios';
 
 class ProductionOptimization extends Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.nextHandler = this.nextHandler.bind(this)
-  // }
 
   state = {
     title: "procurementManager",
@@ -114,8 +109,17 @@ class ProductionOptimization extends Component {
     if(this.state.steps.length){
 
       let stepsLen = this.state.steps.length;
+      let currStep = this.state.currentStep;
 
       let workflow = this.state.steps.map((s, i) => {
+
+        if(s.state === "2"){
+          currStep = s.name;
+        }
+        // this.setState({
+        //   currentStep : currStep
+        // });
+
         let circleLine = (
           <Aux>
             {stepState[s.state]}
@@ -150,7 +154,10 @@ class ProductionOptimization extends Component {
             <Line /> */}
             </div>
           </div>
-          <div className="documentContextContainer">documentContextContainer</div>
+          <div className="documentContextContainer">
+            <img className="procurementImgs" src={require('../../../assets/'+currStep+'.png')}/>
+            {/* <img src={require('../../../assets/Accept.png')}/> */}
+          </div>
           <div className="blockchainListenerContainer">blockchainListenerContainer</div>
           <div className="nextButtonContainer">
             <button onClick={this.nextHandler}>Next</button>
