@@ -1,0 +1,47 @@
+{
+    "name": "channel1",
+    "description": "Network on IBP v2",
+    "version": "1.0.0",
+    "client": {
+        "organization": "org1msp"
+    },
+    "organizations": {
+        "org1msp": {
+            "mspid": "org1msp",
+            "peers": [
+                "n667048-peerorg1.hlf-cluster.us-south.containers.appdomain.cloud:7051"
+            ],
+            "certificateAuthorities": [
+                "n667048-org1ca.hlf-cluster.us-south.containers.appdomain.cloud:7054"
+            ]
+        }
+    },
+    "orderers": {
+        "n667048-orderingservice1.hlf-cluster.us-south.containers.appdomain.cloud:7050": {
+            "url": "grpcs://n667048-orderingservice1.hlf-cluster.us-south.containers.appdomain.cloud:7050",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICMTCCAdigAwIBAgIUJmcHdU04h8bA55sD+5NP8AOD7R4wCgYIKoZIzj0EAwIw\nbTELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMR4wHAYDVQQDExVPcmRlcmlu\nZ1NlcnZpY2VDQS10bHMwHhcNMTkwNzAzMTc1OTAwWhcNMzQwNjI5MTc1OTAwWjBt\nMQswCQYDVQQGEwJVUzEXMBUGA1UECBMOTm9ydGggQ2Fyb2xpbmExFDASBgNVBAoT\nC0h5cGVybGVkZ2VyMQ8wDQYDVQQLEwZGYWJyaWMxHjAcBgNVBAMTFU9yZGVyaW5n\nU2VydmljZUNBLXRsczBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABPampcoMZUVl\n3X8lI6ygs0XcuOgLRKNjxNeSCx+su1d7pv9RzODxuxkO6fQlYDkPy1A9A0dZ6Uft\njeg5xDuJbKOjVjBUMA4GA1UdDwEB/wQEAwIBBjASBgNVHRMBAf8ECDAGAQH/AgEB\nMB0GA1UdDgQWBBRGXZ0rPVWKvhNc3crU4F9VuFwdTDAPBgNVHREECDAGhwQKq7yC\nMAoGCCqGSM49BAMCA0cAMEQCIFYn+Pd+OKCXx8WKRBq5mk7cg9LzIBv9iVwG38SK\ni7MZAiBxL2r7jn8C5kiJvVB54fFBZoQtf3EJTEemFOZqZu30FA==\n-----END CERTIFICATE-----\n"
+            }
+        }
+    },
+    "peers": {
+        "n667048-peerorg1.hlf-cluster.us-south.containers.appdomain.cloud:7051": {
+            "url": "grpcs://n667048-peerorg1.hlf-cluster.us-south.containers.appdomain.cloud:7051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICGzCCAcKgAwIBAgIUZqh4G42S/Dxl5eVJaTsnlvHCC0kwCgYIKoZIzj0EAwIw\nYjELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMRMwEQYDVQQDEwpPcmcxQ0Et\ndGxzMB4XDTE5MDcwMzE1MzkwMFoXDTM0MDYyOTE1MzkwMFowYjELMAkGA1UEBhMC\nVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQKEwtIeXBlcmxlZGdl\ncjEPMA0GA1UECxMGRmFicmljMRMwEQYDVQQDEwpPcmcxQ0EtdGxzMFkwEwYHKoZI\nzj0CAQYIKoZIzj0DAQcDQgAEt7Dlwoud4pLXi/HZ8KATrfDFhyvcR9f5KSAJ3OCw\ntSbWyT156hUFOMiMVjSEHtGniV0Zdbqn6OVjujNC/jNYd6NWMFQwDgYDVR0PAQH/\nBAQDAgEGMBIGA1UdEwEB/wQIMAYBAf8CAQEwHQYDVR0OBBYEFDYJk4NDbMaLqDCp\nQj4Tf+0STt7IMA8GA1UdEQQIMAaHBAqrvIIwCgYIKoZIzj0EAwIDRwAwRAIgVEw8\npqWqAGctWX2XXIPpb3QiBRlO/1EnF+5PfkLLJVQCICD5+o+51b8bFx2I7te9neMZ\n8y61qVTAwOi8KnLZw0IX\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "n667048-peerorg1.hlf-cluster.us-south.containers.appdomain.cloud"
+            }
+        }
+    },
+    "certificateAuthorities": {
+        "n667048-org1ca.hlf-cluster.us-south.containers.appdomain.cloud:7054": {
+            "url": "https://n667048-org1ca.hlf-cluster.us-south.containers.appdomain.cloud:7054",
+            "caName": "ca",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\r\nMIIDFTCCAn6gAwIBAgIJGD++dxExcqr6MA0GCSqGSIb3DQEBBQUAMIGkMUcwRQYD\r\nVQQDEz5uNjY3MDQ4LW9yZzFjYS5obGYtY2x1c3Rlci51cy1zb3V0aC5jb250YWlu\r\nZXJzLmFwcGRvbWFpbi5jbG91ZDELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRo\r\nIENhcm9saW5hMRAwDgYDVQQHEwdSYWxlaWdoMQwwCgYDVQQKEwNJQk0xEzARBgNV\r\nBAsTCkJsb2NrY2hhaW4wHhcNMTkwNzAzMTU0MDE2WhcNMjAwNzAyMTU0MDE2WjCB\r\npDFHMEUGA1UEAxM+bjY2NzA0OC1vcmcxY2EuaGxmLWNsdXN0ZXIudXMtc291dGgu\r\nY29udGFpbmVycy5hcHBkb21haW4uY2xvdWQxCzAJBgNVBAYTAlVTMRcwFQYDVQQI\r\nEw5Ob3J0aCBDYXJvbGluYTEQMA4GA1UEBxMHUmFsZWlnaDEMMAoGA1UEChMDSUJN\r\nMRMwEQYDVQQLEwpCbG9ja2NoYWluMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKB\r\ngQCG8qMlOvy0367fgUMqIPOr70bAaG379kza5HLoSgCMvT64+HyyLPVqgk44IKaG\r\n1ns2mRLZuD6R6KlsdOKX1Y7hTa5sLgaIV10iHcQnxAS9DF98dXH5I3cKgjWxTc6S\r\nRVe70H3CiXUYZ1HY9q10IMuV2zLP4uGYj31SIFecm1/onQIDAQABo00wSzBJBgNV\r\nHREEQjBAgj5uNjY3MDQ4LW9yZzFjYS5obGYtY2x1c3Rlci51cy1zb3V0aC5jb250\r\nYWluZXJzLmFwcGRvbWFpbi5jbG91ZDANBgkqhkiG9w0BAQUFAAOBgQBoJ2BTe2IH\r\nGr5nexm3h5CmYOQwpabh2gWRUbE3tz2BR0uN0z914KQgHfqcLC1G9uB43Z/PQozh\r\noc+SOgcxFDHc0P2lxMb+MJjetjXBwkks6H/d6SaYYSb8J56G5mosYlU2/dpaGpyY\r\ncwyrU+ycIHtoytKmxFRaZhqShmtUBIAjgg==\r\n-----END CERTIFICATE-----\r\n"
+            }
+        }
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "index": { "fields": ["orderDate"] },
+    "ddoc": "indexOrderDateDoc",
+    "name": "indexOrderDate",
+    "type": "json"
+}
