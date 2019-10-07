@@ -17,16 +17,14 @@ class ProductionOptimization extends Component {
     title: "procurementManager",
     sampleQ: [],
     steps: [], 
-    currentStep : "Order"
+    currentStep : "Order",
+    po: null
   }
 
   callApi = async (url) => {
-    console.log(url);
     const response = await fetch(url);
     const body = await response.json();
-    console.log(body);
     if (response.status !== 200) throw Error(body.message);
-
     return body;
   };
 
@@ -48,19 +46,35 @@ class ProductionOptimization extends Component {
     });
 
     this.getInitialWorkflowState();
-
-    
-    this.callApi('/api/queries/OemOrderSorted')
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => console.log(err));
+    //this.Order();
     //url = restUrl + '/api/queries/OrderById?orderId=' + orderId;
     // this.callApi('/api/hello')
     // .then(res => {
     //   console.log(res);
     // })
     // .catch(err => console.log(err));
+  }
+
+  Order = () => {
+    this.callApi('/api/queries/OemOrderSorted')
+      .then(res => {
+        console.log(res[0].orderId);
+        let sap_oid_template = "450000";
+        if(sap_oid_template === res[0].orderId.substring(0,6)){
+          this.setState({
+            po: res[0].orderId
+          });
+        }else{
+          //creating a random number > 5000 and < 10000 to match SAP PO pattern
+          let oid = sap_oid_template + Math.floor(5000 + Math.random() * 5000);
+          this.setState({
+            po: oid
+          }, () => {
+            console.log(this.state.po);
+          });
+        }
+      })
+      .catch(err => console.log(err));
   }
 
   getInitialWorkflowState = () => {
@@ -103,13 +117,19 @@ class ProductionOptimization extends Component {
           // break;
         }
       }
+
       this.setState({
         steps: s,
         currentStep : currStep
+      }, () => {
+        //console.log(this.state.currentStep);
+
       });
 
-      console.log(s);
+      //console.log("this.state.currentStep", this.state.currentStep);
     }
+
+
   }
 
   getProcMgrContent = () => {
@@ -137,7 +157,7 @@ class ProductionOptimization extends Component {
 
       let stepsLen = this.state.steps.length;
       let currStep = this.state.currentStep;
-
+      //console.log("currStep", currStep);
       let workflow = this.state.steps.map((s, i) => {
         let circleLine = (
           <Aux>
