@@ -82,7 +82,7 @@ class viDashboard extends Component {
         ws.onmessage = (event) => {
             // parse the incoming message as a JSON object
             let msg = JSON.parse(event.data);
-            console.log(msg);
+            // console.log(msg);
             // if (msg.msgType === undefined) {
             //     msg = msg.payload;
             //     console.log("msg.msgType undefined");
@@ -119,6 +119,8 @@ class viDashboard extends Component {
                     // console.log("Score MSG");
                     // console.log(msg);
                     let score = [msg.robotSource, msg.speakingClassification, msg.confidence, msg.slot, msg.batch, msg.date, msg.time];
+                    console.log("SCORE");
+                    console.log(score);
                     let cur_scoredata = this.state.scoredata;
                     cur_scoredata[msg.slot - 1].score = score;
                     cur_scoredata[msg.slot - 1].slot = msg.slot;

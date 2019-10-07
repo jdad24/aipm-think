@@ -1,7 +1,9 @@
 const bodyParser = require('body-parser');
-const logger = require('../../hlf/logger');
-const transactions = require('../../hlf/transactions');
-
+const logger = require('./hlf/logger');
+const transactions = require('./hlf/transactions');
+console.log('---------------------------------');
+console.log(module.parent.exports);
+console.log('---------------------------------');
 const app = (module.exports.app = module.parent.exports.app);
 
 app.use(bodyParser.urlencoded({ extended: false }));

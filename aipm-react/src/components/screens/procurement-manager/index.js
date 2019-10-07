@@ -16,9 +16,20 @@ class ProductionOptimization extends Component {
   state = {
     title: "procurementManager",
     sampleQ: [],
-    steps: []
+    steps: [], 
+    currentStep : "Order"
   }
-  
+
+  callApi = async (url) => {
+    console.log(url);
+    const response = await fetch(url);
+    const body = await response.json();
+    console.log(body);
+    if (response.status !== 200) throw Error(body.message);
+
+    return body;
+  };
+
   backClickHandler = () => {
     this.setState({
       viDashboard: false,
@@ -37,6 +48,19 @@ class ProductionOptimization extends Component {
     });
 
     this.getInitialWorkflowState();
+
+    
+    this.callApi('/api/queries/OemOrderSorted')
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log(err));
+    //url = restUrl + '/api/queries/OrderById?orderId=' + orderId;
+    // this.callApi('/api/hello')
+    // .then(res => {
+    //   console.log(res);
+    // })
+    // .catch(err => console.log(err));
   }
 
   getInitialWorkflowState = () => {
@@ -65,22 +89,25 @@ class ProductionOptimization extends Component {
     //alert("in next handler");
     let s = this.state.steps;
     let updateFlag = false;
+    let currStep = this.state.currentStep;
 
-    if(s[s.length-1].state=== "2"){
+    if (s[s.length - 1].state === "2") {
       this.getInitialWorkflowState();
-    }else{
-      for(let i=0; i<s.length; i++){
-        if(s[i].state === "2" && !updateFlag){
+    } else {
+      for (let i = 0; i < s.length; i++) {
+        if (s[i].state === "2" && !updateFlag) {
           s[i].state = "1";
-          s[i+1].state="2";
+          s[i + 1].state = "2";
           updateFlag = true;
+          currStep = s[i + 1].name;
           // break;
         }
       }
       this.setState({
-        steps : s
+        steps: s,
+        currentStep : currStep
       });
-  
+
       console.log(s);
     }
   }
@@ -90,36 +117,28 @@ class ProductionOptimization extends Component {
     let complete = <CircleCheck />;
     let current = <BlueCircle />;
     let incomplete = <GreyCircle />;
-    let stepState={
-      "0" : incomplete,
-      "1" : complete,
-      "2" : current
+    let stepState = {
+      "0": incomplete,
+      "1": complete,
+      "2": current
     }
     let greyLine = <GreyLine />;
     let blueLine = <BlueLine />;
 
     let lineColor = {
-      "0" : greyLine,
-      "1" : blueLine,
-      "2" : greyLine
+      "0": greyLine,
+      "1": blueLine,
+      "2": greyLine
     }
 
     // let localState = this.state.stepState;
     // let localLineColor = this.state.lineColor;
-    if(this.state.steps.length){
+    if (this.state.steps.length) {
 
       let stepsLen = this.state.steps.length;
       let currStep = this.state.currentStep;
 
       let workflow = this.state.steps.map((s, i) => {
-
-        if(s.state === "2"){
-          currStep = s.name;
-        }
-        // this.setState({
-        //   currentStep : currStep
-        // });
-
         let circleLine = (
           <Aux>
             {stepState[s.state]}
@@ -127,7 +146,7 @@ class ProductionOptimization extends Component {
           </Aux>
         );
 
-        if(stepsLen == (i+1) ){
+        if (stepsLen == (i + 1)) {
           circleLine = (
             <Aux>
               {stepState[s.state]}
@@ -138,24 +157,24 @@ class ProductionOptimization extends Component {
           <div key={s.name} className="step" >
             <div className="circleLine">
               {circleLine}
-            {/* <BlueLine /> */}
+              {/* <BlueLine /> */}
             </div>
             <div className="stepName">{s.name}</div>
           </div>
         );
       });
-  
+
       myContent = (
         <div className="procurementContainer">
           <div className="workflowContainer">
             <div className="workflow">
               {workflow}
-            {/* <Circle/>
+              {/* <Circle/>
             <Line /> */}
             </div>
           </div>
           <div className="documentContextContainer">
-            <img className="procurementImgs" src={require('../../../assets/'+currStep+'.png')}/>
+            <img className="procurementImgs" src={require('../../../assets/' + currStep + '.png')} />
             {/* <img src={require('../../../assets/Accept.png')}/> */}
           </div>
           <div className="blockchainListenerContainer">blockchainListenerContainer</div>
@@ -165,8 +184,8 @@ class ProductionOptimization extends Component {
         </div>
       );
     }
-    
-      // <a href="https://gscvidashboard.mybluemix.net" target="_blank"><img src={procMgrScreenShot} className="procMgrContainerImg"></img></a>
+
+    // <a href="https://gscvidashboard.mybluemix.net" target="_blank"><img src={procMgrScreenShot} className="procMgrContainerImg"></img></a>
     return myContent
 
   }
