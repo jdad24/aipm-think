@@ -14,8 +14,8 @@ const publicPath = path.join(__dirname, "aipm-react", "build");
 const isLocal = cfEnv.getAppEnv().isLocal;
 console.log("isLocal:" + isLocal);
 
-// module.exports.app = app;
-// const hlfClent = require('./hlf-client');
+module.exports.app = app;
+const hlfClent = require('./hlf-client');
 
 var localUser = 'gscuser';
 var localPassword = 'passw0rd';

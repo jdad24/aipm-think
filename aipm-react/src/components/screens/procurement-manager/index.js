@@ -46,7 +46,7 @@ class ProductionOptimization extends Component {
     });
 
     this.getInitialWorkflowState();
-    //this.Order();
+    this.Order();
     //url = restUrl + '/api/queries/OrderById?orderId=' + orderId;
     // this.callApi('/api/hello')
     // .then(res => {
@@ -134,79 +134,84 @@ class ProductionOptimization extends Component {
 
   getProcMgrContent = () => {
     let myContent = "no data";
-    let complete = <CircleCheck />;
-    let current = <BlueCircle />;
-    let incomplete = <GreyCircle />;
-    let stepState = {
-      "0": incomplete,
-      "1": complete,
-      "2": current
-    }
-    let greyLine = <GreyLine />;
-    let blueLine = <BlueLine />;
+    //Uncomment bellow code to replace screenshot................
+    // let complete = <CircleCheck />;
+    // let current = <BlueCircle />;
+    // let incomplete = <GreyCircle />;
+    // let stepState = {
+    //   "0": incomplete,
+    //   "1": complete,
+    //   "2": current
+    // }
+    // let greyLine = <GreyLine />;
+    // let blueLine = <BlueLine />;
 
-    let lineColor = {
-      "0": greyLine,
-      "1": blueLine,
-      "2": greyLine
-    }
+    // let lineColor = {
+    //   "0": greyLine,
+    //   "1": blueLine,
+    //   "2": greyLine
+    // }
 
-    // let localState = this.state.stepState;
-    // let localLineColor = this.state.lineColor;
-    if (this.state.steps.length) {
+    // // let localState = this.state.stepState;
+    // // let localLineColor = this.state.lineColor;
+    // if (this.state.steps.length) {
 
-      let stepsLen = this.state.steps.length;
-      let currStep = this.state.currentStep;
-      //console.log("currStep", currStep);
-      let workflow = this.state.steps.map((s, i) => {
-        let circleLine = (
-          <Aux>
-            {stepState[s.state]}
-            {lineColor[s.state]}
-          </Aux>
-        );
+    //   let stepsLen = this.state.steps.length;
+    //   let currStep = this.state.currentStep;
+    //   //console.log("currStep", currStep);
+    //   let workflow = this.state.steps.map((s, i) => {
+    //     let circleLine = (
+    //       <Aux>
+    //         {stepState[s.state]}
+    //         {lineColor[s.state]}
+    //       </Aux>
+    //     );
 
-        if (stepsLen == (i + 1)) {
-          circleLine = (
-            <Aux>
-              {stepState[s.state]}
-            </Aux>
-          );
-        }
-        return (
-          <div key={s.name} className="step" >
-            <div className="circleLine">
-              {circleLine}
-              {/* <BlueLine /> */}
-            </div>
-            <div className="stepName">{s.name}</div>
-          </div>
-        );
-      });
+    //     if (stepsLen == (i + 1)) {
+    //       circleLine = (
+    //         <Aux>
+    //           {stepState[s.state]}
+    //         </Aux>
+    //       );
+    //     }
+    //     return (
+    //       <div key={s.name} className="step" >
+    //         <div className="circleLine">
+    //           {circleLine}
+    //           {/* <BlueLine /> */}
+    //         </div>
+    //         <div className="stepName">{s.name}</div>
+    //       </div>
+    //     );
+    //   });
 
-      myContent = (
-        <div className="procurementContainer">
-          <div className="workflowContainer">
-            <div className="workflow">
-              {workflow}
-              {/* <Circle/>
-            <Line /> */}
-            </div>
-          </div>
-          <div className="documentContextContainer">
-            <img className="procurementImgs" src={require('../../../assets/' + currStep + '.png')} />
-            {/* <img src={require('../../../assets/Accept.png')}/> */}
-          </div>
-          <div className="blockchainListenerContainer">blockchainListenerContainer</div>
-          <div className="nextButtonContainer">
-            <button onClick={this.nextHandler}>Next</button>
-          </div>
-        </div>
-      );
-    }
-
-    // <a href="https://gscvidashboard.mybluemix.net" target="_blank"><img src={procMgrScreenShot} className="procMgrContainerImg"></img></a>
-    return myContent
+    //   myContent = (
+    //     <div className="procurementContainer">
+    //       <div className="workflowContainer">
+    //         <div className="workflow">
+    //           {workflow}
+    //           {/* <Circle/>
+    //         <Line /> */}
+    //         </div>
+    //       </div>
+    //       <div className="documentContextContainer">
+    //         <img className="procurementImgs" src={require('../../../assets/' + currStep + '.png')} />
+    //         {/* <img src={require('../../../assets/Accept.png')}/> */}
+    //       </div>
+    //       <div className="blockchainListenerContainer">blockchainListenerContainer</div>
+    //       <div className="nextButtonContainer">
+    //         <button onClick={this.nextHandler}>Next</button>
+    //       </div>
+    //     </div>
+    //   );
+    // }
+    //Uncomment above code to replace screenshot................
+    
+    //Comment bellow code to replace screenshot................
+    myContent = <a href="https://gscvidashboard.mybluemix.net" target="_blank"><img src={procMgrScreenShot} className="procMgrContainerImg"></img></a>
+    //Comment above code to replace screenshot................
+    
+    return myContent ; 
 
   }
 
