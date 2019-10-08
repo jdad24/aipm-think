@@ -118,7 +118,9 @@ class viDashboard extends Component {
                 else if (msg.type === "scoring" && msg.robotSource === this.props.robot) {
                     // console.log("Score MSG");
                     // console.log(msg);
-                    let score = [msg.robotSource, msg.speakingClassification, msg.confidence, msg.slot, msg.batch, msg.date, msg.time];
+                    
+                    let d = new Date();
+                    let score = [msg.robotSource, msg.speakingClassification, msg.confidence, msg.slot, msg.batch, msg.date, d.toLocaleTimeString()];
                     console.log("SCORE");
                     console.log(score);
                     let cur_scoredata = this.state.scoredata;
