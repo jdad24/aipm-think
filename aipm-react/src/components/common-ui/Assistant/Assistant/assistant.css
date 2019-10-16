@@ -108,10 +108,10 @@ button:focus {
 a { color: inherit} 
 
 .question{
-    border: 1px solid #0062FF; 
+    border: 1px solid #3D3D3D; 
     padding: 10px;
-    border-radius: 10px;
-    margin: 5px;
+    /* border-radius: 10px; */
+    /* margin: 5px; */
 }
 
 .dialog{
@@ -167,6 +167,11 @@ a { color: inherit}
 .assistantIconContainer{
     padding: 12px;
 }
+
+/* .assistantIconContainer:focus {
+    border-left: 3px solid  #056CF9;
+} */
+
 
 .assistantHeaderIcons div{
     padding-left: 15px;

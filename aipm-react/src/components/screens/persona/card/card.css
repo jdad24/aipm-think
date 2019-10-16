@@ -12,6 +12,12 @@
   font-style: normal;
 } */
 
+/* @media screen and (min-width: 200px) {
+  .card {
+    margin-left: 100px;
+  }
+} */
+
 .cards {
   display: flex;
   flex-wrap: wrap;

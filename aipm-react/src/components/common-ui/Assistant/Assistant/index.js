@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import microPhoneIcon from '../../../../assets/microphone.svg';
 import settingsGrey from '../../../../assets/settings_grey.svg';
 import lightningBolt from '../../../../assets/lightningBolt.svg';
+import lightningBoltBlue from '../../../../assets/lightningBoltBlue.svg';
 import bulb from '../../../../assets/idea.svg';
 import note from '../../../../assets/note.svg';
 import axios from 'axios';
@@ -12,21 +13,31 @@ import Aux from '../../../common-ui/Aux/Aux';
 import mute from '../../../../assets/mute.svg';
 import expand from '../../../../assets/expand.svg';
 import UpArrow from "../../../../assets/up-arrow.svg";
+import Dropdown from '../../Dropdown/Dropdown'
 import './assistant.css';
+import HorizontalRectangle from '../../HorizontalRectangle/HorizontalRectangle'
 
-import './assistant.css';
 
 class Assistant extends Component {
     constructor(props) {
         super(props)
 
         this.ref = React.createRef()
+
+        this.getQuestions = this.getQuestions.bind(this)
     }
 
     state = {
         sampleQ: [],
         chosenSampleQ: "",
-        dialog: []
+        dialog: [],
+        tabFocus: {
+            watson: false,
+            note: false,
+            bulb: false,
+            clear: false,
+        },
+        lightningBlue: false,
     }
 
     componentDidUpdate() {
@@ -197,8 +208,8 @@ class Assistant extends Component {
         let sampleQs = this.getQuestions();
         let firstDialog =
             (<WatsonDialog>
-                <p>Hello, how may I help you? Click on one of the sample questions below to start!</p>
-                {sampleQs}
+                <p>Hello, how may I help you?</p>
+                {/* {sampleQs} */}
             </WatsonDialog>);
         return firstDialog;
     }
@@ -219,13 +230,37 @@ class Assistant extends Component {
                 className="assistantContainer"
                 style={{ opacity: this.props.show ? '1' : '0', zIndex: this.props.show ? '500' : '-500' }}>
                 <div className="assistantSidebar">
-                    <div className="assistantIconContainer"><img src={watson} /></div>
+                    <div className="assistantIconContainer" tabIndex="10">
+                        {this.state.tabFocus.watson? <HorizontalRectangle/>: null} <img src={watson} onClick={()=> this.setState({
+                            tabFocus: {
+                                watson: !this.state.watson
+                            }
+                        })}/>
+                        </div>
                     {/* <div><img src={note} /></div> */}
-                    <div className="assistantIconContainer"><img src={note} /></div>
+                    <div className="assistantIconContainer" tabIndex="11">
+                        {/* <Dropdown questions={this.getQuestions}> */}
+                        {this.state.tabFocus.note? <HorizontalRectangle/>: null}<img src={note} onClick={()=> this.setState({
+                            tabFocus: {
+                                note: !this.state.note
+                            }
+                        })} />
+                        {/* </Dropdown>  */}
+                    </div>
                     {/* <div><img src={note} /></div> */}
-                    <div className="assistantIconContainer"><img src={bulb} /></div>
-                    <div className="assistantIconContainer"><img src={lightningBolt} /></div>
-                    <div className="assistantIconContainer" onClick={this.clearText}><img src={settingsGrey} /></div>
+                    <div className="assistantIconContainer" tabIndex="12">
+                    {this.state.tabFocus.bulb? <HorizontalRectangle/>: null}<img src={bulb} onClick={()=> this.setState({
+                            tabFocus: {
+                                bulb: !this.state.bulb
+                            }
+                        })} /></div>
+                    {/* <div className="assistantIconContainer"><img src={lightningBolt} /></div> */}
+                    <div className="assistantIconContainer" tabIndex="13" onClick={this.clearText}>{this.state.tabFocus.clear? <HorizontalRectangle/>: null}
+                    <img src={settingsGrey} onClick={()=> this.setState({
+                            tabFocus: {
+                                clear: !this.state.clear
+                            }
+                        })} /></div>
                 </div>
                 <div className="AssistantTop">
                     <div>
@@ -240,6 +275,13 @@ class Assistant extends Component {
 
                 </div>
                 <div className="AssistantMid" ref={this.ref}>
+                <div className="assistantIconContainer"  style={{position: 'absolute', left: "400px"}} 
+                // onClick={() => this.setState({lightningBlue: !this.state.lightningBlue})}
+                >
+                        <Dropdown questions={this.getQuestions}>
+                        {/* {this.state.lightningBlue ? <img src={lightningBoltBlue}/> : <img src={lightningBolt} />}  */}
+                        </Dropdown> 
+                </div>
                     {firstDialog}
                     {dialog}
                 </div>

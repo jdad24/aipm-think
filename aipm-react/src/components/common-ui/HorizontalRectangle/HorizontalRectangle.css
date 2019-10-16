@@ -1,0 +1,7 @@
+.HorizontalRectangle {
+    position: absolute;
+    left: -1px;
+    height: 30px;
+    width: 4px;
+    background-color:  #056CF9;
+}
