@@ -2,6 +2,7 @@
     z-index: 0;
 }
 .dropdown-elements {
+    /* opacity: "0"; */
     /* display:none; */
     position: absolute;
     /* width: 300px; */
@@ -11,7 +12,6 @@
     box-shadow: 0px 3px 15px 3px rgba(30.5,30.5,30.5,1);
     background-color: #056CF9;
     font-size: 16px;
-    transition: width .5s, font-size .5s;
-
+    transition: width .5s, font-size .5s, opacity .5s;
 }
 
