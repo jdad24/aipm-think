@@ -30,6 +30,7 @@ class Assistant extends Component {
     state = {
         sampleQ: [],
         chosenSampleQ: "",
+        chosenInputText: "",
         dialog: [],
         tabFocus: {
             watson: false,
@@ -126,12 +127,14 @@ class Assistant extends Component {
         if (!text) {
             console.log(event.target.value);
             this.setState({
-                chosenSampleQ: event.target.value
+                chosenSampleQ: event.target.value,
+                chosenInputText: event.target.value
             });
         } else {
             console.log(text);
             this.setState({
-                chosenSampleQ: text
+                chosenSampleQ: text,
+                chosenInputText: text,
             });
         }
 
@@ -286,10 +289,10 @@ class Assistant extends Component {
                     {dialog}
                 </div>
                 <div className="AssistantBottom">
-                    <input onChange={(e) => this.getSampleQText(e)} placeholder="Type something.." className="AssistantBottom_input" type="input" value={this.state.chosenSampleQ} />
+                    <input onChange={(e) => this.getSampleQText(e)} placeholder="Type something.." className="AssistantBottom_input" type="input" value={this.state.chosenInputText} />
                     {/* <div onChange={(e) => this.getAssistanceResponse(e)} className="AssistantBottom_input" contentEditable="true" type="input">{this.state.chosenSampleQ}</div> */}
                     {/* <div onClick={(e) => this.getAssistanceResponse(e)}><p className="upArrow">&#x2191;</p></div> */}
-                    <div onClick={(e) => this.getAssistanceResponse(e)}><img src={UpArrow}/></div>
+                    <div onClick={(e) => (this.getAssistanceResponse(e), this.state.chosenInputText="")}><img src={UpArrow}/></div>
                     {/* // <div onClick={(e) => { this.getAssistanceResponse(e) }} style={{ textAlign: "right" }} ><img style={{ marginLeft: "325px" }} src={UpArrow} width="50%" height="50%" /></div> */}
                 </div>
             </div>

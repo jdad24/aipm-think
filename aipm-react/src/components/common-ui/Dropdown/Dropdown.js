@@ -27,13 +27,12 @@ class Dropdown extends React.Component {
   render() {
       return (
         <div> 
-        <div className="icon" onClick={() => this.setState({
-        })}>
+        <div className="icon">
             {this.state.lightningBlue ? <img src={lightningBoltBlue} onClick={() => this.setState({lightningBlue: !this.state.lightningBlue, width: "30px", opacity: "0", font: "1.6px"})}/> 
             : <img src={lightningBolt} onClick={() => this.setState({lightningBlue: !this.state.lightningBlue, width: "300px", opacity: "1", font: "16px"})}/>} 
             {/* {this.props.children }  */}
         </div>
-        <div className="dropdown-elements" style={{width: this.state.width, opacity: this.state.opacity, fontSize: this.state.font}}>{this.questions()}</div>
+        <div className="dropdown-elements" style={{width: this.state.width, opacity: this.state.opacity, fontSize: this.state.font}} onClick={() => this.setState({lightningBlue: !this.state.lightningBlue, width: "30px", opacity: "0", font: "1.6px"})}>{this.questions()}</div>
              {/* {this.state.lightningBlue ? (this.setState({width: "300px"}), this.display="initial"): (this.state.width = "30px", this.display="none") } */}
     </div>    
       )
