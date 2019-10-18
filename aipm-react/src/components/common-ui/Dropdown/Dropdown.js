@@ -34,7 +34,7 @@ class Dropdown extends React.Component {
         </div>
         <div className="dropdown-elements" style={{width: this.state.width, opacity: this.state.opacity, fontSize: this.state.font}} onClick={() => this.setState({lightningBlue: !this.state.lightningBlue, width: "30px", opacity: "0", font: "1.6px"})}>{this.questions()}</div>
              {/* {this.state.lightningBlue ? (this.setState({width: "300px"}), this.display="initial"): (this.state.width = "30px", this.display="none") } */}
-    </div>    
+        </div>    
       )
   }
 }

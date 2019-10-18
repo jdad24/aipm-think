@@ -1,17 +1,23 @@
 .icon {
     z-index: 0;
+    display: flex;
+    justify-content: flex-end;
+
 }
 .dropdown-elements {
     /* opacity: "0"; */
     /* display:none; */
-    position: absolute;
+    /* position: absolute; */
     /* width: 300px; */
-    top: 50px;
-    right: 0px;
+    /* top: 200px;
+    right: 0px; */
+
     z-index: 1;
     box-shadow: 0px 3px 15px 3px rgba(30.5,30.5,30.5,1);
     background-color: #056CF9;
     font-size: 16px;
     transition: width .5s, font-size .5s, opacity .5s;
 }
+
+
 

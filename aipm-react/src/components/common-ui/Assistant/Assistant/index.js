@@ -278,7 +278,7 @@ class Assistant extends Component {
 
                 </div>
                 <div className="AssistantMid" ref={this.ref}>
-                <div className="assistantIconContainer"  style={{position: 'absolute', left: "400px"}} 
+                <div className="assistantIconContainer" 
                 // onClick={() => this.setState({lightningBlue: !this.state.lightningBlue})}
                 >
                         <Dropdown questions={this.getQuestions}>
