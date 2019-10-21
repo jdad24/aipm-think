@@ -26,7 +26,7 @@ class Dropdown extends React.Component {
 
   render() {
       return (
-        <div> 
+        <div className="DropdownContainer"> 
         <div className="icon">
             {this.state.lightningBlue ? <img src={lightningBoltBlue} onClick={() => this.setState({lightningBlue: !this.state.lightningBlue, width: "30px", opacity: "0", font: "1.6px"})}/> 
             : <img src={lightningBolt} onClick={() => this.setState({lightningBlue: !this.state.lightningBlue, width: "300px", opacity: "1", font: "16px"})}/>} 

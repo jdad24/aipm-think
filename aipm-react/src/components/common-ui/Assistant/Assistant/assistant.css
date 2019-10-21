@@ -54,6 +54,7 @@
     padding-top: 25px;
     overflow-y: scroll;
     /* border: 1px solid white; */
+
 }
 
 .assistantHeaderIcons{
@@ -171,11 +172,7 @@ a { color: inherit}
     align-items: center;
 }
 
-/* .assistantIconContainer:focus {
-    border-left: 3px solid  #056CF9;
-} */
-
-
 .assistantHeaderIcons div{
     padding-left: 15px;
 }
+

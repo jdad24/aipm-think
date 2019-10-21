@@ -278,13 +278,8 @@ class Assistant extends Component {
 
                 </div>
                 <div className="AssistantMid" ref={this.ref}>
-                <div className="assistantIconContainer" 
-                // onClick={() => this.setState({lightningBlue: !this.state.lightningBlue})}
-                >
-                        <Dropdown questions={this.getQuestions}>
-                        {/* {this.state.lightningBlue ? <img src={lightningBoltBlue}/> : <img src={lightningBolt} />}  */}
-                        </Dropdown> 
-                </div>
+                    <Dropdown questions={this.getQuestions}/>
+
                     {firstDialog}
                     {dialog}
                 </div>
