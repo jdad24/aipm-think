@@ -10,7 +10,8 @@ import GreyCircle from '../../common-ui/GreyCircle/circle';
 import GreyLine from '../../common-ui/GreyLine/line';
 import procMgrScreenShot from "../../../assets/procurementManager.png";
 import axios from 'axios';
-// import * as pm from './rest-util';
+import BlockchainListner from "../../common-ui/BlockchainListener/BlockchainListener"
+import DocumentContext from "../../common-ui/DocumentContext/DocumentContext"
 
 class ProductionOptimization extends Component {
 
@@ -610,7 +611,7 @@ class ProductionOptimization extends Component {
 
   getProcMgrContent = () => {
     let myContent = "no data";
-    //Uncomment bellow code to replace screenshot................
+    // Uncomment bellow code to replace screenshot................
     let complete = <CircleCheck />;
     let current = <BlueCircle />;
     let incomplete = <GreyCircle />;
@@ -628,10 +629,13 @@ class ProductionOptimization extends Component {
       "2": greyLine
     }
 
+    // let localState = this.state.stepState;
+    // let localLineColor = this.state.lineColor;
     if (this.state.steps.length) {
 
       let stepsLen = this.state.steps.length;
       let currStep = this.state.currentStep;
+      //console.log("currStep", currStep);
       let workflow = this.state.steps.map((s, i) => {
         let circleLine = (
           <Aux>
@@ -651,62 +655,44 @@ class ProductionOptimization extends Component {
           <div key={s.name} className="step" >
             <div className="circleLine">
               {circleLine}
+              {/* <BlueLine /> */}
             </div>
             <div className="stepName">{s.name}</div>
           </div>
         );
       });
 
-      let blockChainContents = "no data"
-      if (this.state.blockChainContents) {
-        //console.log(this.state.blockChainContents);
-        blockChainContents = this.state.blockChainContents.map(rows => {
-          // console.log(typeof rows);
-          if (rows.length > 0) {
-            let bcContents = rows.map(r => {
-              return (
-                <div className="bcContents" key={Object.values(r)}>
-                  <div>{Object.keys(r)} :</div>
-                  <div>{Object.values(r)}</div>
-                </div>
-              );
-            });
-            return (
-              <Aux >
-                {bcContents}
-              </Aux>
-            );
-          } else {
-            return (
-              <div className="bcContents" key={Object.values(rows)}>
-                <div>{Object.keys(rows)} :</div>
-                <div>{Object.values(rows)}</div>
-              </div>
-            );
-          }
-        });
-      }
       myContent = (
         <div className="procurementContainer">
           <div className="workflowContainer">
             <div className="workflow">
               {workflow}
+              {/* <Circle/>
+            <Line /> */}
             </div>
           </div>
           <div className="documentContextContainer">
             <img className="procurementImgs" src={require('../../../assets/' + currStep + '.png')} />
+            {/* <img src={require('../../../assets/Accept.png')}/> */}
           </div>
-          <div className="blockchainListenerContainer">{blockChainContents}</div>
+          <div className="blockchainListenerContainer">blockchainListenerContainer</div>
           <div className="nextButtonContainer">
-            <button className="blockchainbutton" onClick={this.nextHandler}>Next</button>
+            <button onClick={this.nextHandler}>Next</button>
           </div>
         </div>
       );
     }
-    //Uncomment above code to replace screenshot................
-
+    // Uncomment above code to replace screenshot................
+    
     //Comment bellow code to replace screenshot................
-    //myContent = <a href="https://gscvidashboard.mybluemix.net" target="_blank"><img src={procMgrScreenShot} className="procMgrContainerImg"></img></a>
+    // myContent = <a href="https://gscvidashboard.mybluemix.net" target="_blank"><img src={procMgrScreenShot} className="procMgrContainerImg"></img></a>
+
+    myContent = (
+    <div className="ContentContainer">
+      <DocumentContext/>
+      <BlockchainListner/>
+    </div>
+    )
     //Comment above code to replace screenshot................
 
     return myContent;
