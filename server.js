@@ -16,6 +16,7 @@ console.log("isLocal:" + isLocal);
 
 module.exports.app = app;
 const hlfClent = require('./hlf-client');
+// const rest_endpoint = require('./rest-endpoints');
 
 var localUser = 'gscuser';
 var localPassword = 'passw0rd';
@@ -80,6 +81,6 @@ app.listen(port, () => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/api/hello', (req, res) => {
-  res.send({ express: 'Hello From Express' });
-});
+// app.get('/api/hello', (req, res) => {
+//   res.send({ express: 'Hello From Express' });
+// });

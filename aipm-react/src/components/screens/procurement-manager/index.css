@@ -24,7 +24,7 @@
     grid-row: 3;
     grid-column: 2;
     display: flex;
-    /* justify-content: flex-end; */
+    justify-content: flex-end;
 }
 
 .circleLine{
@@ -54,6 +54,9 @@
     grid-column: 2;
     background-color: #FFFFFF;
     margin: 15px;
+    flex-direction: column;
+    max-height: 588px;
+    overflow-y: auto;
     /* border: 3px solid purple; */
     /* height: 100px; */
 }
@@ -72,4 +75,24 @@
 .procurementImgs{
     height:591px; 
     width: 427px;
+}
+
+.bcContents{
+display: flex;
+border: 1px solid black;
+padding: 20px;
+/* width: 100%; */
+/* flex-direction: column; */
+}
+
+.blockchainbutton{
+    width: 30%;
+    height: 50%;
+    color: #ccd5e0;
+    background: #0062ff;
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
