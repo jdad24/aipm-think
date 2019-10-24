@@ -1,26 +1,18 @@
-import React from 'react'
-import "./BlockchainListener.css"
+import React from 'react';
+import "./BlockchainListener.css";
 
-class BlockchainListener extends React.Component {
+const BlockchainListener = (props) => {
+    let rows = "no data";
+    if (props.bcdata.length > 0) {
+        rows = props.bcdata.map(n => {
+            return <tr>{n[0]}: {n[1]}</tr>;
+        });
 
-    render() {
-        return (
-            <div className = "Blockchain">
-                <div className="title">
-                    Blockchain Listener
-                </div>
-                <table>
-                    <tr>
-                        <th>Column header</th>
-                    </tr>
-                    <tr>
-                        <td>cell text</td>
-                    </tr>
-                </table>
-
-            </div>
-        )
     }
+    return (
+        <table>
+            {rows}
+        </table>
+    );
 }
-
-export default BlockchainListener
+export default BlockchainListener;

@@ -10,6 +10,8 @@ import GreyCircle from '../../common-ui/GreyCircle/circle';
 import GreyLine from '../../common-ui/GreyLine/line';
 import procMgrScreenShot from "../../../assets/procurementManager.png";
 import axios from 'axios';
+import BlockChainListner from '../../common-ui/BlockchainListener/BlockchainListener';
+import Confirm from '../../../assets/Confirm.mp4';
 // import * as pm from './rest-util';
 
 class ProductionOptimization extends Component {
@@ -25,12 +27,12 @@ class ProductionOptimization extends Component {
 
   Order = () => {
     this.setState({
-        title: "procurementManager",
-        sampleQ: [],
-        steps: [],
-        currentStep: "Order",
-        po: null,
-        blockChainContents: null
+      title: "procurementManager",
+      sampleQ: [],
+      steps: [],
+      currentStep: "Order",
+      po: null,
+      blockChainContents: null
     });
     this.callApi('/api/queries/OemOrderSorted')
       .then(res => {
@@ -374,7 +376,7 @@ class ProductionOptimization extends Component {
         return;
     }
 
-    console.log(this.routeObj); 
+    console.log(this.routeObj);
     this.setState({
       disposition: this.routeObj.disposition
     });
@@ -405,7 +407,7 @@ class ProductionOptimization extends Component {
         console.log(res);
         let localProps = ["orderId", "status", "orderDate", "deliverBy"];
         let rows = localProps.map(r => {
-          return({[r]: res.data[r]});
+          return ({ [r]: res.data[r] });
         });
         this.setState({
           blockChainContents: rows
@@ -489,9 +491,9 @@ class ProductionOptimization extends Component {
         break;
 
       case "Grade":
-          this.setState({
-            blockChainContents: null
-          });
+        this.setState({
+          blockChainContents: null
+        });
         this.getVIdata(null, null, this.state.po);
 
         //send info to SAP
@@ -499,20 +501,20 @@ class ProductionOptimization extends Component {
 
       case "Accept":
         console.log("Accept");
-          this.setState({
-            blockChainContents: null
-          });
+        this.setState({
+          blockChainContents: null
+        });
         this.callApi('/api/queries/LotByOrderId?orderId=' + this.state.po).then(res => {
           console.log(res);
           let Disposition = ["PENDING", "ACCEPTED", "REJECTED"];
           let localProps = ["orderId", "lotId", "disposition", "quantity"];
           let rows = localProps.map(r => {
-            if(r=="disposition"){
-              return ({[r]: this.state.disposition});
-            }else{
-              return ({[r]: res[0][r]});
+            if (r == "disposition") {
+              return ({ [r]: this.state.disposition });
+            } else {
+              return ({ [r]: res[0][r] });
             }
-            
+
           });
           this.setState({
             blockChainContents: rows
@@ -520,12 +522,12 @@ class ProductionOptimization extends Component {
         });
         break;
 
-        case "Deliver":
-            this.setState({
-              blockChainContents: null
-            });
-            this.CompleteOrder(this.state.po);
-          break;
+      case "Deliver":
+        this.setState({
+          blockChainContents: null
+        });
+        this.CompleteOrder(this.state.po);
+        break;
 
     }
   }
@@ -657,32 +659,39 @@ class ProductionOptimization extends Component {
         );
       });
 
-      let blockChainContents = "no data"
+      let blockChainContents = [];
       if (this.state.blockChainContents) {
         //console.log(this.state.blockChainContents);
+        // let data =[];
         blockChainContents = this.state.blockChainContents.map(rows => {
+
           // console.log(typeof rows);
           if (rows.length > 0) {
             let bcContents = rows.map(r => {
-              return (
-                <div className="bcContents" key={Object.values(r)}>
-                  <div>{Object.keys(r)} :</div>
-                  <div>{Object.values(r)}</div>
-                </div>
-              );
+              return ([Object.keys(r), Object.values(r)]);
             });
-            return (
-              <Aux >
-                {bcContents}
-              </Aux>
-            );
+            return bcContents;
+            // let bcContents = rows.map(r => {
+            //   return (
+            //     <div className="bcContents" key={Object.values(r)}>
+            //       <div>{Object.keys(r)} :</div>
+            //       <div>{Object.values(r)}</div>
+            //     </div>
+            //   );
+            // });
+            // return (
+            //   <Aux >
+            //     {bcContents}
+            //   </Aux>
+            // );
           } else {
-            return (
-              <div className="bcContents" key={Object.values(rows)}>
-                <div>{Object.keys(rows)} :</div>
-                <div>{Object.values(rows)}</div>
-              </div>
-            );
+            // return (
+            return ([Object.keys(rows), Object.values(rows)]);
+            //   <div className="bcContents" key={Object.values(rows)}>
+            //     <div>{Object.keys(rows)} :</div>
+            //     <div>{Object.values(rows)}</div>
+            //   </div>
+            // );
           }
         });
       }
@@ -696,7 +705,30 @@ class ProductionOptimization extends Component {
           <div className="documentContextContainer">
             <img className="procurementImgs" src={require('../../../assets/' + currStep + '.png')} />
           </div>
-          <div className="blockchainListenerContainer">{blockChainContents}</div>
+          <div className="mediaContainer">
+            <video
+            src={Confirm} 
+            autoPlay={true}
+            loop
+            muted
+            preload="true"
+            width="700px"
+            height="500px"
+            // controls
+            > 
+
+            </video>
+
+            {/* with controls */}
+            {/* <video width="100%" height="100%" autoplay>
+              <source src={Confirm}  type="video/mp4">
+              <source src={Confirm}  type="video/mp4">
+            </video> */}
+          </div>
+          {/* <div className="blockchainListenerContainer">{blockChainContents}</div> */}
+          <div className="blockchainListenerContainer">
+            <BlockChainListner bcdata={blockChainContents} />
+          </div>
           <div className="nextButtonContainer">
             <button className="blockchainbutton" onClick={this.nextHandler}>Next</button>
           </div>
