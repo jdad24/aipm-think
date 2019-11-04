@@ -14,6 +14,10 @@ import BlockChainListner from '../../common-ui/BlockchainListener/BlockchainList
 import Confirm from '../../../assets/Confirm.mp4';
 // import * as pm from './rest-util';
 
+import DocumentContext from "./DocumentContext/DocumentContext"
+
+
+
 class ProductionOptimization extends Component {
 
   state = {
@@ -706,7 +710,8 @@ class ProductionOptimization extends Component {
           <div className="procurementContent">
             <div className="documentContextContainer">
               <div className="bcTitles">Document Context</div>
-              <img className="procurementImgs" src={require('../../../assets/' + currStep + '.png')} />
+              {/* <img className="procurementImgs" src={require('../../../assets/' + currStep + '.png')} /> */}
+              <DocumentContext currStep={this.state.currentStep}/>
             </div>
             <div className="mediaContainer">
               <div className="bcTitles">Live Video</div>
