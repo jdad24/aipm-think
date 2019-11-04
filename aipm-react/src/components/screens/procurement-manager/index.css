@@ -7,9 +7,9 @@
 
 .procurementContainer{
     display: grid;
-    grid-template-rows: 1fr 5fr 1fr;
-    grid-template-columns: 1fr 2fr 1fr;
-    grid-row-gap: 25px;
+    grid-template-rows: 1fr 5fr;
+    grid-template-columns: 1fr;
+    grid-row-gap: 8%;
 }
 
 .workflowContainer{
@@ -18,15 +18,8 @@
     align-items: center; 
     grid-row: 1;
     grid-column: 1/-1;
-}
 
-.nextButtonContainer{
-    grid-row: 3;
-    grid-column: 3;
-    display: flex;
-    justify-content: flex-end;
 }
-
 .circleLine{
     display: flex;
     align-items: center;
@@ -38,35 +31,72 @@
     align-items: center;
 }
 
+.procurementContent{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-row: 2;
+    grid-column-gap: 1%;
+    /* margin: 20px; */
+    
+}
+
+/* .nextButtonContainer{ */
+    /* grid-row: 3;
+    grid-column: 3; */
+    /* display: flex;
+    justify-content: flex-end;
+} */
+
 .documentContextContainer{
     display: flex;
-    grid-row: 2;
+    /* grid-row: 2; */
     grid-column: 1;
+    flex-direction: column;
     background-color: #FFFFFF;
-    margin: 15px;
+    /* width: min-content; */
+    /* width: 25%; */
+    /* margin: 15px; */
     /* border: 1px solid black;  */
     /* height: 100px; */
+}
+.bcTitles{
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
 }
 
 .blockchainListenerContainer{
     display: flex;
-    grid-row: 2;
+    /* grid-row: 2; */
     grid-column: 3;
     background-color: #FFFFFF;
-    margin: 15px;
+    /* margin: 15px; */
     flex-direction: column;
     max-height: 588px;
     overflow-y: auto;
+    /* width: 25%; */
     /* border: 3px solid purple; */
     /* height: 100px; */
 }
 
 .mediaContainer{
     /* display: flex; */
-    grid-row: 2;
+    /* grid-row: 2; */
     grid-column: 2;
     background-color: #FFFFFF;
-    margin: 15px;
+    /* width: 25%; */
+    /* margin: 15px; */
+}
+.currentBlockContainer{
+    grid-column: 4;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    /* width: 100%; */
+    /* justify-content: flex-end; */
 }
 
 .step{
@@ -81,21 +111,23 @@
 }
 
 .procurementImgs{
-    height:591px; 
-    width: 427px;
+    max-width: 100%;
+  height: auto;
 }
 
 .bcContents{
 display: flex;
-border: 1px solid black;
+/* border-color:#A2A2A2 ; */
+/* border-top: 1px solid #A2A2A2; */
+border-bottom: 1px solid #A2A2A2;
 padding: 20px;
 /* width: 100%; */
 /* flex-direction: column; */
 }
 
 .blockchainbutton{
-    width: 30%;
-    height: 50%;
+    /* width: 100%; */
+    /* height: 20%; */
     color: #ccd5e0;
     background: #0062ff;
     font-weight: 600;

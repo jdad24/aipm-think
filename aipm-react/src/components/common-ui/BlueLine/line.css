@@ -1,6 +1,7 @@
 .blueline{
-border: 3px solid  #0061FF;
-width: 60px;
+border: 2px solid #181717;
+width: 80px;
 height: 0;
 margin: 3px;
+border-radius: 2px;
 }

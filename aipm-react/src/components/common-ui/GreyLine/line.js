@@ -3,7 +3,16 @@ import "./line.css"
 import Aux from "../Aux/Aux"
 
 const line  = () => {
-    return <Aux><div className="lineGrey"/><div className="lineGrey"/><div className="lineGrey"/><div className="lineGrey"/></Aux>
+    let gline = <div className="lineGrey"/>;
+    return (
+    <Aux>
+        {gline}
+        {gline}
+        {gline}
+        {gline}
+        {gline}
+    </Aux>
+    );
 }
 
 export default line;

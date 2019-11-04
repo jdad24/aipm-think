@@ -36,6 +36,7 @@ class ProductionOptimization extends Component {
     });
     this.callApi('/api/queries/OemOrderSorted')
       .then(res => {
+        console.log(res);
         let localProps = ["orderId", "status", "orderDate", "deliverBy"];
         let sap_oid_template = "450000";
 
@@ -667,31 +668,31 @@ class ProductionOptimization extends Component {
 
           // console.log(typeof rows);
           if (rows.length > 0) {
-            let bcContents = rows.map(r => {
-              return ([Object.keys(r), Object.values(r)]);
-            });
-            return bcContents;
             // let bcContents = rows.map(r => {
-            //   return (
-            //     <div className="bcContents" key={Object.values(r)}>
-            //       <div>{Object.keys(r)} :</div>
-            //       <div>{Object.values(r)}</div>
-            //     </div>
-            //   );
+            //   return ([Object.keys(r), Object.values(r)]);
             // });
-            // return (
-            //   <Aux >
-            //     {bcContents}
-            //   </Aux>
-            // );
+            // return bcContents;
+            let bcContents = rows.map(r => {
+              return (
+                <div className="bcContents" key={Object.values(r)}>
+                  <div>{Object.keys(r)} :</div>
+                  <div>{Object.values(r)}</div>
+                </div>
+              );
+            });
+            return (
+              <Aux >
+                {bcContents}
+              </Aux>
+            );
           } else {
-            // return (
-            return ([Object.keys(rows), Object.values(rows)]);
-            //   <div className="bcContents" key={Object.values(rows)}>
-            //     <div>{Object.keys(rows)} :</div>
-            //     <div>{Object.values(rows)}</div>
-            //   </div>
-            // );
+            return (
+              //return ([Object.keys(rows), Object.values(rows)]);
+              <div className="bcContents" key={Object.values(rows)}>
+                <div>{Object.keys(rows)} :</div>
+                <div>{Object.values(rows)}</div>
+              </div>
+            );
           }
         });
       }
@@ -702,7 +703,35 @@ class ProductionOptimization extends Component {
               {workflow}
             </div>
           </div>
-          <div className="documentContextContainer">
+          <div className="procurementContent">
+            <div className="documentContextContainer">
+              <div className="bcTitles">Document Context</div>
+              <img className="procurementImgs" src={require('../../../assets/' + currStep + '.png')} />
+            </div>
+            <div className="mediaContainer">
+              <div className="bcTitles">Live Video</div>
+              <video
+                src={Confirm}
+                autoPlay={true}
+                loop
+                muted
+                preload="true"
+                width="100%"
+                height="auto"
+                controls
+              >
+              </video>
+            </div>
+            <div className="blockchainListenerContainer">
+            <div className="bcTitles">Blockchain Listner</div>
+            {blockChainContents}
+            </div>
+            <div className="currentBlockContainer">
+            <div className="bcTitles">Current Block</div>
+              <button className="blockchainbutton" onClick={this.nextHandler}>Next</button>
+            </div>
+          </div>
+          {/* <div className="documentContextContainer">
             <img className="procurementImgs" src={require('../../../assets/' + currStep + '.png')} />
           </div>
           <div className="mediaContainer">
@@ -714,24 +743,19 @@ class ProductionOptimization extends Component {
             preload="true"
             width="700px"
             height="500px"
-            // controls
-            > 
-
+            controls
+            >
             </video>
-
-            {/* with controls */}
-            {/* <video width="100%" height="100%" autoplay>
-              <source src={Confirm}  type="video/mp4">
-              <source src={Confirm}  type="video/mp4">
-            </video> */}
           </div>
-          {/* <div className="blockchainListenerContainer">{blockChainContents}</div> */}
-          <div className="blockchainListenerContainer">
+          <div className="blockchainListenerContainer">{blockChainContents}</div> */}
+          {/* diff code */}
+          {/* <div className="blockchainListenerContainer">
             <BlockChainListner bcdata={blockChainContents} />
-          </div>
-          <div className="nextButtonContainer">
+          </div> */}
+          {/* diff code */}
+          {/* <div className="nextButtonContainer">
             <button className="blockchainbutton" onClick={this.nextHandler}>Next</button>
-          </div>
+          </div> */}
         </div>
       );
     }
