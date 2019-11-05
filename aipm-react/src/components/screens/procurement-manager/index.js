@@ -15,6 +15,7 @@ import Confirm from '../../../assets/Confirm.mp4';
 // import * as pm from './rest-util';
 
 import DocumentContext from "./DocumentContext/DocumentContext"
+import rightArrow from "../../../assets/arrow_right_white.svg"
 
 
 
@@ -779,8 +780,8 @@ class ProductionOptimization extends Component {
             </div>
             <div className="currentBlockContainer">
             <div className="bcTitles">Current Block</div>
-              <button className="blockchainbutton" onClick={this.nextHandler}>Next</button>
             </div>
+            <button className="blockchainbutton" onClick={this.nextHandler}>Next<img src={rightArrow} className="rightArrow"/></button>
           </div>
           {/* <div className="documentContextContainer">
             <img className="procurementImgs" src={require('../../../assets/' + currStep + '.png')} />
