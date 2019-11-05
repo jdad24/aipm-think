@@ -7,7 +7,7 @@
 
 .procurementContainer{
     display: grid;
-    grid-template-rows: 1fr 5fr;
+    grid-template-rows: 10vh 55vh 2vh;
     grid-template-columns: 1fr;
     grid-row-gap: 8%;
 }
@@ -33,8 +33,8 @@
 
 .procurementContent{
     display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 90% 10%;
+    grid-template-columns: 24% 24% 24% 24%;
     grid-row: 2;
     grid-column-gap: 1%;
     /* margin: 20px; */
@@ -50,7 +50,7 @@
 
 .documentContextContainer{
     display: flex;
-    /* grid-row: 2; */
+    grid-row: 1;
     grid-column: 1;
     flex-direction: column;
     background-color: #FFFFFF;
@@ -70,7 +70,7 @@
 
 .blockchainListenerContainer{
     display: flex;
-    /* grid-row: 2; */
+    grid-row: 1;
     grid-column: 3;
     background-color: #FFFFFF;
     /* margin: 15px; */
@@ -84,7 +84,7 @@
 
 .mediaContainer{
     /* display: flex; */
-    /* grid-row: 2; */
+    grid-row: 1;
     grid-column: 2;
     background-color: #FFFFFF;
     /* width: 25%; */
@@ -95,6 +95,7 @@
     background-color: #FFFFFF;
     display: flex;
     flex-direction: column;
+    grid-row: 1;
     /* width: 100%; */
     /* justify-content: flex-end; */
 }
