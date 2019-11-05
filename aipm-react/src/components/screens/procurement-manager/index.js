@@ -26,7 +26,14 @@ class ProductionOptimization extends Component {
     steps: [],
     currentStep: "Order",
     po: null,
-    blockChainContents: null
+    blockChainContents: null,
+    vidata_Graph: [
+      { name: "good", value: 75 },
+       { name: "bent", value: 15 },
+       { name: "damaged", value: 5 },
+       { name: "empty", value: 5 }
+    ],
+    dataQuality: null
   }
 
   Order = () => {
@@ -156,9 +163,16 @@ class ProductionOptimization extends Component {
     //UNCOMMENT
 
     //adding for demo!!
-    var resp = ['wait', 'accepted', 'rejected'];
-    var dindex = Math.floor(Math.random() * 3);
-    this.routeLot(this.state.lid, resp[dindex]);
+
+    let resp = ['wait', 'accepted', 'rejected'];
+    resp = {
+      'good':'accepted',
+      'bad': 'rejected',
+      'marginal': 'wait'
+    };
+
+   // let dindex = Math.floor(Math.random() * 3);
+    this.routeLot(this.state.lid, resp[this.state.dataQuality]);
     // $.ajax({
     //     type: 'POST',
     //     url: url,
@@ -174,7 +188,7 @@ class ProductionOptimization extends Component {
 
   getVIdata = (dataQuality, dataIndex, masteroid) => {
 
-    axios.get('https://aipm-gsc-nodered.mybluemix.net/vidata?dataQuality=notSet&dataIndex=-1').then(res => {
+    axios.get('https://aipm-gsc-nodered.mybluemix.net/vidata?dataQuality='+this.state.dataQuality+'&dataIndex=-1').then(res => {
       const vidata = res.data.vidata;
       console.log(vidata);
       let vi = vidata.map(data => {
@@ -431,6 +445,40 @@ class ProductionOptimization extends Component {
     console.log('[rest-util]', '[placeOrder]', 'xhr:', xhr);
   }
 
+  getDataQuality = () => {
+
+    let dataQualityList = ['good','bad','marginal'];
+    let dq = Math.floor(Math.random() * 3);
+    let dataQuality = dataQualityList[dq];
+    let vidata_graph = this.state.vidata_Graph;
+
+    if(dataQuality === 'good')
+    {
+      vidata_graph = [
+        { name: "good", value: 95 },
+         { name: "bent", value: 3 },
+         { name: "damaged", value: 1 },
+         { name: "empty", value: 1 }
+      ];
+    }
+    else if(dataQuality === 'bad')
+    {
+      vidata_graph = [
+        { name: "good", value: 65 },
+         { name: "bent", value: 10 },
+         { name: "damaged", value: 20 },
+         { name: "empty", value: 5 }
+      ];
+    }
+
+    this.setState({
+      blockChainContents: null,
+      dataQuality: dataQuality,
+      vidata_Graph: vidata_graph
+    });
+
+  }
+
   currentStepProcess = () => {
     console.log("currentStepProcess");
     switch (this.state.currentStep) {
@@ -482,9 +530,7 @@ class ProductionOptimization extends Component {
         break;
 
       case "Inspect":
-        this.setState({
-          blockChainContents: null
-        });
+        this.getDataQuality();
         this.inspect(this.state.lid, this.state.po);
         break;
 
@@ -711,7 +757,7 @@ class ProductionOptimization extends Component {
             <div className="documentContextContainer">
               <div className="bcTitles">Document Context</div>
               {/* <img className="procurementImgs" src={require('../../../assets/' + currStep + '.png')} /> */}
-              <DocumentContext currStep={this.state.currentStep}/>
+              <DocumentContext currStep={this.state.currentStep} vidata={this.state.vidata_Graph} />
             </div>
             <div className="mediaContainer">
               <div className="bcTitles">Live Video</div>
