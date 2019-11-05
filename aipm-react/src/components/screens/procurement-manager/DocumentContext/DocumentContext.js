@@ -13,9 +13,18 @@ import "./DocumentContext.css"
 // ];
 
 const DocumentContext = (props) => {
+  let backgroundImg = {
+    backgroundImage: `url(${require('../../../../assets/' + props.currStep + '.png')})`,
+    backgroundRepeat: "no-repeat",
+    width: "100%",
+    height: "100%",
+    backgroundSize: "contain",
+    backgroundPosition: "center center"
+  }
 
-
-  var content = <img className="procurementImgs" src={require('../../../../assets/' + props.currStep + '.png')} />
+  // let content = <div className="procurementImgs" style={{backgroundImage : `url(${require('../../../../assets/' + props.currStep + '.png')})`,width: "100%",
+  // height: "100%"}}></div>
+  let content = <div className="procurementImgs" style={backgroundImg}></div>
 
   const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
