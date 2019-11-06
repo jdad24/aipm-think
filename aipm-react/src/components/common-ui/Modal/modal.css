@@ -1,11 +1,25 @@
 .Modal {
+    position: absolute;
+    z-index: 500;
+    background-color: white;
+    transition: all 0.4s ease-out;
+}
+
+.pmModal{
+    top: 15%;
+    left: 15%;
+}
+
+.itoModal{
+    top: 27%;
+    left: 37%;
+}
+
+/* .Modal {
     position: fixed;
     z-index: 500;
     background-color: white;
     width: 70%;
-    /* border: 1px solid #ccc; */
-    /* box-shadow: 1px 1px 1px black; */
-    /* padding: 16px; */
     left: 15%;
     top: 30%;
     box-sizing: border-box;
@@ -17,4 +31,4 @@
         width: auto;
         left: calc(50% - 250px);
     }
-}
+} */

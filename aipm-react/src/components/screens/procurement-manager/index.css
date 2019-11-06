@@ -33,7 +33,7 @@
 
 .procurementContent{
     display: grid;
-    grid-template-rows: 40% 40% auto;
+    grid-template-rows: 41% 41% auto;
     grid-template-columns: 24% 24% 24% 24%;
     grid-row: 2;
     grid-column-gap: 1%;
@@ -67,6 +67,7 @@
     padding: 20px;
     display: flex;
     width: auto;
+    font-weight: 600;
 }
 
 .titlesContainer{
@@ -80,7 +81,9 @@
 .modalMediaContainer{
     display: flex;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
+    width: 75vw;
+     height: 75vh; 
 }
 
 .blockchainListenerContainer{
@@ -124,6 +127,8 @@
     align-items: flex-start;
     justify-content: center;
     flex-direction: column;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .stepName{
@@ -146,8 +151,6 @@ padding: 20px;
 }
 
 .blockchainbutton{
-    /* width: 100%; */
-    /* height: 20%; */
     color: #ccd5e0;
     background: #0062ff;
     font-weight: 600;
@@ -158,7 +161,7 @@ padding: 20px;
     grid-column: 4;
     grid-row: 3;
     /* text-align: left; */
-    padding: 0px 15px 0px 30px;
+    padding: 0px 15px;
     color: white;
 }
 
@@ -175,3 +178,5 @@ padding: 20px;
  #blockchainInfo {
     border-bottom: 1px solid rgb(226, 229, 230)
  }
+
+ 
