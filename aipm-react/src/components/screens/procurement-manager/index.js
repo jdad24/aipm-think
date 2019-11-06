@@ -712,7 +712,7 @@ class ProductionOptimization extends Component {
   getProcMgrContent = () => {
     let myContent = "no data";
     //Uncomment bellow code to replace screenshot................
-    let complete = <CircleCheck />;
+    let complete = <BlueCircle />;
     let current = <BlueCircle />;
     let incomplete = <GreyCircle />;
     let stepState = {
