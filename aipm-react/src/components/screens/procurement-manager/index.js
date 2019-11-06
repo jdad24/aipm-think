@@ -12,10 +12,13 @@ import procMgrScreenShot from "../../../assets/procurementManager.png";
 import axios from 'axios';
 import BlockChainListner from '../../common-ui/BlockchainListener/BlockchainListener';
 import Confirm from '../../../assets/Confirm.mp4';
+import uploadIcon from '../../../assets/upload.svg';
+import Modal from '../../common-ui/Modal/modal';
 // import * as pm from './rest-util';
 
-import DocumentContext from "./DocumentContext/DocumentContext"
-import rightArrow from "../../../assets/arrow_right_white.svg"
+import DocumentContext from "./DocumentContext/DocumentContext";
+import rightArrow from "../../../assets/arrow_right_white.svg";
+import LiveVideoText from './LiveVideoText/LiveVideoText';
 
 
 
@@ -30,11 +33,13 @@ class ProductionOptimization extends Component {
     blockChainContents: null,
     vidata_Graph: [
       { name: "good", value: 75 },
-       { name: "bent", value: 15 },
-       { name: "damaged", value: 5 },
-       { name: "empty", value: 5 }
+      { name: "bent", value: 15 },
+      { name: "damaged", value: 5 },
+      { name: "empty", value: 5 }
     ],
-    dataQuality: null
+    dataQuality: null,
+    expandSAPorGraph: false,
+    expandMedia: false
   }
 
   Order = () => {
@@ -167,12 +172,12 @@ class ProductionOptimization extends Component {
 
     let resp = ['wait', 'accepted', 'rejected'];
     resp = {
-      'good':'accepted',
+      'good': 'accepted',
       'bad': 'rejected',
       'marginal': 'wait'
     };
 
-   // let dindex = Math.floor(Math.random() * 3);
+    // let dindex = Math.floor(Math.random() * 3);
     this.routeLot(this.state.lid, resp[this.state.dataQuality]);
     // $.ajax({
     //     type: 'POST',
@@ -189,7 +194,7 @@ class ProductionOptimization extends Component {
 
   getVIdata = (dataQuality, dataIndex, masteroid) => {
 
-    axios.get('https://aipm-gsc-nodered.mybluemix.net/vidata?dataQuality='+this.state.dataQuality+'&dataIndex=-1').then(res => {
+    axios.get('https://aipm-gsc-nodered.mybluemix.net/vidata?dataQuality=' + this.state.dataQuality + '&dataIndex=-1').then(res => {
       const vidata = res.data.vidata;
       console.log(vidata);
       let vi = vidata.map(data => {
@@ -448,27 +453,25 @@ class ProductionOptimization extends Component {
 
   getDataQuality = () => {
 
-    let dataQualityList = ['good','bad','marginal'];
+    let dataQualityList = ['good', 'bad', 'marginal'];
     let dq = Math.floor(Math.random() * 3);
     let dataQuality = dataQualityList[dq];
     let vidata_graph = this.state.vidata_Graph;
 
-    if(dataQuality === 'good')
-    {
+    if (dataQuality === 'good') {
       vidata_graph = [
         { name: "good", value: 95 },
-         { name: "bent", value: 3 },
-         { name: "damaged", value: 1 },
-         { name: "empty", value: 1 }
+        { name: "bent", value: 3 },
+        { name: "damaged", value: 1 },
+        { name: "empty", value: 1 }
       ];
     }
-    else if(dataQuality === 'bad')
-    {
+    else if (dataQuality === 'bad') {
       vidata_graph = [
         { name: "good", value: 65 },
-         { name: "bent", value: 10 },
-         { name: "damaged", value: 20 },
-         { name: "empty", value: 5 }
+        { name: "bent", value: 10 },
+        { name: "damaged", value: 20 },
+        { name: "empty", value: 5 }
       ];
     }
 
@@ -662,6 +665,32 @@ class ProductionOptimization extends Component {
 
   }
 
+  toggleMedia = () => {
+    let prev = this.state.expandMedia;
+    this.setState({
+      expandMedia: !prev
+    });
+  }
+
+  toggleSAPorGraph = () => {
+    let prev = this.state.expandSAPorGraph;
+    this.setState({
+      expandSAPorGraph: !prev
+    });
+  }
+
+  minimizeMedia = () => {
+    this.setState({
+      expand: false
+    });
+  }
+
+  maximizeMedia = () => {
+    this.setState({
+      expand: true
+    });
+  }
+
   getProcMgrContent = () => {
     let myContent = "no data";
     //Uncomment bellow code to replace screenshot................
@@ -747,8 +776,37 @@ class ProductionOptimization extends Component {
           }
         });
       }
+      let mediaVideo = (
+        <video
+          src={Confirm}
+          autoPlay={true}
+          loop
+          muted
+          preload="true"
+          width="100%"
+          height="auto"
+          controls
+        >
+        </video>
+      );
+
+      let docContext = <DocumentContext currStep={this.state.currentStep} vidata={this.state.vidata_Graph} />;
       myContent = (
         <div className="procurementContainer">
+          <Modal
+            show={this.state.expandSAPorGraph}
+            modalClosed={this.toggleSAPorGraph}>
+            {/* <div>media</div> */}
+            {docContext}
+
+            {/* <DocumentContext currStep={this.state.currentStep} vidata={this.state.vidata_Graph} /> */}
+
+          </Modal>
+          <Modal
+            show={this.state.expandMedia}
+            modalClosed={this.toggleMedia}>
+            <div className="modalMediaContainer">{mediaVideo}</div>
+          </Modal>
           <div className="workflowContainer">
             <div className="workflow">
               {workflow}
@@ -756,32 +814,34 @@ class ProductionOptimization extends Component {
           </div>
           <div className="procurementContent">
             <div className="documentContextContainer">
-              <div className="bcTitles">Document Context</div>
+              <div className=" procurementTitles titlesContainer">
+                <div>Document Context</div>
+                <div onClick={this.toggleSAPorGraph}><img src={uploadIcon} /></div>
+              </div>
+              {docContext}
               {/* <img className="procurementImgs" src={require('../../../assets/' + currStep + '.png')} /> */}
-              <DocumentContext currStep={this.state.currentStep} vidata={this.state.vidata_Graph} />
+              {/* <DocumentContext currStep={this.state.currentStep} vidata={this.state.vidata_Graph} /> */}
             </div>
             <div className="mediaContainer">
-              <div className="bcTitles">Live Video</div>
-              <video
-                src={Confirm}
-                autoPlay={true}
-                loop
-                muted
-                preload="true"
-                width="100%"
-                height="auto"
-                controls
-              >
-              </video>
+              {/* <div className="bcTitles">Live Video</div> */}
+              <div className="procurementTitles titlesContainer">
+                <div>Live Video</div>
+                <div onClick={this.toggleMedia}><img src={uploadIcon} /></div>
+              </div>
+              <div className="videoTextContainer">
+                {mediaVideo}
+                <LiveVideoText currStep={this.state.currentStep} />
+              </div>
+
             </div>
             <div className="blockchainListenerContainer">
-            <div className="bcTitles">Blockchain Listner</div>
-            {blockChainContents}
+              <div className="procurementTitles bcTitles" id="blockchainInfo">Blockchain Listener</div>
+              {blockChainContents}
             </div>
             <div className="currentBlockContainer">
-            <div className="bcTitles">Current Block</div>
+              <div className="procurementTitles bcTitles">Current Block</div>
             </div>
-            <button className="blockchainbutton" onClick={this.nextHandler}>Next<img src={rightArrow} className="rightArrow"/></button>
+            <button className="blockchainbutton" onClick={this.nextHandler}>Next<img src={rightArrow} className="rightArrow" /></button>
           </div>
           {/* <div className="documentContextContainer">
             <img className="procurementImgs" src={require('../../../assets/' + currStep + '.png')} />

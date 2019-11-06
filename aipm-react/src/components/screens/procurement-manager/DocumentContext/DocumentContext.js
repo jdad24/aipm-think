@@ -16,8 +16,8 @@ const DocumentContext = (props) => {
   let backgroundImg = {
     backgroundImage: `url(${require('../../../../assets/' + props.currStep + '.png')})`,
     backgroundRepeat: "no-repeat",
-    width: "100%",
-    height: "100%",
+    width: "40vw",
+    height: "40vh",
     backgroundSize: "contain",
     backgroundPosition: "center center"
   }
