@@ -841,7 +841,10 @@ class ProductionOptimization extends Component {
             <div className="currentBlockContainer">
               <div className="procurementTitles bcTitles">Current Block</div>
             </div>
-            <button className="blockchainbutton" onClick={this.nextHandler}>Next<img src={rightArrow} className="rightArrow" /></button>
+            <div className="blockchainbutton" onClick={this.nextHandler}>
+              <div>Next</div>
+              <img src={rightArrow} className="rightArrow" />
+            </div>
           </div>
           {/* <div className="documentContextContainer">
             <img className="procurementImgs" src={require('../../../assets/' + currStep + '.png')} />

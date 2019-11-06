@@ -33,11 +33,11 @@
 
 .procurementContent{
     display: grid;
-    grid-template-rows: 45% 45% 10%;
+    grid-template-rows: 40% 40% auto;
     grid-template-columns: 24% 24% 24% 24%;
     grid-row: 2;
     grid-column-gap: 1%;
-    grid-row-gap: 19px;
+    grid-row-gap: 3%;
     
 }
 
@@ -157,7 +157,7 @@ padding: 20px;
     align-items: center;
     grid-column: 4;
     grid-row: 3;
-    text-align: left;
+    /* text-align: left; */
     padding: 0px 15px 0px 30px;
     color: white;
 }
