@@ -153,7 +153,8 @@ class itOperations extends Component {
                     <div className="itOperationsContainer">
                         <Modal
                             show={this.state.initiateRollback_dashboard}
-                            modalClosed={this.cancelRollbackHandler}>
+                            modalClosed={this.cancelRollbackHandler}
+                            styling="itoModal">
                             <RollbackPopup
                                 initrollback={this.initiateRollback_dashboardHandler}
                                 cancelRollback={this.cancelRollbackHandler}

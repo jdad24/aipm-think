@@ -12,7 +12,7 @@ import procMgrScreenShot from "../../../assets/procurementManager.png";
 import axios from 'axios';
 import BlockChainListner from '../../common-ui/BlockchainListener/BlockchainListener';
 import Confirm from '../../../assets/Confirm.mp4';
-import uploadIcon from '../../../assets/upload.svg';
+import expand from '../../../assets/expand.svg';
 import Modal from '../../common-ui/Modal/modal';
 // import * as pm from './rest-util';
 
@@ -778,7 +778,7 @@ class ProductionOptimization extends Component {
       }
       let mediaVideo = (
         <video
-          src={Confirm}
+          src={require('../../../assets/'+this.state.currentStep+'.mp4')}
           autoPlay={true}
           loop
           muted
@@ -795,16 +795,21 @@ class ProductionOptimization extends Component {
         <div className="procurementContainer">
           <Modal
             show={this.state.expandSAPorGraph}
-            modalClosed={this.toggleSAPorGraph}>
+            modalClosed={this.toggleSAPorGraph}
+            styling=" pmModal">
             {/* <div>media</div> */}
+            <div className="modalMediaContainer">
             {docContext}
+            </div>
+            
 
             {/* <DocumentContext currStep={this.state.currentStep} vidata={this.state.vidata_Graph} /> */}
 
           </Modal>
           <Modal
             show={this.state.expandMedia}
-            modalClosed={this.toggleMedia}>
+            modalClosed={this.toggleMedia}
+            styling="pmModal">
             <div className="modalMediaContainer">{mediaVideo}</div>
           </Modal>
           <div className="workflowContainer">
@@ -816,7 +821,7 @@ class ProductionOptimization extends Component {
             <div className="documentContextContainer">
               <div className=" procurementTitles titlesContainer">
                 <div>Document Context</div>
-                <div onClick={this.toggleSAPorGraph}><img src={uploadIcon} /></div>
+                <div onClick={this.toggleSAPorGraph}><img src={expand} /></div>
               </div>
               {docContext}
               {/* <img className="procurementImgs" src={require('../../../assets/' + currStep + '.png')} /> */}
@@ -826,7 +831,7 @@ class ProductionOptimization extends Component {
               {/* <div className="bcTitles">Live Video</div> */}
               <div className="procurementTitles titlesContainer">
                 <div>Live Video</div>
-                <div onClick={this.toggleMedia}><img src={uploadIcon} /></div>
+                <div onClick={this.toggleMedia}><img src={expand} /></div>
               </div>
               <div className="videoTextContainer">
                 {mediaVideo}
