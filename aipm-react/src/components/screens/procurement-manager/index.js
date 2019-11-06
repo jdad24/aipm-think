@@ -42,6 +42,16 @@ class ProductionOptimization extends Component {
     expandMedia: false
   }
 
+  firstLetterToUpper = (word) => {
+    var wordString = word.toString()
+    var capitalString = wordString.toUpperCase()
+    var firstLetter = capitalString[0]
+
+    var otherPart = wordString.slice(1)
+
+    return firstLetter.concat(otherPart)
+  }
+
   Order = () => {
     this.setState({
       title: "procurementManager",
@@ -62,7 +72,9 @@ class ProductionOptimization extends Component {
         //.........Uncomment above Oct 14..........
         // if (sap_oid_template === res[0].orderId.substring(0, 6)) {
         let rows = localProps.map(field => {
-          return ({ [field]: res[0][field] });
+          let value = res[0][field]
+          let key = this.firstLetterToUpper([field])
+          return ({ [key]: value });
         });
         // console.log(rows);
 
@@ -117,7 +129,8 @@ class ProductionOptimization extends Component {
         }
         //console.log(subOrders);
         let rows = localProps.map(field => {
-          return ({ [field]: res.data[field] });
+          let key = this.firstLetterToUpper([field])
+          return ({ [key]: res.data[field] });
         });
 
         subOrders.push(rows);
@@ -293,7 +306,8 @@ class ProductionOptimization extends Component {
           let localProps = ["orderId", "lotId", "quantity"];
           let rows = res.map(r => {
             let l = localProps.map(field => {
-              return ({ [field]: r[field] });
+              let key = this.firstLetterToUpper([field])
+              return ({ [key]: r[field] });
             });
             return l;
           });
@@ -326,7 +340,8 @@ class ProductionOptimization extends Component {
         let localProps = ["orderId", "lotId", "inspectionId"];
         console.log(res);
         let l = localProps.map(field => {
-          return ({ [field]: res.data[field] });
+          let key = this.firstLetterToUpper([field])
+          return ({ [key]: res.data[field] });
         });
         this.setState({
           blockChainContents: l
@@ -365,7 +380,8 @@ class ProductionOptimization extends Component {
         }
         //console.log(subOrders);
         let rows = localProps.map(field => {
-          return ({ [field]: res.data[field] });
+          let key = this.firstLetterToUpper([field])
+          return ({ [key]: res.data[field] });
         });
 
         subOrders.push(rows);
@@ -432,7 +448,8 @@ class ProductionOptimization extends Component {
         console.log(res);
         let localProps = ["orderId", "status", "orderDate", "deliverBy"];
         let rows = localProps.map(r => {
-          return ({ [r]: res.data[r] });
+          let key = this.firstLetterToUpper([r])
+          return ({ [key]: res.data[r] });
         });
         this.setState({
           blockChainContents: rows
@@ -521,8 +538,8 @@ class ProductionOptimization extends Component {
         });
         for (let j = 0; j < subOrders.length; j++) {
           let lotId = Math.random().toString(36).substr(2, 8);
-          this.ship(lotId, subOrders[j][1]['orderId'], this.emsAddress, this.oemAddress, this.atx2920Item);
-          console.log("order id : " + subOrders[j][1]['orderId']);
+          this.ship(lotId, subOrders[j][1]['OrderId'], this.emsAddress, this.oemAddress, this.atx2920Item);
+          console.log("order id : " + subOrders[j][1]['OrderId']);
         }
         break;
 
@@ -564,10 +581,11 @@ class ProductionOptimization extends Component {
           let Disposition = ["PENDING", "ACCEPTED", "REJECTED"];
           let localProps = ["orderId", "lotId", "disposition", "quantity"];
           let rows = localProps.map(r => {
+            let key = this.firstLetterToUpper([r])
             if (r == "disposition") {
-              return ({ [r]: this.state.disposition });
+              return ({ [key]: this.state.disposition });
             } else {
-              return ({ [r]: res[0][r] });
+              return ({ [key]: res[0][r] });
             }
 
           });

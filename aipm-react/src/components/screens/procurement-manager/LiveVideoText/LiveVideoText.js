@@ -11,7 +11,7 @@ const LiveVideoText = (props) => {
         "Ship": "The assembler forwards an Advance Ship Notification to the OEM's SAP system, along with shipment id and lot id information.",
         "Grade": "The OEM is notified of Visual Insights data avaiable for the shipped lot, and views the results via SAP Quality Management.",
         "Accept": "Based on the inspection results, the OEM approves the in-transit lot, rejects it, or designates it for additional inspection.",
-        "Delivery": "When the expected lot arrives, it is routed per the OEM's already-made decision for acceptance, rejection, or additional inspection."
+        "Deliver": "When the expected lot arrives, it is routed per the OEM's already-made decision for acceptance, rejection, or additional inspection."
     }
 
     return (
