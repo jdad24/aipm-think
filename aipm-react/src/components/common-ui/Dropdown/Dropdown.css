@@ -4,6 +4,7 @@
     justify-content: flex-end;
 
 }
+
 .dropdown-elements {
 
     display: flex;
@@ -20,7 +21,7 @@
     flex-direction: column;
     align-items: flex-end;
     position: absolute;
-    right: 5;
+    right: 1vw;
 }
 
 
