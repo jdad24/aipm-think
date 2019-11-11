@@ -19,6 +19,7 @@ import Modal from '../../common-ui/Modal/modal';
 import DocumentContext from "./DocumentContext/DocumentContext";
 import rightArrow from "../../../assets/arrow_right_white.svg";
 import LiveVideoText from './LiveVideoText/LiveVideoText';
+import CurrentBlock from "./CurrentBlock/CurrentBlock"
 
 
 
@@ -838,7 +839,7 @@ class ProductionOptimization extends Component {
           <div className="procurementContent">
             <div className="documentContextContainer">
               <div className=" procurementTitles titlesContainer">
-                <div>Document Context</div>
+                <div>Current Transaction</div>
                 <div onClick={this.toggleSAPorGraph}><img src={expand} /></div>
               </div>
               {docContext}
@@ -848,7 +849,7 @@ class ProductionOptimization extends Component {
             <div className="mediaContainer">
               {/* <div className="bcTitles">Live Video</div> */}
               <div className="procurementTitles titlesContainer">
-                <div>Live Video</div>
+                <div>Business Scenario</div>
                 <div onClick={this.toggleMedia}><img src={expand} /></div>
               </div>
               <div className="videoTextContainer">
@@ -858,30 +859,10 @@ class ProductionOptimization extends Component {
 
             </div>
             <div className="blockchainListenerContainer">
-              <div className="procurementTitles bcTitles" id="blockchainInfo">Blockchain Listener</div>
+              <div className="procurementTitles bcTitles" id="blockchainInfo">Blockchain Entries</div>
               {blockChainContents}
             </div>
-            <div className="currentBlockContainer">
-              <div className="procurementTitles bcTitles">Current Block</div>
-              <div className="BlockLineContainer">
-                <div className="sapBlock"></div>
-                <div className="sapBlockLine"></div>
-                <div className="sapBlock"></div>
-                <div className="sapBlockLine"></div>
-                <div className="sapBlock"></div>
-              </div>
-              <div className="BlockLineContainer">
-                <div className="sapBlock"></div>
-                <div className="sapBlockLine"></div>
-                <div className="sapBlock"></div>
-                <div className="sapBlockLine"></div>
-                <div className="sapBlock"></div>
-                <div className="sapBlockLine"></div>
-                <div className="sapBlock"></div>
-              </div>
-              <div></div>
-              <div></div>
-            </div>
+            <CurrentBlock/>
             <div className="blockchainbutton" onClick={this.nextHandler}>
               <div>Next</div>
               <img src={rightArrow} className="rightArrow" />
