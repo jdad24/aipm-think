@@ -50,7 +50,8 @@ class Layout extends Component {
                     {this.props.content}
                 </ScreenContents>
                 <div className='rightBar'></div>
-                <div className='footer'>Watson IoT</div>
+                <div className='footer'></div>
+                {/* <div className='footer'>Watson IoT</div> */}
             </div>
         );
     }

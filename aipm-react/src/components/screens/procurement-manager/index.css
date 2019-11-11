@@ -7,7 +7,7 @@
 
 .procurementContainer{
     display: grid;
-    grid-template-rows: 10vh 55vh 2vh;
+    grid-template-rows: 10vh 60vh 2vh;
     grid-template-columns: 1fr;
     grid-row-gap: 8%;
 }
@@ -180,3 +180,34 @@ padding: 20px;
  }
 
  
+
+ .sapBlock{
+     width: 10%;
+     min-height: 20px;
+     border: 1px solid #707070;
+     background-color: #F3F3F3;
+ }
+
+ .sapBlockLine{
+     border:1px solid#707070;
+     height: 0;
+ }
+
+ .a{
+    width: 20%;
+ }
+
+ .b{
+    width: 10%;
+ }
+
+ .BlockLineContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+ }
+
+ .c{
+     flex-direction: column;
+ }

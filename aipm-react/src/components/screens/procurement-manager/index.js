@@ -796,7 +796,7 @@ class ProductionOptimization extends Component {
       }
       let mediaVideo = (
         <video
-          src={require('../../../assets/'+this.state.currentStep+'.mp4')}
+          src={require('../../../assets/' + this.state.currentStep + '.mp4')}
           autoPlay={true}
           loop
           muted
@@ -817,9 +817,9 @@ class ProductionOptimization extends Component {
             styling=" pmModal">
             {/* <div>media</div> */}
             <div className="modalMediaContainer">
-            {docContext}
+              {docContext}
             </div>
-            
+
 
             {/* <DocumentContext currStep={this.state.currentStep} vidata={this.state.vidata_Graph} /> */}
 
@@ -863,6 +863,24 @@ class ProductionOptimization extends Component {
             </div>
             <div className="currentBlockContainer">
               <div className="procurementTitles bcTitles">Current Block</div>
+              <div className="BlockLineContainer">
+                <div className="sapBlock"></div>
+                <div className="sapBlockLine"></div>
+                <div className="sapBlock"></div>
+                <div className="sapBlockLine"></div>
+                <div className="sapBlock"></div>
+              </div>
+              <div className="BlockLineContainer">
+                <div className="sapBlock"></div>
+                <div className="sapBlockLine"></div>
+                <div className="sapBlock"></div>
+                <div className="sapBlockLine"></div>
+                <div className="sapBlock"></div>
+                <div className="sapBlockLine"></div>
+                <div className="sapBlock"></div>
+              </div>
+              <div></div>
+              <div></div>
             </div>
             <div className="blockchainbutton" onClick={this.nextHandler}>
               <div>Next</div>
