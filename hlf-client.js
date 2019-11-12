@@ -349,3 +349,34 @@ app.get('/PO_Acknowledgement', function (req, res) {
   }
 
 });
+
+app.get('/api/queries/getBlockHeight', async (req, res) => {
+  const info = await transactions.getBlockHeight();
+
+  if (info) {
+    return res.status(200).json(info);
+  }
+  return res.status(500).json({
+    status: 'error',
+    reason: 'channel error?'
+  });
+});
+
+app.get('/api/queries/getBlockInfo', async (req, res) => {
+  if (req.query && req.query.height) {
+    const blockInfo = await transactions.getBlockInfo(req.query.height);
+
+    if (blockInfo) {
+      return res.status(200).json(blockInfo);
+    }
+    return res.status(500).json({
+      status: 'error',
+      reason: 'orders does not exist'
+    });
+  } else {
+    return res.status(500).json({
+      status: 'error',
+      reason: 'req.query.height does not exist'
+    });
+  }
+});

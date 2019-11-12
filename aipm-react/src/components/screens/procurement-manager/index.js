@@ -40,7 +40,8 @@ class ProductionOptimization extends Component {
     ],
     dataQuality: null,
     expandSAPorGraph: false,
-    expandMedia: false
+    expandMedia: false,
+    getBlock: false
   }
 
   firstLetterToUpper = (word) => {
@@ -62,32 +63,42 @@ class ProductionOptimization extends Component {
       po: null,
       blockChainContents: null
     });
+    // this.callApi('/api/queries/getBlockHeight').then(res => {
+    //   console.log(res);
+    // });
     this.callApi('/api/queries/OemOrderSorted')
       .then(res => {
         console.log(res);
         let localProps = ["orderId", "status", "orderDate", "deliverBy"];
         let sap_oid_template = "450000";
+        let sap_idx = 0;
 
+        for(let idx=0; idx<25;idx++){
+          if(sap_oid_template === res[idx].orderId.substring(0,6) && res[idx].status === "PLACED"){
+            sap_idx = idx;
+            break;
+          }
+        }
         //.........Uncomment below Oct 14..........
-        //if(sap_oid_template === res[0].orderId.substring(0,6) && res[0].status === "PLACED"){
+        if(sap_oid_template === res[sap_idx].orderId.substring(0,6) && res[sap_idx].status === "PLACED"){
         //.........Uncomment above Oct 14..........
         // if (sap_oid_template === res[0].orderId.substring(0, 6)) {
         let rows = localProps.map(field => {
-          let value = res[0][field]
+          let value = res[sap_idx][field]
           let key = this.firstLetterToUpper([field])
           return ({ [key]: value });
         });
         // console.log(rows);
 
         this.setState({
-          po: res[0].orderId,
+          po: res[sap_idx].orderId,
           blockChainContents: rows
         });
-        // }
+        }
 
         //.........Uncomment below Oct 14..........
-        // else{
-        //   alert("Please create a new PO. Previous PO status is COMPLETE");
+        else{
+          alert("Please create a new PO. Previous PO status is COMPLETE");
         //.........Uncomment above Oct 14..........
 
         //creating a random number > 5000 and < 10000 to match SAP PO pattern
@@ -99,7 +110,7 @@ class ProductionOptimization extends Component {
         // });
 
         //.........Uncomment below Oct 14..........
-        // }
+        }
         //.........Uncomment above Oct 14..........
       })
       .catch(err => console.log(err));
@@ -710,6 +721,13 @@ class ProductionOptimization extends Component {
     });
   }
 
+  getBlock = () => {
+    let prev = this.state.getBlock;
+    this.setState({
+      getBlock: !prev
+    });
+  }
+
   getProcMgrContent = () => {
     let myContent = "no data";
     //Uncomment bellow code to replace screenshot................
@@ -831,6 +849,19 @@ class ProductionOptimization extends Component {
             styling="pmModal">
             <div className="modalMediaContainer">{mediaVideo}</div>
           </Modal>
+          <Modal
+            show={this.state.getBlock}
+            modalClosed={this.getBlock}
+            styling=" pmModal">
+            {/* <div>media</div> */}
+            <div className="modalMediaContainer">
+              getBlock
+            </div>
+
+
+            {/* <DocumentContext currStep={this.state.currentStep} vidata={this.state.vidata_Graph} /> */}
+
+          </Modal>
           <div className="workflowContainer">
             <div className="workflow">
               {workflow}
@@ -860,9 +891,9 @@ class ProductionOptimization extends Component {
             </div>
             <div className="blockchainListenerContainer">
               <div className="procurementTitles bcTitles" id="blockchainInfo">Blockchain Entries</div>
-              {blockChainContents}
+              <div className="bcData">{blockChainContents}</div>
             </div>
-            <CurrentBlock/>
+            <CurrentBlock getBlock={this.getBlock} />
             <div className="blockchainbutton" onClick={this.nextHandler}>
               <div>Next</div>
               <img src={rightArrow} className="rightArrow" />

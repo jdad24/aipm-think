@@ -315,6 +315,38 @@ const queryShipment = async shipmentByOrderId => {
   }
 };
 
+const getBlockHeight = async () => {
+  try {
+    initNetwork();
+    await connectionPromise;
+
+    const mychannel = network.getChannel();
+
+    const info = await mychannel.queryInfo();
+
+    logger.info(info);
+
+    return info.height.low;
+  } catch (e) {
+    logger.error('exception:', e);
+  }
+};
+
+const getBlockInfo = async (height) => {
+  try {
+    initNetwork();
+    await connectionPromise;
+
+    const mychannel = network.getChannel();
+
+    const blockInfo = await mychannel.queryBlock(height - 1);
+
+    return blockInfo;
+  } catch (e) {
+    logger.error('exception:', e);
+  }
+};
+
 module.exports = {
   placeOrder,
   completeOrder,
@@ -326,5 +358,7 @@ module.exports = {
   inspect,
   queryInspection,
   ship,
-  queryShipment
+  queryShipment,
+  getBlockHeight,
+  getBlockInfo
 };
