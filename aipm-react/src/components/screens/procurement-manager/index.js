@@ -63,9 +63,7 @@ class ProductionOptimization extends Component {
       po: null,
       blockChainContents: null
     });
-    // this.callApi('/api/queries/getBlockHeight').then(res => {
-    //   console.log(res);
-    // });
+   
     this.callApi('/api/queries/OemOrderSorted')
       .then(res => {
         console.log(res);
@@ -721,7 +719,11 @@ class ProductionOptimization extends Component {
     });
   }
 
-  getBlock = () => {
+  getBlock = (e) => {
+    console.log(e.currentTarget.textContent);
+     // this.callApi('/api/queries/getBlockHeight').then(res => {
+    //   console.log(res);
+    // });
     let prev = this.state.getBlock;
     this.setState({
       getBlock: !prev
@@ -893,7 +895,7 @@ class ProductionOptimization extends Component {
               <div className="procurementTitles bcTitles" id="blockchainInfo">Blockchain Entries</div>
               <div className="bcData">{blockChainContents}</div>
             </div>
-            <CurrentBlock getBlock={this.getBlock} />
+            <CurrentBlock getBlock={this.getBlock} sequence = {this.state.steps}/>
             <div className="blockchainbutton" onClick={this.nextHandler}>
               <div>Next</div>
               <img src={rightArrow} className="rightArrow" />
