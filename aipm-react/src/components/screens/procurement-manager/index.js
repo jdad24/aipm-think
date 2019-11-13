@@ -872,7 +872,7 @@ class ProductionOptimization extends Component {
           <div className="procurementContent">
             <div className="documentContextContainer">
               <div className=" procurementTitles titlesContainer">
-                <div>Current Transaction</div>
+                <div>Context</div>
                 <div onClick={this.toggleSAPorGraph}><img src={expand} /></div>
               </div>
               {docContext}
@@ -882,7 +882,7 @@ class ProductionOptimization extends Component {
             <div className="mediaContainer">
               {/* <div className="bcTitles">Live Video</div> */}
               <div className="procurementTitles titlesContainer">
-                <div>Business Scenario</div>
+                <div>Storyline</div>
                 <div onClick={this.toggleMedia}><img src={expand} /></div>
               </div>
               <div className="videoTextContainer">
@@ -892,7 +892,7 @@ class ProductionOptimization extends Component {
 
             </div>
             <div className="blockchainListenerContainer">
-              <div className="procurementTitles bcTitles" id="blockchainInfo">Blockchain Entries</div>
+              <div className="procurementTitles bcTitles" id="blockchainInfo">Blockchain</div>
               <div className="bcData">{blockChainContents}</div>
             </div>
             <CurrentBlock getBlock={this.getBlock} sequence = {this.state.steps}/>
