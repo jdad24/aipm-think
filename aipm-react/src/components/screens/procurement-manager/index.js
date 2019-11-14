@@ -42,9 +42,9 @@ class ProductionOptimization extends Component {
     expandSAPorGraph: false,
     expandMedia: false,
     getBlock: false,
-    currentBlock:1,
     endWorkflow: false,
-    blockNumbers: [9,8,7,6,5,4,3,2,1]
+    blockNumbers: [9,8,7,6,5,4,3,2,1],
+    sequenceContent: "no data"
   }
 
   firstLetterToUpper = (word) => {
@@ -672,7 +672,6 @@ class ProductionOptimization extends Component {
         let s = this.state.steps;
         let updateFlag = false;
         let currStep = this.state.currentStep;
-        let currBlock = this.state.CurrentBlock;
     
         if (s[s.length - 1].state === "2") {
           this.getInitialWorkflowState();
@@ -682,7 +681,7 @@ class ProductionOptimization extends Component {
               s[i].state = "1";
               s[i + 1].state = "2";
               updateFlag = true;
-              currBlock = s[i+1].block;
+              // currBlock = s[i+1].block;
               currStep = s[i + 1].name;
               // break;
             }
@@ -691,17 +690,9 @@ class ProductionOptimization extends Component {
           this.setState({
             steps: s,
             currentStep: currStep,
-            currentBlock: currBlock,
             blockNumbers: blknum
           }, () => {
-            // console.log(this.state.blockChainContents);
-            // if(this.state.blockChainContents){
               this.currentStepProcess();
-            //console.log(this.state.currentBlock);
-            // }else{
-            //   alert("Please allow the step to complete ");
-            // }
-            
           });
         }
         }else{
@@ -742,17 +733,25 @@ class ProductionOptimization extends Component {
   getBlock = (e) => {
     //console.log(e.currentTarget.textContent);
     let chosenBlock = parseInt(e.currentTarget.textContent);
-    if(this.state.currentBlock >= parseInt(e.currentTarget.textContent)){
-      //alert(e.currentTarget.textContent);
-      
         this.callApi('/api/queries/getBlockHeight').then(h => {
           let blockHeight = h;
-          if(chosenBlock < this.state.currentBlock){
-            blockHeight = h - (this.state.currentBlock - chosenBlock);
+          if(chosenBlock < this.state.blockNumbers[0]){
+            blockHeight = h - (this.state.blockNumbers[0] - chosenBlock);
           }
-          // console.log(blockHeight);
           this.callApi('/api/queries/getBlockInfo?height='+blockHeight).then(res => {
-            
+            // console.log(res.data[0].payload.data.actions[0].payload);
+            // let xxxx = JSON.stringify(res.data);
+            // let xxxx = JSON.stringify(res.data);
+            // console.log(JSON.parse(xxxx));
+            // debugger;
+            console.log(res.data["data"][0].payload.data.actions[0].payload.action.proposal_response_payload.extension.response.payload);
+            //let seqContent = res.data["data"][0].payload.data.actions[0].payload.action.proposal_response_payload.extension.response.payload;
+            //res.data["data"][0].payload.data.actions[0].payload.action.proposal_response_payload.extension.response.payload
+            //res.data[0].payload.data.actions[0].payload.action.response.payload
+            this.setState({
+              sequenceContent: res.data["data"][0].payload.data.actions[0].payload.action.proposal_response_payload.extension.response.payload,
+              getBlock: true
+            });
           });
         })
       // }
@@ -760,12 +759,12 @@ class ProductionOptimization extends Component {
 
 
 
-      this.setState({
-          getBlock: true
-        });
+      // this.setState({
+      //     getBlock: true
+      //   });
 
 
-    }
+    // }
     // let prev = this.state.getBlock;
     //   console.log(prev);
     // this.setState({
@@ -861,7 +860,7 @@ class ProductionOptimization extends Component {
               );
             });
             return (
-              <Aux >
+              <Aux>
                 {bcContents}
               </Aux>
             );
@@ -896,7 +895,7 @@ class ProductionOptimization extends Component {
       );
 
       let docContext = <DocumentContext currStep={this.state.currentStep} vidata={this.state.vidata_Graph} />;
-      let blockInfo = this.state.currentBlock;
+      let blockInfo = this.state.sequenceContent;
 
       let bcButtonColor = "blockchainbutton bcActive";
       if(this.state.endWorkflow){
@@ -967,7 +966,7 @@ class ProductionOptimization extends Component {
               <div className="procurementTitles bcTitles" id="blockchainInfo">Blockchain</div>
               <div className="bcData">{blockChainContents}</div>
             </div>
-            <CurrentBlock getBlock={this.getBlock} sequence = {this.state.steps} blockNumbers={this.state.blockNumbers}/>
+            <CurrentBlock getBlock={this.getBlock} blockNumbers={this.state.blockNumbers}/>
             <div className={bcButtonColor} onClick={this.nextHandler}>
               <div>Next</div>
               <img src={rightArrow} className="rightArrow" />
