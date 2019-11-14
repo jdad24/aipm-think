@@ -489,18 +489,18 @@ class ProductionOptimization extends Component {
 
     if (dataQuality === 'good') {
       vidata_graph = [
-        { name: "good", value: 95 },
-        { name: "bent", value: 3 },
-        { name: "damaged", value: 1 },
-        { name: "empty", value: 1 }
+        { name: "Good", value: 95 },
+        { name: "Bent", value: 3 },
+        { name: "Damaged", value: 1 },
+        { name: "Empty", value: 1 }
       ];
     }
     else if (dataQuality === 'bad') {
       vidata_graph = [
-        { name: "good", value: 65 },
-        { name: "bent", value: 10 },
-        { name: "damaged", value: 20 },
-        { name: "empty", value: 5 }
+        { name: "Good", value: 65 },
+        { name: "Bent", value: 10 },
+        { name: "Damaged", value: 20 },
+        { name: "Empty", value: 5 }
       ];
     }
 
@@ -796,7 +796,14 @@ class ProductionOptimization extends Component {
 
       let stepsLen = this.state.steps.length;
       let currStep = this.state.currentStep;
+      
+      
       let workflow = this.state.steps.map((s, i) => {
+        let stepNamestyle = "stepName";
+      if(s.state == "0"){
+        stepNamestyle = "stepName stepIncomplete"
+      }
+
         let circleLine = (
           <Aux>
             {stepState[s.state]}
@@ -816,7 +823,8 @@ class ProductionOptimization extends Component {
             <div className="circleLine">
               {circleLine}
             </div>
-            <div className="stepName">{s.name}</div>
+            {/* {stepName} */}
+            <div className={stepNamestyle}>{s.name}</div>
           </div>
         );
       });
@@ -834,11 +842,18 @@ class ProductionOptimization extends Component {
             // });
             // return bcContents;
             let bcContents = rows.map(r => {
+              let data = Object.values(r);
+              console.log(Object.keys(r));
+              console.log(Object.values(r));
+              if (Object.keys(r) == "OrderDate" || Object.keys(r) == "ShipDate" || Object.keys(r) == "DeliverBy") {
+                let splitData = Object.values(rows).toString().split('T');
+                data = splitData[0];
+            }
               return (
                 <div className="bcContents" key={Object.values(r)}>
-                  <div>{Object.keys(r).trim()}</div>
-                  <div>:</div>
-                  <div>{Object.values(r)}</div>
+                  <div>{Object.keys(r)}: &nbsp;</div>
+                  {/* <div>: &nbsp; </div> */}
+                  <div>{data}</div>
                 </div>
               );
             });
@@ -848,11 +863,19 @@ class ProductionOptimization extends Component {
               </Aux>
             );
           } else {
+            let data = Object.values(rows);
+              console.log(Object.keys(rows));
+              console.log(Object.values(rows));
+              if (Object.keys(rows) == "OrderDate" || Object.keys(rows) == "ShipDate" || Object.keys(rows) == "DeliverBy") {
+                let splitData = Object.values(rows).toString().split('T');
+                data = splitData[0];
+                console.log(data);
+            }
             return (
               //return ([Object.keys(rows), Object.values(rows)]);
               <div className="bcContents" key={Object.values(rows)}>
-                <div>{Object.keys(rows)} :</div>
-                <div>{Object.values(rows)}</div>
+                <div>{Object.keys(rows)}: &nbsp;</div>
+                <div>{data}</div>
               </div>
             );
           }

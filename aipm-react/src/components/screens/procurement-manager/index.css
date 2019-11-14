@@ -131,10 +131,21 @@
     align-items: flex-start;
     justify-content: center;
     flex-direction: column;
-    font-size: 14px;
+    font-size: 90%;
+    font-weight: 500;
+ 
+}
+
+.stepComplete {
     font-weight: 500;
 }
 
+.stepIncomplete {
+    font-weight: 400;
+}
+
+
+.step
 .stepName{
     margin-left: 8px;
 }
