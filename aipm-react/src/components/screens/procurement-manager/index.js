@@ -43,7 +43,8 @@ class ProductionOptimization extends Component {
     expandMedia: false,
     getBlock: false,
     currentBlock:1,
-    endWorkflow: false
+    endWorkflow: false,
+    blockNumbers: [9,8,7,6,5,4,3,2,1]
   }
 
   firstLetterToUpper = (word) => {
@@ -68,7 +69,7 @@ class ProductionOptimization extends Component {
    
     this.callApi('/api/queries/OemOrderSorted')
       .then(res => {
-        console.log(res);
+        
         let localProps = ["orderId", "status", "orderDate", "deliverBy"];
         let sap_oid_template = "450000";
         let sap_idx = 0;
@@ -221,7 +222,7 @@ class ProductionOptimization extends Component {
 
     axios.get('https://aipm-gsc-nodered.mybluemix.net/vidata?dataQuality=' + this.state.dataQuality + '&dataIndex=-1').then(res => {
       const vidata = res.data.vidata;
-      console.log(vidata);
+      //console.log(vidata);
       let vi = vidata.map(data => {
         return ({ [data.Timestamp]: data.Timestamp });
       });
@@ -239,7 +240,7 @@ class ProductionOptimization extends Component {
     //const moid = getSessionId();
     // const moid = "4500001622";
     const moid = this.state.po;
-    console.log(masteroid.toString());
+    //console.log(masteroid.toString());
     //const moid = masteroid;
 
     // let vidata = {
@@ -286,7 +287,7 @@ class ProductionOptimization extends Component {
         "result": max_type
       });
     }
-    console.log(vidata);
+    //console.log(vidata);
     this.send_VIdata(vidata);
   }
 
@@ -314,7 +315,7 @@ class ProductionOptimization extends Component {
       .then(res => {
         let lid = res.data['lotId']
         this.callApi('/api/queries/LotByOrderId?orderId=' + this.state.po).then(res => {
-          console.log(res);
+          //
           let localProps = ["orderId", "lotId", "quantity"];
           let rows = res.map(r => {
             let l = localProps.map(field => {
@@ -350,7 +351,7 @@ class ProductionOptimization extends Component {
     })
       .then(res => {
         let localProps = ["orderId", "lotId", "inspectionId"];
-        console.log(res);
+        //
         let l = localProps.map(field => {
           let key = this.firstLetterToUpper([field])
           return ({ [key]: res.data[field] });
@@ -382,8 +383,8 @@ class ProductionOptimization extends Component {
       this.logStatus(data, status, xhr);
     })
       .then(res => {
-        console.log("ship");
-        console.log(res);
+        // console.log("ship");
+        // 
         // var localProps = ["orderId", "shipmentId", "lotId", "shipDate", "shipFrom", "shipTo"];
         var localProps = ["orderId", "shipmentId", "lotId", "shipDate"];
         let subOrders = [];
@@ -398,11 +399,11 @@ class ProductionOptimization extends Component {
 
         subOrders.push(rows);
 
-        console.log(subOrders);
+        //console.log(subOrders);
         this.setState({
           blockChainContents: subOrders
         }, () => {
-          console.log(this.state.blockChainContents);
+          //console.log(this.state.blockChainContents);
         });
       });
     return shipmentId;
@@ -429,7 +430,7 @@ class ProductionOptimization extends Component {
         return;
     }
 
-    console.log(this.routeObj);
+    //console.log(this.routeObj);
     this.setState({
       disposition: this.routeObj.disposition
     });
@@ -439,7 +440,7 @@ class ProductionOptimization extends Component {
     }, function (data, status, xhr) {
       this.logStatus(data, status, xhr);
     }).then(res => {
-      console.log(res);
+      //
     });
   }
 
@@ -457,7 +458,7 @@ class ProductionOptimization extends Component {
       this.logStatus(data, status, xhr);
     })
       .then(res => {
-        console.log(res);
+        //
         let localProps = ["orderId", "status", "orderDate", "deliverBy"];
         let rows = localProps.map(r => {
           let key = this.firstLetterToUpper([r])
@@ -513,7 +514,6 @@ class ProductionOptimization extends Component {
   }
 
   currentStepProcess = () => {
-    console.log("currentStepProcess");
     switch (this.state.currentStep) {
 
       case "Order":
@@ -524,8 +524,7 @@ class ProductionOptimization extends Component {
         this.setState({
           blockChainContents: null
         });
-        this.callApi('PO_Acknowledgement?Po=' + 4500001782);
-        console.log("Confirm");
+        this.callApi('PO_Acknowledgement?Po=' + this.state.po);
         let orders = [this.emsOrderObj1, this.emsOrderObj2, this.emsOrderObj3, this.emsOrderObj4];
 
         for (let i = 0; i < 4; i++) {
@@ -533,7 +532,7 @@ class ProductionOptimization extends Component {
           this.placeEmsOrder(orders[i], this.state.po)
           // subOrder = pm.placeEmsOrder(orders[0], this.state.po)
           // .then(res => {
-          //   console.log(res);
+          //   
           // });
 
 
@@ -543,7 +542,6 @@ class ProductionOptimization extends Component {
         break;
 
       case "Source":
-        console.log(this.state.blockChainContents);
         let subOrders = this.state.blockChainContents;
         this.setState({
           blockChainContents: null
@@ -551,7 +549,6 @@ class ProductionOptimization extends Component {
         for (let j = 0; j < subOrders.length; j++) {
           let lotId = Math.random().toString(36).substr(2, 8);
           this.ship(lotId, subOrders[j][1]['OrderId'], this.emsAddress, this.oemAddress, this.atx2920Item);
-          console.log("order id : " + subOrders[j][1]['OrderId']);
         }
         break;
 
@@ -584,12 +581,11 @@ class ProductionOptimization extends Component {
         break;
 
       case "Accept":
-        console.log("Accept");
         this.setState({
           blockChainContents: null
         });
         this.callApi('/api/queries/LotByOrderId?orderId=' + this.state.po).then(res => {
-          console.log(res);
+          
           let Disposition = ["PENDING", "ACCEPTED", "REJECTED"];
           let localProps = ["orderId", "lotId", "disposition", "quantity"];
           let rows = localProps.map(r => {
@@ -618,9 +614,7 @@ class ProductionOptimization extends Component {
     }
   }
 
-  getResponse = (props) => {
-    console.log(props);
-  }
+
 
   callApi = async (url) => {
     const response = await fetch(url);
@@ -668,8 +662,13 @@ class ProductionOptimization extends Component {
 
   nextHandler = () => {
     //alert("in next handler");
+    
     if(!this.state.endWorkflow){
-      if(this.state.po){
+      if(this.state.po && this.state.blockChainContents){
+        let blknum = this.state.blockNumbers;
+        blknum = blknum.map(n => {
+          return n+1;
+        });
         let s = this.state.steps;
         let updateFlag = false;
         let currStep = this.state.currentStep;
@@ -688,15 +687,21 @@ class ProductionOptimization extends Component {
               // break;
             }
           }
-          console.log(currBlock);
     
           this.setState({
             steps: s,
             currentStep: currStep,
-            currentBlock: currBlock
+            currentBlock: currBlock,
+            blockNumbers: blknum
           }, () => {
-            this.currentStepProcess();
-            console.log(this.state.currentBlock);
+            // console.log(this.state.blockChainContents);
+            // if(this.state.blockChainContents){
+              this.currentStepProcess();
+            //console.log(this.state.currentBlock);
+            // }else{
+            //   alert("Please allow the step to complete ");
+            // }
+            
           });
         }
         }else{
@@ -747,7 +752,7 @@ class ProductionOptimization extends Component {
           }
           // console.log(blockHeight);
           this.callApi('/api/queries/getBlockInfo?height='+blockHeight).then(res => {
-            console.log(res);
+            
           });
         })
       // }
@@ -767,7 +772,7 @@ class ProductionOptimization extends Component {
     //   getBlock: !prev
     // });
     // this.callApi('/api/queries/getBlockHeight').then(res => {
-    //   console.log(res);
+    //   
     // });
     
   }
@@ -843,10 +848,8 @@ class ProductionOptimization extends Component {
             // return bcContents;
             let bcContents = rows.map(r => {
               let data = Object.values(r);
-              console.log(Object.keys(r));
-              console.log(Object.values(r));
               if (Object.keys(r) == "OrderDate" || Object.keys(r) == "ShipDate" || Object.keys(r) == "DeliverBy") {
-                let splitData = Object.values(rows).toString().split('T');
+                let splitData = Object.values(r).toString().split('T');
                 data = splitData[0];
             }
               return (
@@ -864,12 +867,9 @@ class ProductionOptimization extends Component {
             );
           } else {
             let data = Object.values(rows);
-              console.log(Object.keys(rows));
-              console.log(Object.values(rows));
               if (Object.keys(rows) == "OrderDate" || Object.keys(rows) == "ShipDate" || Object.keys(rows) == "DeliverBy") {
                 let splitData = Object.values(rows).toString().split('T');
                 data = splitData[0];
-                console.log(data);
             }
             return (
               //return ([Object.keys(rows), Object.values(rows)]);
@@ -967,7 +967,7 @@ class ProductionOptimization extends Component {
               <div className="procurementTitles bcTitles" id="blockchainInfo">Blockchain</div>
               <div className="bcData">{blockChainContents}</div>
             </div>
-            <CurrentBlock getBlock={this.getBlock} sequence = {this.state.steps}/>
+            <CurrentBlock getBlock={this.getBlock} sequence = {this.state.steps} blockNumbers={this.state.blockNumbers}/>
             <div className={bcButtonColor} onClick={this.nextHandler}>
               <div>Next</div>
               <img src={rightArrow} className="rightArrow" />
