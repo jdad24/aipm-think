@@ -15,7 +15,7 @@
     height: 100%;
     width: 100%;
     display: grid;
-    grid-template-rows: auto auto auto auto auto;
+    grid-template-rows: 20% 15% 20% 15% 20%;
     grid-template-columns: 15% 15% 15% 15% 15% 15% 15%;
     justify-items: center;
     align-items: center;
@@ -97,7 +97,7 @@
 
 .sapLineVertical{
     border:2px solid#707070;
-    height: 95%;
+    height: 80%;
     width: 0;
  
 } 

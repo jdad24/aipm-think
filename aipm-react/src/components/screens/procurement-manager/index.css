@@ -156,7 +156,6 @@ padding: 20px;
 
 .blockchainbutton{
     color: #ccd5e0;
-    background: #0062ff;
     font-weight: 600;
     font-size: 16px;
     display: flex;
@@ -167,6 +166,14 @@ padding: 20px;
     /* text-align: left; */
     padding: 0px 15px;
     color: white;
+}
+
+.bcActive{
+    background: #0062ff;
+}
+
+.bcInactive{
+    background: #D7DCE3;
 }
 
 .rightArrow {
