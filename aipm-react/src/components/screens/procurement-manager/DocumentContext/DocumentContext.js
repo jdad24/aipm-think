@@ -19,8 +19,8 @@ const DocumentContext = (props) => {
     backgroundRepeat: "no-repeat",
     width: "100%",
     height: "100%",
-    backgroundSize: "contain",
-    backgroundPosition: "center center"
+    backgroundSize: "100%",
+    backgroundPosition: "center top"
   }
 
   // let content = <div className="procurementImgs" style={{backgroundImage : `url(${require('../../../../assets/' + props.currStep + '.png')})`,width: "100%",

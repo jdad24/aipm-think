@@ -43,7 +43,7 @@ class ProductionOptimization extends Component {
     expandMedia: false,
     getBlock: false,
     endWorkflow: false,
-    blockNumbers: [9,8,7,6,5,4,3,2,1],
+    blockNumbers: [9, 8, 7, 6, 5, 4, 3, 2, 1],
     sequenceContent: "no data"
   }
 
@@ -66,51 +66,51 @@ class ProductionOptimization extends Component {
       po: null,
       blockChainContents: null
     });
-   
+
     this.callApi('/api/queries/OemOrderSorted')
       .then(res => {
-        
+
         let localProps = ["orderId", "status", "orderDate", "deliverBy"];
         let sap_oid_template = "450000";
         let sap_idx = 0;
 
-        for(let idx=0; idx<25;idx++){
-          if(sap_oid_template === res[idx].orderId.substring(0,6) && res[idx].status === "PLACED"){
+        for (let idx = 0; idx < 25; idx++) {
+          if (sap_oid_template === res[idx].orderId.substring(0, 6) && res[idx].status === "PLACED") {
             sap_idx = idx;
             break;
           }
         }
         //.........Uncomment below Oct 14..........
-        if(sap_oid_template === res[sap_idx].orderId.substring(0,6) && res[sap_idx].status === "PLACED"){
-        //.........Uncomment above Oct 14..........
-        // if (sap_oid_template === res[0].orderId.substring(0, 6)) {
-        let rows = localProps.map(field => {
-          let value = res[sap_idx][field]
-          let key = this.firstLetterToUpper([field])
-          return ({ [key]: value });
-        });
-        // console.log(rows);
+        if (sap_oid_template === res[sap_idx].orderId.substring(0, 6) && res[sap_idx].status === "PLACED") {
+          //.........Uncomment above Oct 14..........
+          // if (sap_oid_template === res[0].orderId.substring(0, 6)) {
+          let rows = localProps.map(field => {
+            let value = res[sap_idx][field]
+            let key = this.firstLetterToUpper([field])
+            return ({ [key]: value });
+          });
+          // console.log(rows);
 
-        this.setState({
-          po: res[sap_idx].orderId,
-          blockChainContents: rows
-        });
+          this.setState({
+            po: res[sap_idx].orderId,
+            blockChainContents: rows
+          });
         }
 
         //.........Uncomment below Oct 14..........
-        else{
+        else {
           alert("Please create a new PO. Previous PO status is COMPLETE");
-        //.........Uncomment above Oct 14..........
+          //.........Uncomment above Oct 14..........
 
-        //creating a random number > 5000 and < 10000 to match SAP PO pattern
-        // let oid = sap_oid_template + Math.floor(5000 + Math.random() * 5000);
-        // this.setState({
-        //   po: oid
-        // }, () => {
-        //   console.log(this.state.po);
-        // });
+          //creating a random number > 5000 and < 10000 to match SAP PO pattern
+          // let oid = sap_oid_template + Math.floor(5000 + Math.random() * 5000);
+          // this.setState({
+          //   po: oid
+          // }, () => {
+          //   console.log(this.state.po);
+          // });
 
-        //.........Uncomment below Oct 14..........
+          //.........Uncomment below Oct 14..........
         }
         //.........Uncomment above Oct 14..........
       })
@@ -219,13 +219,25 @@ class ProductionOptimization extends Component {
 
 
   getVIdata = (dataQuality, dataIndex, masteroid) => {
-
-    axios.get('https://aipm-gsc-nodered.mybluemix.net/vidata?dataQuality=' + this.state.dataQuality + '&dataIndex=-1').then(res => {
+    axios.get('https://aipm-gsc-nodered.mybluemix.net/vidata?dataQuality=' + 'good' + '&dataIndex=-1').then(res => {
+    // axios.get('https://aipm-gsc-nodered.mybluemix.net/vidata?dataQuality=' + this.state.dataQuality + '&dataIndex=-1').then(res => {
       const vidata = res.data.vidata;
       //console.log(vidata);
       let vi = vidata.map(data => {
-        return ({ [data.Timestamp]: data.Timestamp });
+       let rows = data['detections'][0]['probableTypes'].map(i => {
+         let Confidence = "Confidence - "+i["confidence"];
+         let type = i["type"];
+          return ({ 
+           [type]: Confidence,
+           });
+        });
+        // return ({ 
+        //   [data.timestamp]: data.timestamp,
+        //   "Inspection Data" : rows
+        //  });
+        return (rows);
       });
+      
 
       this.setState({
         blockChainContents: vi
@@ -585,7 +597,7 @@ class ProductionOptimization extends Component {
           blockChainContents: null
         });
         this.callApi('/api/queries/LotByOrderId?orderId=' + this.state.po).then(res => {
-          
+
           let Disposition = ["PENDING", "ACCEPTED", "REJECTED"];
           let localProps = ["orderId", "lotId", "disposition", "quantity"];
           let rows = localProps.map(r => {
@@ -662,17 +674,17 @@ class ProductionOptimization extends Component {
 
   nextHandler = () => {
     //alert("in next handler");
-    
-    if(!this.state.endWorkflow){
-      if(this.state.po && this.state.blockChainContents){
+
+    if (!this.state.endWorkflow) {
+      if (this.state.po && this.state.blockChainContents) {
         let blknum = this.state.blockNumbers;
         blknum = blknum.map(n => {
-          return n+1;
+          return n + 1;
         });
         let s = this.state.steps;
         let updateFlag = false;
         let currStep = this.state.currentStep;
-    
+
         if (s[s.length - 1].state === "2") {
           this.getInitialWorkflowState();
         } else {
@@ -686,20 +698,20 @@ class ProductionOptimization extends Component {
               // break;
             }
           }
-    
+
           this.setState({
             steps: s,
             currentStep: currStep,
             blockNumbers: blknum
           }, () => {
-              this.currentStepProcess();
+            this.currentStepProcess();
           });
         }
-        }else{
-          alert("Please allow the step to complete");
-        }
+      } else {
+        alert("Please allow the step to complete");
+      }
     }
-    
+
 
 
   }
@@ -733,35 +745,35 @@ class ProductionOptimization extends Component {
   getBlock = (e) => {
     //console.log(e.currentTarget.textContent);
     let chosenBlock = parseInt(e.currentTarget.textContent);
-        this.callApi('/api/queries/getBlockHeight').then(h => {
-          let blockHeight = h;
-          if(chosenBlock < this.state.blockNumbers[0]){
-            blockHeight = h - (this.state.blockNumbers[0] - chosenBlock);
-          }
-          this.callApi('/api/queries/getBlockInfo?height='+blockHeight).then(res => {
-            // console.log(res.data[0].payload.data.actions[0].payload);
-            // let xxxx = JSON.stringify(res.data);
-            // let xxxx = JSON.stringify(res.data);
-            // console.log(JSON.parse(xxxx));
-            // debugger;
-            console.log(res.data["data"][0].payload.data.actions[0].payload.action.proposal_response_payload.extension.response.payload);
-            //let seqContent = res.data["data"][0].payload.data.actions[0].payload.action.proposal_response_payload.extension.response.payload;
-            //res.data["data"][0].payload.data.actions[0].payload.action.proposal_response_payload.extension.response.payload
-            //res.data[0].payload.data.actions[0].payload.action.response.payload
-            this.setState({
-              sequenceContent: res.data["data"][0].payload.data.actions[0].payload.action.proposal_response_payload.extension.response.payload,
-              getBlock: true
-            });
-          });
-        })
-      // }
-      
+    this.callApi('/api/queries/getBlockHeight').then(h => {
+      let blockHeight = h;
+      if (chosenBlock < this.state.blockNumbers[0]) {
+        blockHeight = h - (this.state.blockNumbers[0] - chosenBlock);
+      }
+      this.callApi('/api/queries/getBlockInfo?height=' + blockHeight).then(res => {
+        // console.log(res.data[0].payload.data.actions[0].payload);
+        // let xxxx = JSON.stringify(res.data);
+        // let xxxx = JSON.stringify(res.data);
+        // console.log(JSON.parse(xxxx));
+        // debugger;
+        console.log(res.data["data"][0].payload.data.actions[0].payload.action.proposal_response_payload.extension.response.payload);
+        //let seqContent = res.data["data"][0].payload.data.actions[0].payload.action.proposal_response_payload.extension.response.payload;
+        //res.data["data"][0].payload.data.actions[0].payload.action.proposal_response_payload.extension.response.payload
+        //res.data[0].payload.data.actions[0].payload.action.response.payload
+        this.setState({
+          sequenceContent: res.data["data"][0].payload.data.actions[0].payload.action.proposal_response_payload.extension.response.payload,
+          getBlock: true
+        });
+      });
+    })
+    // }
 
 
 
-      // this.setState({
-      //     getBlock: true
-      //   });
+
+    // this.setState({
+    //     getBlock: true
+    //   });
 
 
     // }
@@ -773,7 +785,7 @@ class ProductionOptimization extends Component {
     // this.callApi('/api/queries/getBlockHeight').then(res => {
     //   
     // });
-    
+
   }
 
   getProcMgrContent = () => {
@@ -800,13 +812,13 @@ class ProductionOptimization extends Component {
 
       let stepsLen = this.state.steps.length;
       let currStep = this.state.currentStep;
-      
-      
+
+
       let workflow = this.state.steps.map((s, i) => {
         let stepNamestyle = "stepName";
-      if(s.state == "0"){
-        stepNamestyle = "stepName stepIncomplete"
-      }
+        if (s.state == "0") {
+          stepNamestyle = "stepName stepIncomplete"
+        }
 
         let circleLine = (
           <Aux>
@@ -846,18 +858,39 @@ class ProductionOptimization extends Component {
             // });
             // return bcContents;
             let bcContents = rows.map(r => {
-              let data = Object.values(r);
-              if (Object.keys(r) == "OrderDate" || Object.keys(r) == "ShipDate" || Object.keys(r) == "DeliverBy") {
-                let splitData = Object.values(r).toString().split('T');
-                data = splitData[0];
-            }
-              return (
-                <div className="bcContents" key={Object.values(r)}>
-                  <div>{Object.keys(r)}: &nbsp;</div>
-                  {/* <div>: &nbsp; </div> */}
-                  <div>{data}</div>
-                </div>
-              );
+              let bccContents;
+
+              if (r.length > 0) {
+                bccContents = r.map(rr => {
+                  let data = Object.values(r);
+                  if (Object.keys(rr) == "OrderDate" || Object.keys(rr) == "ShipDate" || Object.keys(rr) == "DeliverBy") {
+                    let splitData = Object.values(rr).toString().split('T');
+                    data = splitData[0];
+                  }
+                  return (
+                    <div className="bcContents" key={Object.values(r)}>
+                      <div>{Object.keys(rr)}: &nbsp;</div>
+                      {/* <div>: &nbsp; </div> */}
+                      <div>{data}</div>
+                    </div>
+                  );
+                });
+
+              } else {
+                let data = Object.values(r);
+                if (Object.keys(r) == "OrderDate" || Object.keys(r) == "ShipDate" || Object.keys(r) == "DeliverBy") {
+                  let splitData = Object.values(r).toString().split('T');
+                  data = splitData[0];
+                }
+                return (
+                  <div className="bcContents" key={Object.values(r)}>
+                    <div>{Object.keys(r)}: &nbsp;</div>
+                    {/* <div>: &nbsp; </div> */}
+                    <div>{data}</div>
+                  </div>
+                );
+
+              }
             });
             return (
               <Aux>
@@ -866,9 +899,9 @@ class ProductionOptimization extends Component {
             );
           } else {
             let data = Object.values(rows);
-              if (Object.keys(rows) == "OrderDate" || Object.keys(rows) == "ShipDate" || Object.keys(rows) == "DeliverBy") {
-                let splitData = Object.values(rows).toString().split('T');
-                data = splitData[0];
+            if (Object.keys(rows) == "OrderDate" || Object.keys(rows) == "ShipDate" || Object.keys(rows) == "DeliverBy") {
+              let splitData = Object.values(rows).toString().split('T');
+              data = splitData[0];
             }
             return (
               //return ([Object.keys(rows), Object.values(rows)]);
@@ -895,10 +928,10 @@ class ProductionOptimization extends Component {
       );
 
       let docContext = <DocumentContext currStep={this.state.currentStep} vidata={this.state.vidata_Graph} />;
-      let blockInfo = this.state.sequenceContent;
+      let blockInfo = this.state.sequenceContent.toString();
 
       let bcButtonColor = "blockchainbutton bcActive";
-      if(this.state.endWorkflow){
+      if (this.state.endWorkflow) {
         bcButtonColor = "blockchainbutton bcInactive";
       }
       myContent = (
@@ -925,11 +958,15 @@ class ProductionOptimization extends Component {
           <Modal
             show={this.state.getBlock}
             modalClosed={this.minimizeBlock}
-            styling=" pmModal">
-            {/* <div>media</div> */}
-            <div className="modalMediaContainer">
-              {blockInfo}
+            // styling="pmModal">
+            styling=" itoModal">
+            <div className="modalBlockContainer">
+              <div className="modalBlockInfo">{blockInfo}</div>
             </div>
+
+            {/* <div className="modalMediaContainer">
+              {blockInfo}
+            </div> */}
 
 
             {/* <DocumentContext currStep={this.state.currentStep} vidata={this.state.vidata_Graph} /> */}
@@ -966,7 +1003,7 @@ class ProductionOptimization extends Component {
               <div className="procurementTitles bcTitles" id="blockchainInfo">Blockchain</div>
               <div className="bcData">{blockChainContents}</div>
             </div>
-            <CurrentBlock getBlock={this.getBlock} blockNumbers={this.state.blockNumbers}/>
+            <CurrentBlock getBlock={this.getBlock} blockNumbers={this.state.blockNumbers} />
             <div className={bcButtonColor} onClick={this.nextHandler}>
               <div>Next</div>
               <img src={rightArrow} className="rightArrow" />

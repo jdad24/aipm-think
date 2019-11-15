@@ -83,7 +83,24 @@
     align-items: center;
     justify-content: center;
     width: 75vw;
-     height: 75vh; 
+    height: 75vh; 
+}
+
+.modalBlockContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:40vw;
+    height: 40vh; 
+}
+
+.modalBlockInfo{
+    display: flex;
+    /* align-items: center;
+    justify-content: center; */
+    /* flex-wrap: wrap; */
+    flex-flow: row wrap;
+    max-width:40vw;
 }
 
 .blockchainListenerContainer{
