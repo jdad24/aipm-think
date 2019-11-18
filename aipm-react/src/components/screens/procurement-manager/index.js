@@ -14,7 +14,7 @@ import BlockChainListner from '../../common-ui/BlockchainListener/BlockchainList
 import Confirm from '../../../assets/Confirm.mp4';
 import expand from '../../../assets/expand.svg';
 import Modal from '../../common-ui/Modal/modal';
-// import * as pm from './rest-util';
+import TreeComponent from './TreeComponent/TreeComponent';
 
 import DocumentContext from "./DocumentContext/DocumentContext";
 import rightArrow from "../../../assets/arrow_right_white.svg";
@@ -44,7 +44,8 @@ class ProductionOptimization extends Component {
     getBlock: false,
     endWorkflow: false,
     blockNumbers: [9, 8, 7, 6, 5, 4, 3, 2, 1],
-    sequenceContent: "no data"
+    sequenceContent: "no data",
+    subBlockContents: null
   }
 
   firstLetterToUpper = (word) => {
@@ -220,27 +221,36 @@ class ProductionOptimization extends Component {
 
   getVIdata = (dataQuality, dataIndex, masteroid) => {
     axios.get('https://aipm-gsc-nodered.mybluemix.net/vidata?dataQuality=' + 'good' + '&dataIndex=-1').then(res => {
-    // axios.get('https://aipm-gsc-nodered.mybluemix.net/vidata?dataQuality=' + this.state.dataQuality + '&dataIndex=-1').then(res => {
+      // axios.get('https://aipm-gsc-nodered.mybluemix.net/vidata?dataQuality=' + this.state.dataQuality + '&dataIndex=-1').then(res => {
       const vidata = res.data.vidata;
       //console.log(vidata);
-      let vi = vidata.map(data => {
-       let rows = data['detections'][0]['probableTypes'].map(i => {
-         let Confidence = "Confidence - "+i["confidence"];
-         let type = i["type"];
-          return ({ 
-           [type]: Confidence,
-           });
+      let viData = {
+        timestamps: null,
+        classes: []
+      };
+      viData['timestamps'] = vidata.map(data => {
+        let local_class = viData.classes;
+        let rows = data['detections'][0]['probableTypes'].map(i => {
+          let Confidence = "Confidence - " + i["confidence"];
+          let type = i["type"];
+          return (
+            { [type]: Confidence }
+          );
         });
         // return ({ 
         //   [data.timestamp]: data.timestamp,
         //   "Inspection Data" : rows
         //  });
-        return (rows);
+        local_class.push(rows);
+        viData['classes'] = local_class;
+        return ({["Item"]:data['timestamp']});
+        // return ({[data.timestamp]:rows});
       });
-      
 
+      // console.log(viData['timestamps']);
       this.setState({
-        blockChainContents: vi
+        blockChainContents: viData['timestamps'],
+        subBlockContents: viData['classes']
       });
       this.package_and_send_VIdata(vidata, this.state.po);
       return res;
@@ -788,6 +798,33 @@ class ProductionOptimization extends Component {
 
   }
 
+  buildBCcontents = (r) => {
+    let data = Object.values(r);
+    if (Object.keys(r) == "OrderDate" || Object.keys(r) == "ShipDate" || Object.keys(r) == "DeliverBy") {
+      let splitData = Object.values(r).toString().split('T');
+      data = splitData[0];
+    }
+    return (
+      <div className="bcContents" key={Object.values(r)}>
+        <Aux>{Object.keys(r)}: &nbsp;</Aux>
+        {/* <div>: &nbsp; </div> */}
+        <Aux>{data}</Aux>
+      </div>
+    );
+  }
+
+  treeToggle = (e) => {
+    // debugger;
+    // console.log(e);
+    let toggleFlag = e.target.nextSibling.style.display;
+    if(toggleFlag === "none"){
+      e.target.nextSibling.style.display = "block";
+      //return;
+    }else{
+      e.target.nextSibling.style.display = "none";
+    }
+  }
+
   getProcMgrContent = () => {
     let myContent = "no data";
     //Uncomment bellow code to replace screenshot................
@@ -844,74 +881,91 @@ class ProductionOptimization extends Component {
           </div>
         );
       });
-
+      if (this.state.subBlockContents) {
+        console.log(this.state.subBlockContents);
+      }
       let blockChainContents = [];
+      // let subBlockChainContents = [];
       if (this.state.blockChainContents) {
-        //console.log(this.state.blockChainContents);
-        // let data =[];
-        blockChainContents = this.state.blockChainContents.map(rows => {
 
-          // console.log(typeof rows);
-          if (rows.length > 0) {
-            // let bcContents = rows.map(r => {
-            //   return ([Object.keys(r), Object.values(r)]);
+        if (this.state.subBlockContents) {
+          let index = 0;
+          blockChainContents = this.state.blockChainContents.map(rows => {
+            // let subBlockChainContents = this.state.subBlockContents.map(subrows => {
             // });
-            // return bcContents;
-            let bcContents = rows.map(r => {
-              let bccContents;
 
-              if (r.length > 0) {
-                bccContents = r.map(rr => {
-                  let data = Object.values(r);
-                  if (Object.keys(rr) == "OrderDate" || Object.keys(rr) == "ShipDate" || Object.keys(rr) == "DeliverBy") {
-                    let splitData = Object.values(rr).toString().split('T');
-                    data = splitData[0];
-                  }
-                  return (
-                    <div className="bcContents" key={Object.values(r)}>
-                      <div>{Object.keys(rr)}: &nbsp;</div>
-                      {/* <div>: &nbsp; </div> */}
-                      <div>{data}</div>
-                    </div>
-                  );
-                });
+            if (rows.length > 0) {
+              let bcContents = rows.map(r => {
 
-              } else {
-                let data = Object.values(r);
-                if (Object.keys(r) == "OrderDate" || Object.keys(r) == "ShipDate" || Object.keys(r) == "DeliverBy") {
-                  let splitData = Object.values(r).toString().split('T');
-                  data = splitData[0];
+                let subRows;
+                if (this.state.subBlockContents[index].length > 0) {
+                  subRows = this.state.subBlockContents[index].map(s => {
+                    let builtsubBContent = this.buildBCcontents(s);
+                    return builtsubBContent;
+                  });
                 }
+                index++;
+
+                let builtContent = this.buildBCcontents(r);
                 return (
-                  <div className="bcContents" key={Object.values(r)}>
-                    <div>{Object.keys(r)}: &nbsp;</div>
-                    {/* <div>: &nbsp; </div> */}
-                    <div>{data}</div>
-                  </div>
+                  
+                    <div onClick={(e) => this.treeToggle(e)}>
+                    {builtContent}
+                    <TreeComponent show={false}>{subRows}</TreeComponent>
+                    </div>
+                    
+                  
                 );
 
+              });
+              return (
+                <Aux>
+                  {bcContents}
+                </Aux>
+              );
+            } else {
+
+              let subRows;
+              if (this.state.subBlockContents[index].length > 0) {
+                subRows = this.state.subBlockContents[index].map(s => {
+                  let builtsubBContent = this.buildBCcontents(s);
+                  return builtsubBContent;
+                });
               }
-            });
-            return (
-              <Aux>
-                {bcContents}
-              </Aux>
-            );
-          } else {
-            let data = Object.values(rows);
-            if (Object.keys(rows) == "OrderDate" || Object.keys(rows) == "ShipDate" || Object.keys(rows) == "DeliverBy") {
-              let splitData = Object.values(rows).toString().split('T');
-              data = splitData[0];
+              index++;
+
+              let builtContent = this.buildBCcontents(rows);
+              return (
+            
+                  <div onClick={(e) => this.treeToggle(e)}>
+                  {builtContent}
+                    <TreeComponent show={false}>{subRows}</TreeComponent>
+                  </div>
+                  
+              );
             }
-            return (
-              //return ([Object.keys(rows), Object.values(rows)]);
-              <div className="bcContents" key={Object.values(rows)}>
-                <div>{Object.keys(rows)}: &nbsp;</div>
-                <div>{data}</div>
-              </div>
-            );
-          }
-        });
+          });
+        } else {
+          
+          blockChainContents = this.state.blockChainContents.map(rows => {
+            if (rows.length > 0) {
+              let bcContents = rows.map(r => {
+                let builtContent = this.buildBCcontents(r);
+                return builtContent;
+              });
+              return (
+                <Aux>
+                  {bcContents}
+                </Aux>
+              );
+            } else {
+              let builtContent = this.buildBCcontents(rows);
+              return builtContent;
+            }
+          });
+        }
+
+
       }
       let mediaVideo = (
         <video
@@ -959,9 +1013,8 @@ class ProductionOptimization extends Component {
             show={this.state.getBlock}
             modalClosed={this.minimizeBlock}
             // styling="pmModal">
-          // styling=" itoModal"
-          styling="BlockSequenceModal"
-          > 
+            // styling=" itoModal">
+            styling="BlockSequenceModal" >
             <div className="modalBlockContainer">
               <div className="modalBlockInfo">{blockInfo}</div>
             </div>
@@ -985,7 +1038,7 @@ class ProductionOptimization extends Component {
                 <div>Context</div>
                 <div onClick={this.toggleSAPorGraph}><img src={expand} /></div>
               </div>
-             {docContext}
+              {docContext}
               {/* <img className="procurementImgs" src={require('../../../assets/' + currStep + '.png')} /> */}
               {/* <DocumentContext currStep={this.state.currentStep} vidata={this.state.vidata_Graph} /> */}
             </div>
