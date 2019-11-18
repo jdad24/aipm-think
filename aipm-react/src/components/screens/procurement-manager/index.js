@@ -959,7 +959,9 @@ class ProductionOptimization extends Component {
             show={this.state.getBlock}
             modalClosed={this.minimizeBlock}
             // styling="pmModal">
-            styling=" itoModal">
+          // styling=" itoModal"
+          styling="BlockSequenceModal"
+          > 
             <div className="modalBlockContainer">
               <div className="modalBlockInfo">{blockInfo}</div>
             </div>

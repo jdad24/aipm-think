@@ -86,21 +86,29 @@
     height: 75vh; 
 }
 
+.BlockSequenceModal {
+    position: absolute;
+    float: left;
+    left: 12%;
+    top: 25%;
+    /* transform: translate(-50%, -50%); */
+}
+
 .modalBlockContainer{
+    
     display: flex;
     align-items: center;
     justify-content: center;
-    width:40vw;
-    height: 40vh; 
+    width:75vw;
+    /* overflow-y: auto; */
+
+    padding: 20px;
+  
 }
 
 .modalBlockInfo{
     display: flex;
-    /* align-items: center;
-    justify-content: center; */
-    /* flex-wrap: wrap; */
-    flex-flow: row wrap;
-    max-width:40vw;
+    /* max-width:40vw; */
 }
 
 .blockchainListenerContainer{
@@ -161,8 +169,6 @@
     font-weight: 400;
 }
 
-
-.step
 .stepName{
     margin-left: 8px;
 }
@@ -219,34 +225,3 @@ padding: 20px;
  }
 
  
-
- /* .sapBlock{
-     width: 10%;
-     min-height: 20px;
-     border: 1px solid #707070;
-     background-color: #F3F3F3;
- }
-
- .sapBlockLine{
-     border:1px solid#707070;
-     height: 0;
- }
-
- .a{
-    width: 20%;
- }
-
- .b{
-    width: 10%;
- }
-
- .BlockLineContainer{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
- }
-
- .c{
-     flex-direction: column;
- } */
