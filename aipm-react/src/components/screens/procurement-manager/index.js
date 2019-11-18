@@ -985,7 +985,7 @@ class ProductionOptimization extends Component {
                 <div>Context</div>
                 <div onClick={this.toggleSAPorGraph}><img src={expand} /></div>
               </div>
-              {docContext}
+             {docContext}
               {/* <img className="procurementImgs" src={require('../../../assets/' + currStep + '.png')} /> */}
               {/* <DocumentContext currStep={this.state.currentStep} vidata={this.state.vidata_Graph} /> */}
             </div>
