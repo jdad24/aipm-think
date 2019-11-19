@@ -542,60 +542,61 @@ class ProductionOptimization extends Component {
         this.Order();
         break;
 
-      case "Confirm":
-        this.setState({
-          blockChainContents: null
-        });
-        this.callApi('PO_Acknowledgement?Po=' + this.state.po);
-        let orders = [this.emsOrderObj1, this.emsOrderObj2, this.emsOrderObj3, this.emsOrderObj4];
+      // case "Confirm":
+      //   this.setState({
+      //     blockChainContents: null
+      //   });
+      //   this.callApi('PO_Acknowledgement?Po=' + this.state.po);
+      //   let orders = [this.emsOrderObj1, this.emsOrderObj2, this.emsOrderObj3, this.emsOrderObj4];
 
-        for (let i = 0; i < 4; i++) {
-          //console.log("pm order");
-          this.placeEmsOrder(orders[i], this.state.po)
-          // subOrder = pm.placeEmsOrder(orders[0], this.state.po)
-          // .then(res => {
-          //   
-          // });
+      //   for (let i = 0; i < 4; i++) {
+      //     //console.log("pm order");
+      //     this.placeEmsOrder(orders[i], this.state.po)
+      //     // subOrder = pm.placeEmsOrder(orders[0], this.state.po)
+      //     // .then(res => {
+      //     //   
+      //     // });
 
 
-          // let props = ["masterOrderId", "orderId", "status", "orderDate", "deliverBy"];
-        }
+      //     // let props = ["masterOrderId", "orderId", "status", "orderDate", "deliverBy"];
+      //   }
 
-        break;
+      //   break;
 
-      case "Source":
-        let subOrders = this.state.blockChainContents;
-        this.setState({
-          blockChainContents: null
-        });
-        for (let j = 0; j < subOrders.length; j++) {
-          let lotId = Math.random().toString(36).substr(2, 8);
-          this.ship(lotId, subOrders[j][1]['OrderId'], this.emsAddress, this.oemAddress, this.atx2920Item);
-        }
-        break;
+      // case "Source":
+      //   let subOrders = this.state.blockChainContents;
+      //   this.setState({
+      //     blockChainContents: null
+      //   });
+      //   for (let j = 0; j < subOrders.length; j++) {
+      //     let lotId = Math.random().toString(36).substr(2, 8);
+      //     this.ship(lotId, subOrders[j][1]['OrderId'], this.emsAddress, this.oemAddress, this.atx2920Item);
+      //   }
+      //   break;
 
-      case "Assemble":
-        this.setState({
-          blockChainContents: null
-        });
-        let lid = this.createLot(this.state.po);
-        break;
+      // case "Assemble":
+      //   this.setState({
+      //     blockChainContents: null
+      //   });
+      //   let lid = this.createLot(this.state.po);
+      //   break;
 
-      case "Inspect":
-        this.getDataQuality();
-        this.inspect(this.state.lid, this.state.po);
-        break;
+      // case "Inspect":
+      //   this.getDataQuality();
+      //   this.inspect(this.state.lid, this.state.po);
+      //   break;
 
-      case "Ship":
-        this.setState({
-          blockChainContents: null
-        });
-        this.ship(this.state.lid, this.state.po, this.emsAddress, this.oemAddress, this.atx2920Item);
-        break;
+      // case "Ship":
+      //   this.setState({
+      //     blockChainContents: null
+      //   });
+      //   this.ship(this.state.lid, this.state.po, this.emsAddress, this.oemAddress, this.atx2920Item);
+      //   break;
 
       case "Grade":
         this.setState({
-          blockChainContents: null
+          blockChainContents: null,
+          subBlockContents: null
         });
         this.getVIdata(null, null, this.state.po);
 
@@ -604,7 +605,8 @@ class ProductionOptimization extends Component {
 
       case "Accept":
         this.setState({
-          blockChainContents: null
+          blockChainContents: null,
+          subBlockContents: null
         });
         this.callApi('/api/queries/LotByOrderId?orderId=' + this.state.po).then(res => {
 
