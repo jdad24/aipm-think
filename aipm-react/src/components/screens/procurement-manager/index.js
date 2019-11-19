@@ -802,9 +802,16 @@ class ProductionOptimization extends Component {
 
   buildBCcontents = (r) => {
     let data = Object.values(r);
-    if (Object.keys(r) == "OrderDate" || Object.keys(r) == "shipDate" || Object.keys(r) == "DeliverBy") {
-      let splitData = Object.values(r).toString().split('T');
-      data = splitData[0];
+    if (Object.keys(r) == "OrderDate" || Object.keys(r) == "ShipDate" || Object.keys(r) == "DeliverBy") {
+      if (Object.values(r).toString().indexOf("GMT") != -1) {
+        let gmtLocator = Object.values(r).toString().indexOf("GMT")
+        let splitData = Object.values(r).toString().substring(0, gmtLocator-9)
+        let splitData2 = splitData
+        data = splitData2
+      } else {
+        let splitData = Object.values(r).toString().split('T');
+        data = splitData[0];
+      }
     }
     return (
       <div className="bcContents" key={Object.values(r)}>
