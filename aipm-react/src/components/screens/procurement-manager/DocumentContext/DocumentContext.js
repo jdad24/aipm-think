@@ -109,7 +109,7 @@ const DocumentContext = (props) => {
 
   }
   return <div className="DocumentContext">
-    {props.currStep == "Inspect" ? <div className="InspectionResults">InspectionResults</div> : null}
+    {props.currStep == "Inspect" ? <div className="InspectionResults">Inspection Results</div> : null}
     {content}</div>
 }
 

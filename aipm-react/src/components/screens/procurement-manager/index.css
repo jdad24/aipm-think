@@ -206,6 +206,7 @@ justify-content: space-between;
 
 .bcActive{
     background: #0062ff;
+    cursor: pointer;
 }
 
 .bcInactive{
