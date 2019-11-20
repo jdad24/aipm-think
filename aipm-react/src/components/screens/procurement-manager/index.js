@@ -15,7 +15,7 @@ import Confirm from '../../../assets/Confirm.mp4';
 import expand from '../../../assets/expand.svg';
 import Modal from '../../common-ui/Modal/modal';
 import TreeComponent from './TreeComponent/TreeComponent';
-
+import Caret from '../../../assets/downCaret.svg';
 import DocumentContext from "./DocumentContext/DocumentContext";
 import rightArrow from "../../../assets/arrow_right_white.svg";
 import LiveVideoText from './LiveVideoText/LiveVideoText';
@@ -88,6 +88,9 @@ class ProductionOptimization extends Component {
           let rows = localProps.map(field => {
             let value = res[sap_idx][field]
             let key = this.firstLetterToUpper([field])
+            // if(field == "orderId"){
+            //   key = "MasterOrderId"
+            // }
             return ({ [key]: value });
           });
           // console.log(rows);
@@ -243,7 +246,7 @@ class ProductionOptimization extends Component {
         //  });
         local_class.push(rows);
         viData['classes'] = local_class;
-        return ({["Item"]:data['timestamp']});
+        return ({ ["Item"]: data['timestamp'] });
         // return ({[data.timestamp]:rows});
       });
 
@@ -342,6 +345,9 @@ class ProductionOptimization extends Component {
           let rows = res.map(r => {
             let l = localProps.map(field => {
               let key = this.firstLetterToUpper([field])
+              if (field == "orderId" && r[field] == this.state.po) {
+                key = "MasterOrderId"
+              }
               return ({ [key]: r[field] });
             });
             return l;
@@ -375,7 +381,10 @@ class ProductionOptimization extends Component {
         let localProps = ["orderId", "lotId", "inspectionId"];
         //
         let l = localProps.map(field => {
-          let key = this.firstLetterToUpper([field])
+          let key = this.firstLetterToUpper([field]);
+          if (field == "orderId" && res.data[field] == this.state.po) {
+            key = "MasterOrderId"
+          }
           return ({ [key]: res.data[field] });
         });
         this.setState({
@@ -416,6 +425,9 @@ class ProductionOptimization extends Component {
         //console.log(subOrders);
         let rows = localProps.map(field => {
           let key = this.firstLetterToUpper([field])
+          if (field == "orderId" && res.data[field] == this.state.po) {
+            key = "MasterOrderId"
+          }
           return ({ [key]: res.data[field] });
         });
 
@@ -484,6 +496,9 @@ class ProductionOptimization extends Component {
         let localProps = ["orderId", "status", "orderDate", "deliverBy"];
         let rows = localProps.map(r => {
           let key = this.firstLetterToUpper([r])
+          if (r == "orderId" && res.data[r] == this.state.po) {
+            key = "MasterOrderId"
+          }
           return ({ [key]: res.data[r] });
         });
         this.setState({
@@ -614,6 +629,9 @@ class ProductionOptimization extends Component {
           let localProps = ["orderId", "lotId", "disposition", "quantity"];
           let rows = localProps.map(r => {
             let key = this.firstLetterToUpper([r])
+            if (r == "orderId" && res[r] == this.state.po) {
+              key = "MasterOrderId"
+            }
             if (r == "disposition") {
               return ({ [key]: this.state.disposition });
             } else {
@@ -800,12 +818,12 @@ class ProductionOptimization extends Component {
 
   }
 
-  buildBCcontents = (r) => {
+  buildBCcontents = (r, dropdown) => {
     let data = Object.values(r);
     if (Object.keys(r) == "OrderDate" || Object.keys(r) == "ShipDate" || Object.keys(r) == "DeliverBy") {
       if (Object.values(r).toString().indexOf("GMT") != -1) {
         let gmtLocator = Object.values(r).toString().indexOf("GMT")
-        let splitData = Object.values(r).toString().substring(0, gmtLocator-9)
+        let splitData = Object.values(r).toString().substring(0, gmtLocator - 9)
         let splitData2 = splitData
         data = splitData2
       } else {
@@ -813,24 +831,44 @@ class ProductionOptimization extends Component {
         data = splitData[0];
       }
     }
-    return (
+
+    let table_rows = (
       <div className="bcContents" key={Object.values(r)}>
-        <Aux>{Object.keys(r)}: &nbsp;</Aux>
-        {/* <div>: &nbsp; </div> */}
-        <Aux>{data}</Aux>
+        <div>
+          <Aux>{Object.keys(r)}: &nbsp;</Aux>
+          {/* <div>: &nbsp; </div> */}
+          <Aux>{data}</Aux>
+        </div>
+
       </div>
     );
+
+    if (dropdown) {
+      table_rows = (
+        <div className="bcContents" key={Object.values(r)}>
+          <div>
+            <Aux>{Object.keys(r)}: &nbsp;</Aux>
+            {/* <div>: &nbsp; </div> */}
+            <Aux>{data}</Aux>
+          </div>
+
+          <div><img src={Caret} /></div>
+        </div>
+      );
+    }
+    return table_rows;
   }
 
   treeToggle = (e) => {
-    // debugger;
-    // console.log(e);
-    let toggleFlag = e.target.nextSibling.style.display;
-    if(toggleFlag === "none"){
-      e.target.nextSibling.style.display = "block";
+    debugger;
+    console.log(e);
+    let toggleFlag = e.currentTarget.children[1].style.display;
+    if (toggleFlag === "none") {
+      //e.currentTarget.children[1].style.display
+      e.currentTarget.children[1].style.display = "block";
       //return;
-    }else{
-      e.target.nextSibling.style.display = "none";
+    } else {
+      e.currentTarget.children[1].style.display = "none";
     }
   }
 
@@ -915,15 +953,15 @@ class ProductionOptimization extends Component {
                 }
                 index++;
 
-                let builtContent = this.buildBCcontents(r);
+                let builtContent = this.buildBCcontents(r, true);
                 return (
-                  
-                    <div onClick={(e) => this.treeToggle(e)}>
+
+                  <div onClick={(e) => this.treeToggle(e)}>
                     {builtContent}
                     <TreeComponent show={false}>{subRows}</TreeComponent>
-                    </div>
-                    
-                  
+                  </div>
+
+
                 );
 
               });
@@ -943,19 +981,19 @@ class ProductionOptimization extends Component {
               }
               index++;
 
-              let builtContent = this.buildBCcontents(rows);
+              let builtContent = this.buildBCcontents(rows, true);
               return (
-            
-                  <div onClick={(e) => this.treeToggle(e)}>
+
+                <div onClick={(e) => this.treeToggle(e)}>
                   {builtContent}
-                    <TreeComponent show={false}>{subRows}</TreeComponent>
-                  </div>
-                  
+                  <TreeComponent show={false}>{subRows}</TreeComponent>
+                </div>
+
               );
             }
           });
         } else {
-          
+
           blockChainContents = this.state.blockChainContents.map(rows => {
             if (rows.length > 0) {
               let bcContents = rows.map(r => {
