@@ -529,8 +529,8 @@ class ProductionOptimization extends Component {
       vidata_graph = [
         { name: "Good", value: 95 },
         { name: "Bent", value: 3 },
-        { name: "Damaged", value: 1 },
-        { name: "Empty", value: 1 }
+        { name: "Damaged", value: 0 },
+        { name: "Empty", value: 2 }
       ];
     }
     else if (dataQuality === 'bad') {
@@ -860,8 +860,8 @@ class ProductionOptimization extends Component {
   }
 
   treeToggle = (e) => {
-    debugger;
-    console.log(e);
+    // debugger;
+    // console.log(e);
     let toggleFlag = e.currentTarget.children[1].style.display;
     if (toggleFlag === "none") {
       //e.currentTarget.children[1].style.display
