@@ -7,9 +7,10 @@
 
 .procurementContainer{
     display: grid;
-    grid-template-rows: 10vh 60vh 2vh;
+    /* grid-template-rows: 10vh 60vh 2vh; */
+    grid-template-rows: 10vh 5vh 60vh 2vh;
     grid-template-columns: 1fr;
-    grid-row-gap: 8%;
+    /* grid-row-gap: 8%; */
 }
 
 .workflowContainer{
@@ -35,7 +36,7 @@
     display: grid;
     grid-template-rows: 41% 41% auto;
     grid-template-columns: 24% 24% 24% 24%;
-    grid-row: 2;
+    grid-row: 3;
     grid-column-gap: 1%;
     grid-row-gap: 3%;
     
