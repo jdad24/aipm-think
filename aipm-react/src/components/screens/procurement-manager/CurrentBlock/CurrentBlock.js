@@ -17,7 +17,7 @@ class CurrentBlock extends React.Component {
                 <div className="BlockLineContainer">
                     <div onClick={(e) => this.props.getBlock(e)} id="one" className="sapBlock">{this.props.blockNumbers[0]}</div>
                     <div className="sapLine oneTwo"></div>
-                    <div className="sapLineVertical oneFour"></div>
+                    {/* <div className="sapLineVertical oneFour"></div> */}
                     <div onClick={(e) => this.props.getBlock(e)}  id="two" className="sapBlock">{this.props.blockNumbers[1]}</div>
                     <div className="sapLine twoThree"></div>
                     <div onClick={(e) => this.props.getBlock(e)}  id="three" className="sapBlock">{this.props.blockNumbers[2]}</div>
