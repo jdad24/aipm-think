@@ -11,7 +11,7 @@ class CurrentBlock extends React.Component {
         return (
 
             <div className="currentBlockContainer">
-                <div className="procurementTitles bcTitles">Sequence</div>
+                <div className="procurementTitles bcTitles">Blockchain</div>
                 <div className="BorderDivider" />
                 
                 <div className="BlockLineContainer">

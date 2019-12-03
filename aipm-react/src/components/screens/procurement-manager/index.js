@@ -1102,7 +1102,7 @@ class ProductionOptimization extends Component {
 
             </div>
             <div className="blockchainListenerContainer">
-              <div className="procurementTitles bcTitles" id="blockchainInfo">Blockchain</div>
+              <div className="procurementTitles bcTitles" id="blockchainInfo">Ledger</div>
               <div className="bcData">{blockChainContents}</div>
             </div>
             <CurrentBlock getBlock={this.getBlock} blockNumbers={this.state.blockNumbers} />
