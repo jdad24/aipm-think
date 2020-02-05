@@ -33,8 +33,9 @@ class RollbackPopup extends Component {
         this.setState({
             chosenLine: chosenLine
         });
-
-        Axios.get('https://aipm-gsc-nodered.mybluemix.net/getsnapshotsforline?line=' + chosenLine).then(response => {
+        console.log("I'M HERE!!");
+        // Axios.get('https://aipm-gsc-nodered.mybluemix.net/getsnapshotsforline?line=' + chosenLine).then(response => {
+            Axios.get('https://aipm-gsc-nodered.mybluemix.net/getsnapshots?line=' + chosenLine).then(response => {
             console.log(response.data.snapshot_name);
             this.setState({
                 snapshot_names: response.data.snapshot_name
