@@ -10,10 +10,10 @@ import './lineList.css';
 const lineList = (props) => {
     
     const assignments = [
-        {line: 3, name: "yaskawa", imgSrc: r1, imgNum: 138},
+        // {line: 3, name: "yaskawa", imgSrc: r1, imgNum: 138},
         {line: 7, name: "kuka", imgSrc: r2, imgNum: 76},
-        {line: 2, name: "replay", imgSrc: r3, imgNum: 1982},
-        {line: 4, name: "raisinReplay", imgSrc: r3, imgNum: 1982}
+        // {line: 2, name: "replay", imgSrc: r3, imgNum: 1982},
+        // {line: 4, name: "raisinReplay", imgSrc: r3, imgNum: 1982}
     ];
 const imgStyle = {
     maxWidth: "100%",

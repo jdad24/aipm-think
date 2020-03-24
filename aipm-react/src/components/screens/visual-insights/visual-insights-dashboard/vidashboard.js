@@ -44,10 +44,10 @@ class viDashboard extends Component {
     // ]
     //required if web sockets are different for different devices
     wsCredentials = {
-        "yaskawa": "wss://aipm-gsc-nodered.mybluemix.net/ws/aipm-gsc/yaskawa",
-        "kuka": "wss://aipm-gsc-nodered.mybluemix.net/ws/aipm-gsc/kuka",
-        "replay": "wss://aipm-gsc-nodered.mybluemix.net/ws/aipm-gsc",
-        "raisinReplay": "wss://aipm-gsc-nodered.mybluemix.net/ws/aipm-gsc/raisinReplay"
+        // "yaskawa": "wss://aipm-gsc-nodered.mybluemix.net/ws/aipm-gsc/yaskawa",
+        "kuka": "wss://aipm-gsc-nodered-vendor.mybluemix.net/ws/aipm-gsc/vpicture",
+        // "replay": "wss://aipm-gsc-nodered.mybluemix.net/ws/aipm-gsc",
+        // "raisinReplay": "wss://aipm-gsc-nodered.mybluemix.net/ws/aipm-gsc/raisinReplay"
     }
 
 
@@ -82,7 +82,8 @@ class viDashboard extends Component {
         ws.onmessage = (event) => {
             // parse the incoming message as a JSON object
             let msg = JSON.parse(event.data);
-            // console.log(msg);
+            console.log(msg);
+            console.log(msg.type);
             // if (msg.msgType === undefined) {
             //     msg = msg.payload;
             //     console.log("msg.msgType undefined");
@@ -95,7 +96,8 @@ class viDashboard extends Component {
            // if ((msg.msgType !== "yaskawaTorqueTemp") && (msg.msgType !== "yaskawaRobotHealth")) {
                 //debugger;
 
-                if (msg.msgType === "image" && msg.robotSource === this.props.robot) {
+                if (msg.type === "image" && msg.robotSource === this.props.robot) {
+                    console.log("IMAGE - "+msg);
                     let slot = msg.slot;
 
                     // console.log("ws image msg.payload.robotEnvironment=" + msg.robotSource);

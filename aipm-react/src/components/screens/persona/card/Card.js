@@ -10,16 +10,16 @@ import "./card.css";
 import { Link } from "react-router-dom";
 
 const data = [
-  {
-    title: "Mark",
-    backside:
-      "Mark needs to know how well his line is working, if there are issues predicted for the line, and if the end product is within specifications.",
-    post: "Manufacturing Line Manager",
-    tool: "Predictive Maintanance",
-    imgurl: mark,
-    redirect: "/pm",
-    redirectText: "Open Dashboard"
-  },
+  // {
+  //   title: "Mark",
+  //   backside:
+  //     "Mark needs to know how well his line is working, if there are issues predicted for the line, and if the end product is within specifications.",
+  //   post: "Manufacturing Line Manager",
+  //   tool: "Predictive Maintanance",
+  //   imgurl: mark,
+  //   redirect: "/pm",
+  //   redirectText: "Open Dashboard"
+  // },
   {
     title: "Carla",
     backside:
@@ -30,46 +30,46 @@ const data = [
     redirect: "/vi",
     redirectText: "Inspect Parts"
   },
-  {
-    title: "Paul",
-    backside:
-      "Paul needs to know how the plant is operating, if there are any issues with any of the lines, has to be able to ask natural language questions about production, and compare lines and plants.",
-    post: "Plant Manager",
-    tool: "Production Optimization",
-    imgurl: paul,
-    redirect: "/po",
-    redirectText: "Manage Plant"
-  },
-  {
-    title: "Joe",
-    backside:
-      "Joe needs to see all of his assigned service requests and needs tools to help him determine the best fix for reported issues.",
-    post: "Plant Technician",
-    tool: "Equipment Maintenance Advisor",
-    imgurl: joe,
-    redirect: "/em",
-    redirectText: "View Work Orders"
-  },
-  {
-    title: "Rhonda",
-    backside:
-      "Rhonda needs to know disaster recovery is achievable, manage the cloud services and the independent containers, and be able to manage services on multiple clouds.",
-    post: "Operations Manager",
-    tool: "IT Operations",
-    imgurl: rhonda,
-    redirect: "/it",
-    redirectText: "Open Dashboard"
-  },
-  {
-    title: "Penelope",
-    backside:
-      "Penelope needs to see the entire procurement process, and determine quickly and with pinpoint accuracy where components came from and are deployed",
-    post: "Procurement Manager",
-    tool: "SAP, Blockchain",
-    imgurl: pene,
-    redirect: "/pm2",
-    redirectText: "View Supply Chain"
-  }
+  // {
+  //   title: "Paul",
+  //   backside:
+  //     "Paul needs to know how the plant is operating, if there are any issues with any of the lines, has to be able to ask natural language questions about production, and compare lines and plants.",
+  //   post: "Plant Manager",
+  //   tool: "Production Optimization",
+  //   imgurl: paul,
+  //   redirect: "/po",
+  //   redirectText: "Manage Plant"
+  // },
+  // {
+  //   title: "Joe",
+  //   backside:
+  //     "Joe needs to see all of his assigned service requests and needs tools to help him determine the best fix for reported issues.",
+  //   post: "Plant Technician",
+  //   tool: "Equipment Maintenance Advisor",
+  //   imgurl: joe,
+  //   redirect: "/em",
+  //   redirectText: "View Work Orders"
+  // },
+  // {
+  //   title: "Rhonda",
+  //   backside:
+  //     "Rhonda needs to know disaster recovery is achievable, manage the cloud services and the independent containers, and be able to manage services on multiple clouds.",
+  //   post: "Operations Manager",
+  //   tool: "IT Operations",
+  //   imgurl: rhonda,
+  //   redirect: "/it",
+  //   redirectText: "Open Dashboard"
+  // },
+  // {
+  //   title: "Penelope",
+  //   backside:
+  //     "Penelope needs to see the entire procurement process, and determine quickly and with pinpoint accuracy where components came from and are deployed",
+  //   post: "Procurement Manager",
+  //   tool: "SAP, Blockchain",
+  //   imgurl: pene,
+  //   redirect: "/pm2",
+  //   redirectText: "View Supply Chain"
+  // }
 ];
 
 class FlipCard extends Component {
