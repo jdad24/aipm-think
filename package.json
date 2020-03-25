@@ -1,5 +1,5 @@
 {
-  "name": "aipm-react-dashboard",
+  "name": "think-react-dashboard",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@git.ng.bluemix.net:aiPoweredManufacturing/aipm-react-dashboard.git"
+    "url": "git@us-south.git.cloud.ibm.com:aiPoweredManufacturing/think2020.git"
   },
   "author": "",
   "license": "ISC",

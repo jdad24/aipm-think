@@ -9,13 +9,12 @@ const bodyParser = require('body-parser');
 const app = express();
 const cfEnv = require("cfenv");
 
-const publicPath = path.join(__dirname, "aipm-react", "build");
+const publicPath = path.join(__dirname, "think-react", "build");
 
 const isLocal = cfEnv.getAppEnv().isLocal;
 console.log("isLocal:" + isLocal);
 
 module.exports.app = app;
-const hlfClent = require('./hlf-client');
 // const rest_endpoint = require('./rest-endpoints');
 
 var localUser = 'gscuser';
@@ -50,23 +49,6 @@ if (isLocal) {
   } 
 }
 
-// app.use(democenterLoader({
-//   cookie_name: "democentercooki",
-//   solution_id: "e5803ebe0f03c2358dfb1ec339557fd7",
-//   demo_center_url: "https://gsc-demo-center-industrial.mybluemix.net",
-//   demo_center_key: ["-----BEGIN PUBLIC KEY-----",
-//   "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvSlK/neR5warY97xxWfQ",
-//   "jo6PDI1OYD6UCBReHR2ZZ2iRcqAcYzlEkjxaehlxnXXlOXUV60x0JA4b1q0Nb4QX",
-//   "2Rh2Yq6Hhd81p4GtM39M+5HevNg525kztallCY9rIOSGPc1QX1oDlN4jHXEw1DDB",
-//   "JEtFPi86AZb1/mHtH+SFr14s+o3z4fmGDRc1d4KO2ATW/hfLwaVGso82qlwa3ZRP",
-//   "Y33Nmt6KJlNAmBu1Lo/bDCPM6TKI2tHp+F5f8OA750ffklB+2nqDW2XZDOsQA+WS",
-//   "xd9oLQuytoz5EpxHvroyY2X9Y9AE9OKSujBPp2POsUZYx5ujsQ+a3HPGdO3du+Sc",
-//   "jQIDAQAB",
-//   "-----END PUBLIC KEY-----"].join("\n")
-// }));
-
-// app.use(express.static(path.join(__dirname, "build")));
-// serve the react app files
 app.use(express.static(publicPath));
 
 app.get("/", (req, res) => {
@@ -81,6 +63,3 @@ app.listen(port, () => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.get('/api/hello', (req, res) => {
-//   res.send({ express: 'Hello From Express' });
-// });
