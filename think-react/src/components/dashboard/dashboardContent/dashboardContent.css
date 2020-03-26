@@ -18,6 +18,11 @@
     background-color: #252525;
 }
 
+.robot-name {
+    font-size: 100%%;
+    font-family: "IBM Plex Sans";
+}
+
 .r1-row{
     grid-row-start: 1;
     grid-row-end:3;
