@@ -1,0 +1,154 @@
+import React from 'react'
+import Plot from 'react-plotly.js';
+import axios from 'axios';
+import $ from 'jquery'
+import './3DGraph.css'
+
+
+
+class Graph extends React.Component {
+  constructor(props) {
+    super(props)
+
+
+    this.state = {
+      yaskawa1: [],
+    }
+
+
+  }
+
+  getYaskawa1Data() {
+    $.ajax({
+      url: 'https://aipm-gsc-nodered.mybluemix.net/yaskawaHistory',
+      type: 'GET',
+      dataType: 'json',
+
+    }).then(response => {
+
+
+      response.yaskawaHistory.slice(0, 10).map((record, index) => {
+        this.setState({
+          yaskawa1: [...this.state.yaskawa1, JSON.parse(record)]
+        })
+        // return JSON.parse(record)
+      })
+
+      console.log(this.state.yaskawa1)
+
+    })
+
+  }
+
+  componentDidMount() {
+    this.getYaskawa1Data()
+
+  }
+
+
+  render() {
+    return (
+      <div className="Graph-Container">
+        <Plot
+          data={[
+            {
+              name: "Yaskawa Position",
+              x: [1, 2, 3, 10, 22],
+              y: [5, 12, 18, 25, 30],
+              z: [10, 12, 12, 15, 20],
+              type: 'scatter3d',
+              mode: 'markers',
+              marker: {
+                color: [
+                  'rgba(251,51,129,1)',
+                  'rgba(251,51,129,.7)',
+                  'rgba(251,51,129,.5)',
+                  'rgba(251,51,129,.3)',
+                  'rgba(251,51,129,.1)'
+                ],
+                size: '2',
+                // symbol: ['circle-open', 'circle-open','circle-open','circle-open', 'circle']
+              },
+
+
+            },
+            // {
+            //   name: "Current Point",
+            //   x: [5, 10, 15, 20, 30],
+            //   y: [10, 20, 30, 35, 40],
+            //   z: [4, 9, 12, 16, 20],
+            //   type: 'scatter3d',
+            //   opacity: '1',
+            //   mode: 'lines',
+            //   marker: { 
+            //     color: '#56D679',
+            //     size: '0' 
+            //    }
+            // }
+          ]}
+          layout={{
+            width: 300,
+            height: 300,
+            // autosize: true,
+            title: {
+              text: "Position",
+              x: '.05',
+              y: '.97',
+              font: {
+                size: '22',
+                color: '#A4A4A4',
+                family: 'IBMPlexSans'
+              }
+            },
+            showlegend: false,
+            paper_bgcolor: '#252525',
+            scene: {
+              bgcolor: "#252525",
+              xaxis: {
+                showgrid: false,
+                showticklabels: false,
+                showbackground: true,
+                backgroundcolor: "rgba(37,37,37,.2)"
+                // visible: false
+              },
+              yaxis: {
+                showbackground: true,
+                backgroundcolor: "rgba(37,37,37,.5)",
+                showgrid: false,
+                showticklabels: false
+                // visible: false
+              },
+              zaxis: {
+                showbackground: true,
+                backgroundcolor: "rgba(37,37,37,.9)",
+                showgrid: false,
+                showticklabels: false
+                // visible: false
+              },
+              camera: {
+                eye: {
+                  x: -2.5,
+                  y: 0,
+                  z: 2
+                },
+                up: {
+                  x: 0,
+                  y: 0,
+                  z: 1
+                },
+                center: {
+                  x: -1.5,
+                  y: 0,
+                  z: 1
+                }
+              }
+            }
+          }}
+        />
+      </div>
+    )
+  }
+
+}
+
+export default Graph;

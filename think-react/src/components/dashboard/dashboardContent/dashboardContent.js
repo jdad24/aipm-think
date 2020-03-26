@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './dashboardContent.css';
+import Graph from '../../3DGraph/3DGraph'
 
 class DashboardContent extends Component{
     render(){
