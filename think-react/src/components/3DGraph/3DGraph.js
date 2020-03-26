@@ -3,6 +3,7 @@ import Plot from 'react-plotly.js';
 import axios from 'axios';
 import $ from 'jquery'
 import './3DGraph.css'
+import sizeMe from 'react-sizeme'
 
 
 
@@ -13,6 +14,7 @@ class Graph extends React.Component {
 
     this.state = {
       yaskawa1: [],
+      width: "10%"
     }
 
 
@@ -43,6 +45,13 @@ class Graph extends React.Component {
   componentDidMount() {
     this.getYaskawa1Data()
 
+    window.addEventListener('resize', () => {
+      this.setState({
+        width: window.innerWidth/4.6,
+        height: window.innerHeight/3
+      })
+    })
+
   }
 
 
@@ -66,7 +75,7 @@ class Graph extends React.Component {
                   'rgba(251,51,129,.3)',
                   'rgba(251,51,129,.1)'
                 ],
-                size: '2',
+                size: '5',
                 // symbol: ['circle-open', 'circle-open','circle-open','circle-open', 'circle']
               },
 
@@ -86,10 +95,12 @@ class Graph extends React.Component {
             //    }
             // }
           ]}
+          useResizeHandler={true}
+          style={{height: this.state.height, width: this.state.width}}
           layout={{
-            width: 300,
-            height: 300,
-            // autosize: true,
+            // width: 300,
+            // height: 300,
+            autosize: true,
             title: {
               text: "Position",
               x: '.05',
@@ -102,6 +113,12 @@ class Graph extends React.Component {
             },
             showlegend: false,
             paper_bgcolor: '#252525',
+            margin: {
+              t: "10",
+              b: "10",
+              l: "10",
+              r: "10"
+            },
             scene: {
               bgcolor: "#252525",
               xaxis: {
@@ -127,9 +144,9 @@ class Graph extends React.Component {
               },
               camera: {
                 eye: {
-                  x: -2.5,
-                  y: 0,
-                  z: 2
+                  x: 1,
+                  y: 1,
+                  z: .5
                 },
                 up: {
                   x: 0,
@@ -137,9 +154,9 @@ class Graph extends React.Component {
                   z: 1
                 },
                 center: {
-                  x: -1.5,
+                  x: 0,
                   y: 0,
-                  z: 1
+                  z: 0
                 }
               }
             }

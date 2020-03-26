@@ -2,6 +2,7 @@
     display: grid;
     grid-template-rows: 23% 23% 8% 23% 23%;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    /* grid-template-columns: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%; */
     grid-row-gap: 4px;
     grid-column-gap: 4px;
     min-height: 90%;
