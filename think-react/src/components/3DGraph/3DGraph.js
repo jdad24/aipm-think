@@ -157,9 +157,9 @@ class Graph extends React.Component {
               },
               camera: {
                 eye: {
-                  x: 1.5,
-                  y: 1.5,
-                  z: .5
+                  x: 1.25,
+                  y: 1.25,
+                  z: 1.25
                 },
                 up: {
                   x: 0,
@@ -167,9 +167,9 @@ class Graph extends React.Component {
                   z: 1
                 },
                 center: {
-                  x: 0,
-                  y: 0,
-                  z: 0
+                  x: -.75,
+                  y: -.75,
+                  z: -.5
                 }
               }
             }
