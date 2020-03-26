@@ -122,30 +122,42 @@ class Graph extends React.Component {
             scene: {
               bgcolor: "#252525",
               xaxis: {
+                title: {
+                  text: ""
+                },
                 showgrid: false,
                 showticklabels: false,
                 showbackground: true,
-                backgroundcolor: "rgba(37,37,37,.2)"
+                backgroundcolor: "rgba(37,37,37,.2)",
+                showaxeslabels: false
                 // visible: false
               },
               yaxis: {
+                title: {
+                  text: ""
+                },
                 showbackground: true,
                 backgroundcolor: "rgba(37,37,37,.5)",
                 showgrid: false,
-                showticklabels: false
+                showticklabels: false,
+                showaxeslabels: false
                 // visible: false
               },
               zaxis: {
+                title: {
+                  text: ""
+                },
                 showbackground: true,
                 backgroundcolor: "rgba(37,37,37,.9)",
                 showgrid: false,
-                showticklabels: false
+                showticklabels: false,
+                showaxeslabels: false
                 // visible: false
               },
               camera: {
                 eye: {
-                  x: 1,
-                  y: 1,
+                  x: 1.5,
+                  y: 1.5,
                   z: .5
                 },
                 up: {
