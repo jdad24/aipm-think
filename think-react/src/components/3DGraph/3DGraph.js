@@ -14,7 +14,8 @@ class Graph extends React.Component {
 
     this.state = {
       yaskawa1: [],
-      width: "10%"
+      width: window.innerWidth/4.6,
+      height: window.innerHeight/3
     }
 
 
