@@ -71,10 +71,10 @@ class Graph extends React.Component {
               marker: {
                 color: [
                   'rgba(251,51,129,1)',
-                  'rgba(251,51,129,.7)',
-                  'rgba(251,51,129,.5)',
-                  'rgba(251,51,129,.3)',
-                  'rgba(251,51,129,.1)'
+                  'rgba(221,79,134,1)',
+                  'rgba(178,73,112,1)',
+                  'rgba(134,60,88,1)',
+                  'rgba(95,42,61,1)'
                 ],
                 size: '5',
                 // symbol: ['circle-open', 'circle-open','circle-open','circle-open', 'circle']
@@ -157,9 +157,9 @@ class Graph extends React.Component {
               },
               camera: {
                 eye: {
-                  x: 1.5,
-                  y: 1.5,
-                  z: .5
+                  x: 1,
+                  y: 1,
+                  z: 1.25
                 },
                 up: {
                   x: 0,
