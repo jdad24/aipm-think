@@ -1,0 +1,19 @@
+.torque-container {
+    margin-left: 7.5%;
+
+}
+.torque-title{
+    font-family: "IBMPlexSans";
+    font-size: 150%;
+    color: #A4A4A4;
+    margin-top: 5%;
+}
+
+.torque-score {
+    font-size: 175%;
+    font-family: "IBM Plex Sans";
+    /* font-weight: lighter; */
+    color: #FFFFFF;
+    /* margin-top: 5%; */
+
+}
