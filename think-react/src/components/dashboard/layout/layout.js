@@ -8,7 +8,7 @@ class Layout extends Component {
         console.log(this.props.content);
         return (
             <div className="layout-grid">
-                <div className="header">IBM header</div>
+                <div className="header">IBM</div>
                 <div className="below-header"></div>
                 <div className="left-col">
                     {/* <DashboardContent />  */}
