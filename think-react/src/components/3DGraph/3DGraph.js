@@ -77,6 +77,7 @@ class Graph extends React.Component {
                   'rgba(95,42,61,1)'
                 ],
                 size: '10',
+                opacity: ".7"
                 // symbol: ['circle-open', 'circle-open','circle-open','circle-open', 'circle']
               },
 
@@ -122,6 +123,7 @@ class Graph extends React.Component {
             },
             scene: {
               bgcolor: "#252525",
+              // bgcolor: "rgba(37,37,37,1)",
               xaxis: {
                 title: {
                   text: ""
