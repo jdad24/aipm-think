@@ -25,11 +25,13 @@
     /* border: 1px solid green; */
 }
 .gap-line{
+    position: relative;
     grid-row-start: 3;
     grid-row-end:4;
     grid-column-start:1;
     grid-column-end: 9;
-    margin-top: 3%;
+    /* margin-top: 2.75%; */
+    top: 50%;
     background-color: rgb(151, 142, 124);
     height: 1.5%;
     /* border: 1px solid green; */
