@@ -11,6 +11,61 @@ class Graph extends React.Component {
   constructor(props) {
     super(props)
 
+    this.dataArray = [
+      {      
+        "sTorque": "0",      
+        "lTorque": "2520",      
+        "uTorque": "-3154",      
+        "rTorque": "-576",      
+        "bTorque": "0",      
+        "tTorque": "352",      
+        "xPos": "635202",      
+        "yPos": "-428911",      
+        "zPos": "594962",      
+        "timestamp": 1585325912286
+        },
+
+      {
+
+      "sTorque": "0",      
+      "lTorque": "5320",      
+      "uTorque": "-2158",      
+      "rTorque": "-704",      
+      "bTorque": "-192",      
+      "tTorque": "-256",      
+      "xPos": "795447",      
+      "yPos": "169888",      
+      "zPos": "196498",      
+      "timestamp": 1585325880409      
+      },       
+             
+      
+      {      
+      "sTorque": "0",      
+      "lTorque": "2520",      
+      "uTorque": "-3154",      
+      "rTorque": "-576",      
+      "bTorque": "0",      
+      "tTorque": "352",      
+      "xPos": "635202",      
+      "yPos": "-428911",      
+      "zPos": "594962",      
+      "timestamp": 1585325912286      
+      },
+      
+      {      
+      "sTorque": "0",      
+      "lTorque": "5180",      
+      "uTorque": "-2158",      
+      "rTorque": "-736",
+      "bTorque": "-384",
+      "tTorque": "-256",
+      "xPos": "794744",
+      "yPos": "169223",
+      "zPos": "192847",
+      "timestamp": 1585325930250
+      }]
+
 
     this.state = {
       yaskawa1: [],
@@ -63,9 +118,27 @@ class Graph extends React.Component {
           data={[
             {
               name: "Yaskawa Position",
-              x: [1, 2, 3, 10, 22],
-              y: [5, 12, 18, 25, 30],
-              z: [10, 12, 12, 15, 20],
+              x: [
+              this.dataArray[0]['xPos'], 
+              this.dataArray[1]['xPos'], 
+              this.dataArray[2]['xPos'], 
+              this.dataArray[3]['xPos'], 
+              // this.dataArray[0]['xPos']
+            ],
+              y: [
+                this.dataArray[0]['yPos'], 
+                this.dataArray[1]['yPos'], 
+                this.dataArray[2]['yPos'], 
+                this.dataArray[3]['yPos'], 
+                // this.dataArray[0]['xPos']
+              ],
+              z: [
+                this.dataArray[0]['zPos'], 
+                this.dataArray[1]['zPos'], 
+                this.dataArray[2]['zPos'], 
+                this.dataArray[3]['zPos'], 
+                // this.dataArray[0]['xPos']
+              ],
               type: 'scatter3d',
               mode: 'markers',
               marker: {
@@ -125,6 +198,7 @@ class Graph extends React.Component {
               bgcolor: "#252525",
               // bgcolor: "rgba(37,37,37,1)",
               xaxis: {
+                // range: [-1000000,1000000],
                 title: {
                   text: ""
                 },
@@ -136,6 +210,7 @@ class Graph extends React.Component {
                 // visible: false
               },
               yaxis: {
+                // range: [-1000000,1000000],
                 title: {
                   text: ""
                 },
@@ -147,6 +222,7 @@ class Graph extends React.Component {
                 // visible: false
               },
               zaxis: {
+                // range: [-1000000,1000000],
                 title: {
                   text: ""
                 },
@@ -159,9 +235,9 @@ class Graph extends React.Component {
               },
               camera: {
                 eye: {
-                  x: 1.25,
-                  y: 1.25,
-                  z: 1.25
+                  x: 2,
+                  y: 2,
+                  z: 2
                 },
                 up: {
                   x: 0,
