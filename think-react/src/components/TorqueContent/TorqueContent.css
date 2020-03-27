@@ -1,5 +1,12 @@
+.image-progressbar-container{
+    height: 100%;
+    width: 100%;
+}
 .torque-container {
+    position: absolute;
     margin-left: 7.5%;
+    height: 100%;
+    width: 100%;
 
 }
 .torque-title{

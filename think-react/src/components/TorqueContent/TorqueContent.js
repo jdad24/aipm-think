@@ -1,5 +1,6 @@
 import React from 'react';
-import './TorqueContent.css'
+import './TorqueContent.css';
+import ProgressBar from '../ProgressBar/ProgressBar';
 
 class TorqueContent extends React.Component {
     constructor(props) {
@@ -11,7 +12,10 @@ class TorqueContent extends React.Component {
             <div className="torque-container">
                 <div className="torque-title">{this.props.title}</div>
                 <div className="torque-score">{this.props.score}</div>
-                <div>Image</div>
+                <div className="image-progressbar-container">
+                    Image
+                    <ProgressBar/>
+                </div>
             </div>
         )
     }
