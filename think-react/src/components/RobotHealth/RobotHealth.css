@@ -1,8 +1,17 @@
 .health-container {
     position: relative;
     text-align: left;
-    margin: 2.5% 10% 30% 5%;
+    margin: 2.5% 10% -20% 5%;
+    height: 80%
 }
+
+.image{
+    position: relative;
+    transform: scale(.6);
+    margin-left: -25%;
+    margin-bottom: 20%;
+}
+
 .score {
     font-size: 9vw;
     color: #ffffff;

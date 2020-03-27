@@ -11,7 +11,9 @@ class RobotHealth extends React.Component {
             <div className="health-container">
                 <div className="title">Robot Health</div>
                 <div className="score">8.7</div>
-                <div>Image</div>
+                <div className="image">
+                    <img src={this.props.robot}/>
+                </div>
             </div>
         )
     }

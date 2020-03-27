@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import './dashboardContent.css';
 import Graph from '../../3DGraph/3DGraph';
 import RobotHealth from '../../RobotHealth/RobotHealth';
-import TorqueContent from '../../TorqueContent/TorqueContent'
+import TorqueContent from '../../TorqueContent/TorqueContent';
+import yellowRobot from '../../../Assets/robot-arm-yellow.png';
+import orangeRobot from '../../../Assets/robot-arm-orange.png'
+
 
 class DashboardContent extends Component {
     render() {
@@ -11,7 +14,7 @@ class DashboardContent extends Component {
             // <p>what do u mean lol</p>
             <div className="contents-container">
                 <div className="r1-row robot-col card-padding robot-name">Robot 1</div>
-                <div className="r1-row robot-health card-padding card-color"><RobotHealth/></div>
+                <div className="r1-row robot-health card-padding card-color"><RobotHealth robot={yellowRobot}/></div>
                 <div className="r1-row position card-padding card-color">
                     <Graph />
                 </div>
@@ -23,7 +26,7 @@ class DashboardContent extends Component {
                 <div className="j4-j5-j6-r1 j3-j6-col"><TorqueContent title="U" score={8.7}/></div>
                 <div className="gap-line"></div>
                 <div className="r2-row robot-col card-padding robot-name">Robot 2</div>
-                <div className="r2-row robot-health card-padding card-color"><RobotHealth/></div>
+                <div className="r2-row robot-health card-padding card-color"><RobotHealth robot={orangeRobot}/></div>
                 <div className="r2-row position card-padding card-color"><Graph /></div>
                 <div className="j1-j2-j3-r2 j1-j4-col"><TorqueContent title="S" score={8.7}/></div>
                 <div className="j1-j2-j3-r2 j2-j5-col"><TorqueContent title="L" score={8.7}/></div>
