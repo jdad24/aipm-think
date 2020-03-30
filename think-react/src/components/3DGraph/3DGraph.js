@@ -70,7 +70,7 @@ class Graph extends React.Component {
     this.state = {
       yaskawa1: [],
       width: window.innerWidth/4.6,
-      height: window.innerHeight/3
+      height: window.innerHeight/3.1
     }
 
 
@@ -104,7 +104,7 @@ class Graph extends React.Component {
     window.addEventListener('resize', () => {
       this.setState({
         width: window.innerWidth/4.6,
-        height: window.innerHeight/3
+        height: window.innerHeight/3.1
       })
     })
 
