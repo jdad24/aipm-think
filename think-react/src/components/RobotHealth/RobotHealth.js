@@ -4,7 +4,7 @@ import './RobotHealth.css'
 class RobotHealth extends React.Component {
     constructor(props) {
         super(props)
-        
+
     }
 
     render() {
@@ -13,9 +13,7 @@ class RobotHealth extends React.Component {
                 <div className="title">Robot Health</div>
                 <div className="score">8.7</div>
                 Image
-                {/* <div className="image">
-                    <img src={this.props.robot}/>
-                </div> */}
+           
             </div>
         )
     }
