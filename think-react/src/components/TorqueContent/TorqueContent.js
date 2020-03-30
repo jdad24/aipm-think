@@ -13,7 +13,7 @@ class TorqueContent extends React.Component {
                 <div className="torque-title">{this.props.title}</div>
                 <div className="torque-score">{this.props.score}</div>
                 <div className="image-progressbar-container">
-                    Image
+                    <img className="torque-image" src={this.props.image} />
                     <ProgressBar/>
                 </div>
             </div>

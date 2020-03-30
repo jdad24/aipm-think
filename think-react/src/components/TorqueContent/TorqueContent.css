@@ -1,26 +1,32 @@
 .image-progressbar-container{
+    min-height: 10%;
+    height: 30%;
+    width: 100%;
+
+}
+.torque-container {
+    padding-left: 5%;
     height: 100%;
     width: 100%;
 }
-.torque-container {
-    /* position: relative; */
-    margin-left: 7.5%;
-    height: 100%;
-    width: 100%;
 
+.torque-image {
+    padding-top: 1.75vmin;
+    /* padding-bottom: 5%; */
+    padding-bottom: 1vmin;
+    width: 4vmin;
+    max-width: 4vmin;
+    height: 4vmin;
+    max-height: 4vmin;
 }
 .torque-title{
     font-family: "IBMPlexSans";
-    font-size: 150%;
+    font-size: 2vmin;
     color: #A4A4A4;
-    margin-top: 5%;
 }
 
 .torque-score {
-    font-size: 175%;
+    font-size: 4vmin;
     font-family: "IBM Plex Sans";
-    /* font-weight: lighter; */
     color: #FFFFFF;
-    /* margin-top: 5%; */
-
 }

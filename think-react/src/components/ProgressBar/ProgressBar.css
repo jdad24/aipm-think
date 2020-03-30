@@ -1,9 +1,9 @@
 .progress-bar-background{
     position: relative;
-    width: 85%;
-    height: 3%;
+    width: 90%;
+    height: 12.5%;
     background-color: #171717; 
-    z-index: 1;
+    z-index: 999;
 }
 
 .torque-progress {
