@@ -4,6 +4,7 @@ import './RobotHealth.css'
 class RobotHealth extends React.Component {
     constructor(props) {
         super(props)
+        
     }
 
     render() {
