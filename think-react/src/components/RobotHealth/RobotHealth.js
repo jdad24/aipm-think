@@ -13,7 +13,6 @@ class RobotHealth extends React.Component {
                 <div className="title">Robot Health</div>
                 <div className="score">8.7</div>
                 Image
-           
             </div>
         )
     }
