@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/static/css/main.9d0613af.chunk.css",
+    "main.js": "/static/js/main.a932e170.chunk.js",
+    "main.js.map": "/static/js/main.a932e170.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.4d7653a8.js",
+    "runtime-main.js.map": "/static/js/runtime-main.4d7653a8.js.map",
+    "static/js/2.fb6b254e.chunk.js": "/static/js/2.fb6b254e.chunk.js",
+    "static/js/2.fb6b254e.chunk.js.map": "/static/js/2.fb6b254e.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.16fab66f8e8ecf552d286aafcfa72267.js": "/precache-manifest.16fab66f8e8ecf552d286aafcfa72267.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.9d0613af.chunk.css.map": "/static/css/main.9d0613af.chunk.css.map",
+    "static/js/2.fb6b254e.chunk.js.LICENSE.txt": "/static/js/2.fb6b254e.chunk.js.LICENSE.txt",
+    "static/media/Asset2.png": "/static/media/Asset2.ea47277b.png",
+    "static/media/Asset3.png": "/static/media/Asset3.b4c2aa54.png",
+    "static/media/Asset4.png": "/static/media/Asset4.266f0140.png",
+    "static/media/Asset5.png": "/static/media/Asset5.27c8bb0a.png",
+    "static/media/Asset6.png": "/static/media/Asset6.cd12a777.png",
+    "static/media/Asset7.png": "/static/media/Asset7.72814816.png",
+    "static/media/Asset8.png": "/static/media/Asset8.8ee4f9ef.png",
+    "static/media/robot-arm-orange.png": "/static/media/robot-arm-orange.cd7d525b.png",
+    "static/media/robot-arm-yellow.png": "/static/media/robot-arm-yellow.14e8e46b.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4d7653a8.js",
+    "static/js/2.fb6b254e.chunk.js",
+    "static/css/main.9d0613af.chunk.css",
+    "static/js/main.a932e170.chunk.js"
+  ]
+}
