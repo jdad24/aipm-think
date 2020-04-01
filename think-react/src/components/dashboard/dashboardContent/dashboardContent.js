@@ -16,49 +16,49 @@ import asset8 from '../../../Assets/Asset8.png';
 
 class DashboardContent extends Component {
 
-    state = {
-        sTorque: null,
-        lTorque: null,
-        uTorque: null,
-        rTorque: null,
-        bTorque: null,
-        tTorque: null,
-        xPos: [],
-        yPos: [],
-        zPos: [],
-    }
+    // state = {
+    //     sTorque: null,
+    //     lTorque: null,
+    //     uTorque: null,
+    //     rTorque: null,
+    //     bTorque: null,
+    //     tTorque: null,
+    //     xPos: [],
+    //     yPos: [],
+    //     zPos: [],
+    // }
 
     componentDidMount() {
-        var mqtt = require('mqtt')
-        var client = mqtt.connect('wss://test.mosquitto.org:8081')
+        // var mqtt = require('mqtt')
+        // var client = mqtt.connect('wss://test.mosquitto.org:8081')
 
-        client.on('connect', (err) => {
-            client.subscribe('telemetry', (err) => {
-                if (!err) {
-                    console.log("Subscribe Successful")
-                }
-            })
-        })
+        // client.on('connect', (err) => {
+        //     client.subscribe('telemetry', (err) => {
+        //         if (!err) {
+        //             console.log("Subscribe Successful")
+        //         }
+        //     })
+        // })
 
-        client.on('message', (topic, message) => {
-            var json = JSON.parse(message)
+        // client.on('message', (topic, message) => {
+        //     var json = JSON.parse(message)
 
-            this.setState({
-                data: json,
-                healthScore: null,
-                sTorque: json.sTorque,
-                lTorque: json.lTorque,
-                uTorque: json.uTorque,
-                rTorque: json.rTorque,
-                bTorque: json.bTorque,
-                tTorque: json.tTorque,
-                xPos: [...this.state.xPos, json.xPos],
-                yPos: [...this.state.yPos, json.yPos],
-                zPos: [...this.state.zPos, json.zPos],
-            })
-            console.log(json)
+        //     this.setState({
+        //         data: json,
+        //         healthScore: null,
+        //         sTorque: json.sTorque,
+        //         lTorque: json.lTorque,
+        //         uTorque: json.uTorque,
+        //         rTorque: json.rTorque,
+        //         bTorque: json.bTorque,
+        //         tTorque: json.tTorque,
+        //         xPos: [...this.state.xPos, json.xPos],
+        //         yPos: [...this.state.yPos, json.yPos],
+        //         zPos: [...this.state.zPos, json.zPos],
+        //     })
+        //     console.log(json)
 
-        })
+        // })
 
     }
 
