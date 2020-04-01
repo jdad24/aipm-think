@@ -62,7 +62,6 @@ class DashboardContent extends Component {
 
     }
 
-
     render() {
         return (
             // <p>this is also stupid</p> 
