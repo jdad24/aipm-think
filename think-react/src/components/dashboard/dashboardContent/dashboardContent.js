@@ -23,9 +23,9 @@ class DashboardContent extends Component {
         rTorque: null,
         bTorque: null,
         tTorque: null,
-        xPos: null,
-        yPos: null,
-        zPos: null,
+        xPos: [],
+        yPos: [],
+        zPos: [],
     }
 
     componentDidMount() {
@@ -34,27 +34,30 @@ class DashboardContent extends Component {
 
         client.on('connect', (err) => {
             client.subscribe('telemetry', (err) => {
-                if(!err) {
+                if (!err) {
                     console.log("Subscribe Successful")
                 }
             })
         })
 
         client.on('message', (topic, message) => {
+            var json = JSON.parse(message)
+
             this.setState({
+                data: json,
                 healthScore: null,
-                sTorque: null,
-                lTorque: null,
-                uTorque: null,
-                rTorque: null,
-                bTorque: null,
-                tTorque: null,
-                xPos: null,
-                yPos: null,
-                zPos: null,
+                sTorque: json.sTorque,
+                lTorque: json.lTorque,
+                uTorque: json.uTorque,
+                rTorque: json.rTorque,
+                bTorque: json.bTorque,
+                tTorque: json.tTorque,
+                xPos: [...this.state.xPos, json.xPos],
+                yPos: [...this.state.yPos, json.yPos],
+                zPos: [...this.state.zPos, json.zPos],
             })
-            console.log(message.toString())
-            
+            console.log(json)
+
         })
 
     }
@@ -66,24 +69,36 @@ class DashboardContent extends Component {
             // <p>what do u mean lol</p>
             <div className="contents-container">
                 <div className="r1-row robot-col card-padding robot-name">Robot 1</div>
-                <div className="r1-row robot-health card-padding card-color"><RobotHealth image={null}/></div>
-                <div className="r1-row position card-padding card-color"><Graph /></div>
-                <div className="j1-j2-j3-r1 j1-j4-col"><TorqueContent title="S" image={asset4} score={8.7}/></div>
-                <div className="j1-j2-j3-r1 j2-j5-col"><TorqueContent title="L" image={asset3} score={8.7}/></div>
-                <div className="j1-j2-j3-r1 j3-j6-col"><TorqueContent title="U" image={asset2} score={8.7}/></div>
-                <div className="j4-j5-j6-r1 j1-j4-col"><TorqueContent title="R" image={asset6} score={8.7}/></div>
-                <div className="j4-j5-j6-r1 j2-j5-col"><TorqueContent title="B" image={asset7} score={8.7}/></div>
-                <div className="j4-j5-j6-r1 j3-j6-col"><TorqueContent title="T" image={asset8} score={8.7}/></div>
-                <div className="gap-line"/>
+                <div className="r1-row robot-health card-padding card-color"><RobotHealth image={null} /></div>
+                <div className="r1-row position card-padding card-color">
+                    <Graph
+                        xPos={this.state.xPos}
+                        yPos={this.state.yPos}
+                        zPos={this.state.zPos}
+                    />
+                </div>
+                <div className="j1-j2-j3-r1 j1-j4-col"><TorqueContent torque={this.state.sTorque} title="S" image={asset4} score={8.7} /></div>
+                <div className="j1-j2-j3-r1 j2-j5-col"><TorqueContent torque={this.state.lTorque} title="L" image={asset3} score={8.7} /></div>
+                <div className="j1-j2-j3-r1 j3-j6-col"><TorqueContent torque={this.state.uTorque} title="U" image={asset2} score={8.7} /></div>
+                <div className="j4-j5-j6-r1 j1-j4-col"><TorqueContent torque={this.state.rTorque} title="R" image={asset6} score={8.7} /></div>
+                <div className="j4-j5-j6-r1 j2-j5-col"><TorqueContent torque={this.state.bTorque} title="B" image={asset7} score={8.7} /></div>
+                <div className="j4-j5-j6-r1 j3-j6-col"><TorqueContent torque={this.state.tTorque} title="T" image={asset8} score={8.7} /></div>
+                <div className="gap-line" />
                 <div className="r2-row robot-col card-padding robot-name">Robot 2</div>
-                <div className="r2-row robot-health card-padding card-color"><RobotHealth image={null}/></div>
-                <div className="r2-row position card-padding card-color"><Graph /></div>
-                <div className="j1-j2-j3-r2 j1-j4-col"><TorqueContent title="S" image={asset2} score={8.7}/></div>
-                <div className="j1-j2-j3-r2 j2-j5-col"><TorqueContent title="L" image={asset3} score={8.7}/></div>
-                <div className="j1-j2-j3-r2 j3-j6-col"><TorqueContent title="U" image={asset4} score={8.7}/></div>
-                <div className="j4-j5-j6-r2 j1-j4-col"><TorqueContent title="R" image={asset6} score={8.7}/></div>
-                <div className="j4-j5-j6-r2 j2-j5-col"><TorqueContent title="B" image={asset7} score={8.7}/></div>
-                <div className="j4-j5-j6-r2 j3-j6-col"><TorqueContent title="T" image={asset8} score={8.7}/></div>
+                <div className="r2-row robot-health card-padding card-color"><RobotHealth image={null} /></div>
+                <div className="r2-row position card-padding card-color">
+                    <Graph
+                        xPos={this.state.xPos}
+                        yPos={this.state.yPos}
+                        zPos={this.state.zPos}
+                    />
+                </div>
+                <div className="j1-j2-j3-r2 j1-j4-col"><TorqueContent torque={this.state.sTorque} title="S" image={asset2} score={8.7} /></div>
+                <div className="j1-j2-j3-r2 j2-j5-col"><TorqueContent torque={this.state.lTorque} title="L" image={asset3} score={8.7} /></div>
+                <div className="j1-j2-j3-r2 j3-j6-col"><TorqueContent torque={this.state.uTorque} title="U" image={asset4} score={8.7} /></div>
+                <div className="j4-j5-j6-r2 j1-j4-col"><TorqueContent torque={this.state.rTorque} title="R" image={asset6} score={8.7} /></div>
+                <div className="j4-j5-j6-r2 j2-j5-col"><TorqueContent torque={this.state.bTorque} title="B" image={asset7} score={8.7} /></div>
+                <div className="j4-j5-j6-r2 j3-j6-col"><TorqueContent torque={this.state.tTorque} title="T" image={asset8} score={8.7} /></div>
             </div>
         );
     }

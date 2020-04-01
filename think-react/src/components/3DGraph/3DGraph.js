@@ -119,24 +119,39 @@ class Graph extends React.Component {
             {
               name: "Yaskawa Position",
               x: [
-              this.dataArray[0]['xPos'], 
-              this.dataArray[1]['xPos'], 
-              this.dataArray[2]['xPos'], 
-              this.dataArray[3]['xPos'], 
+                this.props.xPos[this.props.xPos.length-1],
+                this.props.xPos[this.props.xPos.length-2],
+                this.props.xPos[this.props.xPos.length-3],
+                this.props.xPos[this.props.xPos.length-4],
+                this.props.xPos[this.props.xPos.length-5],
+              // this.dataArray[0]['xPos'], 
+              // this.dataArray[1]['xPos'], 
+              // this.dataArray[2]['xPos'], 
+              // this.dataArray[3]['xPos'], 
               // this.dataArray[0]['xPos']
             ],
               y: [
-                this.dataArray[0]['yPos'], 
-                this.dataArray[1]['yPos'], 
-                this.dataArray[2]['yPos'], 
-                this.dataArray[3]['yPos'], 
+                this.props.yPos[this.props.yPos.length-1],
+                this.props.yPos[this.props.yPos.length-2],
+                this.props.yPos[this.props.yPos.length-3],
+                this.props.yPos[this.props.yPos.length-4],
+                this.props.yPos[this.props.yPos.length-5],
+                // this.dataArray[0]['yPos'], 
+                // this.dataArray[1]['yPos'], 
+                // this.dataArray[2]['yPos'], 
+                // this.dataArray[3]['yPos'], 
                 // this.dataArray[0]['xPos']
               ],
               z: [
-                this.dataArray[0]['zPos'], 
-                this.dataArray[1]['zPos'], 
-                this.dataArray[2]['zPos'], 
-                this.dataArray[3]['zPos'], 
+                this.props.zPos[this.props.zPos.length-1],
+                this.props.zPos[this.props.zPos.length-2],
+                this.props.zPos[this.props.zPos.length-3],
+                this.props.zPos[this.props.zPos.length-4],
+                this.props.zPos[this.props.zPos.length-5],
+                // this.dataArray[0]['zPos'], 
+                // this.dataArray[1]['zPos'], 
+                // this.dataArray[2]['zPos'], 
+                // this.dataArray[3]['zPos'], 
                 // this.dataArray[0]['xPos']
               ],
               type: 'scatter3d',
@@ -149,7 +164,7 @@ class Graph extends React.Component {
                   'rgba(134,60,88,1)',
                   'rgba(95,42,61,1)'
                 ],
-                size: '10',
+                size: '15',
                 opacity: ".7"
                 // symbol: ['circle-open', 'circle-open','circle-open','circle-open', 'circle']
               },
@@ -197,6 +212,7 @@ class Graph extends React.Component {
             scene: {
               bgcolor: "#252525",
               // bgcolor: "rgba(37,37,37,1)",
+              aspectmode: "cube",
               xaxis: {
                 // range: [-1000000,1000000],
                 title: {
@@ -206,7 +222,7 @@ class Graph extends React.Component {
                 showticklabels: false,
                 showbackground: true,
                 backgroundcolor: "rgba(37,37,37,.2)",
-                showaxeslabels: false
+                showaxeslabels: false,
                 // visible: false
               },
               yaxis: {
@@ -218,7 +234,7 @@ class Graph extends React.Component {
                 backgroundcolor: "rgba(37,37,37,.5)",
                 showgrid: false,
                 showticklabels: false,
-                showaxeslabels: false
+                showaxeslabels: false,
                 // visible: false
               },
               zaxis: {
@@ -231,13 +247,13 @@ class Graph extends React.Component {
                 showgrid: false,
                 showticklabels: false,
                 showaxeslabels: false,
-                visible: false
+                // visible: false
               },
               camera: {
                 eye: {
-                  x: 2,
-                  y: 2,
-                  z: 2
+                  x: 1.5,
+                  y: 1.5,
+                  z: 1.5
                 },
                 up: {
                   x: 0,
