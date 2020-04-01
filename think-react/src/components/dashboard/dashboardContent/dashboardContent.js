@@ -30,7 +30,7 @@ class DashboardContent extends Component {
 
     componentDidMount() {
         var mqtt = require('mqtt')
-        var client = mqtt.connect('ws://test.mosquitto.org:8081')
+        var client = mqtt.connect('wss://test.mosquitto.org:8081')
 
         client.on('connect', (err) => {
             client.subscribe('telemetry', (err) => {
@@ -76,12 +76,12 @@ class DashboardContent extends Component {
                         zPos={this.state.zPos}
                     />
                 </div>
-                <div className="j1-j2-j3-r1 j1-j4-col"><TorqueContent torque={this.state.sTorque} title="S" image={asset4} score={8.7} /></div>
-                <div className="j1-j2-j3-r1 j2-j5-col"><TorqueContent torque={this.state.lTorque} title="L" image={asset3} score={8.7} /></div>
-                <div className="j1-j2-j3-r1 j3-j6-col"><TorqueContent torque={this.state.uTorque} title="U" image={asset2} score={8.7} /></div>
-                <div className="j4-j5-j6-r1 j1-j4-col"><TorqueContent torque={this.state.rTorque} title="R" image={asset6} score={8.7} /></div>
-                <div className="j4-j5-j6-r1 j2-j5-col"><TorqueContent torque={this.state.bTorque} title="B" image={asset7} score={8.7} /></div>
-                <div className="j4-j5-j6-r1 j3-j6-col"><TorqueContent torque={this.state.tTorque} title="T" image={asset8} score={8.7} /></div>
+                <div className="j1-j2-j3-r1 j1-j4-col"><TorqueContent torque={this.state.sTorque} title="S" image={asset4} score={98.7} /></div>
+                <div className="j1-j2-j3-r1 j2-j5-col"><TorqueContent torque={this.state.lTorque} title="L" image={asset3} score={98.7} /></div>
+                <div className="j1-j2-j3-r1 j3-j6-col"><TorqueContent torque={this.state.uTorque} title="U" image={asset2} score={98.7} /></div>
+                <div className="j4-j5-j6-r1 j1-j4-col"><TorqueContent torque={this.state.rTorque} title="R" image={asset6} score={98.7} /></div>
+                <div className="j4-j5-j6-r1 j2-j5-col"><TorqueContent torque={this.state.bTorque} title="B" image={asset7} score={98.7} /></div>
+                <div className="j4-j5-j6-r1 j3-j6-col"><TorqueContent torque={this.state.tTorque} title="T" image={asset8} score={98.7} /></div>
                 <div className="gap-line" />
                 <div className="r2-row robot-col card-padding robot-name">Robot 2</div>
                 <div className="r2-row robot-health card-padding card-color"><RobotHealth image={null} /></div>
@@ -92,12 +92,12 @@ class DashboardContent extends Component {
                         zPos={this.state.zPos}
                     />
                 </div>
-                <div className="j1-j2-j3-r2 j1-j4-col"><TorqueContent torque={this.state.sTorque} title="S" image={asset2} score={8.7} /></div>
-                <div className="j1-j2-j3-r2 j2-j5-col"><TorqueContent torque={this.state.lTorque} title="L" image={asset3} score={8.7} /></div>
-                <div className="j1-j2-j3-r2 j3-j6-col"><TorqueContent torque={this.state.uTorque} title="U" image={asset4} score={8.7} /></div>
-                <div className="j4-j5-j6-r2 j1-j4-col"><TorqueContent torque={this.state.rTorque} title="R" image={asset6} score={8.7} /></div>
-                <div className="j4-j5-j6-r2 j2-j5-col"><TorqueContent torque={this.state.bTorque} title="B" image={asset7} score={8.7} /></div>
-                <div className="j4-j5-j6-r2 j3-j6-col"><TorqueContent torque={this.state.tTorque} title="T" image={asset8} score={8.7} /></div>
+                <div className="j1-j2-j3-r2 j1-j4-col"><TorqueContent torque={this.state.sTorque} title="S" image={asset2} score={98.7} /></div>
+                <div className="j1-j2-j3-r2 j2-j5-col"><TorqueContent torque={this.state.lTorque} title="L" image={asset3} score={98.7} /></div>
+                <div className="j1-j2-j3-r2 j3-j6-col"><TorqueContent torque={this.state.uTorque} title="U" image={asset4} score={98.7} /></div>
+                <div className="j4-j5-j6-r2 j1-j4-col"><TorqueContent torque={this.state.rTorque} title="R" image={asset6} score={98.7} /></div>
+                <div className="j4-j5-j6-r2 j2-j5-col"><TorqueContent torque={this.state.bTorque} title="B" image={asset7} score={98.7} /></div>
+                <div className="j4-j5-j6-r2 j3-j6-col"><TorqueContent torque={this.state.tTorque} title="T" image={asset8} score={98.7} /></div>
             </div>
         );
     }
