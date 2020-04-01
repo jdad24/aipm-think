@@ -41,6 +41,18 @@ class DashboardContent extends Component {
         })
 
         client.on('message', (topic, message) => {
+            this.setState({
+                healthScore: null,
+                sTorque: null,
+                lTorque: null,
+                uTorque: null,
+                rTorque: null,
+                bTorque: null,
+                tTorque: null,
+                xPos: null,
+                yPos: null,
+                zPos: null,
+            })
             console.log(message.toString())
             
         })
