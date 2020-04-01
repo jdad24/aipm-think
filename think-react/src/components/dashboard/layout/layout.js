@@ -5,7 +5,7 @@ import './layout.css';
 
 class Layout extends Component {
     render() {
-        console.log(this.props.content);
+        // console.log(this.props.content);
         return (
             <div className="layout-grid">
                 <div className="header">IBM</div>

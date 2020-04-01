@@ -1,6 +1,6 @@
 import React from 'react'
 import Plot from 'react-plotly.js';
-import axios from 'axios';
+// import axios from 'axios';
 import $ from 'jquery'
 import './3DGraph.css'
 import sizeMe from 'react-sizeme'
@@ -99,7 +99,7 @@ class Graph extends React.Component {
   }
 
   componentDidMount() {
-    this.getYaskawa1Data()
+    // this.getYaskawa1Data()
 
     window.addEventListener('resize', () => {
       this.setState({

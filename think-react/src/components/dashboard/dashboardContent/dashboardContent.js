@@ -15,6 +15,39 @@ import asset8 from '../../../Assets/Asset8.png';
 
 
 class DashboardContent extends Component {
+
+    state = {
+        sTorque: null,
+        lTorque: null,
+        uTorque: null,
+        rTorque: null,
+        bTorque: null,
+        tTorque: null,
+        xPos: null,
+        yPos: null,
+        zPos: null,
+    }
+
+    componentDidMount() {
+        var mqtt = require('mqtt')
+        var client = mqtt.connect('ws://test.mosquitto.org:8081')
+
+        client.on('connect', (err) => {
+            client.subscribe('telemetry', (err) => {
+                if(!err) {
+                    console.log("Subscribe Successful")
+                }
+            })
+        })
+
+        client.on('message', (topic, message) => {
+            console.log(message.toString())
+            
+        })
+
+    }
+
+
     render() {
         return (
             // <p>this is also stupid</p> 
