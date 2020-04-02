@@ -6,7 +6,7 @@ class ProgressBar extends React.Component {
     render() {
         return (
             <div className="progress-bar-background">
-                <div className="torque-progress"/>
+                <div style={{width: this.props.progress + '%'}} className="torque-progress"/>
             </div>
         )
     }
