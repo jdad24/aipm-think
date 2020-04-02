@@ -110,7 +110,7 @@ class DashboardContent extends Component {
             // mqtt_password = this.mqttCredentials[0].password;
         }
         // Create a client instance
-        let mqtt_client = new Client(mqtt_broker, 1883, mqtt_clientId);
+        let mqtt_client = new Client(mqtt_broker, 8883, mqtt_clientId);
         // set callback handlers
         mqtt_client.onConnectionLost = this.onConnectionLost;
         mqtt_client.onMessageArrived = this.onMessageArrived;
@@ -122,7 +122,8 @@ class DashboardContent extends Component {
                 onSuccess: this.onConnect.bind(this),
                 onFailure: this.onFailure,
                 userName: mqtt_username,   // apikey
-                password: mqtt_password
+                password: mqtt_password,
+                useSSL: true,
             })
         })
     }
