@@ -13,6 +13,7 @@ import asset6 from '../../../Assets/Asset6.png';
 import asset7 from '../../../Assets/Asset7.png';
 import asset8 from '../../../Assets/Asset8.png';
 import { Client } from 'paho-mqtt';
+import robotPic from '../../../Assets/gp7Blue.png'
 
 
 class DashboardContent extends Component {
@@ -201,7 +202,7 @@ class DashboardContent extends Component {
             // <p>what do u mean lol</p>
             <div className="contents-container">
                 <div className="r1-row robot-col card-padding robot-name">Robot 1</div>
-                <div className="r1-row robot-health card-padding card-color"><RobotHealth image={null} /></div>
+                <div className="r1-row robot-health card-padding card-color"><RobotHealth image={robotPic} /></div>
                 <div className="r1-row position card-padding card-color">
                     <Graph
                         xPos={this.state.xPos}
@@ -217,7 +218,7 @@ class DashboardContent extends Component {
                 <div className="j4-j5-j6-r1 j3-j6-col"><TorqueContent torque={this.state.tTorque} title="T" image={asset8} score={98.7} /></div>
                 <div className="gap-line" />
                 <div className="r2-row robot-col card-padding robot-name">Robot 2</div>
-                <div className="r2-row robot-health card-padding card-color"><RobotHealth image={null} /></div>
+                <div className="r2-row robot-health card-padding card-color"><RobotHealth image={robotPic} /></div>
                 <div className="r2-row position card-padding card-color">
                     <Graph
                         xPos={this.state.xPos}
