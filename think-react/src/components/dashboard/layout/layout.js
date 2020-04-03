@@ -21,7 +21,7 @@ class Layout extends Component {
 
                 </div>
                 <div className="right-col"></div>
-                <div className="footer">footer</div>
+                <div className="footer"></div>
             </div>
         );
     }

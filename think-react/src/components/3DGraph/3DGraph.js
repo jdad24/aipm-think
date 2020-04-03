@@ -12,65 +12,65 @@ class Graph extends React.Component {
     super(props)
 
     this.dataArray = [
-      {      
-        "sTorque": "0",      
-        "lTorque": "2520",      
-        "uTorque": "-3154",      
-        "rTorque": "-576",      
-        "bTorque": "0",      
-        "tTorque": "352",      
-        "xPos": "635202",      
-        "yPos": "-428911",      
-        "zPos": "594962",      
+      {
+        "sTorque": "0",
+        "lTorque": "2520",
+        "uTorque": "-3154",
+        "rTorque": "-576",
+        "bTorque": "0",
+        "tTorque": "352",
+        "xPos": "635202",
+        "yPos": "-428911",
+        "zPos": "594962",
         "timestamp": 1585325912286
-        },
+      },
 
       {
 
-      "sTorque": "0",      
-      "lTorque": "5320",      
-      "uTorque": "-2158",      
-      "rTorque": "-704",      
-      "bTorque": "-192",      
-      "tTorque": "-256",      
-      "xPos": "795447",      
-      "yPos": "169888",      
-      "zPos": "196498",      
-      "timestamp": 1585325880409      
-      },       
-             
-      
-      {      
-      "sTorque": "0",      
-      "lTorque": "2520",      
-      "uTorque": "-3154",      
-      "rTorque": "-576",      
-      "bTorque": "0",      
-      "tTorque": "352",      
-      "xPos": "635202",      
-      "yPos": "-428911",      
-      "zPos": "594962",      
-      "timestamp": 1585325912286      
+        "sTorque": "0",
+        "lTorque": "5320",
+        "uTorque": "-2158",
+        "rTorque": "-704",
+        "bTorque": "-192",
+        "tTorque": "-256",
+        "xPos": "795447",
+        "yPos": "169888",
+        "zPos": "196498",
+        "timestamp": 1585325880409
       },
-      
-      {      
-      "sTorque": "0",      
-      "lTorque": "5180",      
-      "uTorque": "-2158",      
-      "rTorque": "-736",
-      "bTorque": "-384",
-      "tTorque": "-256",
-      "xPos": "794744",
-      "yPos": "169223",
-      "zPos": "192847",
-      "timestamp": 1585325930250
+
+
+      {
+        "sTorque": "0",
+        "lTorque": "2520",
+        "uTorque": "-3154",
+        "rTorque": "-576",
+        "bTorque": "0",
+        "tTorque": "352",
+        "xPos": "635202",
+        "yPos": "-428911",
+        "zPos": "594962",
+        "timestamp": 1585325912286
+      },
+
+      {
+        "sTorque": "0",
+        "lTorque": "5180",
+        "uTorque": "-2158",
+        "rTorque": "-736",
+        "bTorque": "-384",
+        "tTorque": "-256",
+        "xPos": "794744",
+        "yPos": "169223",
+        "zPos": "192847",
+        "timestamp": 1585325930250
       }]
 
 
     this.state = {
       yaskawa1: [],
-      width: window.innerWidth/4.6,
-      height: window.innerHeight/3.1
+      width: window.innerWidth / 4.6,
+      height: window.innerHeight / 3.1
     }
 
 
@@ -103,8 +103,8 @@ class Graph extends React.Component {
 
     window.addEventListener('resize', () => {
       this.setState({
-        width: window.innerWidth/4.6,
-        height: window.innerHeight/3.1
+        width: window.innerWidth / 4.6,
+        height: window.innerHeight / 3.1
       })
     })
 
@@ -119,23 +119,23 @@ class Graph extends React.Component {
             {
               name: "Yaskawa Position",
               x: [
-                this.props.xPos[this.props.xPos.length-1],
-                this.props.xPos[this.props.xPos.length-2],
-                this.props.xPos[this.props.xPos.length-3],
-                this.props.xPos[this.props.xPos.length-4],
-                this.props.xPos[this.props.xPos.length-5],
-              // this.dataArray[0]['xPos'], 
-              // this.dataArray[1]['xPos'], 
-              // this.dataArray[2]['xPos'], 
-              // this.dataArray[3]['xPos'], 
-              // this.dataArray[0]['xPos']
-            ],
+                this.props.xPos[this.props.xPos.length - 1],
+                this.props.xPos[this.props.xPos.length - 2],
+                this.props.xPos[this.props.xPos.length - 3],
+                this.props.xPos[this.props.xPos.length - 4],
+                this.props.xPos[this.props.xPos.length - 5],
+                // this.dataArray[0]['xPos'], 
+                // this.dataArray[1]['xPos'], 
+                // this.dataArray[2]['xPos'], 
+                // this.dataArray[3]['xPos'], 
+                // this.dataArray[0]['xPos']
+              ],
               y: [
-                this.props.yPos[this.props.yPos.length-1],
-                this.props.yPos[this.props.yPos.length-2],
-                this.props.yPos[this.props.yPos.length-3],
-                this.props.yPos[this.props.yPos.length-4],
-                this.props.yPos[this.props.yPos.length-5],
+                this.props.yPos[this.props.yPos.length - 1],
+                this.props.yPos[this.props.yPos.length - 2],
+                this.props.yPos[this.props.yPos.length - 3],
+                this.props.yPos[this.props.yPos.length - 4],
+                this.props.yPos[this.props.yPos.length - 5],
                 // this.dataArray[0]['yPos'], 
                 // this.dataArray[1]['yPos'], 
                 // this.dataArray[2]['yPos'], 
@@ -143,11 +143,11 @@ class Graph extends React.Component {
                 // this.dataArray[0]['xPos']
               ],
               z: [
-                this.props.zPos[this.props.zPos.length-1],
-                this.props.zPos[this.props.zPos.length-2],
-                this.props.zPos[this.props.zPos.length-3],
-                this.props.zPos[this.props.zPos.length-4],
-                this.props.zPos[this.props.zPos.length-5],
+                this.props.zPos[this.props.zPos.length - 1],
+                this.props.zPos[this.props.zPos.length - 2],
+                this.props.zPos[this.props.zPos.length - 3],
+                this.props.zPos[this.props.zPos.length - 4],
+                this.props.zPos[this.props.zPos.length - 5],
                 // this.dataArray[0]['zPos'], 
                 // this.dataArray[1]['zPos'], 
                 // this.dataArray[2]['zPos'], 
@@ -155,38 +155,134 @@ class Graph extends React.Component {
                 // this.dataArray[0]['xPos']
               ],
               type: 'scatter3d',
-              mode: 'markers',
+              mode: 'markers+lines',
+              line: {
+                color:  "#56D679"
+              },
               marker: {
                 color: [
-                  'rgba(251,51,129,1)',
+                  '#56D679',                            
+                  'rgba(95,42,61,1)',
                   'rgba(221,79,134,1)',
                   'rgba(178,73,112,1)',
-                  'rgba(134,60,88,1)',
-                  'rgba(95,42,61,1)'
+                  'rgba(134,60,88,1)'
                 ],
                 size: '15',
-                opacity: ".7"
+                opacity: "1"
                 // symbol: ['circle-open', 'circle-open','circle-open','circle-open', 'circle']
               },
 
 
             },
             // {
-            //   name: "Current Point",
-            //   x: [5, 10, 15, 20, 30],
-            //   y: [10, 20, 30, 35, 40],
-            //   z: [4, 9, 12, 16, 20],
+            //   name: "Current Point-Line",
+            //   x:
+            //     [
+            //       0,
+            //       this.props.xPos[this.props.xPos.length - 1],
+            //       this.props.xPos[this.props.xPos.length - 1],
+            //       this.props.xPos[this.props.xPos.length - 1]
+            //     ],
+            //   y: [
+            //     this.props.yPos[this.props.yPos.length - 1],
+            //     this.props.yPos[this.props.yPos.length - 1],
+            //     this.props.yPos[this.props.yPos.length - 1],
+            //     0
+            //   ],
+            //   z: [
+            //     this.props.zPos[this.props.zPos.length - 1],
+            //     this.props.zPos[this.props.zPos.length - 1],
+            //     0,
+            //     this.props.zPos[this.props.zPos.length - 1]
+            //   ],
             //   type: 'scatter3d',
             //   opacity: '1',
             //   mode: 'lines',
-            //   marker: { 
+            //   marker: {
             //     color: '#56D679',
-            //     size: '0' 
-            //    }
+            //     size: '0'
+            //   }
+            // {
+            //   name: "Current Point-LineX",
+            //   x:
+            //     [
+            //       this.props.xPos[this.props.xPos.length - 1],
+            //       this.props.xPos[this.props.xPos.length - 1],
+            //       // 0,
+            //       // 0
+            //     ],
+            //   y: [
+            //     0,
+            //     this.props.yPos[this.props.yPos.length - 1],
+            //     // this.props.yPos[this.props.yPos.length - 1],
+            //     // 0
+            //   ],
+            //   z: [
+            //     0,
+            //     this.props.zPos[this.props.zPos.length - 1],
+            //     // 0,
+            //     // this.props.zPos[this.props.zPos.length - 1]
+            //   ],
+            //   type: 'scatter3d',
+            //   opacity: '1',
+            //   mode: 'lines',
+            //   marker: {
+            //     color: '#56D679',
+            //     size: '0'
+            //   }
+            // },
+            // {
+            //   name: "Current Point-LineY",
+            //   x:
+            //     [
+            //       0,
+            //       this.props.xPos[this.props.xPos.length - 1],
+                
+            //     ],
+            //   y: [
+            //     this.props.yPos[this.props.yPos.length - 1],
+            //     this.props.yPos[this.props.yPos.length - 1],
+            //   ],
+            //   z: [
+            //     0,
+            //     this.props.zPos[this.props.zPos.length - 1],
+            //   ],
+            //   type: 'scatter3d',
+            //   opacity: '1',
+            //   mode: 'lines',
+            //   marker: {
+            //     color: '#56D679',
+            //     size: '0'
+            //   }
+            // },
+            // {
+            //   name: "Current Point-LineZ",
+            //   x:
+            //     [
+            //       0,
+            //       this.props.xPos[this.props.xPos.length - 1],
+                
+            //     ],
+            //   y: [
+            //     0,
+            //     this.props.yPos[this.props.yPos.length - 1],
+            //   ],
+            //   z: [
+            //     this.props.zPos[this.props.zPos.length - 1],
+            //     this.props.zPos[this.props.zPos.length - 1],
+            //   ],
+            //   type: 'scatter3d',
+            //   opacity: '1',
+            //   mode: 'lines',
+            //   marker: {
+            //     color: '#56D679',
+            //     size: '0'
+            //   }
             // }
+            
           ]}
           useResizeHandler={true}
-          style={{height: this.state.height, width: this.state.width}}
+          style={{ height: this.state.height, width: this.state.width }}
           layout={{
             // width: 300,
             // height: 300,

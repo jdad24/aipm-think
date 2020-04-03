@@ -24,16 +24,27 @@
     /* background-color: #252525; */
     /* border: 1px solid green; */
 }
+
+.gap-div1{
+    /* height: 50%; */
+    border-bottom: 1px solid #707070; 
+}
+
+.gap-div{
+    height: 50%;
+}
 .gap-line{
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    /* position: relative; */
     grid-row-start: 3;
     grid-row-end:4;
     grid-column-start:1;
     grid-column-end: 9;
     /* margin-top: 2.75%; */
-    top: 50%;
-    background-color: rgb(151, 142, 124);
-    height: 1.5%;
+    /* top: 50%; */
+    /* background-color: rgb(151, 142, 124); */
+    /* height: 1.5%; */
     /* border: 1px solid green; */
 }
 

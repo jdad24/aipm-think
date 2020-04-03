@@ -201,7 +201,7 @@ class DashboardContent extends Component {
             // <p>this is also stupid</p> 
             // <p>what do u mean lol</p>
             <div className="contents-container">
-                <div className="r1-row robot-col card-padding robot-name">Robot 1</div>
+                <div className="r1-row robot-col card-padding robot-name">Palletizer</div>
                 <div className="r1-row robot-health card-padding card-color"><RobotHealth image={robotPic} /></div>
                 <div className="r1-row position card-padding card-color">
                     <Graph
@@ -216,8 +216,11 @@ class DashboardContent extends Component {
                 <div className="j4-j5-j6-r1 j1-j4-col"><TorqueContent torque={this.state.rTorque} title="R" image={asset6} score={98.7} /></div>
                 <div className="j4-j5-j6-r1 j2-j5-col"><TorqueContent torque={this.state.bTorque} title="B" image={asset7} score={98.7} /></div>
                 <div className="j4-j5-j6-r1 j3-j6-col"><TorqueContent torque={this.state.tTorque} title="T" image={asset8} score={98.7} /></div>
-                <div className="gap-line" />
-                <div className="r2-row robot-col card-padding robot-name">Robot 2</div>
+                <div className="gap-line">
+                    <div className="gap-div gap-div1"/>
+                    <div className="gap-div"/>
+                </div>
+                <div className="r2-row robot-col card-padding robot-name">Depalletizer</div>
                 <div className="r2-row robot-health card-padding card-color"><RobotHealth image={robotPic} /></div>
                 <div className="r2-row position card-padding card-color">
                     <Graph

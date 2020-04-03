@@ -7,7 +7,7 @@ class TorqueContent extends React.Component {
         super(props)
         
         this.progress = null
-        this.torquePlus = null
+        this.torqueValue = null
     }
 
     
@@ -66,50 +66,56 @@ class TorqueContent extends React.Component {
     // }
 
     render() {
-        this.torquePlus = null;
+        this.torqueValue = null;
 
         switch (this.props.title) {
             case 'S':
-                    this.torquePlus = Number(this.props.torque) + 2000
+                    this.torqueValue = Number(this.props.torque) 
                     // console.log("Torque: " + torquePlus)
                 
-                    this.progress= this.torquePlus/4000 * 100
+                    this.progress= this.torqueValue/2000 * 100
+                    this.progress = Math.abs(this.progress)
                     console.log("Progress: " + this.progress)
               
                 break;
             case 'L':
-                    this.torquePlus = Number(this.props.torque) + 7000
+                    this.torqueValue = Number(this.props.torque) 
                 
 
-                    this.progress= this.torquePlus/14000 * 100
+                    this.progress= this.torqueValue/7000 * 100
+                    this.progress = Math.abs(this.progress)
                     // console.log("Progress: " + this.progress)
               
                 break;
             case 'U':
-                    this.torquePlus = Number(this.props.torque) + 4000
+                    this.torqueValue = Number(this.props.torque) 
 
-                    this.progress= this.torquePlus/8000 * 100
+                    this.progress= this.torqueValue/4000 * 100
+                    this.progress = Math.abs(this.progress)
                     // console.log("Progress: " + this.progress)
               
                 break;
             case 'R':
-                    this.torquePlus = Number(this.props.torque) + 2000
+                    this.torqueValue = Number(this.props.torque) 
 
-                    this.progress= this.torquePlus/4000 * 100
+                    this.progress= this.torqueValue/2000 * 100
+                    this.progress = Math.abs(this.progress)
                     // console.log("Progress: " + this.progress)
               
                 break;
             case 'B':
-                    this.torquePlus = Number(this.props.torque) + 1000
+                    this.torqueValue = Number(this.props.torque) 
 
-                    this.progress = this.torquePlus/2000 * 100
+                    this.progress = this.torqueValue/1000 * 100
+                    this.progress = Math.abs(this.progress)
                     // console.log("Progress: " + this.progress)
               
                 break;
             case 'T':
-                    this.torquePlus = Number(this.props.torque) + 1000
+                    this.torqueValue = Number(this.props.torque) 
 
-                    this.progress= this.torquePlus/2000 * 100
+                    this.progress= this.torqueValue/1000 * 100
+                    this.progress = Math.abs(this.progress)
                     // console.log("Progress: " + this.progress)
               
                 break;
