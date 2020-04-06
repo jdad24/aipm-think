@@ -13,117 +13,98 @@ import asset6 from '../../../Assets/Asset6.png';
 import asset7 from '../../../Assets/Asset7.png';
 import asset8 from '../../../Assets/Asset8.png';
 import { Client } from 'paho-mqtt';
-import robotPic from '../../../Assets/gp7Blue.png'
+import robotPic from '../../../Assets/gp7Blue.png';
+import Aux from '../.././common-ui/Aux/Aux';
 
 
 class DashboardContent extends Component {
 
     state = {
-        sTorque: null,
-        lTorque: null,
-        uTorque: null,
-        rTorque: null,
-        bTorque: null,
-        tTorque: null,
-        xPos: [],
-        yPos: [],
-        zPos: [],
-        mqttClient: null
+        healthScore01: null,
+        healthScore02: null,
+        torque01: [],
+        torque02: [],
+        xPos01: [],
+        yPos01: [],
+        zPos01: [],
+        xPos02: [],
+        yPos02: [],
+        zPos02: [],
+        mqttClient1: null,
+        mqttClient2: null
     }
 
     mqttCredentials = [
         {
             clientId: 'a:vrvzh6:' + Math.random().toString(16).substr(2, 8),
             broker: "vrvzh6.messaging.internetofthings.ibmcloud.com",
-            subscribe: "iot-2/type/gsc-yaskawa-gw/id/gsc-yaskawa-01/evt/update/fmt/json",
+            subscribe: "iot-2/type/gsc-yaskawa-gw/id/gsc-yaskawa-tire01/evt/+/fmt/json",
             username: "a-vrvzh6-lmttnkzxht",
             password: "LRVitW+(soqXuZdJT!"
         },
         {
             clientId: 'a:vrvzh6:' + Math.random().toString(16).substr(2, 8),
             broker: "vrvzh6.messaging.internetofthings.ibmcloud.com",
-            subscribe: "iot-2/type/gsc-yaskawa-gw/id/gsc-yaskawa-01/evt/update/fmt/json",
+            subscribe: "iot-2/type/gsc-yaskawa-gw/id/gsc-yaskawa-tire02/evt/+/fmt/json",
             username: "a-vrvzh6-lmttnkzxht",
             password: "LRVitW+(soqXuZdJT!"
         }
     ]
 
     componentDidMount() {
-        this.mqttHandler('gsc-yaskawa-tire01');
-
-        // var mqtt = require('mqtt')
-        // var client = mqtt.connect('wss://test.mosquitto.org:8081')
-
-        // client.on('connect', (err) => {
-        //     client.subscribe('telemetry', (err) => {
-        //         if (!err) {
-        //             console.log("Subscribe Successful")
-        //         }
-        //     })
-        // })
-
-        // client.on('message', (topic, message) => {
-            // var json = JSON.parse(message)
-
-            // this.setState({
-            //     data: json,
-            //     healthScore: null,
-            //     sTorque: json.sTorque,
-            //     lTorque: json.lTorque,
-            //     uTorque: json.uTorque,
-            //     rTorque: json.rTorque,
-            //     bTorque: json.bTorque,
-            //     tTorque: json.tTorque,
-            //     xPos: [...this.state.xPos, json.xPos],
-            //     yPos: [...this.state.yPos, json.yPos],
-            //     zPos: [...this.state.zPos, json.zPos],
-            // })
-        //     console.log(json)
-
-        // })
-
+        this.mqttHandler();
     }
 
-    mqttHandler = (device) => {
-        let mqtt_clientId = null;
-        let mqtt_broker = null;
-        let mqtt_username = null;
-        let mqtt_password = null;
-        switch (device) {
-            case 'gsc-yaskawa-tire01':
-                mqtt_clientId = this.mqttCredentials[0].clientId;
-                mqtt_broker = this.mqttCredentials[0].broker;
-                mqtt_username = this.mqttCredentials[0].username;
-                mqtt_password = this.mqttCredentials[0].password;
-                // debugger;
-                break;
-            case 'gsc-yaskawa-tire02':
-                mqtt_clientId = this.mqttCredentials[1].clientId;
-                mqtt_broker = this.mqttCredentials[1].broker;
-                mqtt_username = this.mqttCredentials[1].username;
-                mqtt_password = this.mqttCredentials[1].password;
-                // console.log("switch - device -" + device);
-                break;
-            // case 'default': 
-            // mqtt_clientId = this.mqttCredentials[0].clientId;
-            // mqtt_broker = this.mqttCredentials[0].broker;
-            // mqtt_username = this.mqttCredentials[0].username;
-            // mqtt_password = this.mqttCredentials[0].password;
-        }
+    mqttHandler = () => {
+        let mqtt_clientId1 = null;
+        let mqtt_broker1 = null;
+        let mqtt_username1 = null;
+        let mqtt_password1 = null;
+        let mqtt_clientId2 = null;
+        let mqtt_broker2 = null;
+        let mqtt_username2 = null;
+        let mqtt_password2 = null;
+
+
+        mqtt_clientId1 = this.mqttCredentials[0].clientId;
+        mqtt_broker1 = this.mqttCredentials[0].broker;
+        mqtt_username1 = this.mqttCredentials[0].username;
+        mqtt_password1 = this.mqttCredentials[0].password;
+        // debugger;
+
+        mqtt_clientId2 = this.mqttCredentials[1].clientId;
+        mqtt_broker2 = this.mqttCredentials[1].broker;
+        mqtt_username2 = this.mqttCredentials[1].username;
+        mqtt_password2 = this.mqttCredentials[1].password;
+        // console.log("switch - device -" + device);
+
+
         // Create a client instance
-        let mqtt_client = new Client(mqtt_broker, 8883, mqtt_clientId);
+        let mqtt_client1 = new Client(mqtt_broker1, 8883, mqtt_clientId1);
+        let mqtt_client2 = new Client(mqtt_broker2, 8883, mqtt_clientId2);
         // set callback handlers
-        mqtt_client.onConnectionLost = this.onConnectionLost;
-        mqtt_client.onMessageArrived = this.onMessageArrived;
+        mqtt_client1.onConnectionLost = this.onConnectionLost;
+        mqtt_client1.onMessageArrived = this.onMessageArrived_tire01;
+        mqtt_client2.onConnectionLost = this.onConnectionLost;
+        mqtt_client2.onMessageArrived = this.onMessageArrived_tire02;
         this.setState({
-            mqttClient: mqtt_client
+            mqttClient1: mqtt_client1,
+            mqttClient2: mqtt_client2
         }, () => {
             // this.client.connect({onSuccess:this.onConnect.bind(this)});
-            this.state.mqttClient.connect({
-                onSuccess: this.onConnect.bind(this),
+            this.state.mqttClient1.connect({
+                onSuccess: this.onConnect1.bind(this),
                 onFailure: this.onFailure,
-                userName: mqtt_username,   // apikey
-                password: mqtt_password,
+                userName: mqtt_username1,   // apikey
+                password: mqtt_password1,
+                useSSL: true,
+            })
+
+            this.state.mqttClient2.connect({
+                onSuccess: this.onConnect2.bind(this),
+                onFailure: this.onFailure,
+                userName: mqtt_username2,   // apikey
+                password: mqtt_password2,
                 useSSL: true,
             })
         })
@@ -134,32 +115,56 @@ class DashboardContent extends Component {
             console.log("onConnectionLost:" + responseObject.errorMessage);
         }
     }
-    onMessageArrived = (message) => {
-        console.log("inside onMessage 2");
-        this.onMessageArrivedCommon(message);
-    }
-    onConnect = (props) => {
+    // onMessageArrived = (message) => {
+    //     console.log("inside onMessage 2");
+    //     this.onMessageArrivedCommon(message);
+    // }
+    onConnect1 = () => {
         // Once a connection has been made, make a subscription and send a message.
         let subscribeString = null;
-        switch ('gsc-yaskawa-tire01') {
-            case 'gsc-yaskawa-tire01':
-                subscribeString = this.mqttCredentials[0].subscribe;
-                console.log("switch - subscribe -" + "gsc-yaskawa-tire01");
-                break;
-            case 'gsc-yaskawa-tire02':
-                subscribeString = this.mqttCredentials[0].subscribe;
-                console.log("switch - subscribe -" + "gsc-yaskawa-tire02");
-                break;
-        }
-        console.log("onConnect");
-        this.state.mqttClient.subscribe(subscribeString);
+        subscribeString = this.mqttCredentials[0].subscribe;
+        console.log("subscribe -" + "gsc-yaskawa-tire01");
+        this.state.mqttClient1.subscribe(subscribeString);
     }
+    onConnect2 = () => {
+        // Once a connection has been made, make a subscription and send a message.
+        let subscribeString = null;
+        subscribeString = this.mqttCredentials[1].subscribe;
+        console.log("subscribe -" + "gsc-yaskawa-tire02");
+        this.state.mqttClient2.subscribe(subscribeString);
+        // this.state.mqttClient2.subscribe(subscribeString);
+    }
+
     onFailure = (responseObject) => {
         // Once a connection has been made, make a subscription and send a message.
         console.log("onFailure" + JSON.stringify(responseObject));
     }
     // called when a message arrives
-    onMessageArrivedCommon = (message) => {
+    onMessageArrived_tire01 = (message) => {
+        let myTopic = message.destinationName;
+        let parsedTopic = myTopic.split("/");
+        let deviceId = parsedTopic[4];
+        let valueCmdEvt = parsedTopic[6];
+        let textJson = parsedTopic[8];
+        
+        if (textJson === "json") {
+            let json = JSON.parse(message.payloadString);
+            console.log("TIRE01", valueCmdEvt, json);
+            // console.log("TOPIC - ", JSON.parse(message.destinationName));
+            let torque= [json.sTorque,json.lTorque,json.uTorque,json.rTorque,json.bTorque,json.tTorque];
+            this.setState({
+                data: json,
+                healthScore01: null,
+                torque01: torque,
+                xPos01: [...this.state.xPos01, json.xPos],
+                yPos01: [...this.state.yPos01, json.yPos],
+                zPos01: [...this.state.zPos01, json.zPos],
+            })
+
+        }
+    }
+
+    onMessageArrived_tire02 = (message) => {
         let myTopic = message.destinationName;
         let parsedTopic = myTopic.split("/");
         let deviceId = parsedTopic[4];
@@ -167,75 +172,78 @@ class DashboardContent extends Component {
         let textJson = parsedTopic[8];
         if (textJson === "json") {
             let json = JSON.parse(message.payloadString);
-            console.log("wholedata",valueCmdEvt,json);
-
+            console.log("TIRE02", valueCmdEvt, json);
+            // console.log("TOPIC - ", JSON.parse(message.destinationName));
+            let torque= [json.sTorque,json.lTorque,json.uTorque,json.rTorque,json.bTorque,json.tTorque];
             this.setState({
                 data: json,
-                healthScore: null,
-                sTorque: json.sTorque,
-                lTorque: json.lTorque,
-                uTorque: json.uTorque,
-                rTorque: json.rTorque,
-                bTorque: json.bTorque,
-                tTorque: json.tTorque,
-                xPos: [...this.state.xPos, json.xPos],
-                yPos: [...this.state.yPos, json.yPos],
-                zPos: [...this.state.zPos, json.zPos],
+                healthScore02: null,
+                torque02: torque,
+                xPos02: [...this.state.xPos02, json.xPos],
+                yPos02: [...this.state.yPos02, json.yPos],
+                zPos02: [...this.state.zPos02, json.zPos],
             })
 
-            // if (valueCmdEvt === "score") {
-            //     let score = [deviceId, iotPayload.speakingClassification, iotPayload.confidence, iotPayload.slot];
-            //     let cur_scoredata = this.state.scoredata;
-            //     cur_scoredata[iotPayload.slot - 1].score = score;
-            //     cur_scoredata[iotPayload.slot - 1].slot = iotPayload.slot;
-            //     this.setState({
-            //         scoredata: cur_scoredata
-            //     });
-            // }
         }
     }
 
-
-    render() {
-        return (
-            // <p>this is also stupid</p> 
-            // <p>what do u mean lol</p>
-            <div className="contents-container">
+    getMainContent = () => {
+        let mainContent = <div>No data</div>
+        if (this.state.xPos01 && this.state.torque01 ) {
+            mainContent = (
+                <div className="contents-container">
                 <div className="r1-row robot-col card-padding robot-name">Palletizer</div>
                 <div className="r1-row robot-health card-padding card-color"><RobotHealth image={robotPic} /></div>
                 <div className="r1-row position card-padding card-color">
                     <Graph
-                        xPos={this.state.xPos}
-                        yPos={this.state.yPos}
-                        zPos={this.state.zPos}
+                        xPos={this.state.xPos01}
+                        yPos={this.state.yPos01}
+                        zPos={this.state.zPos01}
                     />
                 </div>
-                <div className="j1-j2-j3-r1 j1-j4-col"><TorqueContent torque={this.state.sTorque} title="S" image={asset4} score={98.7} /></div>
-                <div className="j1-j2-j3-r1 j2-j5-col"><TorqueContent torque={this.state.lTorque} title="L" image={asset3} score={98.7} /></div>
-                <div className="j1-j2-j3-r1 j3-j6-col"><TorqueContent torque={this.state.uTorque} title="U" image={asset2} score={98.7} /></div>
-                <div className="j4-j5-j6-r1 j1-j4-col"><TorqueContent torque={this.state.rTorque} title="R" image={asset6} score={98.7} /></div>
-                <div className="j4-j5-j6-r1 j2-j5-col"><TorqueContent torque={this.state.bTorque} title="B" image={asset7} score={98.7} /></div>
-                <div className="j4-j5-j6-r1 j3-j6-col"><TorqueContent torque={this.state.tTorque} title="T" image={asset8} score={98.7} /></div>
+                <div className="j1-j2-j3-r1 j1-j4-col"><TorqueContent torque={this.state.torque01[0]} title="S" image={asset4} score={98.7} /></div>
+                <div className="j1-j2-j3-r1 j2-j5-col"><TorqueContent torque={this.state.torque01[1]} title="L" image={asset3} score={98.7} /></div>
+                <div className="j1-j2-j3-r1 j3-j6-col"><TorqueContent torque={this.state.torque01[2]} title="U" image={asset2} score={98.7} /></div>
+                <div className="j4-j5-j6-r1 j1-j4-col"><TorqueContent torque={this.state.torque01[3]} title="R" image={asset6} score={98.7} /></div>
+                <div className="j4-j5-j6-r1 j2-j5-col"><TorqueContent torque={this.state.torque01[4]} title="B" image={asset7} score={98.7} /></div>
+                <div className="j4-j5-j6-r1 j3-j6-col"><TorqueContent torque={this.state.torque01[5]} title="T" image={asset8} score={98.7} /></div>
                 <div className="gap-line">
-                    <div className="gap-div gap-div1"/>
-                    <div className="gap-div"/>
+                    <div className="gap-div gap-div1" />
+                    <div className="gap-div" />
                 </div>
                 <div className="r2-row robot-col card-padding robot-name">Depalletizer</div>
                 <div className="r2-row robot-health card-padding card-color"><RobotHealth image={robotPic} /></div>
                 <div className="r2-row position card-padding card-color">
                     <Graph
-                        xPos={this.state.xPos}
-                        yPos={this.state.yPos}
-                        zPos={this.state.zPos}
+                        xPos={this.state.xPos02}
+                        yPos={this.state.yPos02}
+                        zPos={this.state.zPos02}
                     />
                 </div>
-                <div className="j1-j2-j3-r2 j1-j4-col"><TorqueContent torque={this.state.sTorque} title="S" image={asset2} score={98.7} /></div>
-                <div className="j1-j2-j3-r2 j2-j5-col"><TorqueContent torque={this.state.lTorque} title="L" image={asset3} score={98.7} /></div>
-                <div className="j1-j2-j3-r2 j3-j6-col"><TorqueContent torque={this.state.uTorque} title="U" image={asset4} score={98.7} /></div>
-                <div className="j4-j5-j6-r2 j1-j4-col"><TorqueContent torque={this.state.rTorque} title="R" image={asset6} score={98.7} /></div>
-                <div className="j4-j5-j6-r2 j2-j5-col"><TorqueContent torque={this.state.bTorque} title="B" image={asset7} score={98.7} /></div>
-                <div className="j4-j5-j6-r2 j3-j6-col"><TorqueContent torque={this.state.tTorque} title="T" image={asset8} score={98.7} /></div>
+                <div className="j1-j2-j3-r2 j1-j4-col"><TorqueContent torque={this.state.torque02[0]} title="S" image={asset2} score={98.7} /></div>
+                <div className="j1-j2-j3-r2 j2-j5-col"><TorqueContent torque={this.state.torque02[1]} title="L" image={asset3} score={98.7} /></div>
+                <div className="j1-j2-j3-r2 j3-j6-col"><TorqueContent torque={this.state.torque02[2]} title="U" image={asset4} score={98.7} /></div>
+                <div className="j4-j5-j6-r2 j1-j4-col"><TorqueContent torque={this.state.torque02[3]} title="R" image={asset6} score={98.7} /></div>
+                <div className="j4-j5-j6-r2 j2-j5-col"><TorqueContent torque={this.state.torque02[4]} title="B" image={asset7} score={98.7} /></div>
+                <div className="j4-j5-j6-r2 j3-j6-col"><TorqueContent torque={this.state.torque02[5]} title="T" image={asset8} score={98.7} /></div>
             </div>
+            );
+        }
+
+        return mainContent;
+    }
+    
+
+
+    render() {
+
+        let dashboardContent = this.getMainContent();
+
+        return (
+            // <p>this is also stupid</p> 
+            // <p>what do u mean lol</p>
+            <Aux>{dashboardContent}</Aux>
+            
         );
     }
 }
