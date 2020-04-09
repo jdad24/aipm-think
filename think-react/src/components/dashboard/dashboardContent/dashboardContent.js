@@ -170,14 +170,23 @@ class DashboardContent extends Component {
         let deviceId = parsedTopic[4];
         let valueCmdEvt = parsedTopic[6];
         let textJson = parsedTopic[8];
+
+        var health;
+
         if (textJson === "json") {
             let json = JSON.parse(message.payloadString);
             console.log("TIRE02", valueCmdEvt, json);
             // console.log("TOPIC - ", JSON.parse(message.destinationName));
             let torque= [json.sTorque,json.lTorque,json.uTorque,json.rTorque,json.bTorque,json.tTorque];
+            if(json['LP-FAILURE']!=null) {
+                health = json['LP-FAILURE'] * 100
+                health = health.toFixed(1)
+            } else {
+                health = this.state.healthScore02
+            }
             this.setState({
                 data: json,
-                healthScore02: null,
+                healthScore02: health,
                 torque02: torque,
                 xPos02: [...this.state.xPos02, json.xPos],
                 yPos02: [...this.state.yPos02, json.yPos],
@@ -201,18 +210,18 @@ class DashboardContent extends Component {
                         zPos={this.state.zPos01}
                     />
                 </div>
-                <div className="j1-j2-j3-r1 j1-j4-col"><TorqueContent torque={this.state.torque01[0]} title="S" image={asset4} score={98.7} /></div>
-                <div className="j1-j2-j3-r1 j2-j5-col"><TorqueContent torque={this.state.torque01[1]} title="L" image={asset3} score={98.7} /></div>
-                <div className="j1-j2-j3-r1 j3-j6-col"><TorqueContent torque={this.state.torque01[2]} title="U" image={asset2} score={98.7} /></div>
-                <div className="j4-j5-j6-r1 j1-j4-col"><TorqueContent torque={this.state.torque01[3]} title="R" image={asset6} score={98.7} /></div>
-                <div className="j4-j5-j6-r1 j2-j5-col"><TorqueContent torque={this.state.torque01[4]} title="B" image={asset7} score={98.7} /></div>
-                <div className="j4-j5-j6-r1 j3-j6-col"><TorqueContent torque={this.state.torque01[5]} title="T" image={asset8} score={98.7} /></div>
+                <div className="j1-j2-j3-r1 j1-j4-col"><TorqueContent robot="Palletizer" torque={this.state.torque01[0]} title="S" image={asset4} score={98.7} /></div>
+                <div className="j1-j2-j3-r1 j2-j5-col"><TorqueContent robot="Palletizer" torque={this.state.torque01[1]} title="L" image={asset3} score={98.7} /></div>
+                <div className="j1-j2-j3-r1 j3-j6-col"><TorqueContent robot="Palletizer" torque={this.state.torque01[2]} title="U" image={asset2} score={98.7} /></div>
+                <div className="j4-j5-j6-r1 j1-j4-col"><TorqueContent robot="Palletizer" torque={this.state.torque01[3]} title="R" image={asset6} score={98.7} /></div>
+                <div className="j4-j5-j6-r1 j2-j5-col"><TorqueContent robot="Palletizer" torque={this.state.torque01[4]} title="B" image={asset7} score={98.7} /></div>
+                <div className="j4-j5-j6-r1 j3-j6-col"><TorqueContent robot="Palletizer" torque={this.state.torque01[5]} title="T" image={asset8} score={98.7} /></div>
                 <div className="gap-line">
                     <div className="gap-div gap-div1" />
                     <div className="gap-div" />
                 </div>
                 <div className="r2-row robot-col card-padding robot-name">Depalletizer</div>
-                <div className="r2-row robot-health card-padding card-color"><RobotHealth image={robotPic} /></div>
+                <div className="r2-row robot-health card-padding card-color"><RobotHealth score={this.state.healthScore02} image={robotPic} /></div>
                 <div className="r2-row position card-padding card-color">
                     <Graph
                         xPos={this.state.xPos02}
@@ -220,12 +229,12 @@ class DashboardContent extends Component {
                         zPos={this.state.zPos02}
                     />
                 </div>
-                <div className="j1-j2-j3-r2 j1-j4-col"><TorqueContent torque={this.state.torque02[0]} title="S" image={asset2} score={98.7} /></div>
-                <div className="j1-j2-j3-r2 j2-j5-col"><TorqueContent torque={this.state.torque02[1]} title="L" image={asset3} score={98.7} /></div>
-                <div className="j1-j2-j3-r2 j3-j6-col"><TorqueContent torque={this.state.torque02[2]} title="U" image={asset4} score={98.7} /></div>
-                <div className="j4-j5-j6-r2 j1-j4-col"><TorqueContent torque={this.state.torque02[3]} title="R" image={asset6} score={98.7} /></div>
-                <div className="j4-j5-j6-r2 j2-j5-col"><TorqueContent torque={this.state.torque02[4]} title="B" image={asset7} score={98.7} /></div>
-                <div className="j4-j5-j6-r2 j3-j6-col"><TorqueContent torque={this.state.torque02[5]} title="T" image={asset8} score={98.7} /></div>
+                <div className="j1-j2-j3-r2 j1-j4-col"><TorqueContent robot="Depalletizer" torque={this.state.torque02[0]} title="S" image={asset2} score={98.7} /></div>
+                <div className="j1-j2-j3-r2 j2-j5-col"><TorqueContent robot="Depalletizer" torque={this.state.torque02[1]} title="L" image={asset3} score={98.7} /></div>
+                <div className="j1-j2-j3-r2 j3-j6-col"><TorqueContent robot="Depalletizer" torque={this.state.torque02[2]} title="U" image={asset4} score={98.7} /></div>
+                <div className="j4-j5-j6-r2 j1-j4-col"><TorqueContent robot="Depalletizer" torque={this.state.torque02[3]} title="R" image={asset6} score={98.7} /></div>
+                <div className="j4-j5-j6-r2 j2-j5-col"><TorqueContent robot="Depalletizer" torque={this.state.torque02[4]} title="B" image={asset7} score={98.7} /></div>
+                <div className="j4-j5-j6-r2 j3-j6-col"><TorqueContent robot="Depalletizer" torque={this.state.torque02[5]} title="T" image={asset8} score={98.7} /></div>
             </div>
             );
         }

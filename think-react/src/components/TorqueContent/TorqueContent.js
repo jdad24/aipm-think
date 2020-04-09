@@ -68,6 +68,7 @@ class TorqueContent extends React.Component {
     render() {
         this.torqueValue = null;
 
+        if(this.props.robot=="Palletizer") {
         switch (this.props.title) {
             case 'S':
                     this.torqueValue = Number(this.props.torque) 
@@ -75,7 +76,7 @@ class TorqueContent extends React.Component {
                 
                     this.progress= this.torqueValue/2000 * 100
                     this.progress = Math.abs(this.progress)
-                    console.log("Progress: " + this.progress)
+                    console.log("Palletizer Progress: " + this.progress)
               
                 break;
             case 'L':
@@ -123,6 +124,64 @@ class TorqueContent extends React.Component {
                 this.progress = 50
 
         }
+    } else if(this.props.robot=="Depalletizer") {
+        switch (this.props.title) {
+            case 'S':
+                    this.torqueValue = Number(this.props.torque) 
+                    // console.log("Torque: " + torquePlus)
+                
+                    this.progress= this.torqueValue/70000 * 100
+                    this.progress = Math.abs(this.progress)
+                    console.log("Depalletizer Progress: " + this.progress)
+              
+                break;
+            case 'L':
+                    this.torqueValue = Number(this.props.torque) 
+                
+
+                    this.progress= this.torqueValue/12000 * 100
+                    this.progress = Math.abs(this.progress)
+                    // console.log("Progress: " + this.progress)
+              
+                break;
+            case 'U':
+                    this.torqueValue = Number(this.props.torque) 
+
+                    this.progress= this.torqueValue/5000 * 100
+                    this.progress = Math.abs(this.progress)
+                    // console.log("Progress: " + this.progress)
+              
+                break;
+            case 'R':
+                    this.torqueValue = Number(this.props.torque) 
+
+                    this.progress= this.torqueValue/5000 * 100
+                    this.progress = Math.abs(this.progress)
+                    // console.log("Progress: " + this.progress)
+              
+                break;
+            case 'B':
+                    this.torqueValue = Number(this.props.torque) 
+
+                    this.progress = this.torqueValue/5000 * 100
+                    this.progress = Math.abs(this.progress)
+                    // console.log("Progress: " + this.progress)
+              
+                break;
+            case 'T':
+                    this.torqueValue = Number(this.props.torque) 
+
+                    this.progress= this.torqueValue/5000 * 100
+                    this.progress = Math.abs(this.progress)
+                    // console.log("Progress: " + this.progress)
+              
+                break;
+            default:
+                this.progress = 50
+
+        }
+
+    }
         return (
             <div className="torque-container">
                 <div className="torque-title">{this.props.title}</div>
