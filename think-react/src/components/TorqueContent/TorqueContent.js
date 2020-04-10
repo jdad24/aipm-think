@@ -185,7 +185,7 @@ class TorqueContent extends React.Component {
         return (
             <div className="torque-container">
                 <div className="torque-title">{this.props.title}</div>
-                <div className="torque-score">{this.props.torque}</div>
+                <div className="torque-score">{this.props.torque ? this.props.torque : "-"}</div>
                 <div className="image-progressbar-container">
                     <img className="torque-image" src={this.props.image} />
                     <ProgressBar title={this.props.title} torque={this.props.torque} progress={this.progress} />
