@@ -146,15 +146,25 @@ class DashboardContent extends Component {
         let deviceId = parsedTopic[4];
         let valueCmdEvt = parsedTopic[6];
         let textJson = parsedTopic[8];
-        
+
+        var health;
+
         if (textJson === "json") {
             let json = JSON.parse(message.payloadString);
             console.log("TIRE01", valueCmdEvt, json);
             // console.log("TOPIC - ", JSON.parse(message.destinationName));
             let torque= [json.sTorque,json.lTorque,json.uTorque,json.rTorque,json.bTorque,json.tTorque];
+            
+            if(valueCmdEvt=="health") {
+                health = json['LP_FAILURE'] 
+                health = health.toFixed(1)
+            } else {
+                health = this.state.healthScore01
+            }
+
             this.setState({
                 data: json,
-                healthScore01: null,
+                healthScore01: health,
                 torque01: torque,
                 xPos01: [...this.state.xPos01, json.xPos],
                 yPos01: [...this.state.yPos01, json.yPos],
@@ -178,7 +188,7 @@ class DashboardContent extends Component {
             console.log("TIRE02", valueCmdEvt, json);
             // console.log("TOPIC - ", JSON.parse(message.destinationName));
             let torque= [json.sTorque,json.lTorque,json.uTorque,json.rTorque,json.bTorque,json.tTorque];
-            if(json['LP-FAILURE']!=null) {
+            if(valueCmdEvt=="health") {
                 health = json['LP-FAILURE'] * 100
                 health = health.toFixed(1)
             } else {
@@ -202,7 +212,7 @@ class DashboardContent extends Component {
             mainContent = (
                 <div className="contents-container">
                 <div className="r1-row robot-col card-padding robot-name">Palletizer</div>
-                <div className="r1-row robot-health card-padding card-color"><RobotHealth image={robotPic} /></div>
+                <div className="r1-row robot-health card-padding card-color"><RobotHealth score={this.state.healthScore01} image={robotPic} /></div>
                 <div className="r1-row position card-padding card-color">
                     <Graph
                         xPos={this.state.xPos01}
