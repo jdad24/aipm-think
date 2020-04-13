@@ -151,10 +151,10 @@ class DashboardContent extends Component {
 
         if (textJson === "json") {
             let json = JSON.parse(message.payloadString);
-            console.log("TIRE02", valueCmdEvt, json);
+            console.log("TIRE01", valueCmdEvt, json);
             // console.log("TOPIC - ", JSON.parse(message.destinationName));
             if(valueCmdEvt=="health") {
-                health = json['LP_FAILURE'] 
+                health = json['LP-FAILURE'] * 100
                 health = health.toFixed(1)
                 this.setState({
                     healthScore01: health
@@ -243,9 +243,9 @@ class DashboardContent extends Component {
                         zPos={this.state.zPos02}
                     />
                 </div>
-                <div className="j1-j2-j3-r2 j1-j4-col"><TorqueContent robot="Depalletizer" torque={this.state.torque02[0]} title="S" image={asset2} score={98.7} /></div>
+                <div className="j1-j2-j3-r2 j1-j4-col"><TorqueContent robot="Depalletizer" torque={this.state.torque02[0]} title="S" image={asset4} score={98.7} /></div>
                 <div className="j1-j2-j3-r2 j2-j5-col"><TorqueContent robot="Depalletizer" torque={this.state.torque02[1]} title="L" image={asset3} score={98.7} /></div>
-                <div className="j1-j2-j3-r2 j3-j6-col"><TorqueContent robot="Depalletizer" torque={this.state.torque02[2]} title="U" image={asset4} score={98.7} /></div>
+                <div className="j1-j2-j3-r2 j3-j6-col"><TorqueContent robot="Depalletizer" torque={this.state.torque02[2]} title="U" image={asset2} score={98.7} /></div>
                 <div className="j4-j5-j6-r2 j1-j4-col"><TorqueContent robot="Depalletizer" torque={this.state.torque02[3]} title="R" image={asset6} score={98.7} /></div>
                 <div className="j4-j5-j6-r2 j2-j5-col"><TorqueContent robot="Depalletizer" torque={this.state.torque02[4]} title="B" image={asset7} score={98.7} /></div>
                 <div className="j4-j5-j6-r2 j3-j6-col"><TorqueContent robot="Depalletizer" torque={this.state.torque02[5]} title="T" image={asset8} score={98.7} /></div>
