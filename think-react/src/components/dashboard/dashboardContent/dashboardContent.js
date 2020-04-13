@@ -151,25 +151,31 @@ class DashboardContent extends Component {
 
         if (textJson === "json") {
             let json = JSON.parse(message.payloadString);
-            console.log("TIRE01", valueCmdEvt, json);
+            console.log("TIRE02", valueCmdEvt, json);
             // console.log("TOPIC - ", JSON.parse(message.destinationName));
-            let torque= [json.sTorque,json.lTorque,json.uTorque,json.rTorque,json.bTorque,json.tTorque];
-            
             if(valueCmdEvt=="health") {
                 health = json['LP_FAILURE'] 
+                health = health.toFixed(1)
+                this.setState({
+                    healthScore01: health
+                })
+            } else if(valueCmdEvt=="update") {
+                let torque= [json.sTorque,json.lTorque,json.uTorque,json.rTorque,json.bTorque,json.tTorque];
+            if(valueCmdEvt=="health") {
+                health = json['LP-FAILURE'] * 100
                 health = health.toFixed(1)
             } else {
                 health = this.state.healthScore01
             }
-
             this.setState({
                 data: json,
-                healthScore01: health,
                 torque01: torque,
                 xPos01: [...this.state.xPos01, json.xPos],
                 yPos01: [...this.state.yPos01, json.yPos],
                 zPos01: [...this.state.zPos01, json.zPos],
             })
+                
+            }
 
         }
     }
@@ -187,7 +193,14 @@ class DashboardContent extends Component {
             let json = JSON.parse(message.payloadString);
             console.log("TIRE02", valueCmdEvt, json);
             // console.log("TOPIC - ", JSON.parse(message.destinationName));
-            let torque= [json.sTorque,json.lTorque,json.uTorque,json.rTorque,json.bTorque,json.tTorque];
+            if(valueCmdEvt=="health") {
+                health = json['LP-FAILURE'] * 100
+                health = health.toFixed(1)
+                this.setState({
+                    healthScore02: health
+                })
+            } else if(valueCmdEvt=="update") {
+                let torque= [json.sTorque,json.lTorque,json.uTorque,json.rTorque,json.bTorque,json.tTorque];
             if(valueCmdEvt=="health") {
                 health = json['LP-FAILURE'] * 100
                 health = health.toFixed(1)
@@ -196,12 +209,13 @@ class DashboardContent extends Component {
             }
             this.setState({
                 data: json,
-                healthScore02: health,
                 torque02: torque,
                 xPos02: [...this.state.xPos02, json.xPos],
                 yPos02: [...this.state.yPos02, json.yPos],
                 zPos02: [...this.state.zPos02, json.zPos],
             })
+                
+            }
 
         }
     }
