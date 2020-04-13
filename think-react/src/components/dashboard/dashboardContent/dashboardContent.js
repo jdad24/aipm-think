@@ -161,12 +161,7 @@ class DashboardContent extends Component {
                 })
             } else if(valueCmdEvt=="update") {
                 let torque= [json.sTorque,json.lTorque,json.uTorque,json.rTorque,json.bTorque,json.tTorque];
-            if(valueCmdEvt=="health") {
-                health = json['LP-FAILURE'] * 100
-                health = health.toFixed(1)
-            } else {
-                health = this.state.healthScore01
-            }
+           
             this.setState({
                 data: json,
                 torque01: torque,
@@ -201,12 +196,7 @@ class DashboardContent extends Component {
                 })
             } else if(valueCmdEvt=="update") {
                 let torque= [json.sTorque,json.lTorque,json.uTorque,json.rTorque,json.bTorque,json.tTorque];
-            if(valueCmdEvt=="health") {
-                health = json['LP-FAILURE'] * 100
-                health = health.toFixed(1)
-            } else {
-                health = this.state.healthScore02
-            }
+           
             this.setState({
                 data: json,
                 torque02: torque,
