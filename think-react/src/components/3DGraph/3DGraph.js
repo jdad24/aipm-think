@@ -76,30 +76,8 @@ class Graph extends React.Component {
 
   }
 
-  getYaskawa1Data() {
-    $.ajax({
-      url: 'https://aipm-gsc-nodered.mybluemix.net/yaskawaHistory',
-      type: 'GET',
-      dataType: 'json',
-
-    }).then(response => {
-
-
-      response.yaskawaHistory.slice(0, 10).map((record, index) => {
-        this.setState({
-          yaskawa1: [...this.state.yaskawa1, JSON.parse(record)]
-        })
-        // return JSON.parse(record)
-      })
-
-      console.log(this.state.yaskawa1)
-
-    })
-
-  }
 
   componentDidMount() {
-    // this.getYaskawa1Data()
 
     window.addEventListener('resize', () => {
       this.setState({
@@ -131,11 +109,11 @@ class Graph extends React.Component {
                 // this.dataArray[0]['xPos']
               ],
               y: [
-                this.props.yPos[this.props.yPos.length - 1],
-                this.props.yPos[this.props.yPos.length - 2],
-                this.props.yPos[this.props.yPos.length - 3],
-                this.props.yPos[this.props.yPos.length - 4],
-                this.props.yPos[this.props.yPos.length - 5],
+                this.props.yPos[this.props.xPos.length - 1],
+                this.props.yPos[this.props.xPos.length - 2],
+                this.props.yPos[this.props.xPos.length - 3],
+                this.props.yPos[this.props.xPos.length - 4],
+                this.props.yPos[this.props.xPos.length - 5],
                 // this.dataArray[0]['yPos'], 
                 // this.dataArray[1]['yPos'], 
                 // this.dataArray[2]['yPos'], 
@@ -143,11 +121,11 @@ class Graph extends React.Component {
                 // this.dataArray[0]['xPos']
               ],
               z: [
-                this.props.zPos[this.props.zPos.length - 1],
-                this.props.zPos[this.props.zPos.length - 2],
-                this.props.zPos[this.props.zPos.length - 3],
-                this.props.zPos[this.props.zPos.length - 4],
-                this.props.zPos[this.props.zPos.length - 5],
+                this.props.zPos[this.props.xPos.length - 1],
+                this.props.zPos[this.props.xPos.length - 2],
+                this.props.zPos[this.props.xPos.length - 3],
+                this.props.zPos[this.props.xPos.length - 4],
+                this.props.zPos[this.props.xPos.length - 5],
                 // this.dataArray[0]['zPos'], 
                 // this.dataArray[1]['zPos'], 
                 // this.dataArray[2]['zPos'], 
@@ -310,7 +288,7 @@ class Graph extends React.Component {
               // bgcolor: "rgba(37,37,37,1)",
               aspectmode: "cube",
               xaxis: {
-                // range: [-1000000,1000000],
+                range: [500000,1000000],
                 title: {
                   text: ""
                 },
@@ -322,7 +300,7 @@ class Graph extends React.Component {
                 // visible: false
               },
               yaxis: {
-                // range: [-1000000,1000000],
+                range: [-700000,700000],
                 title: {
                   text: ""
                 },
@@ -334,7 +312,7 @@ class Graph extends React.Component {
                 // visible: false
               },
               zaxis: {
-                // range: [-1000000,1000000],
+                range: [100000,700000],
                 title: {
                   text: ""
                 },
@@ -347,9 +325,9 @@ class Graph extends React.Component {
               },
               camera: {
                 eye: {
-                  x: 1.5,
-                  y: 1.5,
-                  z: 1.5
+                  x: 1.25,
+                  y: 1.25,
+                  z: 1.25
                 },
                 up: {
                   x: 0,
