@@ -145,7 +145,7 @@ class Graph extends React.Component {
                   'rgba(178,73,112,1)',
                   'rgba(134,60,88,1)'
                 ],
-                size: '12',
+                size: '15',
                 opacity: "1"
                 // symbol: ['circle-open', 'circle-open','circle-open','circle-open', 'circle']
               },
