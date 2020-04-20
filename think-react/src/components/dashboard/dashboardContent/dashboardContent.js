@@ -38,14 +38,14 @@ class DashboardContent extends Component {
         {
             clientId: 'a:vrvzh6:' + Math.random().toString(16).substr(2, 8),
             broker: "vrvzh6.messaging.internetofthings.ibmcloud.com",
-            subscribe: "iot-2/type/gsc-yaskawa-gw/id/gsc-yaskawa-tire01r/evt/+/fmt/json",
+            subscribe: "iot-2/type/gsc-yaskawa-gw/id/gsc-yaskawa-tire01/evt/+/fmt/json",
             username: "a-vrvzh6-lmttnkzxht",
             password: "LRVitW+(soqXuZdJT!"
         },
         {
             clientId: 'a:vrvzh6:' + Math.random().toString(16).substr(2, 8),
             broker: "vrvzh6.messaging.internetofthings.ibmcloud.com",
-            subscribe: "iot-2/type/gsc-yaskawa-gw/id/gsc-yaskawa-tire02r/evt/+/fmt/json",
+            subscribe: "iot-2/type/gsc-yaskawa-gw/id/gsc-yaskawa-tire02/evt/+/fmt/json",
             username: "a-vrvzh6-lmttnkzxht",
             password: "LRVitW+(soqXuZdJT!"
         }

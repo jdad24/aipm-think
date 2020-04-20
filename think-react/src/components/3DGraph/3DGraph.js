@@ -288,7 +288,8 @@ class Graph extends React.Component {
               // bgcolor: "rgba(37,37,37,1)",
               aspectmode: "cube",
               xaxis: {
-                range: [500000,1000000],
+                // range: [500000,1000000],
+                range: [-169256,505461],
                 title: {
                   text: ""
                 },
@@ -300,7 +301,8 @@ class Graph extends React.Component {
                 // visible: false
               },
               yaxis: {
-                range: [-700000,700000],
+                // range: [-700000,700000],
+                range: [-456012,384705],
                 title: {
                   text: ""
                 },
@@ -312,7 +314,8 @@ class Graph extends React.Component {
                 // visible: false
               },
               zaxis: {
-                range: [100000,700000],
+                // range: [100000,700000],
+                range: [-192231,295137],
                 title: {
                   text: ""
                 },

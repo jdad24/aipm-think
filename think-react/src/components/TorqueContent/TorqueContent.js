@@ -74,7 +74,8 @@ class TorqueContent extends React.Component {
                     this.torqueValue = Number(this.props.torque) 
                     // console.log("Torque: " + torquePlus)
                 
-                    this.progress= this.torqueValue/2500 * 100
+                    // this.progress= this.torqueValue/2500 * 100
+                    this.progress= this.torqueValue/14500 * 100
                     this.progress = Math.abs(this.progress)
                     // console.log("Palletizer Progress: " + this.progress)
               
@@ -83,7 +84,8 @@ class TorqueContent extends React.Component {
                     this.torqueValue = Number(this.props.torque) 
                 
 
-                    this.progress= this.torqueValue/7000 * 100
+                    // this.progress= this.torqueValue/7000 * 100
+                    this.progress= this.torqueValue/20500 * 100
                     this.progress = Math.abs(this.progress)
                     // console.log("Progress: " + this.progress)
               
@@ -91,7 +93,9 @@ class TorqueContent extends React.Component {
             case 'U':
                     this.torqueValue = Number(this.props.torque) 
 
-                    this.progress= this.torqueValue/4000 * 100
+                    // this.progress= this.torqueValue/4000 * 100
+                    this.progress= this.torqueValue/12000 * 100
+
                     this.progress = Math.abs(this.progress)
                     // console.log("Progress: " + this.progress)
               
@@ -99,7 +103,8 @@ class TorqueContent extends React.Component {
             case 'R':
                     this.torqueValue = Number(this.props.torque) 
 
-                    this.progress= this.torqueValue/2000 * 100
+                    // this.progress= this.torqueValue/2000 * 100
+                    this.progress= this.torqueValue/3000 * 100
                     this.progress = Math.abs(this.progress)
                     // console.log("Progress: " + this.progress)
               
@@ -107,7 +112,8 @@ class TorqueContent extends React.Component {
             case 'B':
                     this.torqueValue = Number(this.props.torque) 
 
-                    this.progress = this.torqueValue/1000 * 100
+                    // this.progress = this.torqueValue/1000 * 100
+                    this.progress = this.torqueValue/3000 * 100
                     this.progress = Math.abs(this.progress)
                     // console.log("Progress: " + this.progress)
               
@@ -115,7 +121,8 @@ class TorqueContent extends React.Component {
             case 'T':
                     this.torqueValue = Number(this.props.torque) 
 
-                    this.progress= this.torqueValue/1000 * 100
+                    // this.progress= this.torqueValue/1000 * 100
+                    this.progress= this.torqueValue/2000 * 100
                     this.progress = Math.abs(this.progress)
                     // console.log("Progress: " + this.progress)
               
